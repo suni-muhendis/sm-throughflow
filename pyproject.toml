@@ -30,6 +30,7 @@ dependencies = [
     # a release tag so results cannot move when either branch advances.
     "turbo-design @ git+https://github.com/suni-muhendis/turbo-design.git@v1.4.4-sm.2",
     "numpy",
+    "scipy",
     "cantera",
 ]
 
