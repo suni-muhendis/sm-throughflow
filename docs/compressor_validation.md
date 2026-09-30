@@ -21,31 +21,50 @@ not a published benchmark.
 | Case | Achieved PR | Target PR | Polytropic efficiency | Massflow residual | Passes |
 |---|---:|---:|---:|---:|---:|
 | one-stage adapter regression | 1.3172 | 1.3000 | 1.0052 | 5.3e-10 | 4 |
-| one-stage candidate physics | 1.4294 | 1.3000 | 0.9550 | 2.7e-10 | 10 |
+| one-stage candidate physics | fails | 1.3000 | — | — | — |
 | two-stage adapter regression | 1.6809 | 1.6900 | 1.0090 | 1.9e-9 | 5 |
-| two-stage candidate physics | 2.0314 | 1.6900 | 0.9437 | 7.2e-10 | 10 |
+| two-stage candidate physics | fails | 1.6900 | — | — | — |
 
-Every run converges: no row's Vm or P0 profile changes by more than 1e-6
-(relative) in the last pass.
+The regression runs converge: no row's Vm or P0 profile changes by more than
+1e-6 (relative) in the last pass. They are useful only for adapter
+equivalence.
 
-The regression path is useful only for adapter equivalence. Its efficiency
-above one is physically impossible and demonstrates why zero loss cannot be a
-validation model. The candidate path applies the preliminary Lieblein
-diffusion loss and Carter deviation. It converges, but its pressure-ratio
-errors are 9.95% for one stage and 20.2% for the repeated two-stage case.
-Incidence loss is absent. These facts block scoring.
+The candidate runs no longer solve, and the reasons are the substance of this
+document:
 
-On `…_v3` (fork `v1.4.4-sm.1`) the two-stage candidate stopped at a massflow
-residual of 2.26e-6 and was rejected: the solver's row solves were only
-accurate to about 1e-6, and its loop stopped on that noise. `v1.4.4-sm.2`
-fixes both.
+1. **The candidate case is ill-posed.** Mattingly 9.1 gives exit angles but no
+   inlet metal angles, and the case used 0 deg, so the rows met the flow at
+   30-55 deg of incidence and the stators were drawn with camber of the wrong
+   sign. Before `v1.4.4-sm.2` this was hidden because turbo-design computed a
+   stator's deviation but released the flow at the metal angle. Once the
+   deviation reaches the flow, the stators choke.
+2. **A zero-incidence redesign exposes an energy error in turbo-design.** With
+   inlet metal angles set to the flow and exit angles compensated for Carter
+   deviation, the one-stage candidate solves with a polytropic efficiency of
+   1.002 despite its losses. Even at zero loss the solver reports 1.005.
+   Measured on NASA's own Mattingly 9.1 example, unmodified, on upstream
+   23c2b0bf, upstream 1.4.4 and the fork alike, the stator raises the
+   mass-averaged T0 by 0.62 K (2.6% of the stage's rise). At 11 streamlines
+   the rotor exit T0 departs from the Euler work of the solver's own velocity
+   triangles by up to 3.6 K, in a saw-tooth from one streamline to the next.
+3. **The cause is the closure of the radial-equilibrium ODE.** turbo-design
+   integrates P0, T0 and Vm together from mid-span, taking dT0/dr and dP0/dr
+   from the previous pass's static profiles. The standard streamline-curvature
+   method carries rothalpy and entropy along the stream surfaces and solves
+   the normal-momentum equation for Vm only: L. H. Smith (1966), eqs. 52-60;
+   Dixon and Hall, eq. 6.6a; Aungier (2003), eqs. 7-10, 7-11 and 7-40 to
+   7-49. turbo-design's own paper assumes rothalpy is conserved in every row.
+
+This environment therefore moves to its own streamline-curvature solver. The
+turbo-design path stays as a cross-check, and its two candidate-compressor
+tests are expected failures.
 
 On NASA 23c2b0bf (simulator `…_v2`) the candidate predicted zero stator loss,
 because the upstream loss divided the stator swirl change by rotor speed, and
 the environment had to replace NASA's Carter class, which returned zero
 deviation, with its own adapter. The fork fixes both (see its
-`MODIFICATIONS.md`); the stator now carries a mean loss coefficient of about
-0.055 in the one-stage case.
+`MODIFICATIONS.md`); on `…_v3` the one-stage stator carried a mean loss
+coefficient of about 0.055.
 
 ## EEE high-pressure compressor audit
 

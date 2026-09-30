@@ -39,3 +39,10 @@ that follows it is a new simulator version.
   results move by at most 7e-6; turbine results are unchanged. The repeated
   two-stage candidate compressor converges again. Results report
   `solver_solution_change`.
+- `v1.4.4-sm.2` also releases a compressor stator's flow at its metal angle
+  plus deviation (before, the deviation never reached the flow). The
+  Mattingly candidate case, which has no inlet metal angles, now chokes; its
+  two tests are expected failures. Investigating it showed that turbo-design's
+  compressor solve does not conserve energy across a stator (see
+  `docs/compressor_validation.md`), so the environment will move to its own
+  streamline-curvature solver.
