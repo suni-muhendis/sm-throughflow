@@ -126,3 +126,61 @@ def test_an_exit_based_loss_lowers_total_pressure_by_its_definition():
     stator_in, stator_exit = solution.stations[3], solution.stations[4]
     loss = (stator_in.P0 - stator_exit.P0) / (stator_exit.P0 - stator_exit.P)
     assert loss == pytest.approx(np.full(11, 0.04), rel=1e-9)
+
+
+# Step 1b: a curved annulus with an exact solution. Between two cones with a
+# common apex the flow is a spherical source: it moves along rays from the
+# apex with a speed set only by the distance R from it, rho(V) V R^2 Omega =
+# mdot, compressible or not. Radial quasi-normals then cross stream surfaces of
+# different slope at an angle, and Wm changes along them, so every geometric
+# term of the normal-momentum equation is exercised.
+APEX, HUB_CONE, TIP_CONE, CONE_LENGTH = -1.0, np.radians(10.0), np.radians(20.0), 0.6
+CONES = Annulus.from_points(
+    [(0.0, -APEX * np.tan(HUB_CONE)), (CONE_LENGTH, (CONE_LENGTH - APEX) * np.tan(HUB_CONE))],
+    [(0.0, -APEX * np.tan(TIP_CONE)), (CONE_LENGTH, (CONE_LENGTH - APEX) * np.tan(TIP_CONE))],
+)
+
+
+def _source_flow_error(curvature, quasi_normals, surfaces, mass_flow=65.0):
+    from scipy.optimize import brentq
+
+    qn = QuasiNormals.on(CONES, np.linspace(0.0, CONE_LENGTH, quasi_normals))
+    solution = Throughflow(CONES, qn, INLET, mass_flow=mass_flow, curvature=curvature, stream_surfaces=surfaces).solve()
+    assert solution.convergence.converged
+    H = GAS.enthalpy(288.15)
+    s = GAS.entropy(H, 101325.0)
+    solid_angle = 2.0 * np.pi * (np.cos(HUB_CONE) - np.cos(TIP_CONE))
+    worst = 0.0
+    for q, station in enumerate(solution.stations):
+        radius = np.hypot(solution.geometry.z[q] - APEX, solution.geometry.r[q])
+        exact = np.array([
+            brentq(lambda V: GAS.density(H - 0.5 * V * V, s) * V * R * R * solid_angle - mass_flow, 1e-6, 310.0)
+            for R in radius
+        ])
+        worst = max(worst, float(np.max(np.abs(station.Wm - exact) / exact)))
+    return worst, solution
+
+
+def test_source_flow_between_cones_matches_the_exact_solution_at_second_order():
+    # Inlet Mach number up to 0.71.
+    errors = [_source_flow_error("full", q, n)[0] for q, n in ((7, 11), (13, 21), (25, 41))]
+    assert errors[0] < 5e-4
+    assert errors[0] / errors[1] > 3.5
+    assert errors[1] / errors[2] > 3.5
+
+
+def test_source_flow_stream_surfaces_lie_on_the_rays():
+    _, solution = _source_flow_error("full", 7, 11)
+    geometry = solution.geometry
+    ray = np.arctan2(geometry.r, geometry.z - APEX)
+    assert np.degrees(np.max(np.abs(geometry.phi - ray))) < 1e-4
+
+
+def test_simplified_curvature_models_trade_accuracy_in_a_conical_annulus():
+    # Linear slope and curvature stay within 0.2%; neglecting them (simple
+    # normal equilibrium) misses this flow by several percent. Aungier (2003,
+    # section 7.6) restricts the simple form to design-mode use.
+    linear, _ = _source_flow_error("linear", 7, 11)
+    none, _ = _source_flow_error("none", 7, 11)
+    assert linear < 2e-3
+    assert none > 0.05

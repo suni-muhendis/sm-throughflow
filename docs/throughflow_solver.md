@@ -75,7 +75,13 @@ repositioning with Novak damping; prescribed-performance rows. Verified by
 a forced vortex against its closed form at second order (1.9e-4 at 11
 surfaces), and in a lossless stage Euler work to 1e-8 J/kg, `H` and `s`
 unchanged on every stream surface and the mass-averaged T0 across the stator
-unchanged to 3e-10 K. Not yet: correlation rows, blockage models, the
+unchanged to 3e-10 K. In a curved annulus, the spherical source flow between
+two cones with a common apex (exact, compressible, inlet Mach up to 0.71) is
+matched at second order by the full model (2.6e-4 at 11 surfaces and 7
+quasi-normals, 1.6e-5 at 41 and 25), with the stream surfaces on the rays to
+3e-6 degrees. There the linear model stays within 0.1% and the simple model
+(no slope or curvature) is off by 8%, so the simple model is only for
+near-cylindrical passages. Not yet: correlation rows, blockage models, the
 environment's simulator on this solver.
 
 ## Conventions
