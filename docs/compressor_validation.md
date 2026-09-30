@@ -12,27 +12,33 @@ python scripts/run_throughflow_compressor_benchmark.py
 ```
 
 The reference case is Mattingly example 9.1 as transcribed in NASA
-`turbo-design`, run on the pinned fork `suni-muhendis/turbo-design@v1.4.4-sm.1`
-(simulator `nasa_turbo_design_experimental_v3`). The published example specifies one
+`turbo-design`, run on the pinned fork `suni-muhendis/turbo-design@v1.4.4-sm.2`
+(simulator `nasa_turbo_design_experimental_v4`). The published example specifies one
 stage, a total-pressure ratio of 1.3, the annulus, operating point, and exit
 metal angles. The second stage below is a repeated-stage integration exercise,
 not a published benchmark.
 
-| Case | Achieved PR | Target PR | Polytropic efficiency | Massflow residual |
-|---|---:|---:|---:|---:|
-| one-stage adapter regression | 1.3172 | 1.3000 | 1.0052 | 7.38e-8 |
-| one-stage candidate physics | 1.4294 | 1.3000 | 0.9550 | 2.88e-8 |
-| two-stage adapter regression | 1.6809 | 1.6900 | 1.0090 | 7.36e-7 |
-| two-stage candidate physics | rejected | 1.6900 | — | 2.26e-6 |
+| Case | Achieved PR | Target PR | Polytropic efficiency | Massflow residual | Passes |
+|---|---:|---:|---:|---:|---:|
+| one-stage adapter regression | 1.3172 | 1.3000 | 1.0052 | 5.3e-10 | 4 |
+| one-stage candidate physics | 1.4294 | 1.3000 | 0.9550 | 2.7e-10 | 10 |
+| two-stage adapter regression | 1.6809 | 1.6900 | 1.0090 | 1.9e-9 | 5 |
+| two-stage candidate physics | 2.0314 | 1.6900 | 0.9437 | 7.2e-10 | 10 |
+
+Every run converges: no row's Vm or P0 profile changes by more than 1e-6
+(relative) in the last pass.
 
 The regression path is useful only for adapter equivalence. Its efficiency
 above one is physically impossible and demonstrates why zero loss cannot be a
 validation model. The candidate path applies the preliminary Lieblein
-diffusion loss and Carter deviation. For one stage it converges with a
-pressure-ratio error of 9.95%. The repeated two-stage case plateaus at a
-massflow residual of 2.26e-6, above the environment's 1e-6 tolerance, and is
-rejected as not converged. Incidence loss is absent. These facts block
-scoring.
+diffusion loss and Carter deviation. It converges, but its pressure-ratio
+errors are 9.95% for one stage and 20.2% for the repeated two-stage case.
+Incidence loss is absent. These facts block scoring.
+
+On `…_v3` (fork `v1.4.4-sm.1`) the two-stage candidate stopped at a massflow
+residual of 2.26e-6 and was rejected: the solver's row solves were only
+accurate to about 1e-6, and its loop stopped on that noise. `v1.4.4-sm.2`
+fixes both.
 
 On NASA 23c2b0bf (simulator `…_v2`) the candidate predicted zero stator loss,
 because the upstream loss divided the stator swirl change by rotor speed, and

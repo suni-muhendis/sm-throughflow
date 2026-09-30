@@ -20,8 +20,8 @@ validation; see [docs/compressor_validation.md](docs/compressor_validation.md).
   (`0.0, 0.1, …, 1.0`) for inlet metal, exit metal and stagger angle.
 - **Task:** operating point, numerical resolution and physics profile (loss and
   deviation models). The model designs the machine; the task owns the referee.
-- **Versions:** simulator `nasa_turbo_design_experimental_v3` on
-  `suni-muhendis/turbo-design@v1.4.4-sm.1`; score `throughflow_score_disabled_v1`.
+- **Versions:** simulator `nasa_turbo_design_experimental_v4` on
+  `suni-muhendis/turbo-design@v1.4.4-sm.2`; score `throughflow_score_disabled_v1`.
 
 ## Install
 

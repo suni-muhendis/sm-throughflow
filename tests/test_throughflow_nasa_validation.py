@@ -3,9 +3,9 @@
 REFERENCE and COMPRESSOR_REFERENCE were produced by executing
 ``examples/optturb-turbine/optturb-fixed_pressure_loss2.py`` and
 ``examples/mattingly-axial-compressor/example9.1.py`` directly at
-suni-muhendis/turbo-design v1.4.4-sm.1 with moving streamlines disabled. The
+suni-muhendis/turbo-design v1.4.4-sm.2 with moving streamlines disabled. The
 remaining values are characterization goldens of simulator
-nasa_turbo_design_experimental_v3. This validates translation, not
+nasa_turbo_design_experimental_v4. This validates translation, not
 experimental physics.
 """
 import contextlib
@@ -20,8 +20,8 @@ from sm_core import make_env
 from sm_throughflow.profiles import BACKEND_REVISION
 
 REFERENCE={"power_W":3573397.2318285243,"pressure_ratio_total":3.403251731879399,"efficiency_polytropic":0.7726742175259408}
-COMPRESSOR_REFERENCE={"power_W":527722.5401195637,"pressure_ratio_total":1.321457267948512,"efficiency_polytropic":1.004384964862828}
-MULTISTAGE_COMPRESSOR_REFERENCE={"power_W":1016874.5928006091,"pressure_ratio_total":1.680905912291989,"efficiency_polytropic":1.0089961701592596}
+COMPRESSOR_REFERENCE={"power_W":527722.9442221978,"pressure_ratio_total":1.321457700451021,"efficiency_polytropic":1.0043849643395577}
+MULTISTAGE_COMPRESSOR_REFERENCE={"power_W":1016875.9895517118,"pressure_ratio_total":1.6809072464223875,"efficiency_polytropic":1.008996170130541}
 
 def test_optturb_adapter_matches_direct_upstream_solve():
     pytest.importorskip("turbodesign")
@@ -66,9 +66,9 @@ def test_ten_streamtube_resolution_gap_is_reported_for_the_regression_case():
     coarse=report["observations"][0]
     assert coarse["status"]=="success"
     differences=coarse["relative_difference_to_finest"]
-    assert differences["power_W"]==pytest.approx(.019739266035912487,rel=1e-10)
-    assert differences["pressure_ratio_total"]==pytest.approx(.006693924855170807,rel=1e-10)
-    assert differences["efficiency_polytropic"]==pytest.approx(.0005562074886918173,rel=1e-10)
+    assert differences["power_W"]==pytest.approx(.019736764521936585,rel=1e-10)
+    assert differences["pressure_ratio_total"]==pytest.approx(.006696030593368838,rel=1e-10)
+    assert differences["efficiency_polytropic"]==pytest.approx(.0005562063560768022,rel=1e-10)
 
 def test_all_eleven_metal_angle_values_reach_the_nasa_rows_without_resampling():
     pytest.importorskip("turbodesign")
@@ -109,7 +109,7 @@ def test_backend_carter_deviation_matches_documented_algebra():
 
 def test_compressor_candidate_applies_spanwise_geometry_loss_and_deviation():
     pytest.importorskip("turbodesign")
-    design,task=build_compressor_case(stages=1,streamtubes=10)
+    design,task=build_compressor_case(stages=2,streamtubes=10)
     for row in design["rows"]:
         if row["row_type"] not in ("rotor","stator"):
             continue
@@ -134,23 +134,17 @@ def test_public_compressor_comparison_runs_with_convergence_evidence():
     pytest.importorskip("turbodesign")
     report = run_comparison()
     assert len(report["runs"]) == 4
-    # The repeated two-stage candidate plateaus at a massflow residual of
-    # about 2e-6, so the environment rejects it rather than scoring a loose solve.
-    rejected = report["runs"][3]
-    assert rejected["label"] == "mattingly_2_stage_candidate"
-    assert rejected["status"] == "simulation_error"
-    assert "massflow residual" in rejected["error"]
-    solved = report["runs"][:3]
-    assert all(run["status"] == "success" for run in solved)
-    for run in solved:
+    assert all(run["status"] == "success" for run in report["runs"])
+    for run in report["runs"]:
         metrics = run["metrics"]
+        assert metrics["solver_solution_change"] <= 1e-6
         assert metrics["streamline_count"] == 11.0
         assert metrics["streamtube_count"] == 10.0
         assert metrics["massflow_residual"] <= 1e-6
         assert "pressure_ratio_relative_error" in metrics
     regression = report["runs"][0]
     assert regression["metrics"]["pressure_ratio_total"] == pytest.approx(1.3, rel=0.02)
-    for run in solved:
+    for run in report["runs"]:
         if "candidate" in run["label"]:
             assert 0.0 < run["metrics"]["efficiency_polytropic"] <= 1.0
 
@@ -180,3 +174,15 @@ def test_candidate_rejects_polytropic_efficiency_above_unity(monkeypatch):
         )
     assert result.status == "simulation_error"
     assert "non-physical polytropic efficiency 1.007800" in result.error_message
+
+
+def test_compressor_reports_an_exhausted_iteration_limit():
+    pytest.importorskip("turbodesign")
+    design, task = _candidate_case(2)
+    task["numerics"]["max_iterations"] = 3
+    with contextlib.redirect_stdout(io.StringIO()):
+        result = make_env("turbomachinery_throughflow").evaluate(
+            "validation", task, "iteration_limit", design
+        )
+    assert result.status == "simulation_error"
+    assert "did not converge in 3 iterations" in result.error_message

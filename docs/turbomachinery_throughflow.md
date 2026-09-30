@@ -58,9 +58,9 @@ scoring gate are documented in
 
 ## Backend
 
-The simulator runs on `suni-muhendis/turbo-design@v1.4.4-sm.1`, a fork of NASA
-`turbo-design` 1.4.4 with seven fixes listed in its `MODIFICATIONS.md`. Four
-leave results unchanged; three change them: radial equilibrium uses the static
+The simulator runs on `suni-muhendis/turbo-design@v1.4.4-sm.2`, a fork of NASA
+`turbo-design` 1.4.4 with the fixes listed in its `MODIFICATIONS.md`. In
+`sm.1`, four leave results unchanged and three change them: radial equilibrium uses the static
 pressure, the diffusion loss uses the Lieblein diffusion factor, and Carter
 deviation returns degrees from the row's metal angles. The fixes replace two
 adapters this environment needed on NASA 23c2b0bf (a corrected Carter
@@ -68,6 +68,12 @@ deviation and a mean-line geometry wrapper for Kacker-Okapuu); removing them
 leaves every reference case unchanged. Results from simulator `…_v2` (NASA
 23c2b0bf) and `…_v3` (the fork) are never pooled: moving from 1.4.3 to 1.4.4
 alone changes turbine power by about 5%.
+
+`sm.2` makes the compressor solve converge properly (`…_v4`): row solves go to
+1e-10, and the massflow loop runs until no row's Vm or P0 profile moves by
+more than the task's `numerics.convergence_tolerance` (default 1e-6) in one
+pass, up to `numerics.max_iterations` (default 100). A compressor that does
+not converge is a simulation error. The turbine solve is unchanged.
 
 ## Result diagnostics
 

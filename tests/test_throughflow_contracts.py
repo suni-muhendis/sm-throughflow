@@ -47,7 +47,7 @@ def test_numerical_failure_is_not_reward_eligible():
 def test_environment_is_registered_and_lazy():
     assert "turbomachinery_throughflow" in list_environments()
     env=make_env("turbomachinery_throughflow")
-    assert env.simulator.VERSION=="nasa_turbo_design_experimental_v3"
+    assert env.simulator.VERSION=="nasa_turbo_design_experimental_v4"
 
 def test_axial_compressor_contract_accepts_total_pressure_boundary():
     from scripts.run_throughflow_compressor import build_case

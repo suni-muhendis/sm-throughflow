@@ -8,7 +8,7 @@ from .physics import SeededLossAdapter
 from .profiles import BACKEND_REPOSITORY, get_physics_profile
 
 class NasaTurboDesignSimulator(BaseSimulator):
-    VERSION = "nasa_turbo_design_experimental_v3"
+    VERSION = "nasa_turbo_design_experimental_v4"
 
     def simulate(self, inputs: Dict[str, Any]) -> Tuple[bool, Dict[str, float], Dict[str, Any], str]:
         try:
@@ -158,6 +158,13 @@ class NasaTurboDesignSimulator(BaseSimulator):
             if hasattr(row, "total_massflow_no_coolant")
         ]
         spread = (max(row_flows) - min(row_flows)) / massflow if row_flows else 0.0
+        solution_change = float(history[-1]["solution_change"])
+        if not spool.converged:
+            raise RuntimeError(
+                "compressor did not converge in {} iterations: the radial profiles still change by {:.3e} per pass (tolerance {:.3e})".format(
+                    len(history), solution_change, task.numerics.convergence_tolerance
+                )
+            )
         if residual > task.numerics.residual_tolerance:
             raise RuntimeError(
                 "compressor massflow residual {:.3e} exceeds tolerance {:.3e}".format(
@@ -174,6 +181,7 @@ class NasaTurboDesignSimulator(BaseSimulator):
             "massflow_residual": residual,
             "massflow_row_spread": spread,
             "solver_iterations": float(len(history)),
+            "solver_solution_change": solution_change,
         }
 
     def _solve_turbine(self, design, task):
@@ -251,6 +259,8 @@ class NasaTurboDesignSimulator(BaseSimulator):
         fluid=Solution("air.yaml"); fluid.TP=op.inlet_total_temperature_k,op.inlet_total_pressure_pa
         spool=CompressorSpool(passage,op.mass_flow_kg_s,inlet,outlet,rows,num_streamlines=task.numerics.streamlines,fluid=fluid,rpm=op.shaft_speed_rpm)
         spool.adjust_streamlines=False
+        spool.max_iterations=task.numerics.max_iterations
+        spool.convergence_tolerance=task.numerics.convergence_tolerance
         if profile.requires_complete_blade_geometry:
             spool.initialize_streamlines()
             self._finalize_candidate_geometry(row_map,design)

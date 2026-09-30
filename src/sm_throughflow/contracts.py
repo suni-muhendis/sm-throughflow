@@ -63,7 +63,7 @@ class OperatingPoint(StrictModel):
 class SecondaryPoint(StrictModel):
     name: str=Field(min_length=1); mass_flow_kg_s: Optional[float]=Field(default=None,gt=0); shaft_speed_rpm: Optional[float]=Field(default=None,gt=0); outlet_static_pressure_pa: Optional[float]=Field(default=None,gt=0)
 class Numerics(StrictModel):
-    streamlines: int=Field(default=DESIGN_STREAMLINES,ge=1,le=65); max_iterations: int=Field(default=100,ge=1,le=2000); residual_tolerance: float=Field(default=1e-6,gt=0,le=1e-2); massflow_spread_tolerance: float=Field(default=.01,gt=0,le=.25)
+    streamlines: int=Field(default=DESIGN_STREAMLINES,ge=1,le=65); max_iterations: int=Field(default=100,ge=1,le=2000); convergence_tolerance: float=Field(default=1e-6,gt=0,le=1e-2); residual_tolerance: float=Field(default=1e-6,gt=0,le=1e-2); massflow_spread_tolerance: float=Field(default=.01,gt=0,le=.25)
 LossModelName = Literal["fixed_pressure","diffusion","td2","kacker_okapuu","ainley_mathieson"]
 DeviationModelName = Literal["zero","fixed","carter"]
 class Physics(StrictModel):
@@ -80,7 +80,7 @@ class Physics(StrictModel):
         return self
 class ThroughflowTaskV1(StrictModel):
     environment: Literal["turbomachinery_throughflow"]="turbomachinery_throughflow"; task_schema_version: Literal["throughflow_task_v1"]="throughflow_task_v1"
-    simulator_version: Literal["nasa_turbo_design_experimental_v3"]="nasa_turbo_design_experimental_v3"; operating_conditions: OperatingPoint
+    simulator_version: Literal["nasa_turbo_design_experimental_v4"]="nasa_turbo_design_experimental_v4"; operating_conditions: OperatingPoint
     physics_profile: Literal["experimental_custom_v1","mattingly_compressor_regression_v1","optturb_turbine_regression_v1","axial_compressor_candidate_v1","axial_turbine_candidate_v1"]="experimental_custom_v1"
     secondary_operating_points: List[SecondaryPoint]=Field(default_factory=list); physics: Physics; numerics: Numerics=Field(default_factory=Numerics); max_stages: int=Field(default=12,ge=1,le=30)
     def validate_design_ownership(self, design):

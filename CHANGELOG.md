@@ -31,3 +31,11 @@ that follows it is a new simulator version.
   removed; the fork fixes both upstream, and every reference case gives
   identical numbers without them.
 - Loss-model chart data downloads from the fork tag (same SHA-256).
+- **Simulator `nasa_turbo_design_experimental_v4`** on `v1.4.4-sm.2`: the
+  compressor solve converges on the radial profiles, not on the massflow
+  spread. `numerics.max_iterations` now reaches the solver, the new
+  `numerics.convergence_tolerance` (default 1e-6) sets the stopping point, and
+  a compressor that does not converge is a simulation error. Compressor
+  results move by at most 7e-6; turbine results are unchanged. The repeated
+  two-stage candidate compressor converges again. Results report
+  `solver_solution_change`.

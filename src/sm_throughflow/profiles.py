@@ -123,7 +123,7 @@ _ALL_DEVIATION_MODELS = frozenset({"zero", "fixed", "carter"})
 #: The turbo-design build every profile runs on: the Suni Muhendis fork of
 #: NASA turbo-design at a release tag (see its MODIFICATIONS.md).
 BACKEND_REPOSITORY = "suni-muhendis/turbo-design"
-BACKEND_REVISION = "v1.4.4-sm.1"
+BACKEND_REVISION = "v1.4.4-sm.2"
 
 
 PHYSICS_PROFILES = {
