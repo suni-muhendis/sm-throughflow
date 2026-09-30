@@ -1,10 +1,12 @@
 import math
 from typing import Any, Dict
 from pydantic import ValidationError
-from ...core.base_environment import BaseEnvironment
+from sm_core import BaseEnvironment
 from .contracts import ThroughflowDesignV1, ThroughflowTaskV1
 
 class TurbomachineryThroughflowEnv(BaseEnvironment):
+    name = "turbomachinery_throughflow"
+
     def validate_schema(self, design_params: Dict[str, Any]):
         try: ThroughflowDesignV1.model_validate(design_params); return True,None
         except ValidationError as exc: return False,"Schema Error: {}".format(exc)

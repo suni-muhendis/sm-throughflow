@@ -1,7 +1,7 @@
 """Run one- or multi-stage axial compressors derived from Mattingly 9.1."""
 import argparse
 import math
-from sunimuhendis import make_env
+from sm_core import make_env
 
 def _span(value): return [float(value)]*11
 

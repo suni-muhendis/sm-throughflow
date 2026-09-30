@@ -13,8 +13,8 @@ from scripts.run_throughflow import build_case
 from scripts.run_throughflow_compressor import build_case as build_compressor_case
 from scripts.run_throughflow_compressor_benchmark import run_comparison
 from scripts.run_throughflow_resolution_study import run_study
-from sunimuhendis import make_env
-from sunimuhendis.environments.turbomachinery_throughflow.physics import CorrectedCarterDeviation
+from sm_core import make_env
+from sm_throughflow.physics import CorrectedCarterDeviation
 
 REFERENCE={"power_W":3394088.5080275447,"pressure_ratio_total":3.38544143180728,"efficiency_polytropic":0.732031028534128}
 COMPRESSOR_REFERENCE={"power_W":527700.3258916077,"pressure_ratio_total":1.322718069014324,"efficiency_polytropic":1.0078571383675168}

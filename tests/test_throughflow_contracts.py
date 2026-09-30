@@ -1,7 +1,7 @@
 import pytest
 from pydantic import ValidationError
-from sunimuhendis.environments.turbomachinery_throughflow import SPAN_FRACTIONS, ThroughflowDesignV1, ThroughflowTaskV1, ThroughflowSimulationResultV1
-from sunimuhendis import list_environments, make_env
+from sm_throughflow import SPAN_FRACTIONS, ThroughflowDesignV1, ThroughflowTaskV1, ThroughflowSimulationResultV1
+from sm_core import list_environments, make_env
 
 def design(n=1):
     rows=[{"row_id":"in","row_type":"inlet","axial_location_m":0.0}]

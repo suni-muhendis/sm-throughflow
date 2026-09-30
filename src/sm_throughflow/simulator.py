@@ -1,7 +1,7 @@
 """Lazy adapter from SuniMuhendis contracts to NASA turbo-design."""
 import math
 from typing import Any, Dict, Tuple
-from ...core.base_simulator import BaseSimulator
+from sm_core import BaseSimulator
 from .assets import require_nasa_asset
 from .contracts import ThroughflowDesignV1, ThroughflowTaskV1
 from .physics import CorrectedCarterDeviation, MeanlineGeometryLossAdapter, SeededLossAdapter

@@ -1,6 +1,6 @@
 """Run a one- or two-stage axial turbine through the public API."""
 import argparse
-from sunimuhendis import make_env
+from sm_core import make_env
 
 def _span(value): return [float(value)]*11
 

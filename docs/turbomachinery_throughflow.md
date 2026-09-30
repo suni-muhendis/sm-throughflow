@@ -8,27 +8,24 @@ angle, exit metal angle, and the physical profiles' stagger angle.
 ## Reproducible setup
 
 NASA code remains an external dependency under the NASA Open Source Agreement;
-it is not copied into the SuniMuhendis wheel.
+it is not copied into the sm-throughflow wheel.
 
 ```bash
-python -m pip install -r requirements-throughflow.txt
-python -m pip install -e .
-sunimuhendis-setup-throughflow
+python -m pip install -e ".[dev]"
+sm-throughflow-setup-assets
 ```
 
-The first command pins the reviewed NASA commit. The setup command downloads the
-Kacker-Okapuu and Ainley-Mathieson chart data from that same commit and verifies
-their SHA-256 hashes. It is available to external repositories after installing
-SuniMuhendis. Simulation never accepts an unverified pickle and does not silently
-download mutable data from NASA `main`.
+The package pins the reviewed NASA revision as a dependency. The setup command
+downloads the Kacker-Okapuu and Ainley-Mathieson chart data from that same
+revision and verifies their SHA-256 hashes. Simulation never accepts an
+unverified pickle and does not silently download mutable data from NASA `main`.
 
-From a separate training repository, install both repositories at immutable
-revisions and run the same packaged setup command:
+A consumer installs the package at an immutable tag and runs the same packaged
+setup command:
 
 ```bash
-python -m pip install "turbo-design @ git+https://github.com/nasa/turbo-design.git@23c2b0bf781b4b030014f458ecfde872896777a2"
-python -m pip install "sunimuhendis @ git+https://github.com/mfreyhan/SuniMuhendis.git@<release-tag>"
-sunimuhendis-setup-throughflow
+python -m pip install "sm-throughflow @ git+https://github.com/suni-muhendis/sm-throughflow.git@<tag>"
+sm-throughflow-setup-assets
 ```
 
 ## Ownership boundary

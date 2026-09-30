@@ -1,0 +1,25 @@
+sm-throughflow
+Copyright 2026 Mehmet Fatih Reyhan and Ertuğrul Şahin
+
+This product includes software developed by the Suni Muhendis project.
+
+Source code in this repository is licensed under the Apache License,
+Version 2.0. See LICENSE.
+
+Third-party components
+----------------------
+The package declares the following dependencies, each governed by its own
+upstream license. Their source trees are not copied into the wheel:
+
+  sm-core       - Apache License 2.0
+  turbo-design  - NASA Open Source Agreement 1.3
+  numpy         - BSD License
+  cantera       - BSD License
+
+The Kacker-Okapuu and Ainley-Mathieson chart files that
+sm-throughflow-setup-assets downloads belong to turbo-design and are governed
+by its license. They are fetched from a pinned revision, verified by SHA-256,
+and never included in this package.
+
+This summary is not a substitute for the license material included with each
+installed distribution.

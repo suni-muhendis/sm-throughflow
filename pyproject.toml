@@ -1,0 +1,54 @@
+[build-system]
+requires = ["setuptools>=77.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sm-throughflow"
+version = "0.1.0"
+description = "Experimental turbomachinery throughflow environment for sm-core on NASA turbo-design."
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+license = "Apache-2.0"
+license-files = ["LICENSE", "NOTICE"]
+keywords = ["engineering-design", "physics-simulation", "turbomachinery", "throughflow", "benchmarking"]
+authors = [
+    {name = "Mehmet Fatih Reyhan"},
+    {name = "Ertuğrul Şahin"},
+]
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Scientific/Engineering :: Physics",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.12",
+]
+dependencies = [
+    "sm-core @ git+https://github.com/suni-muhendis/sm-core.git@v0.8.0",
+    # NASA Open Source Agreement 1.3; installed as a dependency, never copied
+    # into this wheel. Pinned to an exact commit so results cannot move when
+    # upstream main advances.
+    "turbo-design @ git+https://github.com/nasa/turbo-design.git@23c2b0bf781b4b030014f458ecfde872896777a2",
+    "numpy",
+    "cantera",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0.0", "build"]
+
+[project.scripts]
+sm-throughflow-setup-assets = "sm_throughflow.assets:main"
+
+# sm_core.make_env("turbomachinery_throughflow") finds the environment through this entry point.
+[project.entry-points."sm_core.environments"]
+turbomachinery_throughflow = "sm_throughflow:make_env"
+
+[project.urls]
+Homepage = "https://github.com/suni-muhendis/sm-throughflow"
+Repository = "https://github.com/suni-muhendis/sm-throughflow.git"
+Issues = "https://github.com/suni-muhendis/sm-throughflow/issues"
+Changelog = "https://github.com/suni-muhendis/sm-throughflow/blob/main/CHANGELOG.md"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["sm_throughflow*"]

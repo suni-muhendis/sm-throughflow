@@ -37,14 +37,14 @@ def require_nasa_asset(filename: str) -> Path:
     path = nasa_asset_cache() / filename
     if not path.is_file():
         raise RuntimeError(
-            "missing pinned NASA loss asset {}; run sunimuhendis-setup-throughflow".format(
+            "missing pinned NASA loss asset {}; run sm-throughflow-setup-assets".format(
                 filename
             )
         )
     actual = file_sha256(path)
     if actual != spec["sha256"]:
         raise RuntimeError(
-            "NASA loss asset {} failed SHA-256 verification; rerun sunimuhendis-setup-throughflow --replace".format(
+            "NASA loss asset {} failed SHA-256 verification; rerun sm-throughflow-setup-assets --replace".format(
                 filename
             )
         )

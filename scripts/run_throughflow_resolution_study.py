@@ -6,7 +6,7 @@ import copy
 import io
 import json
 
-from sunimuhendis import make_env
+from sm_core import make_env
 
 try:
     from scripts.run_throughflow_compressor import build_case
