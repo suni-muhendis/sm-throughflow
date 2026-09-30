@@ -73,6 +73,31 @@ class StationFlow:
         return float(np.sum(tubes * 0.5 * (values[1:] + values[:-1])) / np.sum(tubes))
 
 
+def averaged_total_state(gas: PerfectGas, station: StationFlow):
+    """Total temperature and pressure of the mass-averaged total enthalpy and entropy.
+
+    Averaging H and s, the quantities the flow carries, and taking the total
+    state from them keeps the averages consistent with the second law: a
+    machine with no entropy rise on any stream surface has an averaged
+    polytropic efficiency of exactly one.
+    """
+    H = station.mass_average(station.H)
+    s = station.mass_average(station.s)
+    return float(gas.temperature(H)), float(gas.pressure(H, s))
+
+
+def polytropic_efficiency(gas: PerfectGas, inlet: StationFlow, exit: StationFlow) -> float:
+    """Total-to-total polytropic efficiency between two stations, from averaged total states.
+
+    For a compressor, (R/cp) ln(P02/P01) / ln(T02/T01); for a turbine the
+    reciprocal, so that it is at most one in both.
+    """
+    T1, P1 = averaged_total_state(gas, inlet)
+    T2, P2 = averaged_total_state(gas, exit)
+    ratio = (gas.R / gas.cp) * np.log(P2 / P1) / np.log(T2 / T1)
+    return float(ratio if T2 > T1 else 1.0 / ratio)
+
+
 def _cumulative_trapezoid(f, y):
     out = np.zeros_like(f)
     out[1:] = np.cumsum(0.5 * (f[1:] + f[:-1]) * np.diff(y))

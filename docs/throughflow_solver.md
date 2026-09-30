@@ -81,8 +81,27 @@ matched at second order by the full model (2.6e-4 at 11 surfaces and 7
 quasi-normals, 1.6e-5 at 41 and 25), with the stream surfaces on the rays to
 3e-6 degrees. There the linear model stays within 0.1% and the simple model
 (no slope or curvature) is off by 8%, so the simple model is only for
-near-cylindrical passages. Not yet: correlation rows, blockage models, the
-environment's simulator on this solver.
+near-cylindrical passages.
+
+Mattingly example 9.1 (inputs as in turbo-design's example; no loss), 11
+stream surfaces:
+
+| | Pressure ratio | Polytropic efficiency | Inlet Mach |
+|---|---:|---:|---:|
+| this solver, full curvature | 1.29494 | 1.000000000000 | 0.718 |
+| this solver, linear | 1.29628 | 1.000000000000 | 0.717 |
+| this solver, simple | 1.30948 | 1.000000000000 | 0.708 |
+| turbo-design, 1 streamline | 1.29856 | 1.00052 | 0.700 (imposed) |
+| turbo-design, 11 streamlines | 1.31717 | 1.00518 | 0.700 (imposed) |
+
+Averages are taken from the mass-averaged total enthalpy and entropy
+(`averaged_total_state`), so a lossless machine has an efficiency of exactly
+one. turbo-design imposes the inlet Mach number, where this solver derives it
+from the mass flow and the annulus, so the two do not pose identical
+problems; the comparison is an order-of-magnitude check, not a validation.
+
+Not yet: correlation rows, blockage models, the environment's simulator on
+this solver.
 
 ## Conventions
 
