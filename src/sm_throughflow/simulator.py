@@ -1,14 +1,14 @@
-"""Lazy adapter from SuniMuhendis contracts to NASA turbo-design."""
+"""Lazy adapter from the throughflow contracts to turbo-design."""
 import math
 from typing import Any, Dict, Tuple
 from sm_core import BaseSimulator
 from .assets import require_nasa_asset
 from .contracts import ThroughflowDesignV1, ThroughflowTaskV1
-from .physics import CorrectedCarterDeviation, MeanlineGeometryLossAdapter, SeededLossAdapter
-from .profiles import get_physics_profile
+from .physics import SeededLossAdapter
+from .profiles import BACKEND_REPOSITORY, get_physics_profile
 
 class NasaTurboDesignSimulator(BaseSimulator):
-    VERSION = "nasa_turbo_design_experimental_v2"
+    VERSION = "nasa_turbo_design_experimental_v3"
 
     def simulate(self, inputs: Dict[str, Any]) -> Tuple[bool, Dict[str, float], Dict[str, Any], str]:
         try:
@@ -35,7 +35,7 @@ class NasaTurboDesignSimulator(BaseSimulator):
         if name == "kacker_okapuu":
             require_nasa_asset("kackerokapuu.pkl")
             from turbodesign.loss.turbine import KackerOkapuu
-            return MeanlineGeometryLossAdapter(KackerOkapuu())
+            return SeededLossAdapter(KackerOkapuu())
         if name == "ainley_mathieson":
             require_nasa_asset("ainleymathieson.pkl")
             from turbodesign.loss.turbine import AinleyMathieson
@@ -49,7 +49,8 @@ class NasaTurboDesignSimulator(BaseSimulator):
             from turbodesign.deviation import FixedDeviation
             return FixedDeviation(values)
         if name == "carter":
-            return CorrectedCarterDeviation()
+            from turbodesign.deviation import CarterDeviation
+            return CarterDeviation()
         raise ValueError("unsupported deviation model {}".format(name))
 
     @staticmethod
@@ -126,17 +127,14 @@ class NasaTurboDesignSimulator(BaseSimulator):
         notes = []
         if task.physics_profile == "axial_compressor_candidate_v1":
             notes.append(
-                "NASA DiffusionLoss is a preliminary diffusion-factor model and does not include a separate incidence-loss correlation."
+                "DiffusionLoss is a preliminary Lieblein diffusion-factor model and does not include a separate incidence-loss correlation. Treat this profile as a solver demonstration, not a validated loss prediction."
             )
             notes.append(
-                "The pinned DiffusionLoss uses rotor speed in its loading term; for stators U=0, so ordinary de-swirl commonly clips the predicted stator loss to zero. Treat this profile as a solver demonstration, not a validated loss prediction."
-            )
-            notes.append(
-                "Carter deviation uses the corrected documented algebra because the pinned NASA class has a radians/degrees interface mismatch."
+                "Carter deviation is the empirical (gamma_i - gamma_e) / (4 sqrt(sigma)) rule on the row's metal angles and local solidity."
             )
         if task.physics_profile == "axial_turbine_candidate_v1":
             notes.append(
-                "NASA TD2 is an interim initial-estimate correlation; the more detailed Kacker-Okapuu path is blocked by known initialization and stator secondary-loss defects in the pinned backend."
+                "TD2 is an interim initial-estimate correlation; the more detailed Kacker-Okapuu path stays a shadow model until its stator secondary-loss calculation is validated."
             )
             if task.physics.default_deviation_model == "zero":
                 notes.append(
@@ -223,7 +221,7 @@ class NasaTurboDesignSimulator(BaseSimulator):
             spool.solve()
         metrics={"power_W":float(spool.total_power()),"pressure_ratio_total":float(spool.overall_pressure_ratio()),"efficiency_polytropic":float(spool.overall_polytropic_efficiency()),"stage_count":float(design.stage_count),"streamline_count":float(task.numerics.streamlines),"streamtube_count":float(task.numerics.streamlines-1)}
         if not all(math.isfinite(v) for v in metrics.values()): raise ValueError("solver returned non-finite summary metrics")
-        raw={"backend":"nasa/turbo-design","backend_mode":"fixed_streamline_geometry","simulator_version":self.VERSION,"physics_profile":profile.provenance(),"convergence_history":getattr(spool,"convergence_history",[]),"fidelity_notes":self._fidelity_notes(task),"rows":[self._row_output(key,value,*row_physics[key]) for key,value in row_map.items()]}
+        raw={"backend":BACKEND_REPOSITORY,"backend_mode":"fixed_streamline_geometry","simulator_version":self.VERSION,"physics_profile":profile.provenance(),"convergence_history":getattr(spool,"convergence_history",[]),"fidelity_notes":self._fidelity_notes(task),"rows":[self._row_output(key,value,*row_physics[key]) for key,value in row_map.items()]}
         return True,metrics,raw,""
 
     def _solve_compressor(self,design,task):
@@ -271,5 +269,5 @@ class NasaTurboDesignSimulator(BaseSimulator):
                     metrics["efficiency_polytropic"]
                 )
             )
-        raw={"backend":"nasa/turbo-design","backend_mode":"fixed_streamline_geometry","simulator_version":self.VERSION,"physics_profile":profile.provenance(),"convergence_history":getattr(spool,"convergence_history",[]),"fidelity_notes":self._fidelity_notes(task),"rows":[self._row_output(key,value,*row_physics[key]) for key,value in row_map.items()]}
+        raw={"backend":BACKEND_REPOSITORY,"backend_mode":"fixed_streamline_geometry","simulator_version":self.VERSION,"physics_profile":profile.provenance(),"convergence_history":getattr(spool,"convergence_history",[]),"fidelity_notes":self._fidelity_notes(task),"rows":[self._row_output(key,value,*row_physics[key]) for key,value in row_map.items()]}
         return True,metrics,raw,""

@@ -120,7 +120,10 @@ _ALL_LOSS_MODELS = frozenset(
     {"fixed_pressure", "diffusion", "td2", "kacker_okapuu", "ainley_mathieson"}
 )
 _ALL_DEVIATION_MODELS = frozenset({"zero", "fixed", "carter"})
-_PINNED_NASA_REVISION = "23c2b0bf781b4b030014f458ecfde872896777a2"
+#: The turbo-design build every profile runs on: the Suni Muhendis fork of
+#: NASA turbo-design at a release tag (see its MODIFICATIONS.md).
+BACKEND_REPOSITORY = "suni-muhendis/turbo-design"
+BACKEND_REVISION = "v1.4.4-sm.1"
 
 
 PHYSICS_PROFILES = {
@@ -129,19 +132,19 @@ PHYSICS_PROFILES = {
         machine_type=None,
         flow_path="axial",
         maturity="experimental",
-        backend_revision=_PINNED_NASA_REVISION,
+        backend_revision=BACKEND_REVISION,
         nominal_loss_model=None,
         allowed_loss_models=_ALL_LOSS_MODELS,
         nominal_deviation_model=None,
         allowed_deviation_models=_ALL_DEVIATION_MODELS,
-        purpose="Adapter development only; never produces training reward.",
+        purpose="Adapter development only; never scored.",
     ),
     "mattingly_compressor_regression_v1": ThroughflowPhysicsProfile(
         profile_id="mattingly_compressor_regression_v1",
         machine_type="compressor",
         flow_path="axial",
         maturity="regression_only",
-        backend_revision=_PINNED_NASA_REVISION,
+        backend_revision=BACKEND_REVISION,
         nominal_loss_model="fixed_pressure",
         allowed_loss_models=frozenset({"fixed_pressure"}),
         nominal_deviation_model="zero",
@@ -153,7 +156,7 @@ PHYSICS_PROFILES = {
         machine_type="turbine",
         flow_path="axial",
         maturity="regression_only",
-        backend_revision=_PINNED_NASA_REVISION,
+        backend_revision=BACKEND_REVISION,
         nominal_loss_model="fixed_pressure",
         allowed_loss_models=frozenset({"fixed_pressure"}),
         nominal_deviation_model="zero",
@@ -165,27 +168,27 @@ PHYSICS_PROFILES = {
         machine_type="compressor",
         flow_path="axial",
         maturity="candidate",
-        backend_revision=_PINNED_NASA_REVISION,
+        backend_revision=BACKEND_REVISION,
         nominal_loss_model="diffusion",
         allowed_loss_models=frozenset({"diffusion"}),
         nominal_deviation_model="carter",
         allowed_deviation_models=frozenset({"carter"}),
         requires_complete_blade_geometry=True,
-        purpose="Lieblein-style diffusion loss plus corrected Carter deviation; pending physical validation.",
+        purpose="Lieblein diffusion loss plus Carter deviation; pending physical validation.",
     ),
     "axial_turbine_candidate_v1": ThroughflowPhysicsProfile(
         profile_id="axial_turbine_candidate_v1",
         machine_type="turbine",
         flow_path="axial",
         maturity="candidate",
-        backend_revision=_PINNED_NASA_REVISION,
+        backend_revision=BACKEND_REVISION,
         nominal_loss_model="td2",
         allowed_loss_models=frozenset({"td2"}),
         nominal_deviation_model="zero",
         allowed_deviation_models=frozenset({"zero", "fixed"}),
         shadow_loss_models=("td2", "ainley_mathieson"),
         requires_complete_blade_geometry=True,
-        purpose="Working NASA TD2 interim profile; Kacker-Okapuu remains a shadow model until upstream defects are fixed.",
+        purpose="Working TD2 interim profile; Kacker-Okapuu remains a shadow model until its stator secondary loss is validated.",
     ),
 }
 

@@ -1,6 +1,7 @@
 # Turbomachinery throughflow environment
 
-This environment is an experimental adapter to NASA `turbo-design`. It accepts
+This environment is an experimental adapter to NASA `turbo-design`, run on
+the Suni Muhendis fork (see Backend below). It accepts
 multi-stage axial compressor and turbine designs, uses ten streamtubes, and
 requires eleven hub-to-shroud values at `0.0, 0.1, ..., 1.0` for inlet metal
 angle, exit metal angle, and the physical profiles' stagger angle.
@@ -37,27 +38,36 @@ conditions, numerical resolution, loss model, deviation model, and any
 calibrated fixed loss or deviation values. This prevents a model from choosing
 the referee that scores its own design.
 
-`axial_compressor_candidate_v1` applies the NASA preliminary diffusion loss and
-a corrected Carter deviation. Local pitch and solidity are derived from radius,
-blade count, axial chord, and the supplied stagger at every span station. The
-pinned NASA Carter implementation has a radians/degrees mismatch, so the adapter
-evaluates the algebra documented in NASA's source and records this in fidelity
-notes.
+`axial_compressor_candidate_v1` applies the preliminary Lieblein diffusion
+loss and Carter deviation. Local pitch and solidity are derived from radius,
+blade count, axial chord, and the supplied stagger at every span station.
 
-`axial_turbine_candidate_v1` currently uses NASA TD2 as an interim correlation.
-Kacker-Okapuu and Ainley-Mathieson remain shadow candidates: the pinned backend
-cannot yet run Kacker-Okapuu reliably because its pre-solve state and stator
-secondary-loss calculation contain blocking defects. Turbine deviation remains
-zero unless a task supplies a calibrated fixed eleven-point distribution.
+`axial_turbine_candidate_v1` currently uses TD2 as an interim correlation.
+Kacker-Okapuu and Ainley-Mathieson remain shadow candidates: Kacker-Okapuu now
+runs on spanwise rows, but its stator secondary-loss calculation is not yet
+validated. Turbine deviation remains zero unless a task supplies a calibrated
+fixed eleven-point distribution.
 
-Both candidate profiles return a score of zero. They become reward eligible
-only after independent compressor and turbine validation cases establish error
-limits for performance, spanwise flow, off-design behavior, and numerical
-resolution.
+Both candidate profiles return a score of zero. They can be scored only after
+independent compressor and turbine validation cases establish error limits for
+performance, spanwise flow, off-design behavior, and numerical resolution.
 
 The current compressor evidence, executable comparison, NASA EEE audit, and
-reward-eligibility gate are documented in
+scoring gate are documented in
 [compressor_validation.md](compressor_validation.md).
+
+## Backend
+
+The simulator runs on `suni-muhendis/turbo-design@v1.4.4-sm.1`, a fork of NASA
+`turbo-design` 1.4.4 with seven fixes listed in its `MODIFICATIONS.md`. Four
+leave results unchanged; three change them: radial equilibrium uses the static
+pressure, the diffusion loss uses the Lieblein diffusion factor, and Carter
+deviation returns degrees from the row's metal angles. The fixes replace two
+adapters this environment needed on NASA 23c2b0bf (a corrected Carter
+deviation and a mean-line geometry wrapper for Kacker-Okapuu); removing them
+leaves every reference case unchanged. Results from simulator `…_v2` (NASA
+23c2b0bf) and `…_v3` (the fork) are never pooled: moving from 1.4.3 to 1.4.4
+alone changes turbine power by about 5%.
 
 ## Result diagnostics
 

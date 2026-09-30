@@ -3,7 +3,7 @@
 The compressor environment can run a complete one- or two-stage axial design
 through the public `make_env("turbomachinery_throughflow")` API with 11 radial
 solution points (10 streamtubes). It is not yet an experimentally validated
-compressor design model and remains reward-ineligible.
+compressor design model and every design scores zero.
 
 Run the reproducible comparison from the repository root:
 
@@ -12,27 +12,34 @@ python scripts/run_throughflow_compressor_benchmark.py
 ```
 
 The reference case is Mattingly example 9.1 as transcribed in NASA
-`turbo-design` at the pinned revision. The published example specifies one
+`turbo-design`, run on the pinned fork `suni-muhendis/turbo-design@v1.4.4-sm.1`
+(simulator `nasa_turbo_design_experimental_v3`). The published example specifies one
 stage, a total-pressure ratio of 1.3, the annulus, operating point, and exit
 metal angles. The second stage below is a repeated-stage integration exercise,
 not a published benchmark.
 
 | Case | Achieved PR | Target PR | Polytropic efficiency | Massflow residual |
 |---|---:|---:|---:|---:|
-| one-stage adapter regression | 1.3177 | 1.3000 | 1.0068 | 7.58e-8 |
-| one-stage candidate physics | 1.4520 | 1.3000 | 0.9961 | 5.31e-7 |
-| two-stage adapter regression | 1.6858 | 1.6900 | 1.0160 | 8.98e-7 |
-| two-stage candidate physics | 2.1394 | 1.6900 | 0.9949 | 2.84e-7 |
+| one-stage adapter regression | 1.3172 | 1.3000 | 1.0052 | 7.38e-8 |
+| one-stage candidate physics | 1.4294 | 1.3000 | 0.9550 | 2.88e-8 |
+| two-stage adapter regression | 1.6809 | 1.6900 | 1.0090 | 7.36e-7 |
+| two-stage candidate physics | rejected | 1.6900 | — | 2.26e-6 |
 
 The regression path is useful only for adapter equivalence. Its efficiency
 above one is physically impossible and demonstrates why zero loss cannot be a
-validation model. The candidate path applies the pinned NASA preliminary
-diffusion model and the corrected Carter deviation policy. It converges, but
-its pressure-ratio errors are 11.7% for one stage and 26.6% for the repeated
-two-stage case. The candidate also predicts zero stator loss for this design:
-the upstream implementation divides its stator swirl-change term by rotor
-speed, which is zero for a stator, and the resulting value clips to zero.
-Incidence loss is absent. These facts block scoring and training reward.
+validation model. The candidate path applies the preliminary Lieblein
+diffusion loss and Carter deviation. For one stage it converges with a
+pressure-ratio error of 9.95%. The repeated two-stage case plateaus at a
+massflow residual of 2.26e-6, above the environment's 1e-6 tolerance, and is
+rejected as not converged. Incidence loss is absent. These facts block
+scoring.
+
+On NASA 23c2b0bf (simulator `…_v2`) the candidate predicted zero stator loss,
+because the upstream loss divided the stator swirl change by rotor speed, and
+the environment had to replace NASA's Carter class, which returned zero
+deviation, with its own adapter. The fork fixes both (see its
+`MODIFICATIONS.md`); the stator now carries a mean loss coefficient of about
+0.055 in the one-stage case.
 
 ## EEE high-pressure compressor audit
 
@@ -47,7 +54,7 @@ geometry may differ from the original hardware and that CFD matching remains
 future work:
 <https://github.com/nasa/turbo-design/tree/main/examples/EEE-HPC>.
 
-At the pinned revision, the example passes 54.4 kg/s to the solver even though
+At NASA 23c2b0bf, the example passes 54.4 kg/s to the solver even though
 the report quantity is corrected flow. With the workbook mean inlet state
 (59.48 kPa, 304.76 K), 53.5 kg/s corrected corresponds to approximately
 30.54 kg/s physical flow using the standard corrected-flow definition. The
@@ -58,8 +65,8 @@ stays an audited future benchmark rather than a passing test fixture.
 
 ## Acceptance gate for physical validation
 
-A compressor physics profile can become reward-eligible only after it meets all
-of these conditions:
+A compressor physics profile can be scored only after it meets all of these
+conditions:
 
 1. A published geometry and operating point run without fixed report-derived
    row losses or deviations.

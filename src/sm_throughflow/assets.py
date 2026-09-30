@@ -1,4 +1,4 @@
-"""Pinned, hash-verified external data used by NASA loss correlations."""
+"""Pinned, hash-verified external data used by turbo-design loss correlations."""
 
 import argparse
 import hashlib
@@ -6,8 +6,9 @@ from pathlib import Path
 from typing import Dict
 from urllib.request import urlopen
 
+from .profiles import BACKEND_REPOSITORY, BACKEND_REVISION
 
-NASA_REVISION = "23c2b0bf781b4b030014f458ecfde872896777a2"
+
 NASA_LOSS_ASSETS: Dict[str, Dict[str, str]] = {
     "kackerokapuu.pkl": {
         "sha256": "3ea35e852544a7d16b783b76c5770887fb16efc887261878cc1d143e5204424f",
@@ -58,8 +59,8 @@ def install_nasa_asset(filename: str, replace: bool = False) -> Path:
     if destination.exists() and not replace and file_sha256(destination) == spec["sha256"]:
         return destination
 
-    url = "https://raw.githubusercontent.com/nasa/turbo-design/{}/{}".format(
-        NASA_REVISION, spec["path"]
+    url = "https://raw.githubusercontent.com/{}/{}/{}".format(
+        BACKEND_REPOSITORY, BACKEND_REVISION, spec["path"]
     )
     temporary = destination.with_suffix(destination.suffix + ".tmp")
     with urlopen(url, timeout=60) as response, temporary.open("wb") as output:

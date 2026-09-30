@@ -2,8 +2,8 @@
 
 An experimental turbomachinery throughflow environment for machine-generated
 engineering designs. It takes a multi-stage axial compressor or turbine design
-as JSON, checks it, and solves it with NASA
-[turbo-design](https://github.com/nasa/turbo-design). It is one environment of
+as JSON, checks it, and solves it with NASA turbo-design, through the
+[Suni Muhendis fork](https://github.com/suni-muhendis/turbo-design). It is one environment of
 the Suni Muhendis benchmark and plugs into
 [sm-core](https://github.com/suni-muhendis/sm-core).
 
@@ -20,7 +20,8 @@ validation; see [docs/compressor_validation.md](docs/compressor_validation.md).
   (`0.0, 0.1, …, 1.0`) for inlet metal, exit metal and stagger angle.
 - **Task:** operating point, numerical resolution and physics profile (loss and
   deviation models). The model designs the machine; the task owns the referee.
-- **Versions:** simulator `nasa_turbo_design_experimental_v2`.
+- **Versions:** simulator `nasa_turbo_design_experimental_v3` on
+  `suni-muhendis/turbo-design@v1.4.4-sm.1`; score `throughflow_score_disabled_v1`.
 
 ## Install
 
@@ -29,7 +30,7 @@ pip install "sm-throughflow @ git+https://github.com/suni-muhendis/sm-throughflo
 sm-throughflow-setup-assets
 ```
 
-This pulls in `sm-core` and NASA `turbo-design` at pinned revisions. The setup
+This pulls in `sm-core` and `turbo-design` at pinned tags. The setup
 command downloads the Kacker-Okapuu and Ainley-Mathieson chart data from the
 same pinned revision and verifies their SHA-256 hashes; only those two loss
 models need it. On Windows, installing `turbo-design` from git needs long

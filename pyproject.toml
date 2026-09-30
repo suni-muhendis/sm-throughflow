@@ -25,10 +25,10 @@ classifiers = [
 ]
 dependencies = [
     "sm-core @ git+https://github.com/suni-muhendis/sm-core.git@v0.8.0",
-    # NASA Open Source Agreement 1.3; installed as a dependency, never copied
-    # into this wheel. Pinned to an exact commit so results cannot move when
-    # upstream main advances.
-    "turbo-design @ git+https://github.com/nasa/turbo-design.git@23c2b0bf781b4b030014f458ecfde872896777a2",
+    # The Suni Muhendis fork of NASA turbo-design (NASA Open Source Agreement
+    # 1.3); installed as a dependency, never copied into this wheel. Pinned to
+    # a release tag so results cannot move when either branch advances.
+    "turbo-design @ git+https://github.com/suni-muhendis/turbo-design.git@v1.4.4-sm.1",
     "numpy",
     "cantera",
 ]
