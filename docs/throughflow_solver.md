@@ -77,9 +77,10 @@ surfaces), and in a lossless stage Euler work to 1e-8 J/kg, `H` and `s`
 unchanged on every stream surface and the mass-averaged T0 across the stator
 unchanged to 3e-10 K. In a curved annulus, the spherical source flow between
 two cones with a common apex (exact, compressible, inlet Mach up to 0.71) is
-matched at second order by the full model (2.6e-4 at 11 surfaces and 7
-quasi-normals, 1.6e-5 at 41 and 25), with the stream surfaces on the rays to
-3e-6 degrees. There the linear model stays within 0.1% and the simple model
+matched at second order in the stream-surface spacing by the full model
+(4.1e-4 at 11 surfaces, 2.6e-5 at 41, over every quasi-normal; the
+quasi-normal spacing does not change it on these straight rays), with the
+stream surfaces on the rays to 3e-6 degrees. There the linear model stays within 0.1% and the simple model
 (no slope or curvature) is off by 8%, so the simple model is only for
 near-cylindrical passages.
 
@@ -99,6 +100,11 @@ Averages are taken from the mass-averaged total enthalpy and entropy
 one. turbo-design imposes the inlet Mach number, where this solver derives it
 from the mass flow and the annulus, so the two do not pose identical
 problems; the comparison is an order-of-magnitude check, not a validation.
+
+Open: with closely spaced quasi-normals Novak's damping (7-57) makes the
+outer loop slow (292 iterations and about a minute for 25 quasi-normals and
+41 surfaces, against 26 iterations for 7); a faster repositioning scheme is
+worth having before large multistage cases.
 
 Not yet: correlation rows, blockage models, the environment's simulator on
 this solver.

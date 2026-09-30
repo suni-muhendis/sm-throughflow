@@ -226,21 +226,32 @@ def solve_quasi_normal(
             return None
         return f
 
+    # Bracket the hub value, starting close to the previous solution when there
+    # is one: the step grows geometrically, so a good start costs few solves.
+    step = 1.001 if wm_guess is not None else 1.15
+
+    def grow(step):
+        return min(step * step, 1.15)
+
     # A hub value that carries too little mass ...
     lo = float(start[0])
     f_lo = passes(lo)
+    down = step
     while f_lo is None or f_lo >= 0.0:
-        lo /= 1.15
+        lo /= down
+        down = grow(down)
         if lo < 1e-9 * float(start[0]):
             detail = "" if f_lo is None else ": even as Wm(hub) -> 0 the profile carries {:.6g} kg/s, so the flow would reverse at the hub".format(f_lo + mass_flow)
             raise RuntimeError("no hub meridional velocity satisfies the mass flow of {:.6g} kg/s{}".format(mass_flow, detail))
         f_lo = passes(lo)
     # ... and one that carries enough, without passing choke.
-    hi = lo * 1.15
+    up = step
+    hi = lo * up
     f_hi = passes(hi)
     while f_hi is not None and f_hi < 0.0:
         lo, f_lo = hi, f_hi
-        hi *= 1.15
+        up = grow(up)
+        hi *= up
         f_hi = passes(hi)
     if f_hi is None:
         # Beyond the limit: bisect toward it for a valid value that carries enough.

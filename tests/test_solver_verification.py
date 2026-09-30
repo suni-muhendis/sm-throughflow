@@ -162,11 +162,14 @@ def _source_flow_error(curvature, quasi_normals, surfaces, mass_flow=65.0):
 
 
 def test_source_flow_between_cones_matches_the_exact_solution_at_second_order():
-    # Inlet Mach number up to 0.71.
-    errors = [_source_flow_error("full", q, n)[0] for q, n in ((7, 11), (13, 21), (25, 41))]
+    # Inlet Mach number up to 0.71. The error is set by the stream-surface
+    # spacing; on these straight rays the quasi-normal spacing does not enter.
+    errors = [_source_flow_error("full", 7, n)[0] for n in (11, 21, 41)]
     assert errors[0] < 5e-4
     assert errors[0] / errors[1] > 3.5
     assert errors[1] / errors[2] > 3.5
+    finer_quasi_normals, _ = _source_flow_error("full", 13, 21)
+    assert finer_quasi_normals == pytest.approx(errors[1], rel=0.01)
 
 
 def test_source_flow_stream_surfaces_lie_on_the_rays():
