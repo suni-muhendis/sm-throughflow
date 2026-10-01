@@ -2,8 +2,10 @@
 
 An experimental turbomachinery throughflow environment for machine-generated
 engineering designs. It takes a multi-stage axial compressor or turbine design
-as JSON, checks it, and solves it with NASA turbo-design, through the
-[Suni Muhendis fork](https://github.com/suni-muhendis/turbo-design). It is one environment of
+as JSON, checks it, and solves it: axial compressors (contract v2) with the
+package's own streamline-curvature solver and Aungier's empirical blade-row,
+leakage and end-wall models, and the v1 contracts with NASA turbo-design,
+through the [Suni Muhendis fork](https://github.com/suni-muhendis/turbo-design). It is one environment of
 the Suni Muhendis benchmark and plugs into
 [sm-core](https://github.com/suni-muhendis/sm-core).
 
@@ -20,8 +22,10 @@ validation; see [docs/compressor_validation.md](docs/compressor_validation.md).
   (`0.0, 0.1, …, 1.0`) for inlet metal, exit metal and stagger angle.
 - **Task:** operating point, numerical resolution and physics profile (loss and
   deviation models). The model designs the machine; the task owns the referee.
-- **Versions:** simulator `nasa_turbo_design_experimental_v4` on
-  `suni-muhendis/turbo-design@v1.4.4-sm.2`; score `throughflow_score_disabled_v1`.
+- **Versions:** simulator `slc_aungier_experimental_v5` (v2 contracts, see
+  [docs/throughflow_contract_v2.md](docs/throughflow_contract_v2.md)) and
+  `nasa_turbo_design_experimental_v4` on `suni-muhendis/turbo-design@v1.4.4-sm.2`
+  (v1 contracts); score `throughflow_score_disabled_v1`.
 
 ## Install
 
@@ -46,8 +50,9 @@ result = env.evaluate("task", task, "design", design)
 result.status, result.metrics["pressure_ratio_total"]
 ```
 
+`scripts/run_throughflow_v2.py` builds a v2 compressor case;
 `scripts/run_throughflow.py` and `scripts/run_throughflow_compressor.py` build
-complete turbine and compressor cases. [docs/turbomachinery_throughflow.md](docs/turbomachinery_throughflow.md)
+v1 turbine and compressor cases. [docs/turbomachinery_throughflow.md](docs/turbomachinery_throughflow.md)
 describes the contract and the physics profiles.
 
 ## History

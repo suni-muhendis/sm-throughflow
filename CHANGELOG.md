@@ -6,6 +6,19 @@ different simulator or score versions comparable.
 
 ## [Unreleased]
 
+### Added
+
+- **Simulator `slc_aungier_experimental_v5`** with the v2 contracts
+  (`throughflow_design_v2`, `throughflow_task_v2`) for axial compressors. It
+  runs on the package's own streamline-curvature solver with Aungier's (2003)
+  cascade correlations (design and off-design incidence, deviation and loss,
+  Mach number and choke limits, shock loss), tip-clearance and shroud-seal
+  leakage, wake and end-wall blockage, and his end-wall boundary-layer
+  analysis. A task may list several operating points. The design rules keep
+  designs inside the range of the cascade data. v1 tasks still run on
+  `nasa_turbo_design_experimental_v4`; the environment hands each task to the
+  simulator it names. The score stays disabled.
+
 First release as a package of its own, extracted with its history from the
 research repository (`sunimuhendis.environments.turbomachinery_throughflow`).
 The extraction alone changes no number; the move to the turbo-design fork

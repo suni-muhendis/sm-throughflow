@@ -28,18 +28,29 @@ Keeping the correlations free of any solver API lets a future cascade solver
 reuse them unchanged. Every correlation carries its source and is tested
 against published chart values or worked examples before it is wired in.
 
-## What exists today (simulator `nasa_turbo_design_experimental_v3`)
+## Status (simulator `slc_aungier_experimental_v5`)
 
-- Loss: the Lieblein diffusion-factor `DiffusionLoss` only. The fork's
-  `AxialCompressorAungier`, `AxialCompressorEntropy` and
-  `AxialCompressorWrightMiller` are mean-line placeholders with invented
-  coefficients; `NASA74A` and `NASA23B20` return zero. None is used.
-- Deviation: Carter's rule.
-- No incidence model, shock loss, endwall or tip-clearance loss, spanwise
-  blockage, or spanwise mixing.
-- The solver applies `Yp` and deviation per streamline; blockage is one scalar
-  per row; the compressor massflow loop stops after at most ten passes.
-- The design contract has no profile family, thickness or thickness location.
+Done, on the package's own streamline-curvature solver (the NASA backend's
+radial equilibrium does not conserve energy along stream surfaces, see
+throughflow_solver.md):
+
+- Phases 1 to 6 for Aungier's model set: design and off-design incidence,
+  deviation and loss, Mach-number and choke limits, shock loss, end-wall loss
+  through K2, tip-clearance and shroud-seal leakage, wake blockage, end-wall
+  boundary layers and blockage, the loss limit and Aungier's spanwise loss
+  smoothing in place of a mixing model
+  ([compressor_row_model.md](compressor_row_model.md),
+  [endwall_boundary_layer.md](endwall_boundary_layer.md)).
+- Design contract v2 with profile family, chord and thickness per section
+  ([throughflow_contract_v2.md](throughflow_contract_v2.md)).
+
+Next, in this order: blade throats computed from the constructed blade
+(Aungier chapter 4) in place of the empirical (4-30, 4-31); then validation
+(phase 7), to be planned before it starts. Turbines come later. Spanwise
+mixing models (Adkins-Smith, Gallimore-Cumpsty) are not part of Aungier's
+method and stay optional.
+
+The phase list below is the original plan.
 
 ## Phases
 

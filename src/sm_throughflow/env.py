@@ -1,16 +1,53 @@
 import math
-from typing import Any, Dict
+from typing import Any, Dict, Optional
 from pydantic import ValidationError
 from sm_core import BaseEnvironment
 from .contracts import ThroughflowDesignV1, ThroughflowTaskV1
+from .contracts_v2 import ThroughflowDesignV2, ThroughflowTaskV2
+
+
+def _is_v2_design(design_params) -> bool:
+    return isinstance(design_params, dict) and design_params.get("schema_version") == "throughflow_design_v2"
+
+
+def _is_v2_task(task_params) -> bool:
+    return isinstance(task_params, dict) and task_params.get("task_schema_version") == "throughflow_task_v2"
+
 
 class TurbomachineryThroughflowEnv(BaseEnvironment):
+    """The throughflow environment.
+
+    Version 2 designs and tasks (axial compressors, simulator
+    ``slc_aungier_experimental_v5``) run on the package's own
+    streamline-curvature solver; version 1 contracts keep running on NASA
+    turbo-design (simulator ``nasa_turbo_design_experimental_v4``). Each task
+    names its simulator version, and ``evaluate`` hands it to the environment
+    holding that simulator, so every result is stamped with the simulator
+    that produced it.
+    """
+
     name = "turbomachinery_throughflow"
 
+    def __init__(self, simulator, score_function, alternates: Optional[Dict[str, "TurbomachineryThroughflowEnv"]] = None):
+        super().__init__(simulator, score_function)
+        self._alternates = dict(alternates or {})
+
+    def evaluate(self, task_id: str, task_params: Dict[str, Any], design_id: str, design_params: Dict[str, Any]):
+        version = task_params.get("simulator_version") if isinstance(task_params, dict) else None
+        if version is None and isinstance(task_params, dict) and not _is_v2_task(task_params):
+            version = ThroughflowTaskV1.model_fields["simulator_version"].default
+        if version is not None and version != self.simulator.VERSION and version in self._alternates:
+            return self._alternates[version].evaluate(task_id, task_params, design_id, design_params)
+        return super().evaluate(task_id, task_params, design_id, design_params)
+
     def validate_schema(self, design_params: Dict[str, Any]):
-        try: ThroughflowDesignV1.model_validate(design_params); return True,None
+        model = ThroughflowDesignV2 if _is_v2_design(design_params) else ThroughflowDesignV1
+        try: model.model_validate(design_params); return True,None
         except ValidationError as exc: return False,"Schema Error: {}".format(exc)
     def run_drc(self, design_params: Dict[str, Any]):
+        if _is_v2_design(design_params):
+            from .drc_v2 import run_drc_v2
+            return run_drc_v2(ThroughflowDesignV2.model_validate(design_params))
         design=ThroughflowDesignV1.model_validate(design_params)
         stations=design.passage.stations
         x_min,x_max=stations[0].axial_m,stations[-1].axial_m
@@ -51,5 +88,10 @@ class TurbomachineryThroughflowEnv(BaseEnvironment):
                 return getattr(left,name)+fraction*(getattr(right,name)-getattr(left,name))
         return getattr(stations[-1],name)
     def prepare_simulation_inputs(self, design_params: Dict[str, Any], task_params: Dict[str, Any]):
+        if _is_v2_task(task_params) != _is_v2_design(design_params):
+            raise ValueError("a throughflow_task_v2 needs a throughflow_design_v2 and a v1 task a v1 design")
+        if _is_v2_task(task_params):
+            task=ThroughflowTaskV2.model_validate(task_params); design=ThroughflowDesignV2.model_validate(design_params); task.validate_design_ownership(design)
+            return {"design":design.model_dump(mode="json"),"task":task.model_dump(mode="json")}
         task=ThroughflowTaskV1.model_validate(task_params); design=ThroughflowDesignV1.model_validate(design_params); task.validate_design_ownership(design)
         return {"design":design.model_dump(mode="json"),"task":task.model_dump(mode="json")}

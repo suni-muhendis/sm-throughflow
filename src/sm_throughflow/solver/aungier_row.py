@@ -28,6 +28,10 @@ class BladeSections:
     ``kappa_in`` and ``kappa_out`` are the blade angles in degrees from the
     axial direction, positive toward rotation (the solver's sign convention);
     ``chord`` is in metres and ``t_c`` is the maximum thickness to chord.
+    With ``coordinate="span"`` the ``radius`` values are span fractions
+    (0 at the hub, 1 at the shroud) instead, and each stream surface takes
+    kappa_in at its span fraction on the row's inlet quasi-normal, kappa_out at
+    its span fraction on the exit quasi-normal and the rest at their mean.
     """
 
     radius: Sequence[float]
@@ -35,9 +39,12 @@ class BladeSections:
     kappa_out: Sequence[float]
     chord: Sequence[float]
     t_c: Sequence[float]
+    coordinate: str = "radius"
 
     def __post_init__(self):
         r = np.asarray(self.radius, dtype=float)
+        if self.coordinate not in ("radius", "span"):
+            raise ValueError("coordinate must be 'radius' or 'span'")
         if r.ndim != 1 or r.size < 2 or np.any(np.diff(r) <= 0.0):
             raise ValueError("section radii must be at least two increasing values")
         for name in ("kappa_in", "kappa_out", "chord", "t_c"):
@@ -49,7 +56,7 @@ class BladeSections:
         r = np.asarray(r, dtype=float)
         span = radius[-1] - radius[0]
         if np.any(r < radius[0] - 1e-6 * span) or np.any(r > radius[-1] + 1e-6 * span):
-            raise ValueError("stream surface at r = {:.6g} to {:.6g} m lies outside the blade sections ({:.6g} to {:.6g} m)".format(r.min(), r.max(), radius[0], radius[-1]))
+            raise ValueError("stream surfaces at {} {:.6g} to {:.6g} lie outside the blade sections ({:.6g} to {:.6g})".format(self.coordinate, r.min(), r.max(), radius[0], radius[-1]))
         return np.interp(r, radius, np.asarray(getattr(self, name), dtype=float))
 
 
@@ -163,14 +170,16 @@ class AungierCompressorRow:
     # -------------------------------------------------------------- geometry
     def _geometry(self, inlet: StationFlow, exit_geometry: ExitGeometry):
         r1, r2 = inlet.r, exit_geometry.r
-        r_mean = 0.5 * (r1 + r2)
+        sec = self.sections
+        # Where the sections are read: radius, or span fraction on each quasi-normal.
+        at1, at2 = (r1, r2) if sec.coordinate == "radius" else (inlet.t, exit_geometry.t)
+        at_mean = 0.5 * (at1 + at2)
         phi = np.arctan2(r2 - r1, exit_geometry.z - inlet.z)  # (9-1)
         cos_phi = np.cos(phi)
-        sec = self.sections
-        k1 = np.degrees(np.arctan(cos_phi * np.tan(np.radians(sec.at("kappa_in", r1)))))  # (9-4)
-        k2 = np.degrees(np.arctan(cos_phi * np.tan(np.radians(sec.at("kappa_out", r2)))))  # (9-5)
-        chord = sec.at("chord", r_mean) / cos_phi  # (9-2)
-        t_c = sec.at("t_c", r_mean) * cos_phi  # (9-3)
+        k1 = np.degrees(np.arctan(cos_phi * np.tan(np.radians(sec.at("kappa_in", at1)))))  # (9-4)
+        k2 = np.degrees(np.arctan(cos_phi * np.tan(np.radians(sec.at("kappa_out", at2)))))  # (9-5)
+        chord = sec.at("chord", at_mean) / cos_phi  # (9-2)
+        t_c = sec.at("t_c", at_mean) * cos_phi  # (9-3)
         pitch = np.pi * (r1 + r2) / self.blade_count  # (9-6)
         k1, k2 = self.sign * k1, self.sign * k2
         theta = k1 - k2
