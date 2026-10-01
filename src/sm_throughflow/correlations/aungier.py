@@ -339,3 +339,101 @@ def wake_blockage(D_eq):
     """B_wake = 0 for D_eq <= 2, 1 - (2/D_eq)^0.9 above (6-83, 6-84)."""
     D_eq = np.asarray(D_eq, dtype=float)
     return np.where(D_eq <= 2.0, 0.0, 1.0 - (2.0 / np.maximum(D_eq, 2.0)) ** 0.9)
+
+
+# --------------------------------------------------- tip clearance and seal leakage
+def blade_pressure_difference(r1, rho1, c_m1, r2, rho2, c_m2, r_c_theta1, r_c_theta2, blade_count, r_tip, chord, stagger):
+    """Mean pressure difference across a blade at the clearance gap (6-85, 6-86), SI units.
+
+    tau = pi delta_c [(r rho C_m)_1 + (r rho C_m)_2] |r2 C_theta2 - r1 C_theta1| and
+    dP = tau / (Z r_tip delta_c c cos gamma); delta_c cancels. Inlet and exit
+    values are those at the gap wall (tip for a rotor, hub for an unshrouded
+    stator); r C_theta is absolute.
+    """
+    mass_band = np.asarray(r1, dtype=float) * rho1 * c_m1 + np.asarray(r2, dtype=float) * rho2 * c_m2
+    torque_per_gap = np.pi * mass_band * np.abs(np.asarray(r_c_theta2, dtype=float) - r_c_theta1)
+    return torque_per_gap / (np.asarray(blade_count, dtype=float) * r_tip * chord * np.cos(_deg(stagger)))
+
+
+def clearance_leakage_velocity(pressure_difference, mean_density, row_number):
+    """U_c = 0.816 sqrt(2 dP / rho_bar) / N_row^0.2 (6-87); row_number counts rows from 1 at the inlet."""
+    return 0.816 * np.sqrt(2.0 * np.asarray(pressure_difference, dtype=float) / mean_density) / np.asarray(row_number, dtype=float) ** 0.2
+
+
+def tip_clearance_loss(pressure_difference, mean_density, clearance, blade_count, chord, stagger, mass_flow, row_number):
+    """Row total-pressure loss from the clearance gap, dP_t = dP m_c / m (6-87 to 6-89), Pa.
+
+    m_c = rho_bar U_c Z delta_c c cos gamma (6-88). dP_t is a mass-flow
+    average over the row; leakage_loss_distribution spreads it over the span.
+    """
+    u_c = clearance_leakage_velocity(pressure_difference, mean_density, row_number)
+    m_c = mean_density * u_c * np.asarray(blade_count, dtype=float) * clearance * chord * np.cos(_deg(stagger))  # (6-88)
+    return np.asarray(pressure_difference, dtype=float) * m_c / mass_flow  # (6-89)
+
+
+def leakage_loss_distribution(mass_fraction, gap_at_hub):
+    """Multiplier of a row's leakage dP_t at a stream surface (section 6.9).
+
+    Aungier imposes the clearance (and seal) loss linearly across the annulus,
+    zero at the wall opposite the gap, with the integral equal to dP_t. Here
+    the coordinate is the mass fraction from the hub (0 to 1), since dP_t is a
+    mass-flow average: the multiplier is 2x, x the mass fraction from the far
+    wall, which averages to 1.
+    """
+    fraction = np.asarray(mass_fraction, dtype=float)
+    return 2.0 * (1.0 - fraction if gap_at_hub else fraction)
+
+
+def egli_throttling_coefficient(fin_count, pressure_ratio):
+    """C_t = 2.143 [ln N - 1.464] / (N - 4.322) [1 - P_R]^(0.375 P_R) (6-93), P_R = low/high pressure.
+
+    The book prints 2.143 ln(N) - 1.464 in the numerator, which is negative
+    at N = 4 and infinite at N = 4.322. With the bracket numerator and
+    denominator vanish together (ln 4.322 = 1.4637, the constants rounded)
+    and C_t follows Martin's labyrinth formula for several fins;
+    docs/compressor_correlations.md has the check. N is a whole number of fins.
+    """
+    n = np.asarray(fin_count, dtype=float)
+    if np.any(n < 1) or np.any(n != np.round(n)):
+        raise ValueError("the fin count must be a whole number >= 1")
+    pr = np.asarray(pressure_ratio, dtype=float)
+    return 2.143 * (np.log(n) - 1.464) / (n - 4.322) * (1.0 - pr) ** (0.375 * pr)
+
+
+def egli_contraction_ratio(clearance_over_thickness):
+    """C_r = 1 - 1 / (3 + [54.3 / (1 + 100 delta_c / t)]^3.45) (6-92), t the fin thickness."""
+    return 1.0 - 1.0 / (3.0 + (54.3 / (1.0 + 100.0 * np.asarray(clearance_over_thickness, dtype=float))) ** 3.45)
+
+
+def egli_carryover_coefficient(clearance_over_pitch, fin_count):
+    """C_c = 1 + X1 [delta_c/p - X2 ln(1 + delta_c/p)] / (1 - X2) (6-94 to 6-96), N <= 12.
+
+    Valid for delta_c/p <= X2 - 1, where C_c peaks; Aungier (2000) extends
+    the fit beyond 12 fins, which is not reproduced here.
+    """
+    n = np.asarray(fin_count, dtype=float)
+    if np.any(n > 12) or np.any(n < 1):
+        raise ValueError("the carry-over fit (6-94) covers 1 to 12 seal fins")
+    x = np.asarray(clearance_over_pitch, dtype=float)
+    x1 = 15.1 - 0.05255 * np.exp(0.507 * (12.0 - n))  # (6-95)
+    x2 = 1.058 + 0.0218 * n  # (6-96)
+    if np.any(x > x2 - 1.0):
+        raise ValueError("delta_c/p exceeds X2 - 1, outside Egli's model")
+    return 1.0 + x1 * (x - x2 * np.log1p(x)) / (1.0 - x2)
+
+
+def seal_leakage_mass_flow(r_seal, clearance, fin_thickness, fin_pitch, fin_count, pressure_ratio, density, temperature, gas_constant):
+    """Egli's labyrinth leakage m_leak = 2 pi r_seal delta_c C_t C_c C_r rho sqrt(R T) (6-91), kg/s.
+
+    rho and T are taken on the high-pressure side of the seal, as in Egli's
+    formulation; P_R is the low-to-high pressure ratio across it.
+    """
+    c_t = egli_throttling_coefficient(fin_count, pressure_ratio)
+    c_c = egli_carryover_coefficient(np.asarray(clearance, dtype=float) / fin_pitch, fin_count)
+    c_r = egli_contraction_ratio(np.asarray(clearance, dtype=float) / fin_thickness)
+    return 2.0 * np.pi * r_seal * clearance * c_t * c_c * c_r * density * np.sqrt(gas_constant * np.asarray(temperature, dtype=float))
+
+
+def seal_leakage_loss(pressure_difference, leakage_mass_flow, mass_flow):
+    """dP_t = dP m_leak / m (6-90), spread like the clearance loss."""
+    return np.asarray(pressure_difference, dtype=float) * leakage_mass_flow / mass_flow

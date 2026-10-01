@@ -189,14 +189,49 @@ eq. B1); Aungier fixes it tangent, and so do we.
 
 ## Clearance and seal leakage (sections 6.9, 6.10)
 
-Tip clearance (from the centrifugal model of Aungier 2000):
-tau = pi delta_c [(r rho C_m)_1 + (r rho C_m)_2][r2 C_theta2 - r1 C_theta1] (6-85),
-dP = tau / (Z r_tip delta_c c cos gamma) (6-86),
-U_c = 0.816 sqrt(2 dP / rho_bar) / N_row^0.2 (6-87),
-m_c = rho_bar U_c Z delta_c c cos gamma (6-88), dP_t = dP m_c / m (6-89),
-imposed as a total-pressure loss varying linearly across the annulus from zero
-at the wall opposite the gap, with the integral equal to (6-89). Shroud seal
-leakage by Egli (1935): (6-90) to (6-96).
+Tip clearance, from Aungier's centrifugal-impeller model (Aungier 1995, J.
+Turbomach. 117; *Centrifugal Compressors*, 2000):
+
+- tau = pi delta_c [(r rho C_m)_1 + (r rho C_m)_2][r2 C_theta2 - r1 C_theta1]
+  (6-85), the torque on the flow through a band delta_c high at the gap;
+  dP = tau / (Z r_tip delta_c c cos gamma) (6-86). delta_c cancels: dP is the
+  blade loading at the gap. At constant r and r rho C_m it reduces to the
+  cascade momentum balance dP c cos gamma = rho C_m s dC_theta (test).
+- U_c = 0.816 sqrt(2 dP / rho_bar) / N_row^0.2 (6-87); m_c = rho_bar U_c Z
+  delta_c c cos gamma (6-88); dP_t = dP m_c / m (6-89), the row's
+  mass-averaged total-pressure loss. The 0.816 of the centrifugal model could
+  not be read at its source (paywalled); two independent open codes that
+  implement Aungier's models use the same constant (the CCMD centrifugal code,
+  `Ucl = 0.816*SQRT(2*Pcl/rho2)`, and an axial code with the / N_row^0.2
+  form). N_row^0.2 is Aungier's own multistage calibration.
+- Spanwise distribution: linear across the annulus, zero at the wall
+  opposite the gap, with the integral equal to (6-89); Aungier does this
+  because a through-flow analysis without spanwise mixing would otherwise pile
+  the loss up on the endwall stream surfaces and diverge. The book does not
+  name the spanwise coordinate; since (6-89) is a mass-flow average we use the
+  mass fraction, so the multiplier is 2x with x the mass fraction from the far
+  wall (`leakage_loss_distribution`).
+
+Shroud seal leakage (stator shrouds), Egli (1935) with Aungier's (2000) fits:
+
+- dP_t = dP m_leak / m (6-90), distributed like the clearance loss;
+  m_leak = 2 pi r_seal delta_c C_t C_c C_r rho sqrt(R T) (6-91), rho and T on
+  the high-pressure side; C_r (6-92); C_c (6-94 to 6-96), for N <= 12 and
+  delta_c/p <= X2 - 1, where it peaks.
+- **(6-93) is misprinted.** The book prints
+  C_t = [2.143 ln(N) - 1.464] / (N - 4.322) [1 - P_R]^(0.375 P_R), which is
+  negative for N <= 4 and singular at N = 4.322. The intended form is
+  C_t = 2.143 [ln(N) - 1.464] / (N - 4.322) ..., whose numerator vanishes
+  where the denominator does (ln 4.322 = 1.4637). Checked against Martin's
+  ideal labyrinth, sqrt[(1 - P_R^2) / (N - ln P_R)]: the bracketed form is
+  1.02 to 1.28 times it over N = 2 to 12, P_R = 0.3 to 0.9, closing in as N
+  grows (a real labyrinth leaks more than the ideal one); the printed form is
+  negative or 1.8 to 3.8 times it. The original fit (Aungier 2000) was not
+  available to confirm the bracket directly.
+
+Not reproduced: Aungier's extension of C_c beyond 12 fins (in his 2000 book),
+and the end-wall boundary-layer corrections for seal leakage (section 8.6),
+which belong to his end-wall model.
 
 ## Verification against the book's figures
 

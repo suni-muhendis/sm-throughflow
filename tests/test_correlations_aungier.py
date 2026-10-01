@@ -186,3 +186,68 @@ def test_expansion_angle_matches_a_direct_construction():
     assert A.suction_surface_expansion_angle(kappa1, camber, t_c, 0.5) == pytest.approx(np.degrees(theta_u))
     # A flat plate does not expand the flow.
     assert A.suction_surface_expansion_angle(kappa1, 0.0, 0.0, sigma) == pytest.approx(0.0, abs=1e-6)
+
+def test_gap_pressure_difference_is_the_cascade_blade_loading():
+    # At constant radius and r rho C_m, (6-85, 6-86) reduce to the tangential
+    # momentum balance of a two-dimensional cascade: dP c cos(gamma) = rho C_m s dC_theta.
+    r, rho, cm, c_theta1, c_theta2, z, chord, stagger = 0.3, 1.1, 150.0, 40.0, 140.0, 30, 0.05, 35.0
+    dp = A.blade_pressure_difference(r, rho, cm, r, rho, cm, r * c_theta1, r * c_theta2, z, r, chord, stagger)
+    pitch = 2 * np.pi * r / z
+    assert dp == pytest.approx(rho * cm * pitch * (c_theta2 - c_theta1) / (chord * np.cos(np.radians(stagger))))
+
+
+def test_tip_clearance_loss_follows_the_leakage_flow():
+    dp, rho, gap, z, chord, stagger, m = 8000.0, 1.2, 5e-4, 30, 0.05, 35.0, 20.0
+    u_c = 0.816 * np.sqrt(2 * dp / rho)
+    assert A.clearance_leakage_velocity(dp, rho, 1) == pytest.approx(u_c)
+    assert A.clearance_leakage_velocity(dp, rho, 32) == pytest.approx(u_c / 2)  # N_row^0.2
+    m_c = rho * u_c * z * gap * chord * np.cos(np.radians(stagger))
+    assert A.tip_clearance_loss(dp, rho, gap, z, chord, stagger, m, 1) == pytest.approx(dp * m_c / m)
+
+
+def test_leakage_loss_is_zero_at_the_far_wall_and_averages_to_the_row_loss():
+    fraction = np.linspace(0.0, 1.0, 11)  # 11 stream surfaces at equal mass fractions
+    tip = A.leakage_loss_distribution(fraction, gap_at_hub=False)
+    hub = A.leakage_loss_distribution(fraction, gap_at_hub=True)
+    assert tip[0] == hub[-1] == 0.0 and tip[-1] == hub[0] == 2.0
+    tube_mean = 0.5 * (tip[1:] + tip[:-1])  # equal mass per tube
+    assert tube_mean.mean() == pytest.approx(1.0)
+
+
+def test_egli_throttling_fit_follows_martins_labyrinth_formula():
+    # Martin: m = A sqrt(P rho) sqrt[(1 - P_R^2) / (N - ln P_R)] for N ideal throttles.
+    # The bracketed (6-93) lies 2 to 28% above it, closing in as fins are added (real
+    # labyrinths leak more than Martin's ideal one); as printed it is negative for
+    # N <= 4 and 1.8 to 3.8 times Martin's value for N = 6 to 12.
+    n, pr = np.meshgrid([2, 3, 4, 6, 8, 12], [0.3, 0.5, 0.7, 0.9])
+    martin = np.sqrt((1 - pr ** 2) / (n - np.log(pr)))
+    ratio = A.egli_throttling_coefficient(n, pr) / martin
+    assert np.all((ratio > 1.0) & (ratio < 1.3))
+    assert np.all(ratio[:, -1] < 1.06)
+    printed = (2.143 * np.log(n) - 1.464) / (n - 4.322) * (1 - pr) ** (0.375 * pr) / martin
+    assert np.all((printed < 0) | (printed > 1.7))
+    assert np.all(np.diff(A.egli_throttling_coefficient(np.arange(1, 13), 0.5)) < 0)  # more fins, less flow
+    assert A.egli_throttling_coefficient(6, 1.0) == pytest.approx(0.0)
+    with pytest.raises(ValueError):
+        A.egli_throttling_coefficient(4.5, 0.5)
+
+
+def test_egli_carryover_and_contraction_limits():
+    n = 6
+    x2 = 1.058 + 0.0218 * n
+    assert A.egli_carryover_coefficient(0.0, n) == pytest.approx(1.0)
+    x = np.linspace(0.0, x2 - 1.0, 50)
+    assert np.all(np.diff(A.egli_carryover_coefficient(x, n)) > 0)  # rises to its maximum at X2 - 1
+    with pytest.raises(ValueError):
+        A.egli_carryover_coefficient(x2 - 0.99, n)
+    assert A.egli_contraction_ratio(0.0) == pytest.approx(1.0, abs=1e-5)
+    assert A.egli_contraction_ratio(1.0) == pytest.approx(1 - 1 / (3 + (54.3 / 101) ** 3.45))
+
+
+def test_seal_leakage_mass_flow_assembles_eglis_coefficients():
+    r, gap, t, p, n, pr, rho, temp, gas = 0.2, 3e-4, 2e-4, 3e-3, 4, 0.8, 1.5, 350.0, 287.0
+    expected = (2 * np.pi * r * gap * A.egli_throttling_coefficient(n, pr) * A.egli_carryover_coefficient(gap / p, n)
+                * A.egli_contraction_ratio(gap / t) * rho * np.sqrt(gas * temp))
+    leak = A.seal_leakage_mass_flow(r, gap, t, p, n, pr, rho, temp, gas)
+    assert leak == pytest.approx(expected)
+    assert A.seal_leakage_loss(5000.0, leak, 10.0) == pytest.approx(5000.0 * leak / 10.0)
