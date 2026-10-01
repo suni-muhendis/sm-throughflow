@@ -7,7 +7,7 @@ import numpy as np
 from .gas import PerfectGas
 from .geometry import Annulus, QuasiNormals, SurfaceGeometry, surface_geometry, uniform_flow_fractions
 from .quasi_normal import StationFlow, solve_quasi_normal
-from .rows import BladeRow, RowPerformance
+from .rows import BladeRow, ExitGeometry, RowPerformance
 
 Profile = Union[float, Sequence[float]]
 
@@ -96,7 +96,7 @@ class Throughflow:
             raise ValueError("need at least 3 stream surfaces")
 
     # ------------------------------------------------------------------ stations
-    def _solve_station(self, geo: SurfaceGeometry, q: int, omega: float, I, s, previous: Optional[StationFlow], swirl=None, beta=None) -> StationFlow:
+    def _solve_station(self, geo: SurfaceGeometry, q: int, omega: float, I, s, previous: Optional[StationFlow], swirl=None, beta=None, wake=None) -> StationFlow:
         return solve_quasi_normal(
             self.gas,
             y=geo.y[q],
@@ -113,6 +113,8 @@ class Throughflow:
             swirl=swirl,
             beta=beta,
             blockage=float(self.blockage[q]),
+            wake=wake,
+            z=geo.z[q],
             wm_guess=None if previous is None else previous.Wm,
         )
 
@@ -129,18 +131,34 @@ class Throughflow:
         # (7-40) to (7-42): r C_theta, H and s carried along each stream surface.
         return self._solve_station(geo, q, 0.0, upstream.H, upstream.s, previous, swirl=upstream.r * upstream.C_theta)
 
-    def _row_station(self, geo, q, row: BladeRow, upstream: StationFlow, previous, tol=1e-12, max_passes=100):
+    def _row_station(self, geo, q, row: BladeRow, upstream: StationFlow, previous, tol=1e-12, max_passes=200, relaxation=0.5):
+        """Exit station of a row, iterating the row model with the exit flow it sets.
+
+        A model whose angle and loss depend on the exit flow (deviation on
+        W_m2/W_m1, for example) can overshoot from pass to pass, so after the
+        first pass its output is under-relaxed; a model that ignores the exit
+        flow converges in two passes as before.
+        """
         gas, omega = self.gas, row.omega
         I = upstream.H - omega * upstream.r * upstream.C_theta  # (7-43)
         H_rel_in = I + 0.5 * (omega * upstream.r) ** 2
         P_rel_in = gas.pressure(H_rel_in, upstream.s)
         H_rel_out = I + 0.5 * (omega * geo.r[q]) ** 2  # (7-47), (7-48)
         P_rel_ideal = gas.pressure(H_rel_out, upstream.s)
-        exit_t = geo.y[q] / geo.y[q, -1]
+        exit_geometry = ExitGeometry(t=geo.y[q] / geo.y[q, -1], y=geo.y[q], r=geo.r[q], z=geo.z[q])
         station = previous
+        applied = None
         for _ in range(max_passes):
-            perf: RowPerformance = row.model(upstream, station, exit_t)
+            perf: RowPerformance = row.model(upstream, station, exit_geometry)
+            angle = np.asarray(perf.exit_angle, dtype=float)
             loss = np.asarray(perf.loss, dtype=float)
+            blocked = None if perf.wake_blockage is None else np.asarray(perf.wake_blockage, dtype=float)
+            if applied is not None:
+                angle = applied[0] + relaxation * (angle - applied[0])
+                loss = applied[1] + relaxation * (loss - applied[1])
+                if blocked is not None and applied[2] is not None:
+                    blocked = applied[2] + relaxation * (blocked - applied[2])
+            applied = (angle, loss, blocked)
             if perf.basis == "inlet":
                 P_rel_out = P_rel_ideal - loss * (P_rel_in - upstream.P)  # (7-49)
             elif perf.basis == "exit":
@@ -149,7 +167,8 @@ class Throughflow:
             else:
                 raise ValueError("unknown loss basis {}".format(perf.basis))
             s_out = gas.entropy(H_rel_out, P_rel_out)
-            new = self._solve_station(geo, q, omega, I, s_out, station, beta=perf.exit_angle)
+            wake = None if blocked is None else 1.0 - blocked  # (7-6)
+            new = self._solve_station(geo, q, omega, I, s_out, station, beta=angle, wake=wake)
             if station is not None and np.max(np.abs(new.Wm - station.Wm)) <= tol * np.max(new.Wm):
                 return new, perf
             station = new
@@ -161,7 +180,7 @@ class Throughflow:
         t_new = np.empty_like(geo.y)
         for q, st in enumerate(stations):
             y = geo.y[q]
-            g = geo.r[q] * st.rho * st.Wm * np.cos(geo.eps[q])
+            g = st.wake * geo.r[q] * st.rho * st.Wm * np.cos(geo.eps[q])  # (7-54)
             h = np.diff(y)
             seg = 0.5 * (g[1:] + g[:-1]) * h
             M = np.concatenate([[0.0], np.cumsum(seg)])
@@ -202,6 +221,7 @@ class Throughflow:
         performance = {}
         conv = Convergence()
         last_move = np.inf
+        row_tol = 1e-6
         for iteration in range(1, max_iterations + 1):
             geo = surface_geometry(self.qn, t, self.curvature)
             previous = list(stations)
@@ -210,7 +230,7 @@ class Throughflow:
                     stations[q] = self._inlet_station(geo, previous[q])
                 elif (q - 1) in self.row_at:
                     row = self.row_at[q - 1]
-                    stations[q], performance[row.name] = self._row_station(geo, q, row, stations[q - 1], previous[q])
+                    stations[q], performance[row.name] = self._row_station(geo, q, row, stations[q - 1], previous[q], tol=row_tol)
                 else:
                     stations[q] = self._duct_station(geo, q, stations[q - 1], previous[q])
             t_target = self._mass_fraction_positions(geo, stations, psi)
@@ -225,5 +245,7 @@ class Throughflow:
             if move <= tol and dv <= tol:
                 conv.converged = True
                 break
+            # Each row's exit flow need only be a little sharper than the outer change.
+            row_tol = float(np.clip(0.01 * min(move, dv), 1e-12, 1e-6))
             t = t + self._damping(geo, stations, b_star) * (t_target - t)
         return ThroughflowSolution(geometry=geo, stations=stations, rows=self.rows, performance=performance, convergence=conv)

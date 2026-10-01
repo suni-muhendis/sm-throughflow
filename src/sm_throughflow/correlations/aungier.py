@@ -39,6 +39,24 @@ def throat_opening_ratio(stagger, cl0, t_c, solidity):
     return ((1.0 - np.asarray(t_c, dtype=float) * root) * np.cos(_deg(phi))) ** root  # (4-31)
 
 
+def camberline_angles(camber, a_c=0.5):
+    """Leading- and trailing-edge angles chi1, chi2 of a parabolic-arc camberline to its chord (4-17 to 4-19).
+
+    b/c = {sqrt(1 + (4 tan theta)^2 [a/c - (a/c)^2 - 3/16]) - 1} / (4 tan theta) (4-19),
+    tan chi1 = 4b / (4a - c) (4-17), tan chi2 = 4b / (3c - 4a) (4-18), so that
+    chi1 + chi2 = theta; at a/c = 0.5 both are theta/2 (4-35), the circular
+    arc. The blade angles are kappa1 = gamma + chi1, kappa2 = gamma - chi2 (4-32, 4-33).
+    """
+    theta = _deg(camber)
+    a_c = np.asarray(a_c, dtype=float)
+    tan4 = 4.0 * np.tan(theta)
+    with np.errstate(invalid="ignore", divide="ignore"):
+        b_c = np.where(np.abs(tan4) > 1e-12, (np.sqrt(1.0 + tan4 ** 2 * (a_c - a_c ** 2 - 3.0 / 16.0)) - 1.0) / tan4, 0.0)
+    chi1 = np.arctan2(4.0 * b_c, 4.0 * a_c - 1.0)
+    chi2 = np.arctan2(4.0 * b_c, 3.0 - 4.0 * a_c)
+    return np.degrees(chi1), np.degrees(chi2)
+
+
 # ------------------------------------------------------------- design incidence
 def thickness_incidence_factor(t_c):
     """K_t,i = (10 t_b/c)^q, q = 0.28 / [0.1 + (t_b/c)^0.3] (6-10, 6-11)."""
@@ -221,6 +239,19 @@ def stall_incidence(i_star, range_negative, range_positive, mach, k_sh=1.0):
     return i_c, i_s
 
 
+def choke_inlet_angle(throat_over_pitch, sonic_mass_flux, inlet_mass_flux):
+    """Inlet flow angle at which the passage chokes, rho1 W1 s cos(beta1) = o rho* W* (6-53), degrees.
+
+    ``sonic_mass_flux`` is rho* W* at the inlet relative total conditions and
+    ``inlet_mass_flux`` is rho1 W1; the stream-sheet thickness is taken as
+    constant from inlet to throat. NaN where the passage cannot choke
+    (o rho* W* >= rho1 W1); the limit on i_c is then i_c >= beta1_choke - kappa1 + 1 (6-54).
+    """
+    ratio = np.asarray(throat_over_pitch, dtype=float) * np.asarray(sonic_mass_flux, dtype=float) / np.asarray(inlet_mass_flux, dtype=float)
+    with np.errstate(invalid="ignore"):
+        return np.where(ratio < 1.0, np.degrees(np.arccos(np.minimum(ratio, 1.0))), np.nan)
+
+
 def minimum_loss_incidence(i_c, i_s, range_negative, range_positive):
     """i_m = i_c + (i_s - i_c) R_c / (R_c + R_s) (6-55)."""
     return i_c + (i_s - i_c) * range_negative / (range_negative + range_positive)
@@ -300,6 +331,8 @@ def shock_loss(mach, expansion_angle, gamma=1.4, mean="arithmetic"):
     """
     mach = np.asarray(mach, dtype=float)
     supersonic = mach > 1.0
+    if not np.any(supersonic):
+        return np.zeros_like(mach)
     m1 = np.where(supersonic, mach, 1.0)
     nu = prandtl_meyer_angle(m1, gamma) + np.maximum(np.asarray(expansion_angle, dtype=float), 0.0)
     m_s = mach_from_prandtl_meyer_angle(nu, gamma)
@@ -437,3 +470,28 @@ def seal_leakage_mass_flow(r_seal, clearance, fin_thickness, fin_pitch, fin_coun
 def seal_leakage_loss(pressure_difference, leakage_mass_flow, mass_flow):
     """dP_t = dP m_leak / m (6-90), spread like the clearance loss."""
     return np.asarray(pressure_difference, dtype=float) * leakage_mass_flow / mass_flow
+
+
+# ------------------------------------------------------------ blade-row stall (ch. 9)
+def equivalent_velocity_ratio(total_pressure_out, pressure_out, total_pressure_in, pressure_in):
+    """W_RE = sqrt[(P't2 - P2) / (P't1 - P1)] (9-16), relative-frame total pressures."""
+    return np.sqrt((np.asarray(total_pressure_out, dtype=float) - pressure_out) / (np.asarray(total_pressure_in, dtype=float) - pressure_in))
+
+
+def stall_velocity_ratio(camber, solidity, stagger, t_c=0.1, D_eq=0.0):
+    """W_RE below which a blade row is expected to stall (9-17 to 9-19).
+
+    Reneau's two-dimensional-diffuser peak recovery, VR = 1 / [1 + 0.4 (L/b1)^0.65]
+    (9-14), with L/b1 = theta sigma / [2 sin(theta/2) cos(gamma)] (9-15)
+    limited to at least 1.1 (9-18), the t_b/c factor of (9-17) and, for
+    D_eq > 2.2, the factor (2.2/D_eq)^0.6 (9-19).
+    """
+    theta = _deg(camber)
+    half = theta / 2.0
+    with np.errstate(invalid="ignore", divide="ignore"):
+        arc = np.where(np.abs(half) > 1e-12, half / np.sin(half), 1.0)  # theta / [2 sin(theta/2)]
+    length = np.maximum(arc * np.asarray(solidity, dtype=float) / np.cos(_deg(stagger)), 1.1)
+    t_c = np.asarray(t_c, dtype=float)
+    limit = (0.15 + 11.0 * t_c) / (0.25 + 10.0 * t_c) / (1.0 + 0.4 * length ** 0.65)
+    D_eq = np.asarray(D_eq, dtype=float)
+    return np.where(D_eq > 2.2, (2.2 / np.maximum(D_eq, 2.2)) ** 0.6, 1.0) * limit

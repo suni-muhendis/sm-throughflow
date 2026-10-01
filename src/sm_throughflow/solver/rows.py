@@ -18,16 +18,32 @@ class RowPerformance:
     total-pressure loss coefficient on ``basis``: ``inlet`` means
     (P't2,ideal - P't2) / (P't1 - P1), Aungier's (7-49); ``exit`` means
     (P't2,ideal - P't2) / (P't2 - P2), the turbine convention.
+    ``wake_blockage`` is the fraction B_wake of each stream sheet's area that
+    the blade wakes block at the row exit (Aungier's 7-6, K_W = 1 - B_wake);
+    ``diagnostics`` carries whatever else the model reports, per stream surface.
     """
 
     exit_angle: np.ndarray
     loss: np.ndarray
     basis: LossBasis = "inlet"
+    wake_blockage: Optional[np.ndarray] = None
+    diagnostics: Optional[dict] = None
 
 
-# A row model sees the flow on its inlet quasi-normal and the current
-# estimate of the flow on its exit quasi-normal (None on the first pass).
-RowModel = Callable[[StationFlow, Optional[StationFlow], np.ndarray], RowPerformance]
+@dataclass(frozen=True)
+class ExitGeometry:
+    """Where the stream surfaces cross a row's exit quasi-normal: span fraction t, y, r and z."""
+
+    t: np.ndarray
+    y: np.ndarray
+    r: np.ndarray
+    z: np.ndarray
+
+
+# A row model sees the flow on its inlet quasi-normal, the current estimate
+# of the flow on its exit quasi-normal (None on the first pass) and the
+# exit quasi-normal's stream-surface geometry.
+RowModel = Callable[[StationFlow, Optional[StationFlow], ExitGeometry], RowPerformance]
 
 
 @dataclass(frozen=True)
@@ -58,9 +74,9 @@ class PrescribedRow:
         self.loss = loss
         self.basis = basis
 
-    def __call__(self, inlet: StationFlow, exit: Optional[StationFlow], exit_t: np.ndarray) -> RowPerformance:
+    def __call__(self, inlet: StationFlow, exit: Optional[StationFlow], geometry: ExitGeometry) -> RowPerformance:
         return RowPerformance(
-            exit_angle=np.radians(_on_span(self.exit_angle_deg, exit_t)),
-            loss=_on_span(self.loss, exit_t),
+            exit_angle=np.radians(_on_span(self.exit_angle_deg, geometry.t)),
+            loss=_on_span(self.loss, geometry.t),
             basis=self.basis,
         )

@@ -251,3 +251,29 @@ def test_seal_leakage_mass_flow_assembles_eglis_coefficients():
     leak = A.seal_leakage_mass_flow(r, gap, t, p, n, pr, rho, temp, gas)
     assert leak == pytest.approx(expected)
     assert A.seal_leakage_loss(5000.0, leak, 10.0) == pytest.approx(5000.0 * leak / 10.0)
+
+def test_parabolic_camberline_angles_add_up_to_the_camber():
+    for a_c in (0.3, 0.4, 0.5, 0.6):
+        chi1, chi2 = A.camberline_angles([10.0, 30.0, 50.0], a_c)
+        assert chi1 + chi2 == pytest.approx([10.0, 30.0, 50.0])
+    assert A.camberline_angles(30.0, 0.5) == pytest.approx((15.0, 15.0))  # circular arc (4-35)
+    chi1, chi2 = A.camberline_angles(30.0, 0.4)
+    assert chi1 > chi2  # maximum camber forward turns the leading edge more
+
+
+def test_choke_inlet_angle_closes_the_throat():
+    # o rho* W* = rho1 W1 s cos(beta1) (6-53).
+    beta = A.choke_inlet_angle(0.5, 200.0, [250.0, 100.0])
+    assert np.cos(np.radians(beta[0])) == pytest.approx(0.5 * 200.0 / 250.0)
+    assert np.isnan(beta[1])  # the throat passes more than the inlet can deliver
+
+
+def test_stall_criterion_reproduces_figure_9_3():
+    # t_b/c = 0.1, D_eq < 2.2: a plateau of 1 / (1 + 0.4 * 1.1^0.65) = 0.70 up to L/b1 = 1.1, 0.50 at 4.
+    assert A.stall_velocity_ratio(0.0, [0.5, 1.1], 0.0) == pytest.approx([0.7015, 0.7015], abs=1e-4)
+    assert A.stall_velocity_ratio(0.0, 4.0, 0.0) == pytest.approx(0.5038, abs=1e-4)
+    theta, sigma, gamma = 40.0, 1.5, 30.0
+    x = np.radians(theta) * sigma / (2 * np.sin(np.radians(theta) / 2) * np.cos(np.radians(gamma)))
+    assert A.stall_velocity_ratio(theta, sigma, gamma) == pytest.approx(1 / (1 + 0.4 * x ** 0.65))
+    assert A.stall_velocity_ratio(theta, sigma, gamma, D_eq=2.75) == pytest.approx(0.8 ** 0.6 / (1 + 0.4 * x ** 0.65))
+    assert A.equivalent_velocity_ratio(110.0, 100.0, 140.0, 100.0) == pytest.approx(0.5)

@@ -41,6 +41,8 @@ class StationFlow:
     P0: np.ndarray
     mass_flow: float
     blockage: float
+    z: Optional[np.ndarray] = None
+    wake_factor: Optional[np.ndarray] = None
 
     @property
     def alpha(self):
@@ -57,9 +59,14 @@ class StationFlow:
         return np.hypot(self.Wm, self.C_theta) / self.a
 
     @property
+    def wake(self) -> np.ndarray:
+        """Wake blockage factor K_W = 1 - B_wake on each stream surface (7-6); 1 without wakes."""
+        return np.ones_like(self.r) if self.wake_factor is None else self.wake_factor
+
+    @property
     def tube_mass_flows(self) -> np.ndarray:
         """Mass flow of each stream tube between adjacent stream surfaces (trapezoidal in y)."""
-        g = self.blockage * 2.0 * np.pi * self.r * self.rho * self.Wm * np.cos(self.eps)
+        g = self.blockage * self.wake * 2.0 * np.pi * self.r * self.rho * self.Wm * np.cos(self.eps)
         return 0.5 * (g[1:] + g[:-1]) * np.diff(self.y)
 
     def mass_average(self, values) -> float:
@@ -120,6 +127,8 @@ def solve_quasi_normal(
     swirl: Optional[np.ndarray] = None,
     beta: Optional[np.ndarray] = None,
     blockage: float = 1.0,
+    wake: Optional[np.ndarray] = None,
+    z: Optional[np.ndarray] = None,
     wm_guess: Optional[np.ndarray] = None,
     tol: float = 1e-12,
     max_inner: int = 200,
@@ -130,12 +139,15 @@ def solve_quasi_normal(
     ``beta`` (the flow angle in the ``omega`` frame, known at a blade-row exit)
     is given. ``I`` is the rothalpy in the ``omega`` frame and ``s`` the
     entropy on each stream surface. ``f3 / Wm`` is evaluated with the previous
-    inner iterate of Wm.
+    inner iterate of Wm. ``blockage`` is the end-wall factor K_B of the whole
+    quasi-normal and ``wake`` the wake factor K_W on each stream surface, both
+    in the mass integral (7-5).
     """
     if (swirl is None) == (beta is None):
         raise ValueError("give exactly one of swirl or beta")
     I = np.asarray(I, dtype=float)
     s = np.asarray(s, dtype=float)
+    k_w = np.ones_like(np.asarray(r, dtype=float)) if wake is None else np.asarray(wake, dtype=float)
     H_rel = I + 0.5 * (omega * r) ** 2  # (7-37)
     dI_dy = np.gradient(I, y, edge_order=2)
     ds_dy = np.gradient(s, y, edge_order=2)
@@ -196,7 +208,7 @@ def solve_quasi_normal(
     def mass(Wm):
         _, _, h = thermo(Wm)
         rho = gas.density(h, s)
-        return blockage * 2.0 * np.pi * np.trapezoid(r * rho * Wm * cos_eps, y)
+        return blockage * 2.0 * np.pi * np.trapezoid(k_w * r * rho * Wm * cos_eps, y)
 
     def mean_meridional_mach(Wm):
         _, _, h = thermo(Wm)
@@ -207,7 +219,7 @@ def solve_quasi_normal(
         start = np.asarray(wm_guess, dtype=float)
     else:
         rho_t = gas.density(H_rel, s)
-        area = 2.0 * np.pi * np.trapezoid(r * cos_eps, y) * blockage
+        area = 2.0 * np.pi * np.trapezoid(k_w * r * cos_eps, y) * blockage
         start = np.full_like(r, mass_flow / (float(np.mean(rho_t)) * area))
 
     cache = {}
@@ -296,4 +308,6 @@ def solve_quasi_normal(
         P0=gas.pressure(H, s),
         mass_flow=float(mass(Wm)),
         blockage=float(blockage),
+        z=None if z is None else np.asarray(z, dtype=float),
+        wake_factor=None if wake is None else k_w,
     )
