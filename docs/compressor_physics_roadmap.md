@@ -103,6 +103,8 @@ the backend changes, a new simulator version, with characterization goldens.
 - G. R. Miller, G. W. Lewis and M. J. Hartmann, "Shock losses in transonic
   compressor blade rows", J. Eng. Power, 1961.
 - A. R. Howell, "Fluid dynamics of axial compressors", Proc. IMechE, 1945.
+- A. D. S. Carter, "The Low Speed Performance of Related Aerofoils in
+  Cascades", ARC C.P. No. 29, 1950 (confirmed; deviation rule eq. 6).
 - J. A. Storer and N. A. Cumpsty, "An approximate analysis and prediction
   method for tip clearance loss in axial compressors", J. Turbomach., 1994.
 - G. C. Adkins and L. H. Smith, "Spanwise mixing in axial-flow

@@ -10,12 +10,13 @@ def camber(kappa_in, kappa_out):
 def carter_deviation(kappa_in, kappa_out, solidity, m=0.25):
     """Carter's rule, delta = m * theta / sqrt(sigma), degrees.
 
-    A. D. S. Carter, 1950 (Aeronautical Research Council; report number to be
-    confirmed against the original), in the form given by S. L. Dixon and
-    C. A. Hall, *Fluid Mechanics and Thermodynamics of Turbomachinery*, in
-    the two-dimensional cascades chapter. ``m`` depends on stagger and profile
-    shape; 0.25 is the value NASA turbo-design and the classical textbook
-    form use.
+    A. D. S. Carter, "The Low Speed Performance of Related Aerofoils in
+    Cascades", ARC C.P. No. 29, 1950, eq. (6): delta = m theta sqrt(s/c) for
+    compressor cascades (for turbine cascades Carter gives
+    delta = m theta s/c). ``m`` depends on the position of maximum camber and
+    the stagger (Carter's Fig. 6); Howell's fit,
+    m = 0.23 (2a/c)^2 + kappa2/500, is the leading term of Aungier's (6-26).
+    The default 0.25 is the constant NASA turbo-design and many textbooks use.
     """
     sigma = np.maximum(np.asarray(solidity, dtype=float), 1e-6)
     return m * camber(kappa_in, kappa_out) / np.sqrt(sigma)

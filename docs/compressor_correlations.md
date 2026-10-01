@@ -179,10 +179,27 @@ for the A4K6 camberline is reproduced.
 
 ## Open points
 
-- (6-43) prints Howell's secondary drag coefficient as C_Ds = 0.18 C_L^2 (read
-  at 250 dpi; the page is unambiguous). The form usually quoted from Howell
-  (1945) is 0.018 C_L^2; not confirmed here against Howell. It does not affect
-  the implemented model, which does not use (6-43).
+- **Howell's secondary drag coefficient: the book's (6-43) is a misprint.**
+  The page reads C_Ds = 0.18 C_L^2 (checked at 250 dpi). The value used in
+  the literature is 0.018 C_L^2, for example Y_sec = 0.018 sigma cos^2(beta1)
+  / cos^3(beta_m) C_L^2 attributed to Howell; that source could not be opened
+  (publisher 403), and Howell (1945, Proc. IMechE 153) is not openly
+  available. The physics settles it: for a typical mid-span blade
+  (beta1 = 50, beta2 = 25 deg, sigma = 1, s/h = 0.5; C_L = 1.12), with the
+  profile loss of (6-34) and the annulus drag of (6-42), 0.018 gives a
+  secondary loss of 0.020 and a total of 0.073, a normal row loss with the
+  profile loss 60% of it; 0.18 gives a secondary loss of 0.20 and a total of
+  0.26, with the profile loss 17% of it, which no working compressor shows.
+  Howell's own split (profile loss 39% of the total at design, as quoted in
+  NASA CR-3671) is of the first kind. (6-43) is not used by the implemented
+  model; if it is ever used, the coefficient is 0.018.
+- **Carter's rule, confirmed at the source.** A. D. S. Carter, "The Low
+  Speed Performance of Related Aerofoils in Cascades", ARC C.P. No. 29
+  (1950), eq. (6): delta = m theta sqrt(s/c) for compressor cascades and
+  delta = m theta s/c for turbine cascades, with m a function of the position
+  of maximum camber and the stagger (his Fig. 6). Howell's fit
+  m = 0.23 (2a/c)^2 + kappa2/500 equals the leading term of Aungier's (6-26),
+  0.92 (a/c)^2 + 0.002 kappa2, which confirms that equation independently.
 - Aungier calibrates K1, K2, the deviation and the off-design loss against his
   own through-flow analysis and end-wall boundary-layer model (chapters 7, 8);
   he warns that the parts "cannot really be separated from the whole". Our
