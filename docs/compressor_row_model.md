@@ -85,8 +85,10 @@ velocity ratio W_RE (9-16) and its stall limit (9-17 to 9-19).
   gives 0.0117 for NACA-65 and 0.007 for C.4 circular-arc blades; DCA blades,
   also circular-arc, take 0.007.
 - **Throat opening.** Aungier prefers throats computed from the constructed
-  blade (chapter 4); without a given o/s the model uses his empirical
-  (4-30, 4-31), which he fits to NACA-65 and finds fair for C.4 blades.
+  blade (section 4.9). Simulator v5 computes them at the row's eleven
+  sections once per row (`correlations/blade_geometry.py`) and passes them as
+  `throat_over_pitch`; used on its own, the model falls back to his empirical
+  (4-30, 4-31), fitted to NACA-65 blades and fair for C.4 ones.
 - **Seal pressure difference.** Section 6.10 takes "the pressure difference
   across the blade row"; the model uses the static pressures on the seal-wall
   stream surface at the row's inlet and exit.

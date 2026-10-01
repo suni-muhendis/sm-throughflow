@@ -35,7 +35,41 @@ Empirical, for NACA-65 blades (fitted to Dunavant et al. 1955 carpet plots),
 also fair for C.4 parabolic-arc blades (Fig. 4-13):
 phi = gamma (1 - 0.05 C_l0^1.5) + 5 C_l0^1.5 - 2 (4-30),
 o/s = [(1 - (t_b/c) sqrt(sigma)) cos(phi)]^sqrt(sigma) (4-31).
-Aungier prefers computed throats from the actual geometry.
+Aungier prefers computed throats from the actual geometry, which
+`correlations/blade_geometry.py` provides (section 4.9):
+
+- Sections from Table 4-1: the NACA 65-010 and C.4 thickness distributions,
+  laid normal to the camberline and along its length (section 4.1), with
+  their leading- and trailing-edge circles (NACA 65: 0.687% chord at 10%
+  thickness, scaled with the square of the thickness; C.4: 1.2% and 0.6%,
+  proportional to it); camberlines: the NACA a = 1.0 mean line scaled by
+  C_l0 from (4-6), the circular arc (4-7 to 4-10) and the parabolic arc
+  (4-16 to 4-19, solved as a quadratic); the double circular arc
+  (4-22 to 4-26) with its edge radius.
+- The section is staggered by gamma (4-32 to 4-36) and the throat is the
+  minimum distance between the suction side of one blade and the pressure
+  side and edge circles of the next, one pitch along.
+- **Table 4-1 misprint**: the NACA 65-010 thickness at 2.5% chord reads
+  3.480; NACA Report 824 gives the half-thickness 1.574 (recomputed 1.5748),
+  so the value is 3.148. Every other station, the a = 1.0 mean line and the
+  leading-edge radius agree with Report 824. The C.4 ordinates agree with an
+  independent tabulation (Vinogradov, RUDN J. Eng. Res.).
+- **Double circular arc, lower surface**: the book obtains it by giving t_b
+  and r0 negative values in (4-22 to 4-26); taken literally that makes the
+  lower arc tangent to the mirror image of the edge circle. The code makes
+  both arcs tangent to the same edge circles, centred on the camberline r0
+  from each end, as section 4.6 describes (tested).
+- **Checks**: a flat plate gives o/s = cos(gamma). Against Aungier's own
+  constructed NACA 65-series cascades (Fig. 4-12, sigma = 1, 60 points read
+  at 300 dpi) the computed o/s differ by a median 0.001 and at most 0.004,
+  the reading accuracy. Against his C.4 parabolic-arc cascades (Fig. 4-13,
+  a/c = 0.4) they agree as closely up to 40 deg stagger; at 50 and 60 deg and
+  low camber the figure is up to 0.019 wider. No single thickness explains
+  the figure (40 deg needs 10%, 60 deg about 6%), and the figure puts the
+  C.4 throat above the NACA 65 one at 60 deg although the C.4 is the blunter
+  section; a plausible cause is Aungier's coarse search ("about 50 points"
+  per surface), which can miss a blunt nose where it sets the throat. Those
+  curves are not used as a reference.
 
 ## Design (minimum-loss) incidence (section 6.2)
 

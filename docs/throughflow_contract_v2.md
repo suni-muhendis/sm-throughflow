@@ -34,6 +34,7 @@ Each row:
 | `blade_count` | Z. |
 | `profile` | Thickness distribution: `naca65`, `c4` or `dca` (double circular arc). |
 | `camberline` | `naca65` (a/c = 0.5), `circular_arc` or `parabolic_arc`; `max_camber_location` (a/c) applies to the parabolic arc only. |
+| `edge_radius_to_chord` | Leading- and trailing-edge radius over chord; required for, and only for, `dca`. |
 | `metal_angle_in_deg`, `metal_angle_out_deg` | Eleven values hub to shroud (0, 0.1, ..., 1 of the span), degrees from the axial direction, **positive in the direction of rotation**: a rotor usually has negative angles, a stator positive inlet angles. Every section turns the flow the same way. |
 | `chord_m`, `thickness_to_chord` | Eleven values: true chord and maximum thickness ratio. |
 | `tip_clearance_m` | Rotors only, required. |
@@ -42,7 +43,10 @@ Each row:
 The inlet angle applies at the leading-edge plane, the exit angle at the
 trailing-edge plane, chord and thickness between them; each stream surface
 reads them at its own span fraction on those planes, and the solver projects
-them onto the stream surface (Aungier 9-1 to 9-6).
+them onto the stream surface (Aungier 9-1 to 9-6). The simulator builds each
+of the eleven sections from its profile and camberline (Aungier chapter 4)
+and takes the throat opening, which sets the choke limit on incidence, from
+the constructed cascade.
 
 ## Design rules (`drc_v2.py`)
 

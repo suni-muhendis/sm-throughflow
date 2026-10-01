@@ -44,9 +44,9 @@ throughflow_solver.md):
 - Design contract v2 with profile family, chord and thickness per section
   ([throughflow_contract_v2.md](throughflow_contract_v2.md)).
 
-Next, in this order: blade throats computed from the constructed blade
-(Aungier chapter 4) in place of the empirical (4-30, 4-31); then validation
-(phase 7), to be planned before it starts. Turbines come later. Spanwise
+- Blade throats from the constructed cascade (Aungier chapter 4).
+
+Next: validation (phase 7), to be planned before it starts. Turbines come later. Spanwise
 mixing models (Adkins-Smith, Gallimore-Cumpsty) are not part of Aungier's
 method and stay optional.
 

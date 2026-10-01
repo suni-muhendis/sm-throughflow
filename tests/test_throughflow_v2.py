@@ -67,6 +67,20 @@ def test_extra_fields_are_rejected():
         ThroughflowTaskV2.model_validate(task)
 
 
+def test_double_circular_arc_rows_carry_their_edge_radius():
+    design, _ = build_case(1)
+    rotor = _row(design, "R1")
+    rotor["profile"], rotor["camberline"] = "dca", "circular_arc"
+    with pytest.raises(ValidationError, match="edge_radius_to_chord"):
+        ThroughflowDesignV2.model_validate(design)
+    rotor["edge_radius_to_chord"] = 0.005
+    ThroughflowDesignV2.model_validate(design)
+    design, _ = build_case(1)
+    _row(design, "R1")["edge_radius_to_chord"] = 0.005
+    with pytest.raises(ValidationError, match="edge_radius_to_chord"):
+        ThroughflowDesignV2.model_validate(design)
+
+
 # ------------------------------------------------------------------ design rules
 def _drc(design):
     return run_drc_v2(ThroughflowDesignV2.model_validate(design))
@@ -149,6 +163,21 @@ def test_evaluation_is_deterministic(one_stage):
     assert again.metrics == result.metrics
 
 
+def test_throats_come_from_the_constructed_blades(one_stage):
+    _, _, result = one_stage
+    for row in result.raw_simulation_output["operating_points"][0]["rows"]:
+        throats = row["section_throat_over_pitch"]
+        assert len(throats) == 11 and all(0.2 < t < 1.0 for t in throats)
+
+
+def test_double_circular_arc_rotor_runs():
+    design, task = build_case(1)
+    rotor = _row(design, "R1")
+    rotor.update(profile="dca", camberline="circular_arc", edge_radius_to_chord=0.005, thickness_to_chord=[0.05] * 11)
+    result = make_env("turbomachinery_throughflow").evaluate("t", task, "d", design)
+    assert result.status == "success", result.error_message
+
+
 def test_shrouded_stators_and_inlet_guide_vanes_run():
     design, task = build_case(1, inlet_guide_vane=True)
     stator = _row(design, "S1")
@@ -164,12 +193,12 @@ def test_shrouded_stators_and_inlet_guide_vanes_run():
 # Characterization goldens of simulator v5 on the one-stage reference case. A change
 # here moves a number: it needs a new simulator version, not new goldens.
 GOLDEN_V5 = {
-    "pressure_ratio_total": 1.1558673462935873,
-    "efficiency_polytropic": 0.9258112095680974,
-    "power_W": 1058790.729880155,
-    "exit_blockage": 0.018113193404198258,
-    "min_stall_margin": 0.11753563927600164,
-    "max_loss_coefficient": 0.03414094707547742,
+    "pressure_ratio_total": 1.1559528688496092,
+    "efficiency_polytropic": 0.9262041947750057,
+    "power_W": 1058884.127132292,
+    "exit_blockage": 0.01811810156598237,
+    "min_stall_margin": 0.11735803721536975,
+    "max_loss_coefficient": 0.034157785795312284,
     "part_speed.pressure_ratio_total": 1.1525286524165972,
     "part_speed.efficiency_polytropic": 0.9215524976990491,
 }

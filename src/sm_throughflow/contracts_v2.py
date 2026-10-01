@@ -53,6 +53,7 @@ class BladeRowV2(StrictModel):
     profile: Literal["naca65", "c4", "dca"]
     camberline: Literal["naca65", "circular_arc", "parabolic_arc"]
     max_camber_location: float = Field(default=0.5, ge=0.3, le=0.7)
+    edge_radius_to_chord: Optional[float] = Field(default=None, gt=0, le=0.05)
     metal_angle_in_deg: List[float] = _span_values()
     metal_angle_out_deg: List[float] = _span_values()
     chord_m: List[float] = _span_values()
@@ -73,6 +74,8 @@ class BladeRowV2(StrictModel):
             raise ValueError("the naca65 camberline has its maximum camber at mid-chord")
         if self.camberline != "parabolic_arc" and self.max_camber_location != 0.5:
             raise ValueError("max_camber_location applies to the parabolic_arc camberline only")
+        if (self.profile == "dca") != (self.edge_radius_to_chord is not None):
+            raise ValueError("edge_radius_to_chord is required for, and only for, the dca profile")
         if self.row_type == "rotor":
             if self.tip_clearance_m is None:
                 raise ValueError("a rotor requires tip_clearance_m")

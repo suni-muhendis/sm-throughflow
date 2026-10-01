@@ -50,6 +50,32 @@ class SlcAungierSimulator(BaseSimulator):
 
     # ------------------------------------------------------------ build
     @staticmethod
+    def throat_over_pitch(row, stations) -> List[float]:
+        """o/s of the constructed cascade at the row's eleven sections (Aungier section 4.9).
+
+        Each section sits at its span fraction on the row's mid-chord plane,
+        with pitch 2 pi r / Z; computed once per row, as Aungier does.
+        """
+        from .correlations.aungier import camberline_angles
+        from .correlations.blade_geometry import throat_opening_ratio_geometric
+
+        x = 0.5 * (row.leading_edge_axial_m + row.trailing_edge_axial_m)
+        z = [s.axial_m for s in stations]
+        hub = float(np.interp(x, z, [s.hub_radius_m for s in stations]))
+        shroud = float(np.interp(x, z, [s.shroud_radius_m for s in stations]))
+        k_in, k_out = np.asarray(row.metal_angle_in_deg), np.asarray(row.metal_angle_out_deg)
+        sign = 1.0 if np.mean(k_in - k_out) > 0.0 else -1.0  # the cascade frame of the correlations
+        ratios = []
+        for k, span in enumerate(SPAN_FRACTIONS):
+            camber = sign * (k_in[k] - k_out[k])
+            chi1, _ = camberline_angles(camber, row.max_camber_location)
+            stagger = sign * k_in[k] - float(chi1)
+            solidity = row.chord_m[k] * row.blade_count / (2.0 * math.pi * (hub + span * (shroud - hub)))
+            ratios.append(throat_opening_ratio_geometric(row.profile, row.camberline, camber, stagger, row.thickness_to_chord[k], solidity,
+                                                         row.max_camber_location, row.edge_radius_to_chord))
+        return ratios
+
+    @staticmethod
     def build(design: ThroughflowDesignV2, task: ThroughflowTaskV2, point):
         """The solver problem of one operating point: (Throughflow, row models by row_id)."""
         from .solver import Annulus, InletCondition, PerfectGas, QuasiNormals, Throughflow
@@ -85,6 +111,7 @@ class SlcAungierSimulator(BaseSimulator):
                 sections, row.blade_count, omega if row.row_type == "rotor" else 0.0, gas,
                 profile=row.profile, camberline=row.camberline, a_c=row.max_camber_location, row_number=k + 1,
                 inlet_guide_vane=row.row_id in guide_vanes, clearance=clearance, seal=seal,
+                throat_over_pitch=SlcAungierSimulator.throat_over_pitch(row, stations),
                 K1=profile["K1"], max_loss=profile["max_loss"], smoothing=profile["smoothing"], shock_mean=profile["shock_mean"],
             )
             models[row.row_id] = model
@@ -99,7 +126,7 @@ class SlcAungierSimulator(BaseSimulator):
     def _solve_point(self, design, task, point):
         from .solver import averaged_total_state, polytropic_efficiency
 
-        flow, _ = self.build(design, task, point)
+        flow, models = self.build(design, task, point)
         # B* = 16, the top of the 8 to 16 range Aungier gives for Novak's damping (section 12.4);
         # (7-59) still lowers it whenever the stream-surface movement grows.
         sol = flow.solve(tol=task.numerics.tolerance, max_iterations=task.numerics.max_iterations, b_star=16.0)
@@ -123,6 +150,7 @@ class SlcAungierSimulator(BaseSimulator):
             entry = {"row_id": row.row_id, "row_type": row.row_type, "stall_margin": _finite_list(margin)}
             entry.update({key: _finite_list(value) for key, value in d.items() if np.ndim(value) > 0})
             entry["seal_leakage_mass_flow"] = float(d.get("seal_leakage_mass_flow", 0.0))
+            entry["section_throat_over_pitch"] = _finite_list(models[row.row_id].throat_over_pitch)
             row_data.append(entry)
         stage_data = []
         index = {row.row_id: k for k, row in enumerate(design.rows)}
