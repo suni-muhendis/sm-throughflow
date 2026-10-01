@@ -7,6 +7,7 @@ import numpy as np
 from .gas import PerfectGas
 from .geometry import Annulus, QuasiNormals, SurfaceGeometry, surface_geometry, uniform_flow_fractions
 from .quasi_normal import StationFlow, solve_quasi_normal
+from .endwall import EndwallBoundaryLayers, EndwallResult
 from .rows import BladeRow, ExitGeometry, RowPerformance
 
 Profile = Union[float, Sequence[float]]
@@ -53,6 +54,8 @@ class ThroughflowSolution:
     rows: List[BladeRow]
     performance: dict
     convergence: Convergence
+    blockage: Optional[np.ndarray] = None
+    endwall: Optional[EndwallResult] = None
 
 
 class Throughflow:
@@ -75,6 +78,9 @@ class Throughflow:
         stream_surfaces: int = 11,
         curvature: str = "full",
         blockage: Union[float, Sequence[float]] = 1.0,
+        endwall: Optional[EndwallBoundaryLayers] = None,
+        endwall_relaxation: float = 0.5,
+        max_blockage: float = 0.5,
     ):
         self.annulus = annulus
         self.qn = quasi_normals
@@ -85,6 +91,10 @@ class Throughflow:
         self.n = int(stream_surfaces)
         self.curvature = curvature
         self.blockage = np.broadcast_to(np.asarray(blockage, dtype=float), (self.qn.count,)).copy()
+        self.endwall = endwall
+        self.endwall_relaxation = float(endwall_relaxation)
+        self.max_blockage = float(max_blockage)
+        self._kb = self.blockage.copy()  # the blockage factor in use during a solution
         self.row_at = {}
         for row in self.rows:
             if not 0 <= row.inlet < self.qn.count - 1:
@@ -112,7 +122,7 @@ class Throughflow:
             mass_flow=self.mass_flow,
             swirl=swirl,
             beta=beta,
-            blockage=float(self.blockage[q]),
+            blockage=float(self._kb[q]),
             wake=wake,
             z=geo.z[q],
             wm_guess=None if previous is None else previous.Wm,
@@ -222,6 +232,10 @@ class Throughflow:
         conv = Convergence()
         last_move = np.inf
         row_tol = 1e-6
+        self._kb = self.blockage.copy()
+        endwall_result = None
+        if self.endwall is not None:
+            self.endwall.reset()
         for iteration in range(1, max_iterations + 1):
             geo = surface_geometry(self.qn, t, self.curvature)
             previous = list(stations)
@@ -239,6 +253,13 @@ class Throughflow:
                 b_star = 0.5 * (b_star + 1.0)  # (7-59)
             last_move = move
             dv = np.inf if previous[0] is None else max(float(np.max(np.abs(a.Wm - b.Wm) / np.max(a.Wm))) for a, b in zip(stations, previous))
+            if self.endwall is not None:
+                # End-wall boundary layers on the current flow (Aungier chapter 8); K_B = 1 - B (8-77),
+                # limited and under-relaxed as Aungier advises for the sequential coupling.
+                endwall_result = self.endwall.solve(self, geo, stations, performance)
+                target = 1.0 - np.clip(endwall_result.blockage, 0.0, self.max_blockage)
+                dv = max(dv, float(np.max(np.abs(target - self._kb))))
+                self._kb = self._kb + self.endwall_relaxation * (target - self._kb)
             conv.iterations = iteration
             conv.position_change.append(move)
             conv.velocity_change.append(dv)
@@ -248,4 +269,5 @@ class Throughflow:
             # Each row's exit flow need only be a little sharper than the outer change.
             row_tol = float(np.clip(0.01 * min(move, dv), 1e-12, 1e-6))
             t = t + self._damping(geo, stations, b_star) * (t_target - t)
-        return ThroughflowSolution(geometry=geo, stations=stations, rows=self.rows, performance=performance, convergence=conv)
+        return ThroughflowSolution(geometry=geo, stations=stations, rows=self.rows, performance=performance, convergence=conv,
+                                   blockage=self._kb.copy(), endwall=endwall_result)

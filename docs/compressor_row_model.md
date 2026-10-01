@@ -118,7 +118,7 @@ and the inlet flow is computed once per inlet station.
   trailing edge; phi is then the whole suction-surface turning theta_u, and the
   shock loss is large (0.1 at M1' = 1.02 for sigma = 0.57, theta = 8 deg,
   t_b/c = 0.05).
-- **Not yet included**: Aungier's end-wall boundary-layer analysis
-  (chapter 8), which sets the end-wall blockage K_B and with which he
-  calibrated K1 = 0.0073 and the off-design loss model. Until it is in, K_B
-  is the solver's per-quasi-normal input.
+- Aungier calibrated K1 = 0.0073 and the off-design loss model together with
+  his end-wall boundary-layer analysis (chapter 8), which sets the end-wall
+  blockage K_B: run the row model with `Throughflow(endwall=...)`, see
+  [endwall_boundary_layer.md](endwall_boundary_layer.md).

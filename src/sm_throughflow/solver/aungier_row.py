@@ -294,6 +294,7 @@ class AungierCompressorRow:
         mass_fraction = np.linspace(0.0, 1.0, r1.size)
         dp_clearance = np.zeros_like(r1)
         dp_seal = np.zeros_like(r1)
+        seal_leak = 0.0
         if self.clearance is not None:
             j = -1 if self.clearance.wall == "shroud" else 0
             rho_mean = 0.5 * (inlet.rho[j] + rho2[j])
@@ -312,6 +313,7 @@ class AungierCompressorRow:
             ratio_p = min(p_in, p_out) / max(p_in, p_out)
             leak = A.seal_leakage_mass_flow(seal.radius, seal.clearance, seal.fin_thickness, seal.fin_pitch, seal.fin_count, ratio_p, rho_high, t_high, gas.R)
             dp_row = A.seal_leakage_loss(abs(p_out - p_in), leak, inlet.mass_flow)
+            seal_leak = float(leak) if high_is_exit else -float(leak)  # positive from discharge to inlet (section 8.6)
             dp_seal = dp_row * A.leakage_loss_distribution(mass_fraction, gap_at_hub=seal.wall == "hub")
 
         # Limit (9-7) and spanwise smoothing (9-8 to 9-11).
@@ -325,7 +327,7 @@ class AungierCompressorRow:
             critical_mach=critical_mach, equivalent_diffusion=D_eq, design_equivalent_diffusion=D_eq_star,
             design_loss=omega_star, minimum_loss=omega_m, shock_loss=omega_shock, profile_loss=omega_profile,
             clearance_loss=dp_clearance / head1, seal_loss=dp_seal / head1, loss=loss, wake_blockage=wake,
-            solidity=sigma, stagger=stagger, camber=theta,
+            solidity=sigma, stagger=stagger, camber=theta, pitch=g["pitch"], seal_leakage_mass_flow=seal_leak,
         )
         if exit is not None:
             # Blade-row stall criterion (9-16 to 9-19), from the current exit flow.
