@@ -234,6 +234,86 @@ def minimum_loss(omega_star, i_m, i_star, range_positive, mach=0.0, critical_mac
     return base + k_sh * (excess * sonic_to_inlet_velocity) ** 2
 
 
+# ------------------------------------------------------------------- shock loss
+def prandtl_meyer_angle(mach, gamma=1.4):
+    """Prandtl-Meyer angle nu(M) of a perfect gas, degrees (zero at M = 1)."""
+    m2 = np.maximum(np.asarray(mach, dtype=float) ** 2 - 1.0, 0.0)
+    k = (gamma + 1.0) / (gamma - 1.0)
+    return np.degrees(np.sqrt(k) * np.arctan(np.sqrt(m2 / k)) - np.arctan(np.sqrt(m2)))
+
+
+def mach_from_prandtl_meyer_angle(nu, gamma=1.4, tol=1e-13):
+    """Inverse of prandtl_meyer_angle, by bisection (nu is monotonic in M)."""
+    nu = np.asarray(nu, dtype=float)
+    nu_max = 90.0 * (np.sqrt((gamma + 1.0) / (gamma - 1.0)) - 1.0)
+    if np.any(nu < 0.0) or np.any(nu >= nu_max):
+        raise ValueError("Prandtl-Meyer angle must lie in [0, {:.2f}) deg".format(nu_max))
+    low, high = np.ones_like(nu), np.full_like(nu, 2.0)
+    while np.any(prandtl_meyer_angle(high, gamma) < nu):
+        high = np.where(prandtl_meyer_angle(high, gamma) < nu, 2.0 * high, high)
+    while np.max(high - low) > tol:
+        mid = 0.5 * (low + high)
+        below = prandtl_meyer_angle(mid, gamma) < nu
+        low, high = np.where(below, mid, low), np.where(below, high, mid)
+    return 0.5 * (low + high)
+
+
+def normal_shock_total_pressure_ratio(mach, gamma=1.4):
+    """P0 downstream / P0 upstream of a normal shock in a perfect gas (1 for M <= 1)."""
+    m2 = np.maximum(np.asarray(mach, dtype=float), 1.0) ** 2
+    g = gamma
+    return ((g + 1.0) * m2 / ((g - 1.0) * m2 + 2.0)) ** (g / (g - 1.0)) * ((g + 1.0) / (2.0 * g * m2 - (g - 1.0))) ** (1.0 / (g - 1.0))
+
+
+def suction_surface_expansion_angle(kappa1, camber, t_c, solidity):
+    """Expansion angle phi along the suction surface up to the passage shock (6-65, 6-68, 6-69).
+
+    Double-circular-arc blade with a sharp leading edge, flow entering tangent
+    to the suction surface, passage shock running from the adjacent blade's
+    leading edge normal to the suction surface. The book prints (6-61) and
+    (6-63) as 2R/c = sin(theta/2); the circular-arc relation (4-7) is
+    c/2 = R sin(theta/2), used here. phi is limited to theta_u, the turning of
+    the whole suction surface, for a shock line that would pass behind the
+    trailing edge (a geometric bound the book does not state).
+    """
+    theta = _deg(camber)
+    theta_u = 4.0 * np.arctan(np.tan(theta / 4.0) + np.asarray(t_c, dtype=float))  # (6-65)
+    psi = np.pi / 2.0 - theta_u / 2.0 - _deg(kappa1) + theta / 2.0  # (6-68)
+    pitch = 1.0 / np.asarray(solidity, dtype=float)  # s/c
+    # (6-69) with both sides multiplied by sin(theta_u/2), so a flat plate (R_u infinite) gives phi = 0.
+    sin_half = np.sin(theta_u / 2.0)
+    phi = np.arctan2(pitch * np.cos(psi) * sin_half, pitch * np.sin(psi) * sin_half + 0.5)
+    return np.degrees(np.minimum(phi, theta_u))
+
+
+def shock_loss(mach, expansion_angle, gamma=1.4, mean="arithmetic"):
+    """Passage shock loss coefficient omega_s on the inlet basis, (P't1 - P't,b)/(P't1 - P1).
+
+    Schwenk, Lewis and Hartmann, NACA RM E57A30 (1957), appendix B, the model
+    behind Miller, Lewis and Hartmann (1961), Swan (1961) and Aungier's
+    section 6.7: the flow expands isentropically from the relative inlet Mach
+    number M1' by the angle phi (Prandtl-Meyer, 6-70) to M_S', and the loss is
+    that of a normal shock at a mean of M1' and M_S'. ``mean="arithmetic"``
+    takes (M1' + M_S')/2, as the NACA report does (its worked values check
+    only with this mean); ``"geometric"`` takes sqrt(M1' M_S'), as Aungier
+    prints (6-71). Zero for M1' <= 1, where the method does not apply.
+    """
+    mach = np.asarray(mach, dtype=float)
+    supersonic = mach > 1.0
+    m1 = np.where(supersonic, mach, 1.0)
+    nu = prandtl_meyer_angle(m1, gamma) + np.maximum(np.asarray(expansion_angle, dtype=float), 0.0)
+    m_s = mach_from_prandtl_meyer_angle(nu, gamma)
+    if mean == "arithmetic":
+        m_in = 0.5 * (m1 + m_s)
+    elif mean == "geometric":
+        m_in = np.sqrt(m1 * m_s)
+    else:
+        raise ValueError("mean must be 'arithmetic' or 'geometric', not {!r}".format(mean))
+    static_ratio = (1.0 + 0.5 * (gamma - 1.0) * m1 ** 2) ** (-gamma / (gamma - 1.0))
+    omega = (1.0 - normal_shock_total_pressure_ratio(m_in, gamma)) / (1.0 - static_ratio)  # NACA (B2)
+    return np.where(supersonic, omega, 0.0)
+
+
 def off_design_loss(incidence, i_m, i_c, i_s, omega_m, omega_shock=0.0):
     """Loss away from minimum-loss incidence (6-78 to 6-82)."""
     i = np.asarray(incidence, dtype=float)

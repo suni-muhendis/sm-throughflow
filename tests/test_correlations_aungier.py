@@ -145,3 +145,44 @@ def test_deviation_moves_with_incidence_and_axial_velocity_ratio():
     assert A.off_design_deviation(5.0, slope, 4.0, 2.0) == pytest.approx(5.0 + 2.0 * slope)
     assert A.off_design_deviation(5.0, slope, 4.0, 2.0, wm_ratio=0.9) == pytest.approx(5.0 + 2.0 * slope + 1.0)
     assert A.off_design_deviation(5.0, slope, 4.0, 2.0, inlet_guide_vane=True) == pytest.approx(5.0)
+
+def test_perfect_gas_shock_relations_match_naca_report_1135():
+    # NACA Rep. 1135 tables, gamma = 1.4.
+    assert A.prandtl_meyer_angle([1.0, 1.5, 2.0]) == pytest.approx([0.0, 11.905, 26.380], abs=1e-3)
+    assert A.normal_shock_total_pressure_ratio([1.0, 1.5, 2.0]) == pytest.approx([1.0, 0.92978, 0.72087], abs=1e-5)
+    assert A.mach_from_prandtl_meyer_angle(A.prandtl_meyer_angle([1.2, 1.7, 3.0])) == pytest.approx([1.2, 1.7, 3.0], abs=1e-10)
+
+
+def test_shock_loss_reproduces_the_naca_worked_examples():
+    # NACA RM E57A30, pp. 13-14: 10 deg of supersonic turning at M1' = 1.0 gives
+    # omega_s "approximately 0.02"; the same turning at M1' = 1.4 "approximately
+    # seven times" that; M1' = 1.2 expanded to M_S' = 1.7 gives about six times the
+    # normal-shock loss at 1.2, which the report reads as 0.015 (exactly 0.0123).
+    low, high = A.shock_loss([1.0 + 1e-12, 1.4], 10.0)
+    assert low == pytest.approx(0.02, abs=0.001)
+    assert high / low == pytest.approx(7.0, abs=0.3)
+    nu = float(A.prandtl_meyer_angle(1.7) - A.prandtl_meyer_angle(1.2))
+    assert A.shock_loss(1.2, nu) / 0.015 == pytest.approx(6.0, abs=0.3)
+    assert A.shock_loss(1.2, 0.0) == pytest.approx(0.012255, abs=1e-6)  # plain normal shock
+    # Aungier's printed mean (6-71) misses the first example by a quarter.
+    assert A.shock_loss(1.0 + 1e-12, 10.0, mean="geometric") == pytest.approx(0.0148, abs=0.0002)
+    assert A.shock_loss([0.6, 1.0], 10.0) == pytest.approx([0.0, 0.0])
+
+
+def test_expansion_angle_matches_a_direct_construction():
+    # Lay out the suction-surface arc and the adjacent leading edge in (axial,
+    # tangential) coordinates and find where the line from the adjacent leading
+    # edge, normal to the arc, meets it; the arc turns by phi up to that point.
+    kappa1, camber, t_c, sigma = 60.0, 12.0, 0.05, 1.4
+    theta_u = 4 * np.arctan(np.tan(np.radians(camber) / 4) + t_c)
+    beta_u = np.radians(kappa1 - camber / 2) + theta_u / 2  # suction-surface inlet angle, stagger + theta_u/2
+    radius = 0.5 / np.sin(theta_u / 2)
+    centre = radius * np.array([np.sin(beta_u), -np.cos(beta_u)])  # the arc turns the flow toward axial
+    neighbour = np.array([0.0, 1.0 / sigma])
+    to_le, to_neighbour = -centre, neighbour - centre
+    cos_phi = to_le @ to_neighbour / (np.linalg.norm(to_le) * np.linalg.norm(to_neighbour))
+    assert A.suction_surface_expansion_angle(kappa1, camber, t_c, sigma) == pytest.approx(np.degrees(np.arccos(cos_phi)), abs=1e-10)
+    # At low solidity the shock line passes behind the blade: phi stops at the whole surface turning.
+    assert A.suction_surface_expansion_angle(kappa1, camber, t_c, 0.5) == pytest.approx(np.degrees(theta_u))
+    # A flat plate does not expand the flow.
+    assert A.suction_surface_expansion_angle(kappa1, 0.0, 0.0, sigma) == pytest.approx(0.0, abs=1e-6)

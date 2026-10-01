@@ -116,14 +116,63 @@ inlet guide vane: delta* = [0.92 (a/c)^2 + 0.002 kappa2] / (1 - 0.002 theta / sq
 - Critical Mach number M_c' = M1' W*/W_max (6-59), with W_max from (6-39) at
   i = i*, delta = delta*; above it
   omega_m = omega* [1 + (i_m - i*)^2 / R_s^2] + K_sh [(M'/M_c' - 1) W*/W1]^2
-  (6-60), with M' <= 1 (bow shocks are the next model).
+  (6-60), with M' <= 1 (the supersonic part is the shock loss below).
 
 ## Shock loss (section 6.7)
 
-Swan (1961): the flow enters tangent to the suction surface, expands along it
-by a Prandtl-Meyer turn phi (6-61 to 6-70), and the loss is that of a normal
-shock at M_in' = sqrt(M1' M_S') (6-71), from conservation across the shock
-(6-72 to 6-75).
+Aungier follows Swan (1961) and Miller, Lewis and Hartmann (1961), who both
+build on F. C. Schwenk, G. W. Lewis and M. J. Hartmann, "A Preliminary
+Analysis of the Magnitude of Shock Losses in Transonic Compressors", NACA RM
+E57A30 (1957), appendix B (read on NTRS; the 1961 ASME papers are behind a
+paywall). The model:
+
+- Double-circular-arc blade with a sharp leading edge; the flow enters
+  tangent to the suction surface, so beta1 = 90 - psi = theta_u/2 + gamma
+  (6-67). Upper-surface camber tan(theta_u/4) = tan(theta/4) + t_b/c (6-65),
+  psi = 90 - theta_u/2 - kappa1 + theta/2 (6-68).
+- The passage shock runs from the adjacent leading edge normal to the suction
+  surface; the surface turns by phi up to it,
+  tan phi = s cos psi / (s sin psi + R_u) (6-69). The sign follows from the
+  angle 90 - psi - phi marked in Fig. 6-17, and a direct construction in
+  (axial, tangential) coordinates reproduces (6-69) to 1e-10 (test).
+- Prandtl-Meyer expansion through phi from M1' to M_S' (6-70); the loss is
+  that of a normal shock at a mean of M1' and M_S' (6-71), on the inlet basis
+  omega_s = (1 - P'_b/P'_a) / (1 - P1/P'1) (NACA eq. B2). The method needs
+  M1' >= 1; omega_s = 0 below.
+
+Implemented for a perfect gas (closed-form nu(M) and normal-shock relations),
+which is what our solver's `PerfectGas` needs; Aungier's numerical form
+(6-70, 6-72 to 6-75) is the same physics for a general equation of state.
+Tested against the NACA Rep. 1135 tables (nu(2) = 26.380 deg, P02/P01 at
+M = 2 = 0.72087).
+
+Three points differ from the book as printed:
+
+- **(6-61) and (6-63) are misprinted.** They read 2R/c = sin(theta/2); the
+  circular-arc relation the text cites, (4-7), is c/2 = R sin(theta/2). The
+  code uses (4-7).
+- **The mean in (6-71).** Aungier's text says the shock Mach number is "the
+  average of the blade inlet Mach number and the expanded flow blade surface
+  Mach number", but (6-71) prints sqrt(M1' M_S'). The NACA report says "the
+  average of the end-point Mach numbers", and its worked values decide which:
+  10 deg of supersonic turning at M1' = 1.0 gives omega_s "approximately
+  0.02" and at M1' = 1.4 "approximately seven times" that. The arithmetic
+  mean gives 0.0191 and 7.2 times; the geometric mean gives 0.0148 and 8.9
+  times. The arithmetic mean is also the one Miller and Hartmann (NACA RM
+  E58A14b, 1958) checked against measured passage-shock losses in a
+  transonic rotor (0.190 to 0.192 predicted, 0.191 to 0.194 measured).
+  `shock_loss` therefore defaults to `mean="arithmetic"`; `"geometric"` keeps
+  Aungier's printed form.
+- **phi <= theta_u.** At low solidity the line from the adjacent leading edge
+  meets the suction-surface circle behind the trailing edge; phi is then
+  limited to the turning of the whole surface. The book does not state this
+  bound.
+
+Not modelled, as in Aungier: the bow-shock loss ahead of the leading edge
+(small at the near-zero incidence of transonic rows, NACA RM E57A30) and
+Swan's leading-edge radius in (6-69). The NACA report also lets the flow
+arrive at an incidence to the suction surface (Delta nu = beta1' - xi_z,
+eq. B1); Aungier fixes it tangent, and so do we.
 
 ## Off-design (section 6.8)
 
