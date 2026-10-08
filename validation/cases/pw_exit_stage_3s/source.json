@@ -1,0 +1,745 @@
+[
+ {
+  "citation": "Burdsall, E.A., Canal, E. Jr., Lyons, K.A.: Core Compressor Exit Stage Study. I - Aerodynamic and Mechanical Design. NASA CR-159714 (PWA-5561-55), Pratt & Whitney Aircraft Group, 1979. Contract NAS3-20578.",
+  "report": "NASA CR-159714",
+  "ntrs_id": "19800010836"
+ },
+ {
+  "citation": "Behlke, R.F., Burdsall, E.A., Canal, E. Jr., et al. (fourth author name illegible in the scan): Core Compressor Exit Stage Study. II - Final Report. NASA CR-159812, Pratt & Whitney Aircraft Group, October 1979. Contract NAS3-20578.",
+  "report": "NASA CR-159812",
+  "ntrs_id": "19800014823"
+ },
+ {
+  "file": "CR159714_tableI_design_parameters.csv",
+  "report": "NASA CR-159714",
+  "ntrs_id": "19800010836",
+  "pdf_page": 7,
+  "printed_page": "3",
+  "title": "TABLE I AERODYNAMIC DESIGN PARAMETERS",
+  "dpi": null,
+  "notes": "Page number verified (printed 3 on PDF p. 7). Render dpi and second read not recorded by the transcribing agent."
+ },
+ {
+  "file": "CR159714_appC_3S1_IGV_1.csv",
+  "report": "NASA CR-159714",
+  "ntrs_id": "19800010836",
+  "pdf_page": 53,
+  "printed_page": "50",
+  "title": "AERODYNAMIC SUMMARY COMPRESSOR 3S1 - IGV (Appendix C, Airfoil Aerodynamic Summary 3S1/3S2 Compressor)",
+  "dpi": 300,
+  "notes": "SI velocity block (top block of the page). Second read done (agent A, with V^2/units/PO-chain checks). PDF page verified against the page title; page number read on the image."
+ },
+ {
+  "file": "CR159714_appC_3S1_IGV_2.csv",
+  "report": "NASA CR-159714",
+  "ntrs_id": "19800010836",
+  "pdf_page": 53,
+  "printed_page": "50",
+  "title": "AERODYNAMIC SUMMARY COMPRESSOR 3S1 - IGV (Appendix C, Airfoil Aerodynamic Summary 3S1/3S2 Compressor)",
+  "dpi": 300,
+  "notes": "angle/Mach/loss/efficiency block (middle block). Second read done (agent A, with V^2/units/PO-chain checks). PDF page verified against the page title; page number read on the image."
+ },
+ {
+  "file": "CR159714_appC_3S1_IGV_3.csv",
+  "report": "NASA CR-159714",
+  "ntrs_id": "19800010836",
+  "pdf_page": 53,
+  "printed_page": "50",
+  "title": "AERODYNAMIC SUMMARY COMPRESSOR 3S1 - IGV (Appendix C, Airfoil Aerodynamic Summary 3S1/3S2 Compressor)",
+  "dpi": 300,
+  "notes": "English velocity block with PCT TE SPAN (bottom block). Second read done (agent A, with V^2/units/PO-chain checks). PDF page verified against the page title; page number read on the image."
+ },
+ {
+  "file": "CR159714_appC_3S1_IGV_overall.csv",
+  "report": "NASA CR-159714",
+  "ntrs_id": "19800010836",
+  "pdf_page": 53,
+  "printed_page": "50",
+  "title": "AERODYNAMIC SUMMARY COMPRESSOR 3S1 - IGV (Appendix C, Airfoil Aerodynamic Summary 3S1/3S2 Compressor)",
+  "dpi": 300,
+  "notes": "overall line at the bottom of the page. Second read done (agent A, with V^2/units/PO-chain checks). PDF page verified against the page title; page number read on the image."
+ },
+ {
+  "file": "CR159714_appC_3S1_R1_1.csv",
+  "report": "NASA CR-159714",
+  "ntrs_id": "19800010836",
+  "pdf_page": 54,
+  "printed_page": "51",
+  "title": "AERODYNAMIC SUMMARY COMPRESSOR 3S1-Rotor 1 (Appendix C, Airfoil Aerodynamic Summary 3S1/3S2 Compressor)",
+  "dpi": 300,
+  "notes": "SI velocity block (top block of the page). Second read done (agent A, with V^2/units/PO-chain checks). PDF page verified against the page title; page number read on the image."
+ },
+ {
+  "file": "CR159714_appC_3S1_R1_2.csv",
+  "report": "NASA CR-159714",
+  "ntrs_id": "19800010836",
+  "pdf_page": 54,
+  "printed_page": "51",
+  "title": "AERODYNAMIC SUMMARY COMPRESSOR 3S1-Rotor 1 (Appendix C, Airfoil Aerodynamic Summary 3S1/3S2 Compressor)",
+  "dpi": 300,
+  "notes": "angle/Mach/loss/efficiency block (middle block). Second read done (agent A, with V^2/units/PO-chain checks). PDF page verified against the page title; page number read on the image."
+ },
+ {
+  "file": "CR159714_appC_3S1_R1_3.csv",
+  "report": "NASA CR-159714",
+  "ntrs_id": "19800010836",
+  "pdf_page": 54,
+  "printed_page": "51",
+  "title": "AERODYNAMIC SUMMARY COMPRESSOR 3S1-Rotor 1 (Appendix C, Airfoil Aerodynamic Summary 3S1/3S2 Compressor)",
+  "dpi": 300,
+  "notes": "English velocity block with PCT TE SPAN (bottom block). Second read done (agent A, with V^2/units/PO-chain checks). PDF page verified against the page title; page number read on the image."
+ },
+ {
+  "file": "CR159714_appC_3S1_R1_overall.csv",
+  "report": "NASA CR-159714",
+  "ntrs_id": "19800010836",
+  "pdf_page": 54,
+  "printed_page": "51",
+  "title": "AERODYNAMIC SUMMARY COMPRESSOR 3S1-Rotor 1 (Appendix C, Airfoil Aerodynamic Summary 3S1/3S2 Compressor)",
+  "dpi": 300,
+  "notes": "overall line at the bottom of the page. Second read done (agent A, with V^2/units/PO-chain checks). PDF page verified against the page title; page number read on the image."
+ },
+ {
+  "file": "CR159714_appC_3S1_S1_1.csv",
+  "report": "NASA CR-159714",
+  "ntrs_id": "19800010836",
+  "pdf_page": 55,
+  "printed_page": "52",
+  "title": "AERODYNAMIC SUMMARY COMPRESSOR 3S1-Stator 1 (Appendix C, Airfoil Aerodynamic Summary 3S1/3S2 Compressor)",
+  "dpi": 300,
+  "notes": "SI velocity block (top block of the page). Second read done (agent A, with V^2/units/PO-chain checks). PDF page verified against the page title; printed page number not legible on the scan; inferred from neighbouring pages (printed = PDF - 3 throughout Appendix C)."
+ },
+ {
+  "file": "CR159714_appC_3S1_S1_2.csv",
+  "report": "NASA CR-159714",
+  "ntrs_id": "19800010836",
+  "pdf_page": 55,
+  "printed_page": "52",
+  "title": "AERODYNAMIC SUMMARY COMPRESSOR 3S1-Stator 1 (Appendix C, Airfoil Aerodynamic Summary 3S1/3S2 Compressor)",
+  "dpi": 300,
+  "notes": "angle/Mach/loss/efficiency block (middle block). Second read done (agent A, with V^2/units/PO-chain checks). PDF page verified against the page title; printed page number not legible on the scan; inferred from neighbouring pages (printed = PDF - 3 throughout Appendix C)."
+ },
+ {
+  "file": "CR159714_appC_3S1_S1_3.csv",
+  "report": "NASA CR-159714",
+  "ntrs_id": "19800010836",
+  "pdf_page": 55,
+  "printed_page": "52",
+  "title": "AERODYNAMIC SUMMARY COMPRESSOR 3S1-Stator 1 (Appendix C, Airfoil Aerodynamic Summary 3S1/3S2 Compressor)",
+  "dpi": 300,
+  "notes": "English velocity block with PCT TE SPAN (bottom block). Second read done (agent A, with V^2/units/PO-chain checks). PDF page verified against the page title; printed page number not legible on the scan; inferred from neighbouring pages (printed = PDF - 3 throughout Appendix C)."
+ },
+ {
+  "file": "CR159714_appC_3S1_S1_overall.csv",
+  "report": "NASA CR-159714",
+  "ntrs_id": "19800010836",
+  "pdf_page": 55,
+  "printed_page": "52",
+  "title": "AERODYNAMIC SUMMARY COMPRESSOR 3S1-Stator 1 (Appendix C, Airfoil Aerodynamic Summary 3S1/3S2 Compressor)",
+  "dpi": 300,
+  "notes": "overall line at the bottom of the page. Second read done (agent A, with V^2/units/PO-chain checks). PDF page verified against the page title; printed page number not legible on the scan; inferred from neighbouring pages (printed = PDF - 3 throughout Appendix C)."
+ },
+ {
+  "file": "CR159714_appC_3S1_R2_1.csv",
+  "report": "NASA CR-159714",
+  "ntrs_id": "19800010836",
+  "pdf_page": 56,
+  "printed_page": "53",
+  "title": "AERODYNAMIC SUMMARY COMPRESSOR 3S1-Rotor 2 (Appendix C, Airfoil Aerodynamic Summary 3S1/3S2 Compressor)",
+  "dpi": 300,
+  "notes": "SI velocity block (top block of the page). Second read done (agent A, with V^2/units/PO-chain checks). PDF page verified against the page title; page number read on the image."
+ },
+ {
+  "file": "CR159714_appC_3S1_R2_2.csv",
+  "report": "NASA CR-159714",
+  "ntrs_id": "19800010836",
+  "pdf_page": 56,
+  "printed_page": "53",
+  "title": "AERODYNAMIC SUMMARY COMPRESSOR 3S1-Rotor 2 (Appendix C, Airfoil Aerodynamic Summary 3S1/3S2 Compressor)",
+  "dpi": 300,
+  "notes": "angle/Mach/loss/efficiency block (middle block). Second read done (agent A, with V^2/units/PO-chain checks). PDF page verified against the page title; page number read on the image."
+ },
+ {
+  "file": "CR159714_appC_3S1_R2_3.csv",
+  "report": "NASA CR-159714",
+  "ntrs_id": "19800010836",
+  "pdf_page": 56,
+  "printed_page": "53",
+  "title": "AERODYNAMIC SUMMARY COMPRESSOR 3S1-Rotor 2 (Appendix C, Airfoil Aerodynamic Summary 3S1/3S2 Compressor)",
+  "dpi": 300,
+  "notes": "English velocity block with PCT TE SPAN (bottom block). Second read done (agent A, with V^2/units/PO-chain checks). PDF page verified against the page title; page number read on the image."
+ },
+ {
+  "file": "CR159714_appC_3S1_R2_overall.csv",
+  "report": "NASA CR-159714",
+  "ntrs_id": "19800010836",
+  "pdf_page": 56,
+  "printed_page": "53",
+  "title": "AERODYNAMIC SUMMARY COMPRESSOR 3S1-Rotor 2 (Appendix C, Airfoil Aerodynamic Summary 3S1/3S2 Compressor)",
+  "dpi": 300,
+  "notes": "overall line at the bottom of the page. Second read done (agent A, with V^2/units/PO-chain checks). PDF page verified against the page title; page number read on the image."
+ },
+ {
+  "file": "CR159714_appC_3S1_S2_1.csv",
+  "report": "NASA CR-159714",
+  "ntrs_id": "19800010836",
+  "pdf_page": 57,
+  "printed_page": "54",
+  "title": "AERODYNAMIC SUMMARY COMPRESSOR 3S1-Stator 2 (Appendix C, Airfoil Aerodynamic Summary 3S1/3S2 Compressor)",
+  "dpi": 300,
+  "notes": "SI velocity block (top block of the page). Second read done cell by cell by earlier agents (with print checks). PDF page verified against the page title; printed page number not legible on the scan; inferred from neighbouring pages (printed = PDF - 3 throughout Appendix C)."
+ },
+ {
+  "file": "CR159714_appC_3S1_S2_2.csv",
+  "report": "NASA CR-159714",
+  "ntrs_id": "19800010836",
+  "pdf_page": 57,
+  "printed_page": "54",
+  "title": "AERODYNAMIC SUMMARY COMPRESSOR 3S1-Stator 2 (Appendix C, Airfoil Aerodynamic Summary 3S1/3S2 Compressor)",
+  "dpi": 300,
+  "notes": "angle/Mach/loss/efficiency block (middle block). Second read done cell by cell by earlier agents (with print checks). PDF page verified against the page title; printed page number not legible on the scan; inferred from neighbouring pages (printed = PDF - 3 throughout Appendix C)."
+ },
+ {
+  "file": "CR159714_appC_3S1_S2_3.csv",
+  "report": "NASA CR-159714",
+  "ntrs_id": "19800010836",
+  "pdf_page": 57,
+  "printed_page": "54",
+  "title": "AERODYNAMIC SUMMARY COMPRESSOR 3S1-Stator 2 (Appendix C, Airfoil Aerodynamic Summary 3S1/3S2 Compressor)",
+  "dpi": 300,
+  "notes": "English velocity block with PCT TE SPAN (bottom block). Second read done cell by cell by earlier agents (with print checks). PDF page verified against the page title; printed page number not legible on the scan; inferred from neighbouring pages (printed = PDF - 3 throughout Appendix C)."
+ },
+ {
+  "file": "CR159714_appC_3S1_S2_overall.csv",
+  "report": "NASA CR-159714",
+  "ntrs_id": "19800010836",
+  "pdf_page": 57,
+  "printed_page": "54",
+  "title": "AERODYNAMIC SUMMARY COMPRESSOR 3S1-Stator 2 (Appendix C, Airfoil Aerodynamic Summary 3S1/3S2 Compressor)",
+  "dpi": 300,
+  "notes": "overall line at the bottom of the page. Second read done cell by cell by earlier agents (with print checks). PDF page verified against the page title; printed page number not legible on the scan; inferred from neighbouring pages (printed = PDF - 3 throughout Appendix C)."
+ },
+ {
+  "file": "CR159714_appC_3S1_R3_1.csv",
+  "report": "NASA CR-159714",
+  "ntrs_id": "19800010836",
+  "pdf_page": 58,
+  "printed_page": "55",
+  "title": "AERODYNAMIC SUMMARY COMPRESSOR 3S1-Rotor 3 (Appendix C, Airfoil Aerodynamic Summary 3S1/3S2 Compressor)",
+  "dpi": 300,
+  "notes": "SI velocity block (top block of the page). Second read done cell by cell by earlier agents (with print checks). PDF page verified against the page title; page number read on the image."
+ },
+ {
+  "file": "CR159714_appC_3S1_R3_2.csv",
+  "report": "NASA CR-159714",
+  "ntrs_id": "19800010836",
+  "pdf_page": 58,
+  "printed_page": "55",
+  "title": "AERODYNAMIC SUMMARY COMPRESSOR 3S1-Rotor 3 (Appendix C, Airfoil Aerodynamic Summary 3S1/3S2 Compressor)",
+  "dpi": 300,
+  "notes": "angle/Mach/loss/efficiency block (middle block). Second read done cell by cell by earlier agents (with print checks). PDF page verified against the page title; page number read on the image."
+ },
+ {
+  "file": "CR159714_appC_3S1_R3_3.csv",
+  "report": "NASA CR-159714",
+  "ntrs_id": "19800010836",
+  "pdf_page": 58,
+  "printed_page": "55",
+  "title": "AERODYNAMIC SUMMARY COMPRESSOR 3S1-Rotor 3 (Appendix C, Airfoil Aerodynamic Summary 3S1/3S2 Compressor)",
+  "dpi": 300,
+  "notes": "English velocity block with PCT TE SPAN (bottom block). Second read done cell by cell by earlier agents (with print checks). PDF page verified against the page title; page number read on the image."
+ },
+ {
+  "file": "CR159714_appC_3S1_R3_overall.csv",
+  "report": "NASA CR-159714",
+  "ntrs_id": "19800010836",
+  "pdf_page": 58,
+  "printed_page": "55",
+  "title": "AERODYNAMIC SUMMARY COMPRESSOR 3S1-Rotor 3 (Appendix C, Airfoil Aerodynamic Summary 3S1/3S2 Compressor)",
+  "dpi": 300,
+  "notes": "overall line at the bottom of the page. Second read done cell by cell by earlier agents (with print checks). PDF page verified against the page title; page number read on the image."
+ },
+ {
+  "file": "CR159714_appC_3S1_S3_1.csv",
+  "report": "NASA CR-159714",
+  "ntrs_id": "19800010836",
+  "pdf_page": 59,
+  "printed_page": "56",
+  "title": "AERODYNAMIC SUMMARY COMPRESSOR 3S1-Stator 3 (Appendix C, Airfoil Aerodynamic Summary 3S1/3S2 Compressor)",
+  "dpi": 300,
+  "notes": "SI velocity block (top block of the page). Second read done cell by cell by earlier agents (with print checks). PDF page verified against the page title; printed page number not legible on the scan; inferred from neighbouring pages (printed = PDF - 3 throughout Appendix C)."
+ },
+ {
+  "file": "CR159714_appC_3S1_S3_2.csv",
+  "report": "NASA CR-159714",
+  "ntrs_id": "19800010836",
+  "pdf_page": 59,
+  "printed_page": "56",
+  "title": "AERODYNAMIC SUMMARY COMPRESSOR 3S1-Stator 3 (Appendix C, Airfoil Aerodynamic Summary 3S1/3S2 Compressor)",
+  "dpi": 300,
+  "notes": "angle/Mach/loss/efficiency block (middle block). Second read done cell by cell by earlier agents (with print checks). PDF page verified against the page title; printed page number not legible on the scan; inferred from neighbouring pages (printed = PDF - 3 throughout Appendix C)."
+ },
+ {
+  "file": "CR159714_appC_3S1_S3_3.csv",
+  "report": "NASA CR-159714",
+  "ntrs_id": "19800010836",
+  "pdf_page": 59,
+  "printed_page": "56",
+  "title": "AERODYNAMIC SUMMARY COMPRESSOR 3S1-Stator 3 (Appendix C, Airfoil Aerodynamic Summary 3S1/3S2 Compressor)",
+  "dpi": 300,
+  "notes": "English velocity block with PCT TE SPAN (bottom block). Second read done cell by cell by earlier agents (with print checks). PDF page verified against the page title; printed page number not legible on the scan; inferred from neighbouring pages (printed = PDF - 3 throughout Appendix C)."
+ },
+ {
+  "file": "CR159714_appC_3S1_S3_overall.csv",
+  "report": "NASA CR-159714",
+  "ntrs_id": "19800010836",
+  "pdf_page": 59,
+  "printed_page": "56",
+  "title": "AERODYNAMIC SUMMARY COMPRESSOR 3S1-Stator 3 (Appendix C, Airfoil Aerodynamic Summary 3S1/3S2 Compressor)",
+  "dpi": 300,
+  "notes": "overall line at the bottom of the page. Second read done cell by cell by earlier agents (with print checks). PDF page verified against the page title; printed page number not legible on the scan; inferred from neighbouring pages (printed = PDF - 3 throughout Appendix C)."
+ },
+ {
+  "file": "CR159714_appC_3S2_IGV_1.csv",
+  "report": "NASA CR-159714",
+  "ntrs_id": "19800010836",
+  "pdf_page": 60,
+  "printed_page": "57",
+  "title": "AERODYNAMIC SUMMARY COMPRESSOR 3S2 - IGV (Appendix C, Airfoil Aerodynamic Summary 3S1/3S2 Compressor)",
+  "dpi": 300,
+  "notes": "SI velocity block (top block of the page). Second read done cell by cell by earlier agents (with print checks). PDF page verified against the page title; page number read on the image."
+ },
+ {
+  "file": "CR159714_appC_3S2_IGV_2.csv",
+  "report": "NASA CR-159714",
+  "ntrs_id": "19800010836",
+  "pdf_page": 60,
+  "printed_page": "57",
+  "title": "AERODYNAMIC SUMMARY COMPRESSOR 3S2 - IGV (Appendix C, Airfoil Aerodynamic Summary 3S1/3S2 Compressor)",
+  "dpi": 300,
+  "notes": "angle/Mach/loss/efficiency block (middle block). Second read done cell by cell by earlier agents (with print checks). PDF page verified against the page title; page number read on the image."
+ },
+ {
+  "file": "CR159714_appC_3S2_IGV_3.csv",
+  "report": "NASA CR-159714",
+  "ntrs_id": "19800010836",
+  "pdf_page": 60,
+  "printed_page": "57",
+  "title": "AERODYNAMIC SUMMARY COMPRESSOR 3S2 - IGV (Appendix C, Airfoil Aerodynamic Summary 3S1/3S2 Compressor)",
+  "dpi": 300,
+  "notes": "English velocity block with PCT TE SPAN (bottom block). Second read done cell by cell by earlier agents (with print checks). PDF page verified against the page title; page number read on the image."
+ },
+ {
+  "file": "CR159714_appC_3S2_IGV_overall.csv",
+  "report": "NASA CR-159714",
+  "ntrs_id": "19800010836",
+  "pdf_page": 60,
+  "printed_page": "57",
+  "title": "AERODYNAMIC SUMMARY COMPRESSOR 3S2 - IGV (Appendix C, Airfoil Aerodynamic Summary 3S1/3S2 Compressor)",
+  "dpi": 300,
+  "notes": "overall line at the bottom of the page. Second read done cell by cell by earlier agents (with print checks). PDF page verified against the page title; page number read on the image."
+ },
+ {
+  "file": "CR159714_appC_3S2_R1_1.csv",
+  "report": "NASA CR-159714",
+  "ntrs_id": "19800010836",
+  "pdf_page": 61,
+  "printed_page": "58",
+  "title": "AERODYNAMIC SUMMARY COMPRESSOR 3S2-Rotor 1 (Appendix C, Airfoil Aerodynamic Summary 3S1/3S2 Compressor)",
+  "dpi": 300,
+  "notes": "SI velocity block (top block of the page). Second read done cell by cell by earlier agents (with print checks). PDF page verified against the page title; printed page number not legible on the scan; inferred from neighbouring pages (printed = PDF - 3 throughout Appendix C)."
+ },
+ {
+  "file": "CR159714_appC_3S2_R1_2.csv",
+  "report": "NASA CR-159714",
+  "ntrs_id": "19800010836",
+  "pdf_page": 61,
+  "printed_page": "58",
+  "title": "AERODYNAMIC SUMMARY COMPRESSOR 3S2-Rotor 1 (Appendix C, Airfoil Aerodynamic Summary 3S1/3S2 Compressor)",
+  "dpi": 300,
+  "notes": "angle/Mach/loss/efficiency block (middle block). Second read done cell by cell by earlier agents (with print checks). PDF page verified against the page title; printed page number not legible on the scan; inferred from neighbouring pages (printed = PDF - 3 throughout Appendix C)."
+ },
+ {
+  "file": "CR159714_appC_3S2_R1_3.csv",
+  "report": "NASA CR-159714",
+  "ntrs_id": "19800010836",
+  "pdf_page": 61,
+  "printed_page": "58",
+  "title": "AERODYNAMIC SUMMARY COMPRESSOR 3S2-Rotor 1 (Appendix C, Airfoil Aerodynamic Summary 3S1/3S2 Compressor)",
+  "dpi": 300,
+  "notes": "English velocity block with PCT TE SPAN (bottom block). Second read done cell by cell by earlier agents (with print checks). PDF page verified against the page title; printed page number not legible on the scan; inferred from neighbouring pages (printed = PDF - 3 throughout Appendix C)."
+ },
+ {
+  "file": "CR159714_appC_3S2_R1_overall.csv",
+  "report": "NASA CR-159714",
+  "ntrs_id": "19800010836",
+  "pdf_page": 61,
+  "printed_page": "58",
+  "title": "AERODYNAMIC SUMMARY COMPRESSOR 3S2-Rotor 1 (Appendix C, Airfoil Aerodynamic Summary 3S1/3S2 Compressor)",
+  "dpi": 300,
+  "notes": "overall line at the bottom of the page. Second read done cell by cell by earlier agents (with print checks). PDF page verified against the page title; printed page number not legible on the scan; inferred from neighbouring pages (printed = PDF - 3 throughout Appendix C)."
+ },
+ {
+  "file": "CR159714_appC_3S2_S1_1.csv",
+  "report": "NASA CR-159714",
+  "ntrs_id": "19800010836",
+  "pdf_page": 62,
+  "printed_page": "59",
+  "title": "AERODYNAMIC SUMMARY COMPRESSOR 3S2-Stator 1 (Appendix C, Airfoil Aerodynamic Summary 3S1/3S2 Compressor)",
+  "dpi": 300,
+  "notes": "SI velocity block (top block of the page). Second read done cell by cell by earlier agents (with print checks). PDF page verified against the page title; page number read on the image."
+ },
+ {
+  "file": "CR159714_appC_3S2_S1_2.csv",
+  "report": "NASA CR-159714",
+  "ntrs_id": "19800010836",
+  "pdf_page": 62,
+  "printed_page": "59",
+  "title": "AERODYNAMIC SUMMARY COMPRESSOR 3S2-Stator 1 (Appendix C, Airfoil Aerodynamic Summary 3S1/3S2 Compressor)",
+  "dpi": 300,
+  "notes": "angle/Mach/loss/efficiency block (middle block). Second read done cell by cell by earlier agents (with print checks). PDF page verified against the page title; page number read on the image."
+ },
+ {
+  "file": "CR159714_appC_3S2_S1_3.csv",
+  "report": "NASA CR-159714",
+  "ntrs_id": "19800010836",
+  "pdf_page": 62,
+  "printed_page": "59",
+  "title": "AERODYNAMIC SUMMARY COMPRESSOR 3S2-Stator 1 (Appendix C, Airfoil Aerodynamic Summary 3S1/3S2 Compressor)",
+  "dpi": 300,
+  "notes": "English velocity block with PCT TE SPAN (bottom block). Second read done cell by cell by earlier agents (with print checks). PDF page verified against the page title; page number read on the image."
+ },
+ {
+  "file": "CR159714_appC_3S2_S1_overall.csv",
+  "report": "NASA CR-159714",
+  "ntrs_id": "19800010836",
+  "pdf_page": 62,
+  "printed_page": "59",
+  "title": "AERODYNAMIC SUMMARY COMPRESSOR 3S2-Stator 1 (Appendix C, Airfoil Aerodynamic Summary 3S1/3S2 Compressor)",
+  "dpi": 300,
+  "notes": "overall line at the bottom of the page. Second read done cell by cell by earlier agents (with print checks). PDF page verified against the page title; page number read on the image."
+ },
+ {
+  "file": "CR159714_appC_3S2_R2_1.csv",
+  "report": "NASA CR-159714",
+  "ntrs_id": "19800010836",
+  "pdf_page": 63,
+  "printed_page": "60",
+  "title": "AERODYNAMIC SUMMARY COMPRESSOR 3S2-Rotor 2 (Appendix C, Airfoil Aerodynamic Summary 3S1/3S2 Compressor)",
+  "dpi": 300,
+  "notes": "SI velocity block (top block of the page). Second read done cell by cell by earlier agents (with print checks). PDF page verified against the page title; printed page number not legible on the scan; inferred from neighbouring pages (printed = PDF - 3 throughout Appendix C)."
+ },
+ {
+  "file": "CR159714_appC_3S2_R2_2.csv",
+  "report": "NASA CR-159714",
+  "ntrs_id": "19800010836",
+  "pdf_page": 63,
+  "printed_page": "60",
+  "title": "AERODYNAMIC SUMMARY COMPRESSOR 3S2-Rotor 2 (Appendix C, Airfoil Aerodynamic Summary 3S1/3S2 Compressor)",
+  "dpi": 300,
+  "notes": "angle/Mach/loss/efficiency block (middle block). Second read done cell by cell by earlier agents (with print checks). PDF page verified against the page title; printed page number not legible on the scan; inferred from neighbouring pages (printed = PDF - 3 throughout Appendix C)."
+ },
+ {
+  "file": "CR159714_appC_3S2_R2_3.csv",
+  "report": "NASA CR-159714",
+  "ntrs_id": "19800010836",
+  "pdf_page": 63,
+  "printed_page": "60",
+  "title": "AERODYNAMIC SUMMARY COMPRESSOR 3S2-Rotor 2 (Appendix C, Airfoil Aerodynamic Summary 3S1/3S2 Compressor)",
+  "dpi": 300,
+  "notes": "English velocity block with PCT TE SPAN (bottom block). Second read done cell by cell by earlier agents (with print checks). PDF page verified against the page title; printed page number not legible on the scan; inferred from neighbouring pages (printed = PDF - 3 throughout Appendix C)."
+ },
+ {
+  "file": "CR159714_appC_3S2_R2_overall.csv",
+  "report": "NASA CR-159714",
+  "ntrs_id": "19800010836",
+  "pdf_page": 63,
+  "printed_page": "60",
+  "title": "AERODYNAMIC SUMMARY COMPRESSOR 3S2-Rotor 2 (Appendix C, Airfoil Aerodynamic Summary 3S1/3S2 Compressor)",
+  "dpi": 300,
+  "notes": "overall line at the bottom of the page. Second read done cell by cell by earlier agents (with print checks). PDF page verified against the page title; printed page number not legible on the scan; inferred from neighbouring pages (printed = PDF - 3 throughout Appendix C)."
+ },
+ {
+  "file": "CR159714_appC_3S2_S2_1.csv",
+  "report": "NASA CR-159714",
+  "ntrs_id": "19800010836",
+  "pdf_page": 64,
+  "printed_page": "61",
+  "title": "AERODYNAMIC SUMMARY COMPRESSOR 3S2-Stator 2 (Appendix C, Airfoil Aerodynamic Summary 3S1/3S2 Compressor)",
+  "dpi": 300,
+  "notes": "SI velocity block (top block of the page). Second read done cell by cell by earlier agents (with print checks). PDF page verified against the page title; page number read on the image."
+ },
+ {
+  "file": "CR159714_appC_3S2_S2_2.csv",
+  "report": "NASA CR-159714",
+  "ntrs_id": "19800010836",
+  "pdf_page": 64,
+  "printed_page": "61",
+  "title": "AERODYNAMIC SUMMARY COMPRESSOR 3S2-Stator 2 (Appendix C, Airfoil Aerodynamic Summary 3S1/3S2 Compressor)",
+  "dpi": 300,
+  "notes": "angle/Mach/loss/efficiency block (middle block). Second read done cell by cell by earlier agents (with print checks). PDF page verified against the page title; page number read on the image."
+ },
+ {
+  "file": "CR159714_appC_3S2_S2_3.csv",
+  "report": "NASA CR-159714",
+  "ntrs_id": "19800010836",
+  "pdf_page": 64,
+  "printed_page": "61",
+  "title": "AERODYNAMIC SUMMARY COMPRESSOR 3S2-Stator 2 (Appendix C, Airfoil Aerodynamic Summary 3S1/3S2 Compressor)",
+  "dpi": 300,
+  "notes": "English velocity block with PCT TE SPAN (bottom block). Second read done cell by cell by earlier agents (with print checks). PDF page verified against the page title; page number read on the image."
+ },
+ {
+  "file": "CR159714_appC_3S2_S2_overall.csv",
+  "report": "NASA CR-159714",
+  "ntrs_id": "19800010836",
+  "pdf_page": 64,
+  "printed_page": "61",
+  "title": "AERODYNAMIC SUMMARY COMPRESSOR 3S2-Stator 2 (Appendix C, Airfoil Aerodynamic Summary 3S1/3S2 Compressor)",
+  "dpi": 300,
+  "notes": "overall line at the bottom of the page. Second read done cell by cell by earlier agents (with print checks). PDF page verified against the page title; page number read on the image."
+ },
+ {
+  "file": "CR159714_appC_3S2_R3_1.csv",
+  "report": "NASA CR-159714",
+  "ntrs_id": "19800010836",
+  "pdf_page": 65,
+  "printed_page": "62",
+  "title": "AERODYNAMIC SUMMARY COMPRESSOR 3S2-Rotor 3 (Appendix C, Airfoil Aerodynamic Summary 3S1/3S2 Compressor)",
+  "dpi": 300,
+  "notes": "SI velocity block (top block of the page). Second read done cell by cell by earlier agents (with print checks). PDF page verified against the page title; printed page number not legible on the scan; inferred from neighbouring pages (printed = PDF - 3 throughout Appendix C)."
+ },
+ {
+  "file": "CR159714_appC_3S2_R3_2.csv",
+  "report": "NASA CR-159714",
+  "ntrs_id": "19800010836",
+  "pdf_page": 65,
+  "printed_page": "62",
+  "title": "AERODYNAMIC SUMMARY COMPRESSOR 3S2-Rotor 3 (Appendix C, Airfoil Aerodynamic Summary 3S1/3S2 Compressor)",
+  "dpi": 300,
+  "notes": "angle/Mach/loss/efficiency block (middle block). Second read done cell by cell by earlier agents (with print checks). PDF page verified against the page title; printed page number not legible on the scan; inferred from neighbouring pages (printed = PDF - 3 throughout Appendix C)."
+ },
+ {
+  "file": "CR159714_appC_3S2_R3_3.csv",
+  "report": "NASA CR-159714",
+  "ntrs_id": "19800010836",
+  "pdf_page": 65,
+  "printed_page": "62",
+  "title": "AERODYNAMIC SUMMARY COMPRESSOR 3S2-Rotor 3 (Appendix C, Airfoil Aerodynamic Summary 3S1/3S2 Compressor)",
+  "dpi": 300,
+  "notes": "English velocity block with PCT TE SPAN (bottom block). Second read done cell by cell by earlier agents (with print checks). PDF page verified against the page title; printed page number not legible on the scan; inferred from neighbouring pages (printed = PDF - 3 throughout Appendix C)."
+ },
+ {
+  "file": "CR159714_appC_3S2_R3_overall.csv",
+  "report": "NASA CR-159714",
+  "ntrs_id": "19800010836",
+  "pdf_page": 65,
+  "printed_page": "62",
+  "title": "AERODYNAMIC SUMMARY COMPRESSOR 3S2-Rotor 3 (Appendix C, Airfoil Aerodynamic Summary 3S1/3S2 Compressor)",
+  "dpi": 300,
+  "notes": "overall line at the bottom of the page. Second read done cell by cell by earlier agents (with print checks). PDF page verified against the page title; printed page number not legible on the scan; inferred from neighbouring pages (printed = PDF - 3 throughout Appendix C)."
+ },
+ {
+  "file": "CR159714_appC_3S2_S3_1.csv",
+  "report": "NASA CR-159714",
+  "ntrs_id": "19800010836",
+  "pdf_page": 66,
+  "printed_page": "63",
+  "title": "AERODYNAMIC SUMMARY COMPRESSOR 3S2-Stator 3 (Appendix C, Airfoil Aerodynamic Summary 3S1/3S2 Compressor)",
+  "dpi": 300,
+  "notes": "SI velocity block (top block of the page). Second read done cell by cell by earlier agents (with print checks). PDF page verified against the page title; page number read on the image."
+ },
+ {
+  "file": "CR159714_appC_3S2_S3_2.csv",
+  "report": "NASA CR-159714",
+  "ntrs_id": "19800010836",
+  "pdf_page": 66,
+  "printed_page": "63",
+  "title": "AERODYNAMIC SUMMARY COMPRESSOR 3S2-Stator 3 (Appendix C, Airfoil Aerodynamic Summary 3S1/3S2 Compressor)",
+  "dpi": 300,
+  "notes": "angle/Mach/loss/efficiency block (middle block). Second read done cell by cell by earlier agents (with print checks). PDF page verified against the page title; page number read on the image."
+ },
+ {
+  "file": "CR159714_appC_3S2_S3_3.csv",
+  "report": "NASA CR-159714",
+  "ntrs_id": "19800010836",
+  "pdf_page": 66,
+  "printed_page": "63",
+  "title": "AERODYNAMIC SUMMARY COMPRESSOR 3S2-Stator 3 (Appendix C, Airfoil Aerodynamic Summary 3S1/3S2 Compressor)",
+  "dpi": 300,
+  "notes": "English velocity block with PCT TE SPAN (bottom block). Second read done cell by cell by earlier agents (with print checks). PDF page verified against the page title; page number read on the image."
+ },
+ {
+  "file": "CR159714_appC_3S2_S3_overall.csv",
+  "report": "NASA CR-159714",
+  "ntrs_id": "19800010836",
+  "pdf_page": 66,
+  "printed_page": "63",
+  "title": "AERODYNAMIC SUMMARY COMPRESSOR 3S2-Stator 3 (Appendix C, Airfoil Aerodynamic Summary 3S1/3S2 Compressor)",
+  "dpi": 300,
+  "notes": "overall line at the bottom of the page. Second read done cell by cell by earlier agents (with print checks). PDF page verified against the page title; page number read on the image."
+ },
+ {
+  "file": "CR159714_appD_3S1_IGV.csv",
+  "report": "NASA CR-159714",
+  "ntrs_id": "19800010836",
+  "pdf_page": 69,
+  "printed_page": "67",
+  "title": "AIRFOIL GEOMETRY Compressor 3S1-IGV (Appendix D, Airfoil Geometry on Conical Surfaces 3S1/3S2 Compressor)",
+  "dpi": 300,
+  "notes": "SI and English blocks on one line per streamline. Second read done cell by cell from 300 dpi rotated renders (see notes.md). PDF page verified against the page title; page number read on the image."
+ },
+ {
+  "file": "CR159714_appD_3S1_R1.csv",
+  "report": "NASA CR-159714",
+  "ntrs_id": "19800010836",
+  "pdf_page": 70,
+  "printed_page": "68",
+  "title": "AIRFOIL GEOMETRY Compressor 3S1-Rotor 1 (Appendix D, Airfoil Geometry on Conical Surfaces 3S1/3S2 Compressor)",
+  "dpi": 300,
+  "notes": "SI and English blocks on one line per streamline. Second read done cell by cell from 300 dpi rotated renders (see notes.md). PDF page verified against the page title; printed page number not legible on the scan; inferred from neighbouring pages (printed = PDF - 2 throughout Appendix D; printed 64 is skipped between PDF pp. 66 and 67)."
+ },
+ {
+  "file": "CR159714_appD_3S1_S1.csv",
+  "report": "NASA CR-159714",
+  "ntrs_id": "19800010836",
+  "pdf_page": 71,
+  "printed_page": "69",
+  "title": "AIRFOIL GEOMETRY Compressor 3S1-Stator 1 (Appendix D, Airfoil Geometry on Conical Surfaces 3S1/3S2 Compressor)",
+  "dpi": 300,
+  "notes": "SI and English blocks on one line per streamline. Second read done cell by cell from 300 dpi rotated renders (see notes.md). PDF page verified against the page title; page number read on the image."
+ },
+ {
+  "file": "CR159714_appD_3S1_R2.csv",
+  "report": "NASA CR-159714",
+  "ntrs_id": "19800010836",
+  "pdf_page": 72,
+  "printed_page": "70",
+  "title": "AIRFOIL GEOMETRY Compressor 3S1-Rotor 2 (Appendix D, Airfoil Geometry on Conical Surfaces 3S1/3S2 Compressor)",
+  "dpi": 300,
+  "notes": "SI and English blocks on one line per streamline. Second read done cell by cell from 300 dpi rotated renders (see notes.md). PDF page verified against the page title; printed page number not legible on the scan; inferred from neighbouring pages (printed = PDF - 2 throughout Appendix D; printed 64 is skipped between PDF pp. 66 and 67)."
+ },
+ {
+  "file": "CR159714_appD_3S1_S2.csv",
+  "report": "NASA CR-159714",
+  "ntrs_id": "19800010836",
+  "pdf_page": 73,
+  "printed_page": "71",
+  "title": "AIRFOIL GEOMETRY Compressor 3S1-Stator 2 (Appendix D, Airfoil Geometry on Conical Surfaces 3S1/3S2 Compressor)",
+  "dpi": 300,
+  "notes": "SI and English blocks on one line per streamline. Second read done cell by cell from 300 dpi rotated renders (see notes.md). PDF page verified against the page title; page number read on the image."
+ },
+ {
+  "file": "CR159714_appD_3S1_R3.csv",
+  "report": "NASA CR-159714",
+  "ntrs_id": "19800010836",
+  "pdf_page": 74,
+  "printed_page": "72",
+  "title": "AIRFOIL GEOMETRY Compressor 3S1-Rotor 3 (Appendix D, Airfoil Geometry on Conical Surfaces 3S1/3S2 Compressor)",
+  "dpi": 300,
+  "notes": "SI and English blocks on one line per streamline. Second read done cell by cell from 300 dpi rotated renders (see notes.md). PDF page verified against the page title; printed page number not legible on the scan; inferred from neighbouring pages (printed = PDF - 2 throughout Appendix D; printed 64 is skipped between PDF pp. 66 and 67)."
+ },
+ {
+  "file": "CR159714_appD_3S1_S3.csv",
+  "report": "NASA CR-159714",
+  "ntrs_id": "19800010836",
+  "pdf_page": 75,
+  "printed_page": "73",
+  "title": "AIRFOIL GEOMETRY Compressor 3S1-Stator 3 (Appendix D, Airfoil Geometry on Conical Surfaces 3S1/3S2 Compressor)",
+  "dpi": 300,
+  "notes": "SI and English blocks on one line per streamline. Second read done cell by cell from 300 dpi rotated renders (see notes.md). PDF page verified against the page title; page number read on the image."
+ },
+ {
+  "file": "CR159714_appD_3S2_IGV.csv",
+  "report": "NASA CR-159714",
+  "ntrs_id": "19800010836",
+  "pdf_page": 76,
+  "printed_page": "74",
+  "title": "AIRFOIL GEOMETRY COMPRESSOR 3S2 - IGV (Appendix D, Airfoil Geometry on Conical Surfaces 3S1/3S2 Compressor)",
+  "dpi": 300,
+  "notes": "SI and English blocks on one line per streamline. Second read done cell by cell from 300 dpi rotated renders (see notes.md). PDF page verified against the page title; printed page number not legible on the scan; inferred from neighbouring pages (printed = PDF - 2 throughout Appendix D; printed 64 is skipped between PDF pp. 66 and 67)."
+ },
+ {
+  "file": "CR159714_appD_3S2_R1.csv",
+  "report": "NASA CR-159714",
+  "ntrs_id": "19800010836",
+  "pdf_page": 77,
+  "printed_page": "75",
+  "title": "AIRFOIL GEOMETRY COMPRESSOR 3S2 - ROTOR 1 (Appendix D, Airfoil Geometry on Conical Surfaces 3S1/3S2 Compressor)",
+  "dpi": 300,
+  "notes": "SI and English blocks on one line per streamline. Second read done cell by cell from 300 dpi rotated renders (see notes.md). PDF page verified against the page title; page number read on the image."
+ },
+ {
+  "file": "CR159714_appD_3S2_S1.csv",
+  "report": "NASA CR-159714",
+  "ntrs_id": "19800010836",
+  "pdf_page": 78,
+  "printed_page": "76",
+  "title": "AIRFOIL GEOMETRY COMPRESSOR 3S2 - STATOR 1 (Appendix D, Airfoil Geometry on Conical Surfaces 3S1/3S2 Compressor)",
+  "dpi": 300,
+  "notes": "SI and English blocks on one line per streamline. Second read done cell by cell from 300 dpi rotated renders (see notes.md). PDF page verified against the page title; printed page number not legible on the scan; inferred from neighbouring pages (printed = PDF - 2 throughout Appendix D; printed 64 is skipped between PDF pp. 66 and 67)."
+ },
+ {
+  "file": "CR159714_appD_3S2_R2.csv",
+  "report": "NASA CR-159714",
+  "ntrs_id": "19800010836",
+  "pdf_page": 79,
+  "printed_page": "77",
+  "title": "AIRFOIL GEOMETRY COMPRESSOR 3S2 - ROTOR 2 (Appendix D, Airfoil Geometry on Conical Surfaces 3S1/3S2 Compressor)",
+  "dpi": 300,
+  "notes": "SI and English blocks on one line per streamline. Second read done cell by cell from 300 dpi rotated renders (see notes.md). PDF page verified against the page title; page number read on the image."
+ },
+ {
+  "file": "CR159714_appD_3S2_S2.csv",
+  "report": "NASA CR-159714",
+  "ntrs_id": "19800010836",
+  "pdf_page": 80,
+  "printed_page": "78",
+  "title": "AIRFOIL GEOMETRY COMPRESSOR 3S2 - STATOR 2 (Appendix D, Airfoil Geometry on Conical Surfaces 3S1/3S2 Compressor)",
+  "dpi": 300,
+  "notes": "SI and English blocks on one line per streamline. Second read done cell by cell from 300 dpi rotated renders (see notes.md). PDF page verified against the page title; printed page number not legible on the scan; inferred from neighbouring pages (printed = PDF - 2 throughout Appendix D; printed 64 is skipped between PDF pp. 66 and 67)."
+ },
+ {
+  "file": "CR159714_appD_3S2_R3.csv",
+  "report": "NASA CR-159714",
+  "ntrs_id": "19800010836",
+  "pdf_page": 81,
+  "printed_page": "79",
+  "title": "AIRFOIL GEOMETRY COMPRESSOR 3S2 - ROTOR 3 (Appendix D, Airfoil Geometry on Conical Surfaces 3S1/3S2 Compressor)",
+  "dpi": 300,
+  "notes": "SI and English blocks on one line per streamline. Second read done cell by cell from 300 dpi rotated renders (see notes.md). PDF page verified against the page title; page number read on the image."
+ },
+ {
+  "file": "CR159714_appD_3S2_S3.csv",
+  "report": "NASA CR-159714",
+  "ntrs_id": "19800010836",
+  "pdf_page": 82,
+  "printed_page": "80",
+  "title": "AIRFOIL GEOMETRY COMPRESSOR 3S2 - STATOR 3 (Appendix D, Airfoil Geometry on Conical Surfaces 3S1/3S2 Compressor)",
+  "dpi": 300,
+  "notes": "SI and English blocks on one line per streamline. Second read done cell by cell from 300 dpi rotated renders (see notes.md). PDF page verified against the page title; page number read on the image."
+ },
+ {
+  "file": "CR159812_tableII_performance_instrumentation.csv",
+  "report": "NASA CR-159812",
+  "ntrs_id": "19800014823",
+  "pdf_page": [
+   12,
+   13
+  ],
+  "printed_page": "5-6",
+  "title": "TABLE II PERFORMANCE INSTRUMENTATION COMPRESSORS 3S1 AND 3S2 (continued on p. 13: TABLE II (Cont'd))",
+  "dpi": null,
+  "notes": "Pages verified (printed 5 on PDF p. 12; PDF p. 13 is the continuation, printed number not legible, inferred 6). Render dpi and second read not recorded by the transcribing agent."
+ },
+ {
+  "file": "CR159812_tableIII_overall_performance.csv",
+  "report": "NASA CR-159812",
+  "ntrs_id": "19800014823",
+  "pdf_page": 16,
+  "printed_page": "9",
+  "title": "TABLE III OVERALL PERFORMANCE SUMMARY",
+  "dpi": null,
+  "notes": "Page verified (printed 9 on PDF p. 16). Render dpi and second read not recorded by the transcribing agent."
+ }
+]

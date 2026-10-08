@@ -1,0 +1,7 @@
+PARAMETER,1st-Stage,2nd-Stage
+,,
+Number of Airfoils,46,59
+Aspect Ratio*,2.75,2.20
+Hub Chord - inches (meters),2.75 (.070),2.22 (.056)
+Tip Chord - inches (meters),3.10 (.079),2.45 (.062)
+Hub Solidity,2.52,2.25

@@ -1,0 +1,16 @@
+{
+  "case": "utrc_isolated_rotor",
+  "citations": [
+    {"citation": "Wagner, J. H.; Dring, R. P.; Joslyn, H. D.: Axial Compressor Middle Stage Secondary Flow Study. NASA CR-3701, 1983.", "report": "NASA CR-3701", "ntrs_id": "19830020903", "file": "CR3701_UTRC_middle_stage.pdf"}
+  ],
+  "tables": [
+    {"file": "CR3701_tableI_rotor_airfoil_geometry.csv", "report": "NASA CR-3701", "ntrs_id": "19830020903", "pdf_page": 42, "printed_page": "37", "title": "TABLE I ROTOR AIRFOIL GEOMETRY", "dpi": 250, "notes": "Printed transposed (rows = quantities, columns = span); transposed here to one line per span. Header text above the table (Contour - NACA 65 Series; Chord (B) - 6 ins. (0.1524 m.); Camber - Circular Arc; No. of Airfoils - 28) is in scalars.json. Radius kept as printed 'in. (m.)'. Typeset table, clearly legible; second read done."},
+    {"file": "CR3701_tableI_coords_span0.csv", "report": "NASA CR-3701", "ntrs_id": "19830020903", "pdf_page": 43, "printed_page": "38", "title": "TABLE I Cont'd SPAN: 0% STAGGER: 24.93°", "dpi": 300, "notes": "Computer printout (dot-matrix), degraded glyphs. Two column groups on the page (X <= 2.92, X >= 3.07) concatenated in order. See notes.md for the reading/verification procedure and the '?' cells."},
+    {"file": "CR3701_tableI_coords_span25.csv", "report": "NASA CR-3701", "ntrs_id": "19830020903", "pdf_page": 44, "printed_page": "39", "title": "TABLE I Cont'd SPAN: 25% STAGGER: 31.2°", "dpi": 300, "notes": "As span 0."},
+    {"file": "CR3701_tableI_coords_span50.csv", "report": "NASA CR-3701", "ntrs_id": "19830020903", "pdf_page": 45, "printed_page": "40", "title": "TABLE I Cont'd SPAN: 50% STAGGER: 35.5°", "dpi": 300, "notes": "As span 0."},
+    {"file": "CR3701_tableI_coords_span75.csv", "report": "NASA CR-3701", "ntrs_id": "19830020903", "pdf_page": 46, "printed_page": "41", "title": "TABLE I Cont'd SPAN: 75% STAGGER: 38.5°", "dpi": 300, "notes": "As span 0."},
+    {"file": "CR3701_tableI_coords_span100.csv", "report": "NASA CR-3701", "ntrs_id": "19830020903", "pdf_page": 47, "printed_page": "42", "title": "TABLE I Cont'd SPAN: 100% STAGGER: 40.25°", "dpi": 300, "notes": "As span 0. This section is (almost) fore-aft symmetric; the mirror symmetry was used as an extra check."},
+    {"file": "scalars.json:flowpath_fig2", "report": "NASA CR-3701", "ntrs_id": "19830020903", "pdf_page": 49, "printed_page": "44", "title": "Figure 2. Flow Path Schematic", "dpi": 300, "notes": "Dimension labels of the schematic transcribed into scalars.json."}
+  ],
+  "scalars_file": "scalars.json"
+}

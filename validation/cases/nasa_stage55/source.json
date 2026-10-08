@@ -1,0 +1,13 @@
+{
+  "citation": [
+    {"report": "NASA TM X-3101", "ntrs_id": "19740025117", "authors": "George W. Lewis, Jr., Edward R. Tysl", "title": "Overall and Blade-Element Performance of a 1.20-Pressure-Ratio Fan Stage at Design Blade Setting Angle", "date": "1974", "file": "TMX3101_120fan.pdf"}
+  ],
+  "tables": [
+    {"file": "TMX3101_tableI_stage55.csv", "report": "NASA TM X-3101", "ntrs_id": "19740025117", "pdf_page": 19, "printed_page": "17", "title": "TABLE I. - DESIGN OVERALL PARAMETERS FOR STAGE 55-55", "dpi": 300, "notes": "No units printed. Second read from the image done."},
+    {"file": "TMX3101_tableII_rotor55.csv", "report": "NASA TM X-3101", "ntrs_id": "19740025117", "pdf_page": 20, "printed_page": "18", "title": "TABLE II. - DESIGN BLADE-ELEMENT PARAMETERS FOR ROTOR 55", "dpi": 450, "notes": "Small print, rendered at 450 dpi and read in half-page crops. This table has no PEAK SS MACH NO column and only a MEAN incidence column (no SS), unlike TM X-3345/TP-1299; columns kept as printed. Second read from the image done; all rows pass the velocity-triangle and Mach-ratio consistency checks."},
+    {"file": "TMX3101_tableIII_stator55.csv", "report": "NASA TM X-3101", "ntrs_id": "19740025117", "pdf_page": 21, "printed_page": "19", "title": "TABLE III. - DESIGN BLADE-ELEMENT PARAMETERS FOR STATOR 55", "dpi": 450, "notes": "Same column set as Table II. Second read from the image done; consistency checks passed."},
+    {"file": "TMX3101_tableIV_rotor55.csv", "report": "NASA TM X-3101", "ntrs_id": "19740025117", "pdf_page": 22, "printed_page": "20", "title": "TABLE IV. - BLADE GEOMETRY FOR ROTOR 55", "dpi": 450, "notes": "Columns ZI, ZMC, ZTC, ZO and AREA RATIO as printed. TOTAL CAMBER = KIC - KOC checked on every row. Second read from the image done."},
+    {"file": "TMX3101_tableV_stator55.csv", "report": "NASA TM X-3101", "ntrs_id": "19740025117", "pdf_page": 23, "printed_page": "21", "title": "TABLE V. - BLADE GEOMETRY FOR STATOR 55", "dpi": 450, "notes": "NACA 400-series stator described with the same column set (KTC/ZTC at the max-thickness point). Camber check passed. Second read from the image done."},
+    {"file": "TMX3101_fig1_flowpath.csv", "report": "NASA TM X-3101", "ntrs_id": "19740025117", "pdf_page": 66, "printed_page": "64", "title": "Figure 1. - Flow path of fan stage 55-55. (coordinate box)", "dpi": 400, "notes": "Tip radius blank from z = 30 to 50 with a downward arrow from 25.94 (constant); left blank. Values printed to 1-2 decimals only (coarser than the blade tables). Second read from the image done."}
+  ]
+}

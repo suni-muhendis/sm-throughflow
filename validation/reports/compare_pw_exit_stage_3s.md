@@ -1,0 +1,85 @@
+## pw_exit_stage_3s
+
+- CR159714_appD_3S1_IGV.csv: 198 cells, 1 differ, 4 doubtful in either pass
+  - row 5 col T/B: A=0.0832? B=0.0332?
+- CR159714_appD_3S1_R1.csv: 220 cells, 0 differ, 0 doubtful in either pass
+- CR159714_appD_3S1_R2.csv: 220 cells, 0 differ, 0 doubtful in either pass
+- CR159714_appD_3S1_R3.csv: 220 cells, 0 differ, 3 doubtful in either pass
+- CR159714_appD_3S1_S1.csv: 220 cells, 0 differ, 2 doubtful in either pass
+- CR159714_appD_3S1_S2.csv: 220 cells, 0 differ, 2 doubtful in either pass
+- CR159714_appD_3S1_S3.csv: 220 cells, 0 differ, 2 doubtful in either pass
+- CR159714_appD_3S2_IGV.csv: 198 cells, 0 differ, 0 doubtful in either pass
+- CR159714_appD_3S2_R1.csv: 220 cells, 0 differ, 0 doubtful in either pass
+- CR159714_appD_3S2_R2.csv: 220 cells, 0 differ, 2 doubtful in either pass
+- CR159714_appD_3S2_R3.csv: 220 cells, 0 differ, 1 doubtful in either pass
+- CR159714_appD_3S2_S1.csv: 220 cells, 0 differ, 0 doubtful in either pass
+- CR159714_appD_3S2_S2.csv: 220 cells, 0 differ, 2 doubtful in either pass
+- CR159714_appD_3S2_S3.csv: 220 cells, 1 differ, 5 doubtful in either pass
+  - row 2 col DIA TE: A=56.3945 B=56.3845?
+- CR159714_tableI_design_parameters.csv: 38 cells, 17 differ, 0 doubtful in either pass
+  - row Delta P/(Po - P), Avg. missing in B
+  - row Aspect Ratio - Inlet Guide Vane missing in B
+  - row Aspect Ratio - Rotor-1 missing in B
+  - row Aspect Ratio - Stator-1 missing in B
+  - row Aspect Ratio - Rotor-2 missing in B
+  - row Aspect Ratio - Stator-2 missing in B
+  - row Aspect Ratio - Rotor-3 missing in B
+  - row Aspect Ratio - Stator-3 missing in B
+  - row Δ P/(Po - P), Avg. only in B
+  - row Aspect Ratio only in B
+  - row Inlet Guide Vane only in B
+  - row Rotor-1 only in B
+  - row Stator-1 only in B
+  - row Rotor-2 only in B
+  - row Stator-2 only in B
+  - row Rotor-3 only in B
+  - row Stator-3 only in B
+- CR159812_tableII_performance_instrumentation.csv: 30 cells, 26 differ, 0 doubtful in either pass
+  - row Station 0 (Flow Measuring Station)' missing in B
+  - row Station 0 (Flow Measuring Station)'' missing in B
+  - row Station 1 (Compressor Inlet)' missing in B
+  - row Station 1 (Compressor Inlet)'' missing in B
+  - row Station 1 (Compressor Inlet)''' missing in B
+  - row Station 1 (Compressor Inlet)'''' missing in B
+  - row Station 1 (Compressor Inlet)''''' missing in B
+  - row Station 6 (S2-R3) col Circumferential Position Angle - CW From TDC From Rear: A=60, 150, 240?, 330 B=60, 150, 240, 330
+  - row Station 9 (Compressor Exit)' missing in B
+  - row Station 9 (Compressor Exit)'' missing in B
+  - row Station 9 (Compressor Exit)''' missing in B
+  - row Station 9 (Compressor Exit)'''' missing in B
+  - row Station 9 (Compressor Exit)''''' missing in B
+  - row *This instrumentation was located circumferentially to access a discharge stator wake and vane gap. missing in B
+  - row  only in B
+  - row ' only in B
+  - row '' only in B
+  - row ''' only in B
+  - row '''' only in B
+  - row ''''' only in B
+  - row '''''' only in B
+  - row ''''''' only in B
+  - row '''''''' only in B
+  - row ''''''''' only in B
+  - row '''''''''' only in B
+  - row ''''''''''' only in B
+- CR159812_tableIII_overall_performance.csv: 10 cells, 20 differ, 0 doubtful in either pass
+  - row Inlet Corrected Flow, missing in B
+  - row Inlet Corrected Flow,' missing in B
+  - row Design Corrected Flow, % missing in B
+  - row Corrected Flow Per Unit Inlet Annulus Area, missing in B
+  - row Corrected Flow Per Unit Inlet Annulus Area,' missing in B
+  - row Pressure Ratio-at Peak Efficiency missing in B
+  - row Surge Margin (From Peak Efficiency), % missing in B
+  - row Adiabatic Efficiency, % missing in B
+  - row Average Tip Clearance/ Average Span missing in B
+  - row Average Tip Clearance/ Average Chord missing in B
+  - row Inlet Corrected Flow only in B
+  - row Inlet Corrected Flow' only in B
+  - row Design Corrected Flow only in B
+  - row Corrected Flow Per Unit Inlet Annulus Area only in B
+  - row Corrected Flow Per Unit Inlet Annulus Area' only in B
+  - row Pressure Ratio at Peak Efficiency only in B
+  - row Surge Margin (From Peak Efficiency) only in B
+  - row Adiabatic Efficiency only in B
+  - row Average Tip Clearance/Average Span only in B
+  - row Average Tip Clearance/Average Chord only in B
+

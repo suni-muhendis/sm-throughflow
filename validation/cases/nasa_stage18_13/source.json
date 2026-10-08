@@ -1,0 +1,334 @@
+[
+ {
+  "citation": "Lewis, G. W., Jr.; Urasek, D. C.; Reid, L.: Effects of Reset Stators and a Rotating, Grooved Stator Hub on Performance of a 1.92-Pressure-Ratio Compressor Stage. NASA TM X-3472, February 1977.",
+  "report": "NASA TM X-3472",
+  "ntrs_id": "19770010055",
+  "file": "TMX3472_192PR.pdf"
+ },
+ {
+  "file": "TMX3472_tableI_design_overall.csv",
+  "report": "NASA TM X-3472",
+  "ntrs_id": "19770010055",
+  "pdf_page": 20,
+  "printed_page": "18",
+  "title": "TABLE I. - DESIGN OVERALL PARAMETERS FOR STAGE 18-13",
+  "dpi": 200,
+  "notes": "No units printed. Baseline design. Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ },
+ {
+  "file": "TMX3472_tableII_rotor18_part1.csv",
+  "report": "NASA TM X-3472",
+  "ntrs_id": "19770010055",
+  "pdf_page": 21,
+  "printed_page": "19",
+  "title": "TABLE II. - DESIGN BLADE-ELEMENT PARAMETERS FOR ROTOR 18",
+  "dpi": 200,
+  "notes": "Four stacked blocks. Poor print; also read at 400 dpi. Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ },
+ {
+  "file": "TMX3472_tableII_rotor18_part2.csv",
+  "report": "NASA TM X-3472",
+  "ntrs_id": "19770010055",
+  "pdf_page": 21,
+  "printed_page": "19",
+  "title": "TABLE II. - DESIGN BLADE-ELEMENT PARAMETERS FOR ROTOR 18",
+  "dpi": 200,
+  "notes": "RP 5 ABS VEL OUT 257.4? (triangle gives 267.4). Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ },
+ {
+  "file": "TMX3472_tableII_rotor18_part3.csv",
+  "report": "NASA TM X-3472",
+  "ntrs_id": "19770010055",
+  "pdf_page": 21,
+  "printed_page": "19",
+  "title": "TABLE II. - DESIGN BLADE-ELEMENT PARAMETERS FOR ROTOR 18",
+  "dpi": 200,
+  "notes": "Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ },
+ {
+  "file": "TMX3472_tableII_rotor18_part4.csv",
+  "report": "NASA TM X-3472",
+  "ntrs_id": "19770010055",
+  "pdf_page": 21,
+  "printed_page": "19",
+  "title": "TABLE II. - DESIGN BLADE-ELEMENT PARAMETERS FOR ROTOR 18",
+  "dpi": 200,
+  "notes": "Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ },
+ {
+  "file": "TMX3472_tableIII_stator13_part1.csv",
+  "report": "NASA TM X-3472",
+  "ntrs_id": "19770010055",
+  "pdf_page": 22,
+  "printed_page": "20",
+  "title": "TABLE III. - DESIGN BLADE-ELEMENT PARAMETERS FOR STATOR 13",
+  "dpi": 200,
+  "notes": "Four stacked blocks. Baseline (unreset) stator design. Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ },
+ {
+  "file": "TMX3472_tableIII_stator13_part2.csv",
+  "report": "NASA TM X-3472",
+  "ntrs_id": "19770010055",
+  "pdf_page": 22,
+  "printed_page": "20",
+  "title": "TABLE III. - DESIGN BLADE-ELEMENT PARAMETERS FOR STATOR 13",
+  "dpi": 200,
+  "notes": "Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ },
+ {
+  "file": "TMX3472_tableIII_stator13_part3.csv",
+  "report": "NASA TM X-3472",
+  "ntrs_id": "19770010055",
+  "pdf_page": 22,
+  "printed_page": "20",
+  "title": "TABLE III. - DESIGN BLADE-ELEMENT PARAMETERS FOR STATOR 13",
+  "dpi": 200,
+  "notes": "RP 3 PEAK SS MACH NO 1.110? (broken digit). Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ },
+ {
+  "file": "TMX3472_tableIII_stator13_part4.csv",
+  "report": "NASA TM X-3472",
+  "ntrs_id": "19770010055",
+  "pdf_page": 22,
+  "printed_page": "20",
+  "title": "TABLE III. - DESIGN BLADE-ELEMENT PARAMETERS FOR STATOR 13",
+  "dpi": 200,
+  "notes": "RP 11 LOSS PARAM PROF 0.040? (broken digit). Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ },
+ {
+  "file": "TMX3472_tableIV_rotor18_part1.csv",
+  "report": "NASA TM X-3472",
+  "ntrs_id": "19770010055",
+  "pdf_page": 23,
+  "printed_page": "21",
+  "title": "TABLE IV. - BLADE GEOMETRY FOR ROTOR 18",
+  "dpi": 200,
+  "notes": "Page printed rotated; 300-dpi render rotated upright. Three stacked blocks. Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ },
+ {
+  "file": "TMX3472_tableIV_rotor18_part2.csv",
+  "report": "NASA TM X-3472",
+  "ntrs_id": "19770010055",
+  "pdf_page": 23,
+  "printed_page": "21",
+  "title": "TABLE IV. - BLADE GEOMETRY FOR ROTOR 18",
+  "dpi": 200,
+  "notes": "Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ },
+ {
+  "file": "TMX3472_tableIV_rotor18_part3.csv",
+  "report": "NASA TM X-3472",
+  "ntrs_id": "19770010055",
+  "pdf_page": 23,
+  "printed_page": "21",
+  "title": "TABLE IV. - BLADE GEOMETRY FOR ROTOR 18",
+  "dpi": 200,
+  "notes": "Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ },
+ {
+  "file": "TMX3472_tableV_stator13_part1.csv",
+  "report": "NASA TM X-3472",
+  "ntrs_id": "19770010055",
+  "pdf_page": 23,
+  "printed_page": "21",
+  "title": "TABLE V. - BLADE GEOMETRY FOR STATOR 13",
+  "dpi": 200,
+  "notes": "Baseline (original) stator geometry; mod 1/mod 2 reset 2 deg open, no table printed. Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ },
+ {
+  "file": "TMX3472_tableV_stator13_part2.csv",
+  "report": "NASA TM X-3472",
+  "ntrs_id": "19770010055",
+  "pdf_page": 23,
+  "printed_page": "21",
+  "title": "TABLE V. - BLADE GEOMETRY FOR STATOR 13",
+  "dpi": 200,
+  "notes": "Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ },
+ {
+  "file": "TMX3472_tableV_stator13_part3.csv",
+  "report": "NASA TM X-3472",
+  "ntrs_id": "19770010055",
+  "pdf_page": 23,
+  "printed_page": "21",
+  "title": "TABLE V. - BLADE GEOMETRY FOR STATOR 13",
+  "dpi": 200,
+  "notes": "Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ },
+ {
+  "file": "TMX3472_fig2_flowpath_coordinates.csv",
+  "report": "NASA TM X-3472",
+  "ntrs_id": "19770010055",
+  "pdf_page": 86,
+  "printed_page": "84",
+  "title": "Figure 2. - Flow path for stage 18-13, showing axial location of instrumentation. (inset 'Flow path coordinates')",
+  "dpi": 200,
+  "notes": "Down-arrows written as ↓; FOOTNOTE a = Instrumentation survey plane. Tip radii of Tables II-V do not lie on this casing (see notes.md). Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ },
+ {
+  "citation": "Lewis, G. W., Jr.; Reid, L.; Tysl, E. R.: Design and Performance of a High-Pressure-Ratio, Highly Loaded Axial-Flow Transonic Compressor Stage. NASA TM X-3100 (E-7377), September 1974. (NTRS title typo: '...compressor space').",
+  "report": "NASA TM X-3100",
+  "ntrs_id": "19740025108",
+  "file": "TMX3100_stage18_13_design.pdf"
+ },
+ {
+  "file": "TMX3100_tableI_design_overall.csv",
+  "report": "NASA TM X-3100",
+  "ntrs_id": "19740025108",
+  "pdf_page": 21,
+  "printed_page": "19",
+  "title": "TABLE I. - DESIGN OVERALL PARAMETERS FOR STAGE 18-13",
+  "dpi": 200,
+  "notes": "No units printed. Identical to TM X-3472 Table I. Read at 200 dpi, then 300/600-dpi zoomed crops; second cell-by-cell read from the image done. Print is the same computer output as in TM X-3472 but a cleaner scan; every cell compared with the TM X-3472 transcription."
+ },
+ {
+  "file": "TMX3100_tableII_rotor18_part1.csv",
+  "report": "NASA TM X-3100",
+  "ntrs_id": "19740025108",
+  "pdf_page": 22,
+  "printed_page": "20",
+  "title": "TABLE II. - DESIGN BLADE-ELEMENT PARAMETERS FOR ROTOR 18",
+  "dpi": 200,
+  "notes": "Four stacked blocks, part 1.  Identical to TM X-3472 Table II. Read at 200 dpi, then 300/600-dpi zoomed crops; second cell-by-cell read from the image done. Print is the same computer output as in TM X-3472 but a cleaner scan; every cell compared with the TM X-3472 transcription."
+ },
+ {
+  "file": "TMX3100_tableII_rotor18_part2.csv",
+  "report": "NASA TM X-3100",
+  "ntrs_id": "19740025108",
+  "pdf_page": 22,
+  "printed_page": "20",
+  "title": "TABLE II. - DESIGN BLADE-ELEMENT PARAMETERS FOR ROTOR 18",
+  "dpi": 200,
+  "notes": "Four stacked blocks, part 2. RP 5 ABS VEL OUT printed clearly 257.4 (600 dpi); velocity triangle gives 267.4, so this is a misprint in the original output, not a reading error. Identical to TM X-3472 Table II. Read at 200 dpi, then 300/600-dpi zoomed crops; second cell-by-cell read from the image done. Print is the same computer output as in TM X-3472 but a cleaner scan; every cell compared with the TM X-3472 transcription."
+ },
+ {
+  "file": "TMX3100_tableII_rotor18_part3.csv",
+  "report": "NASA TM X-3100",
+  "ntrs_id": "19740025108",
+  "pdf_page": 22,
+  "printed_page": "20",
+  "title": "TABLE II. - DESIGN BLADE-ELEMENT PARAMETERS FOR ROTOR 18",
+  "dpi": 200,
+  "notes": "Four stacked blocks, part 3.  Identical to TM X-3472 Table II. Read at 200 dpi, then 300/600-dpi zoomed crops; second cell-by-cell read from the image done. Print is the same computer output as in TM X-3472 but a cleaner scan; every cell compared with the TM X-3472 transcription."
+ },
+ {
+  "file": "TMX3100_tableII_rotor18_part4.csv",
+  "report": "NASA TM X-3100",
+  "ntrs_id": "19740025108",
+  "pdf_page": 22,
+  "printed_page": "20",
+  "title": "TABLE II. - DESIGN BLADE-ELEMENT PARAMETERS FOR ROTOR 18",
+  "dpi": 200,
+  "notes": "Four stacked blocks, part 4.  Identical to TM X-3472 Table II. Read at 200 dpi, then 300/600-dpi zoomed crops; second cell-by-cell read from the image done. Print is the same computer output as in TM X-3472 but a cleaner scan; every cell compared with the TM X-3472 transcription."
+ },
+ {
+  "file": "TMX3100_tableIII_stator13_part1.csv",
+  "report": "NASA TM X-3100",
+  "ntrs_id": "19740025108",
+  "pdf_page": 23,
+  "printed_page": "21",
+  "title": "TABLE III. - DESIGN BLADE-ELEMENT PARAMETERS FOR STATOR 13",
+  "dpi": 200,
+  "notes": "Part 1. TIP REL BETAM OUT printed '0.' here (TM X-3472 csv has '-0.', a speck in that print). Read at 200 dpi, then 300/600-dpi zoomed crops; second cell-by-cell read from the image done. Print is the same computer output as in TM X-3472 but a cleaner scan; every cell compared with the TM X-3472 transcription."
+ },
+ {
+  "file": "TMX3100_tableIII_stator13_part2.csv",
+  "report": "NASA TM X-3100",
+  "ntrs_id": "19740025108",
+  "pdf_page": 23,
+  "printed_page": "21",
+  "title": "TABLE III. - DESIGN BLADE-ELEMENT PARAMETERS FOR STATOR 13",
+  "dpi": 200,
+  "notes": "Part 2.  Read at 200 dpi, then 300/600-dpi zoomed crops; second cell-by-cell read from the image done. Print is the same computer output as in TM X-3472 but a cleaner scan; every cell compared with the TM X-3472 transcription."
+ },
+ {
+  "file": "TMX3100_tableIII_stator13_part3.csv",
+  "report": "NASA TM X-3100",
+  "ntrs_id": "19740025108",
+  "pdf_page": 23,
+  "printed_page": "21",
+  "title": "TABLE III. - DESIGN BLADE-ELEMENT PARAMETERS FOR STATOR 13",
+  "dpi": 200,
+  "notes": "Part 3. RP 3 PEAK SS MACH NO last digit broken: 1.110? (as in TM X-3472). Read at 200 dpi, then 300/600-dpi zoomed crops; second cell-by-cell read from the image done. Print is the same computer output as in TM X-3472 but a cleaner scan; every cell compared with the TM X-3472 transcription."
+ },
+ {
+  "file": "TMX3100_tableIII_stator13_part4.csv",
+  "report": "NASA TM X-3100",
+  "ntrs_id": "19740025108",
+  "pdf_page": 23,
+  "printed_page": "21",
+  "title": "TABLE III. - DESIGN BLADE-ELEMENT PARAMETERS FOR STATOR 13",
+  "dpi": 200,
+  "notes": "Part 4. RP 4 D-FACT last digit looks like a broken 6; TM X-3472 prints 0.488 clearly; written 0.488?. RP 11 LOSS PARAM PROF last digit broken: 0.040?. Read at 200 dpi, then 300/600-dpi zoomed crops; second cell-by-cell read from the image done. Print is the same computer output as in TM X-3472 but a cleaner scan; every cell compared with the TM X-3472 transcription."
+ },
+ {
+  "file": "TMX3100_tableIV_rotor18_part1.csv",
+  "report": "NASA TM X-3100",
+  "ntrs_id": "19740025108",
+  "pdf_page": 24,
+  "printed_page": "22",
+  "title": "TABLE IV. - BLADE GEOMETRY FOR ROTOR 18",
+  "dpi": 200,
+  "notes": "Part 1. Printed upright (not rotated). Identical in every cell to TM X-3472 Table IV. Read at 200 dpi, then 300/600-dpi zoomed crops; second cell-by-cell read from the image done. Print is the same computer output as in TM X-3472 but a cleaner scan; every cell compared with the TM X-3472 transcription."
+ },
+ {
+  "file": "TMX3100_tableIV_rotor18_part2.csv",
+  "report": "NASA TM X-3100",
+  "ntrs_id": "19740025108",
+  "pdf_page": 24,
+  "printed_page": "22",
+  "title": "TABLE IV. - BLADE GEOMETRY FOR ROTOR 18",
+  "dpi": 200,
+  "notes": "Part 2. Printed upright (not rotated). Identical in every cell to TM X-3472 Table IV. Read at 200 dpi, then 300/600-dpi zoomed crops; second cell-by-cell read from the image done. Print is the same computer output as in TM X-3472 but a cleaner scan; every cell compared with the TM X-3472 transcription."
+ },
+ {
+  "file": "TMX3100_tableIV_rotor18_part3.csv",
+  "report": "NASA TM X-3100",
+  "ntrs_id": "19740025108",
+  "pdf_page": 24,
+  "printed_page": "22",
+  "title": "TABLE IV. - BLADE GEOMETRY FOR ROTOR 18",
+  "dpi": 200,
+  "notes": "Part 3. Printed upright (not rotated). Identical in every cell to TM X-3472 Table IV. Read at 200 dpi, then 300/600-dpi zoomed crops; second cell-by-cell read from the image done. Print is the same computer output as in TM X-3472 but a cleaner scan; every cell compared with the TM X-3472 transcription."
+ },
+ {
+  "file": "TMX3100_tableV_stator13_part1.csv",
+  "report": "NASA TM X-3100",
+  "ntrs_id": "19740025108",
+  "pdf_page": 25,
+  "printed_page": "23",
+  "title": "TABLE V. - BLADE GEOMETRY FOR STATOR 13",
+  "dpi": 200,
+  "notes": "Part 1. Identical in every cell to TM X-3472 Table V (HUB CONE ANGLE 11.308 as printed). Read at 200 dpi, then 300/600-dpi zoomed crops; second cell-by-cell read from the image done. Print is the same computer output as in TM X-3472 but a cleaner scan; every cell compared with the TM X-3472 transcription."
+ },
+ {
+  "file": "TMX3100_tableV_stator13_part2.csv",
+  "report": "NASA TM X-3100",
+  "ntrs_id": "19740025108",
+  "pdf_page": 25,
+  "printed_page": "23",
+  "title": "TABLE V. - BLADE GEOMETRY FOR STATOR 13",
+  "dpi": 200,
+  "notes": "Part 2. Identical in every cell to TM X-3472 Table V (HUB CONE ANGLE 11.308 as printed). Read at 200 dpi, then 300/600-dpi zoomed crops; second cell-by-cell read from the image done. Print is the same computer output as in TM X-3472 but a cleaner scan; every cell compared with the TM X-3472 transcription."
+ },
+ {
+  "file": "TMX3100_tableV_stator13_part3.csv",
+  "report": "NASA TM X-3100",
+  "ntrs_id": "19740025108",
+  "pdf_page": 25,
+  "printed_page": "23",
+  "title": "TABLE V. - BLADE GEOMETRY FOR STATOR 13",
+  "dpi": 200,
+  "notes": "Part 3. Identical in every cell to TM X-3472 Table V (HUB CONE ANGLE 11.308 as printed). Read at 200 dpi, then 300/600-dpi zoomed crops; second cell-by-cell read from the image done. Print is the same computer output as in TM X-3472 but a cleaner scan; every cell compared with the TM X-3472 transcription."
+ },
+ {
+  "file": "TMX3100_fig1_flowpath_coordinates.csv",
+  "report": "NASA TM X-3100",
+  "ntrs_id": "19740025108",
+  "pdf_page": 64,
+  "printed_page": "62",
+  "title": "Figure 1. - Flow path for stage 18-13, showing axial location of instrumentation. (inset 'Flow path coordinates')",
+  "dpi": 200,
+  "notes": "Down-arrows written as ↓; FOOTNOTE a = Instrumentation survey plane. Identical to the TM X-3472 Figure 2 inset; the rotor/stator tip radii of Tables II-V still do not lie on this casing (see notes.md). Read at 200 dpi, then 300/600-dpi zoomed crops; second cell-by-cell read from the image done. Print is the same computer output as in TM X-3472 but a cleaner scan; every cell compared with the TM X-3472 transcription."
+ }
+]

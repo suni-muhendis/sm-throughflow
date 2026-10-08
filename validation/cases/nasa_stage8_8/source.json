@@ -1,0 +1,168 @@
+[
+ {
+  "citation": "Osborn, W. M.; Urasek, D. C.; Moore, R. D.: Performance of a Single-Stage Transonic Compressor with a Blade-Tip Solidity of 1.5 and Comparison with 1.3- and 1.7-Solidity Stages. NASA TM X-2926, November 1973.",
+  "report": "NASA TM X-2926",
+  "ntrs_id": "19740002621",
+  "file": "TMX2926_sol15.pdf"
+ },
+ {
+  "file": "TMX2926_tableI_design_overall.csv",
+  "report": "NASA TM X-2926",
+  "ntrs_id": "19740002621",
+  "pdf_page": 22,
+  "printed_page": "20",
+  "title": "TABLE I. - DESIGN OVERALL PARAMETERS FOR STAGE 8-8",
+  "dpi": 200,
+  "notes": "No units printed. Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ },
+ {
+  "file": "TMX2926_tableII_rotor8_part1.csv",
+  "report": "NASA TM X-2926",
+  "ntrs_id": "19740002621",
+  "pdf_page": 23,
+  "printed_page": "21",
+  "title": "TABLE II. - DESIGN BLADE-ELEMENT PARAMETERS FOR ROTOR 8",
+  "dpi": 200,
+  "notes": "Four stacked blocks. Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ },
+ {
+  "file": "TMX2926_tableII_rotor8_part2.csv",
+  "report": "NASA TM X-2926",
+  "ntrs_id": "19740002621",
+  "pdf_page": 23,
+  "printed_page": "21",
+  "title": "TABLE II. - DESIGN BLADE-ELEMENT PARAMETERS FOR ROTOR 8",
+  "dpi": 200,
+  "notes": "Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ },
+ {
+  "file": "TMX2926_tableII_rotor8_part3.csv",
+  "report": "NASA TM X-2926",
+  "ntrs_id": "19740002621",
+  "pdf_page": 23,
+  "printed_page": "21",
+  "title": "TABLE II. - DESIGN BLADE-ELEMENT PARAMETERS FOR ROTOR 8",
+  "dpi": 200,
+  "notes": "Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ },
+ {
+  "file": "TMX2926_tableII_rotor8_part4.csv",
+  "report": "NASA TM X-2926",
+  "ntrs_id": "19740002621",
+  "pdf_page": 23,
+  "printed_page": "21",
+  "title": "TABLE II. - DESIGN BLADE-ELEMENT PARAMETERS FOR ROTOR 8",
+  "dpi": 200,
+  "notes": "Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ },
+ {
+  "file": "TMX2926_tableIII_stator8_part1.csv",
+  "report": "NASA TM X-2926",
+  "ntrs_id": "19740002621",
+  "pdf_page": 24,
+  "printed_page": "22",
+  "title": "TABLE III. - DESIGN BLADE-ELEMENT PARAMETERS FOR STATOR 8",
+  "dpi": 200,
+  "notes": "Four stacked blocks. Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ },
+ {
+  "file": "TMX2926_tableIII_stator8_part2.csv",
+  "report": "NASA TM X-2926",
+  "ntrs_id": "19740002621",
+  "pdf_page": 24,
+  "printed_page": "22",
+  "title": "TABLE III. - DESIGN BLADE-ELEMENT PARAMETERS FOR STATOR 8",
+  "dpi": 200,
+  "notes": "Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ },
+ {
+  "file": "TMX2926_tableIII_stator8_part3.csv",
+  "report": "NASA TM X-2926",
+  "ntrs_id": "19740002621",
+  "pdf_page": 24,
+  "printed_page": "22",
+  "title": "TABLE III. - DESIGN BLADE-ELEMENT PARAMETERS FOR STATOR 8",
+  "dpi": 200,
+  "notes": "Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ },
+ {
+  "file": "TMX2926_tableIII_stator8_part4.csv",
+  "report": "NASA TM X-2926",
+  "ntrs_id": "19740002621",
+  "pdf_page": 24,
+  "printed_page": "22",
+  "title": "TABLE III. - DESIGN BLADE-ELEMENT PARAMETERS FOR STATOR 8",
+  "dpi": 200,
+  "notes": "Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ },
+ {
+  "file": "TMX2926_tableIV_rotor8_part1.csv",
+  "report": "NASA TM X-2926",
+  "ntrs_id": "19740002621",
+  "pdf_page": 25,
+  "printed_page": "23",
+  "title": "TABLE IV. - BLADE GEOMETRY FOR ROTOR 8",
+  "dpi": 200,
+  "notes": "Three stacked blocks. Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ },
+ {
+  "file": "TMX2926_tableIV_rotor8_part2.csv",
+  "report": "NASA TM X-2926",
+  "ntrs_id": "19740002621",
+  "pdf_page": 25,
+  "printed_page": "23",
+  "title": "TABLE IV. - BLADE GEOMETRY FOR ROTOR 8",
+  "dpi": 200,
+  "notes": "Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ },
+ {
+  "file": "TMX2926_tableIV_rotor8_part3.csv",
+  "report": "NASA TM X-2926",
+  "ntrs_id": "19740002621",
+  "pdf_page": 25,
+  "printed_page": "23",
+  "title": "TABLE IV. - BLADE GEOMETRY FOR ROTOR 8",
+  "dpi": 200,
+  "notes": "Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ },
+ {
+  "file": "TMX2926_tableV_stator8_part1.csv",
+  "report": "NASA TM X-2926",
+  "ntrs_id": "19740002621",
+  "pdf_page": 26,
+  "printed_page": "24",
+  "title": "TABLE V. - BLADE GEOMETRY FOR STATOR 8",
+  "dpi": 200,
+  "notes": "Three stacked blocks. Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ },
+ {
+  "file": "TMX2926_tableV_stator8_part2.csv",
+  "report": "NASA TM X-2926",
+  "ntrs_id": "19740002621",
+  "pdf_page": 26,
+  "printed_page": "24",
+  "title": "TABLE V. - BLADE GEOMETRY FOR STATOR 8",
+  "dpi": 200,
+  "notes": "RP 3 and RP 4 axial dimensions break the spanwise trend; verified as printed (see notes.md). Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ },
+ {
+  "file": "TMX2926_tableV_stator8_part3.csv",
+  "report": "NASA TM X-2926",
+  "ntrs_id": "19740002621",
+  "pdf_page": 26,
+  "printed_page": "24",
+  "title": "TABLE V. - BLADE GEOMETRY FOR STATOR 8",
+  "dpi": 200,
+  "notes": "Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ },
+ {
+  "file": "TMX2926_fig1_flowpath_coordinates.csv",
+  "report": "NASA TM X-2926",
+  "ntrs_id": "19740002621",
+  "pdf_page": 67,
+  "printed_page": "65",
+  "title": "Figure 1. - Flow path for stage 8-8, showing axial location of instrumentation. (inset 'Flow path coordinates')",
+  "dpi": 200,
+  "notes": "↓ = printed down-arrow; FOOTNOTE a = Instrumentation survey plane. Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ }
+]

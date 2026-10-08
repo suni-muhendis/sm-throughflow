@@ -1,0 +1,18 @@
+{
+  "case": "naca_10stage",
+  "citations": [
+    {"citation": "Johnsen, I. A.: Investigation of a 10-Stage Subsonic Axial-Flow Research Compressor. I - Aerodynamic Design. NACA RM E52B18, 1952.", "report": "NACA RM E52B18", "ntrs_id": "19930087018", "file": "RM-E52B18_10stg_I.pdf"},
+    {"citation": "Budinger, R. E.; Serovy, G. K.: Investigation of a 10-Stage Subsonic Axial-Flow Research Compressor. V - Effect of Reducing Inlet-Guide-Vane Turning on Over-All and Inlet-Stage Performance. NACA RM E53H10, dated March 15, 1954.", "report": "NACA RM E53H10", "ntrs_id": "19930087692", "file": "RM-E53H10_10stg_V.pdf"}
+  ],
+  "tables": [
+    {"file": "E52B18_tableI_blade_data.csv", "report": "NACA RM E52B18", "ntrs_id": "19930087018", "pdf_page": 28, "printed_page": "27", "title": "TABLE I - BLADE DATA", "dpi": 250,
+     "notes": "Headings split into heading row and unit row (units were printed in parentheses inside the headings). 'Axial projection of chord at hub radius' has no printed unit (inches by context). Second read cell by cell from a zoomed crop done."},
+    {"file": "E52B18_tableIIa_rotors.csv", "report": "NACA RM E52B18", "ntrs_id": "19930087018", "pdf_page": 29, "printed_page": "28", "title": "TABLE II - VELOCITY DIAGRAM DATA (a) For rotor rows", "dpi": 250,
+     "notes": "Column groups printed: Entrance vector data (Z, X, Y, h, W/Ut, W/a, β'), Change through row (Δh, Δβ), Blade data (α, CLσ, σ). Station number printed only on the first of five rows; repeated here on every row. No unit row printed (angles in deg per symbol list). Second read from 1.8x zoomed crops done; additionally checked numerically: W/Ut = sqrt((Z-X)^2+h^2), tan β' = (Z-X)/h, Δβ = β' - atan((Z-X-Y)/(h+Δh)), σ = N c /(2π r) with Table I. Two printed cells disagree with the check (see notes.md); both re-zoomed and kept as printed."},
+    {"file": "E52B18_tableIIb_stators.csv", "report": "NACA RM E52B18", "ntrs_id": "19930087018", "pdf_page": 30, "printed_page": "29", "title": "TABLE II - VELOCITY DIAGRAM DATA - Concluded (b) For stator rows", "dpi": 250,
+     "notes": "Same layout as (a) with V/Ut, V/a, β. Second read from zoomed crops done; numerical check V/Ut = sqrt((X+Y)^2+h^2), tan β = (X+Y)/h, Δβ = β - atan(X/(h+Δh)), σ = N c/(2π r): all rows consistent. Station 16 row Z=.9693: X printed '..2676' (stray dot), transcribed .2676."},
+    {"file": "E53H10_fig2_igv_blade_coordinates.csv", "report": "NACA RM E53H10", "ntrs_id": "19930087692", "pdf_page": 20, "printed_page": "18", "title": "Figure 2. - Inlet guide vane. Number 14-gage (0.083) mild steel. (inset table 'Blade coordinates')", "dpi": 250,
+     "notes": "Table inside the figure. '-----' cells printed as dashes (no value). Second read from zoomed crop done; solidity values consistent with 36 vanes, σ = 36 c/(2π r)."}
+  ],
+  "scalars_file": "scalars.json"
+}

@@ -1,0 +1,124 @@
+[
+  {
+    "citation": "Reid, L.; Moore, R. D.: Design and Overall Performance of Four Highly Loaded, High-Speed Inlet Stages for an Advanced High-Pressure-Ratio Core Compressor. NASA TP-1337, 1978.",
+    "report": "NASA TP-1337",
+    "ntrs_id": "19780025165",
+    "local_file": "TP1337_stages35-38_design.pdf"
+  },
+  {
+    "citation": "Moore, R. D.; Reid, L.: Performance of Single-Stage Axial-Flow Transonic Compressor With Rotor and Stator Aspect Ratios of 1.63 and 1.77, Respectively, and With Design Pressure Ratio of 2.05. NASA TP-2001, 1982.",
+    "report": "NASA TP-2001",
+    "ntrs_id": "19820014395",
+    "local_file": "TP2001.pdf"
+  },
+  {
+    "file": "TP2001_tableI_stage38.csv",
+    "report": "NASA TP-2001",
+    "ntrs_id": "19820014395",
+    "pdf_page": 13,
+    "printed_page": "11",
+    "title": "TABLE I. - DESIGN OVERALL PARAMETERS FOR STAGE 38",
+    "dpi": 200,
+    "notes": "No units printed. Second read from the image done, cell by cell (zoomed crops); pdftotext layer used only as a cross-check."
+  },
+  {
+    "file": "TP2001_tableII_rotor38.csv",
+    "report": "NASA TP-2001",
+    "ntrs_id": "19820014395",
+    "pdf_page": 14,
+    "printed_page": "12",
+    "title": "TABLE II. - DESIGN BLADE-ELEMENT PARAMETERS (a) Rotor 38",
+    "dpi": 200,
+    "notes": "Four printed blocks joined on RP; units per Appendix C (cm, deg, K, N/cm2, m/sec). Second read from the image done, cell by cell (zoomed crops); pdftotext layer used only as a cross-check."
+  },
+  {
+    "file": "TP2001_tableII_stator38.csv",
+    "report": "NASA TP-2001",
+    "ntrs_id": "19820014395",
+    "pdf_page": 15,
+    "printed_page": "13",
+    "title": "TABLE II. - Concluded. DESIGN BLADE-ELEMENT PARAMETERS (b) Stator 38",
+    "dpi": 200,
+    "notes": "INCOMPLETE: the scan is cut off at the right edge of the page; the columns TOTAL PRESS RATIO, WHEEL SPEED OUT, PEAK SS MACH NO and LOSS PARAM PROF are not on the page and are absent from the CSV (see notes.md). Cells with '?': see notes.md. Second read from the image done, cell by cell (zoomed crops); pdftotext layer used only as a cross-check. 2026-10-08: re-checked; the embedded 300-dpi CCITT scan (pdfimages, 2504x3187 px) is itself cut through the characters of the last columns with blank paper to the right, so the cut is in the printed page (paste-up), not in the PDF rendering. No other copy or report with the four columns was found (see notes.md)."
+  },
+  {
+    "file": "TP2001_tableIII_rotor38.csv",
+    "report": "NASA TP-2001",
+    "ntrs_id": "19820014395",
+    "pdf_page": 16,
+    "printed_page": "14",
+    "title": "TABLE III. - BLADE GEOMETRY (a) Rotor 38",
+    "dpi": 200,
+    "notes": "Three printed blocks joined on RP. Second read from the image done, cell by cell (zoomed crops); pdftotext layer used only as a cross-check."
+  },
+  {
+    "file": "TP2001_tableIII_stator38.csv",
+    "report": "NASA TP-2001",
+    "ntrs_id": "19820014395",
+    "pdf_page": 17,
+    "printed_page": "15",
+    "title": "TABLE III. - Concluded. BLADE GEOMETRY (b) Stator 38",
+    "dpi": 400,
+    "notes": "Read at 400 dpi. Second read from the image done, cell by cell (zoomed crops); pdftotext layer used only as a cross-check."
+  },
+  {
+    "file": "TP2001_fig1_flowpath_inner.csv",
+    "report": "NASA TP-2001",
+    "ntrs_id": "19820014395",
+    "pdf_page": 61,
+    "printed_page": "59",
+    "title": "Figure 1. - Flow path and instrumentation stations. (Flow path coordinates box, inner wall)",
+    "dpi": 400,
+    "notes": "Read at 400 dpi. 'a' = footnote 'Instrumentation survey planes.', printed at inner -2.568 and 8.890. Second read from the image done, cell by cell (zoomed crops); pdftotext layer used only as a cross-check."
+  },
+  {
+    "file": "TP2001_fig1_flowpath_outer.csv",
+    "report": "NASA TP-2001",
+    "ntrs_id": "19820014395",
+    "pdf_page": 61,
+    "printed_page": "59",
+    "title": "Figure 1. - Flow path and instrumentation stations. (Flow path coordinates box, outer wall)",
+    "dpi": 400,
+    "notes": "Read at 400 dpi; no marks in the outer columns. Values identical to TP-1337 Fig. 1. Second read from the image done, cell by cell (zoomed crops); pdftotext layer used only as a cross-check."
+  },
+  {
+    "file": "TP1337_tableI_overall_all_stages.csv",
+    "report": "NASA TP-1337",
+    "ntrs_id": "19780025165",
+    "pdf_page": 74,
+    "printed_page": "64",
+    "title": "TABLE I. - DESIGN OVERALL PERFORMANCE PARAMETERS FOR STAGES 35, 36, 37, AND 38",
+    "dpi": 400,
+    "notes": "All four stage columns kept (identical file in each stage folder). Read at 400 dpi. Some cells are printed with a comma as decimal point (e.g. '2,105', '455,096', '0,70'); written with '.'. Stage 37 RPW is printed 17185.700 (17188.700 for all other stages and in TP-1659 Table I): transcribed as printed. Row labels use 'WT FLOW' and 'RPW' as printed. Second read from the image done, cell by cell (zoomed crops); pdftotext layer used only as a cross-check."
+  },
+  {
+    "file": "TP1337_tableII_mechanical_all_stages.csv",
+    "report": "NASA TP-1337",
+    "ntrs_id": "19780025165",
+    "pdf_page": 74,
+    "printed_page": "64",
+    "title": "TABLE II. - MECHANICAL DESIGN PARAMETERS ((a) Rotor, (b) Stator)",
+    "dpi": 400,
+    "notes": "All four stage columns kept. Numbers with a space as thousands separator kept as printed ('142 720'). Unit column taken from the printed row label. No clearance in this table. Second read from the image done, cell by cell (zoomed crops); pdftotext layer used only as a cross-check."
+  },
+  {
+    "file": "TP1337_fig1_flowpath_inner.csv",
+    "report": "NASA TP-1337",
+    "ntrs_id": "19780025165",
+    "pdf_page": 87,
+    "printed_page": "77",
+    "title": "Figure 1. - Flow path and instrumentation stations. (Flow path coordinates box, inner wall)",
+    "dpi": 500,
+    "notes": "One single box serves both Fig. 1(a) 'Stages 35 and 37' and Fig. 1(b) 'Stages 36 and 38' (TP-1337 p12: 'The flow path geometry for all four stages is the same'); (a) and (b) differ only in the drawn blade LE/TE locations. Axial distance from rotor-blade-hub leading edge, cm. Read at 500 dpi; the zero row is printed '0.00'. Second read from the image done, cell by cell (zoomed crops); pdftotext layer used only as a cross-check."
+  },
+  {
+    "file": "TP1337_fig1_flowpath_outer.csv",
+    "report": "NASA TP-1337",
+    "ntrs_id": "19780025165",
+    "pdf_page": 87,
+    "printed_page": "77",
+    "title": "Figure 1. - Flow path and instrumentation stations. (Flow path coordinates box, outer wall)",
+    "dpi": 500,
+    "notes": "Same box as the inner file; read at 500 dpi. No survey-plane marks in this box. Second read from the image done, cell by cell (zoomed crops); pdftotext layer used only as a cross-check."
+  }
+]

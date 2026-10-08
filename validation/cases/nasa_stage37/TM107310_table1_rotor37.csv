@@ -1,0 +1,14 @@
+PARAMETER,DESIGN VALUE
+,
+Rotor Total Pressure Ratio,2.106
+Rotor Total Temperature Ratio,1.270
+Rotor Adiabatic Efficiency,0.877
+Rotor Head Rise Coefficient,0.333
+Flow Coefficient,0.453
+"Mass Flow, kg/s",20.188
+"Rotor Wheel Speed, rpm",17188.7
+"Rotor Tip Speed, m/s",454.14
+Hub / Tip Radius Ratio,0.70
+Rotor Aspect Ratio,1.19
+Number of Rotor Blades,36
+Blading Type,Multiple Circular Arc (MCA)

@@ -1,0 +1,6 @@
+TABLE,Inlet Root Diameter (Inches),Inlet Root Diameter (Meters),Exit Root Diameter (Inches),Exit Root Diameter (Meters),Inlet Tip Diameter (Inches),Inlet Tip Diameter (Meters),Exit Tip Diameter (Inches),Exit Tip Diameter (Meters),Axial Tilt,Tangential Tilt,Airfoil type line
+,Inches,Meters,Inches,Meters,Inches,Meters,Inches,Meters,,,
+XVI Rotor 1,12.40,.315,14.91,.378,31.00,.787,29.94,.761,0 Degrees (0 Radians),0 Inches (0 Meters),"Multiple - Circular - Arc Airfoils, 28 Blades"
+XVII Stator 1,15.22?,.387?,16.85?,.428?,29.67,.754,28.9?,.7?,(not printed),(not printed),"Multiple - Circular - Arc Airfoils, 46 Vanes"
+XVIII Rotor 2,17.39,.442,18.34,.466,28.58,.726,28.13,.714,0 Degrees (0 Radians),0 Inches (0 Meters),"Multiple - Circular - Arc Airfoils, 60 Blades"
+XIX Stator 2,18.5?,.472,18.90?,.480,27.90,.709,27.60,.701,(not printed),(not printed),"Multiple - Circular - Arc Airfoils, 59 Vanes"

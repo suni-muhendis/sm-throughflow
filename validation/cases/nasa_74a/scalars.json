@@ -1,0 +1,313 @@
+{
+ "blade_counts": {
+  "value": {
+   "IGV": 26,
+   "Rotor 1": 28,
+   "Stator 1": 34,
+   "Rotor 2": 32,
+   "Stator 2": 46,
+   "Rotor 3": 39,
+   "Stator 3": 54,
+   "Rotor 4": 49,
+   "Stator 4": 64,
+   "Rotor 5": 62,
+   "Stator 5": 74
+  },
+  "unit": "",
+  "quote": "Table I, 'Number of blades' column",
+  "report": "NASA TP-2597",
+  "pdf_page": 19
+ },
+ "tip_clearance": {
+  "value": null,
+  "unit": "",
+  "quote": "Not stated anywhere in the report (text, figures, Tables I-VI, appendixes). No cold or running clearance given.",
+  "report": "NASA TP-2597",
+  "pdf_page": null
+ },
+ "profile_types": {
+  "value": {
+   "all stators": "DCA",
+   "rotor 3": "DCA",
+   "rotors 1 and 2, midspan to tip": "MCA",
+   "IGV": "zero camber (Table V(a): KIC, KTC, KOC, TOTAL CAMBER all .00)"
+  },
+  "unit": "",
+  "quote": "Blades having low inlet relative Mach numbers (all stators and rotor 3), were of double circular arc (DCA) shape. Blades having supersonic inlet relative Mach numbers (the midspan to tip regions of rotors 1 and 2) were of multiple circular arc (MCA) shape.",
+  "report": "NASA TP-2597",
+  "pdf_page": 8
+ },
+ "profile_definition": {
+  "value": "two-segment centerline with constant change of angle with path distance per segment; MCA when C1 != C2; DCA when C1 = C2 and max thickness at midchord",
+  "unit": "",
+  "quote": "Each blade element is composed of two segments. The blade centerline (mean camber line) and the two surfaces of each segment have a constant change of angle with path distance (fig. 10). A blade element is completely specified by the following: leading- and trailing-edge angles, Kle and Kte, and radii, Rle and Rte; maximum thickness Tm; location of maximum thickness Cm and transition point CT; and the turning rate ratio C1/C2. When C1 ≠ C2, the blade element shape is described as multiple circular arc (MCA). When C1 = C2 and the maximum thickness is at midchord, the blade shape is a double circular arc (DCA).",
+  "report": "NASA TP-2597",
+  "pdf_page": 8
+ },
+ "mca_turning_ratio": {
+  "value": "< 1.0 for MCA elements",
+  "unit": "",
+  "quote": "The MCA blade shapes are specified by rotor blade-element inlet to outlet mean camber line turning ratios of less than 1.0.",
+  "report": "NASA TP-2597",
+  "pdf_page": 9
+ },
+ "max_thickness_location": {
+  "value": "midchord",
+  "unit": "",
+  "quote": "All rotor and stator blades for compressor 74A are thickest at midchord and have small leading-edge wedge angles.",
+  "report": "NASA TP-2597",
+  "pdf_page": 8
+ },
+ "blade_element_surfaces": {
+  "value": "conical surfaces through the streamline locations",
+  "unit": "",
+  "quote": "The blade elements are defined on conical surfaces which pass through the blade streamline locations (fig. 9).",
+  "report": "NASA TP-2597",
+  "pdf_page": 7
+ },
+ "stacking": {
+  "value": "centers of area along a prescribed stacking line; fabrication planes perpendicular to a radial line through the hub stacking point",
+  "unit": "",
+  "quote": "After the blade elements are defined, they are stacked about their centers of area along a prescribed stacking line. For manufacturing purposes fabrication coordinates are given on planes perpendicular to a radial line through the hub stacking point.",
+  "report": "NASA TP-2597",
+  "pdf_page": 8
+ },
+ "igv": {
+  "value": "zero camber (all blade angles .00), zero design incidence and deviation, variable",
+  "unit": "",
+  "quote": "For the IGV's design incidence angles are set at 0 relative to the blade mean camber line. ... For the IGV design deviation angles are 0.",
+  "report": "NASA TP-2597",
+  "pdf_page": 8
+ },
+ "variable_rows": {
+  "value": [
+   "IGV",
+   "Stator 1",
+   "Stator 2",
+   "Stator 3"
+  ],
+  "unit": "",
+  "quote": "The compressor's IGV and stator blade setting angles were variable and reoriented to achieve maximum overall adiabatic efficiency, using a vane reset optimization computer code.",
+  "report": "NASA TP-2597",
+  "pdf_page": 3
+ },
+ "igv_design_loss": {
+  "value": 0.02,
+  "unit": "fraction of total pressure",
+  "quote": "For the IGV's, a radially constant 2 percent drop in total pressure is used.",
+  "report": "NASA TP-2597",
+  "pdf_page": 6
+ },
+ "design_incidence": {
+  "value": {
+   "rotors 1-3, suction surface": 0,
+   "stators, suction surface": "-1.0 to -3.0"
+  },
+  "unit": "deg",
+  "quote": "For the three rotors of the inlet stage group, the design suction-surface incidence angles are all 0. For the stators the design suction-surface incidence angles were from -1.0° to -3.0°.",
+  "report": "NASA TP-2597",
+  "pdf_page": 8
+ },
+ "designed_vs_built": {
+  "value": {
+   "designed": "IGV + 5 stages",
+   "built_and_tested": "IGV + first 3 stages (inlet stage group)"
+  },
+  "unit": "",
+  "quote": "For the first three stages of this five-stage core compressor, an additional aeromechanical design was completed. This inlet three-stage group was fabricated and evaluated experimentally.",
+  "report": "NASA TP-2597",
+  "pdf_page": 3
+ },
+ "design_pressure_ratio_5stage": {
+  "value": 9.271,
+  "unit": "",
+  "quote": "Core compressor 74A has five stages and is designed for a 9.271:1 pressure ratio and 29.710-kg/sec flow.",
+  "report": "NASA TP-2597",
+  "pdf_page": 3
+ },
+ "design_pressure_ratio_3stage": {
+  "value": 4.474,
+  "unit": "",
+  "quote": "The inlet stage group had a design pressure ratio of 4.474 and design efficiency of 0.799.",
+  "report": "NASA TP-2597",
+  "pdf_page": 3
+ },
+ "design_efficiency_3stage": {
+  "value": 0.799,
+  "unit": "adiabatic",
+  "quote": "The inlet stage group had a design pressure ratio of 4.474 and design efficiency of 0.799.",
+  "report": "NASA TP-2597",
+  "pdf_page": 3
+ },
+ "design_efficiency_5stage": {
+  "value": 0.797,
+  "unit": "adiabatic",
+  "quote": "Table II, Adiabatic efficiency, Compressor 74A: 0.797",
+  "report": "NASA TP-2597",
+  "pdf_page": 19
+ },
+ "design_mass_flow": {
+  "value": 29.71,
+  "unit": "kg/sec",
+  "quote": "An aerodynamic design is presented for a five-stage core compressor with a 9.271 pressure ratio and 29.710 kg/sec flow rate.",
+  "report": "NASA TP-2597",
+  "pdf_page": 3
+ },
+ "design_specific_flow": {
+  "value": 193.173,
+  "unit": "kg/(sec m^2)",
+  "quote": "At the rotor 1 inlet tip speed was 430.291 m/sec, annular flow was 193.173 kg/sec m2, and hub to tip radius ratio was 0.488.",
+  "report": "NASA TP-2597",
+  "pdf_page": 3
+ },
+ "rotor1_inlet_hub_tip_ratio": {
+  "value": 0.488,
+  "unit": "",
+  "quote": "At the rotor 1 inlet tip speed was 430.291 m/sec, annular flow was 193.173 kg/sec m2, and hub to tip radius ratio was 0.488.",
+  "report": "NASA TP-2597",
+  "pdf_page": 3
+ },
+ "design_tip_speed": {
+  "value": 430.291,
+  "unit": "m/sec",
+  "quote": "The inlet tip speed for the first stage rotor is 430.291 m/sec",
+  "report": "NASA TP-2597",
+  "pdf_page": 3
+ },
+ "design_speed": {
+  "value": 16042.3,
+  "unit": "rpm (equivalent)",
+  "quote": "Table II, Equivalent rotative speed, rpm: 16 042.3",
+  "report": "NASA TP-2597",
+  "pdf_page": 19
+ },
+ "blockage": {
+  "value": "0.04 at rotor 1 inlet rising to 0.14 at stator 5 outlet, applied equally to hub and tip",
+  "unit": "fraction of local annular area",
+  "quote": "The blockage factor for compressor 74A, expressed as a fraction of local annular area, was equally applied to the flow-path hub and tip. Total blockage (see fig. 4) increases from 0.04 at the rotor 1 inlet to 0.14 at the stator 5 outlet.",
+  "report": "NASA TP-2597",
+  "pdf_page": 5
+ },
+ "inlet_preswirl": {
+  "value": 0,
+  "unit": "deg",
+  "quote": "No preswirl was used for compressor 74A.",
+  "report": "NASA TP-2597",
+  "pdf_page": 5
+ },
+ "measurement_stations": {
+  "value": {
+   "inlet": "plenum: two iron-constantan thermocouples; four manifolded wall static taps ~90 deg apart; inlet total pressure assumed equal to plenum static",
+   "outlet": "four rakes ~90 deg apart, 6.8 cm downstream of the third-stage stator row; five total-pressure/total-temperature elements at 10, 30, 50, 70, 90 percent span from the outer casing; static pressure from linear variation between inner and outer wall statics"
+  },
+  "unit": "cm",
+  "quote": "The compressor outlet conditions were determined from measurements obtained from four rakes located ~90° apart 6.8 cm downstream of the third-stage stator row. Each rake had five total-pressure-total-temperature elements located at 10, 30, 50, 70, and 90 percent span from the outer casing.",
+  "report": "NASA TP-2597",
+  "pdf_page": 11
+ },
+ "test_inlet_pressure": {
+  "value": 5.066,
+  "unit": "N/cm^2",
+  "quote": "both inlet butterfly throttle valves were partially closed to maintain a constant compressor inlet pressure of 5.066 N/cm2",
+  "report": "NASA TP-2597",
+  "pdf_page": 10
+ },
+ "test_speeds": {
+  "value": [
+   60,
+   70,
+   80,
+   85,
+   90,
+   95,
+   100
+  ],
+  "unit": "percent of design",
+  "quote": "Data were recorded at 60, 70, 80, 85, 90, 95, and 100 percent of design speed.",
+  "report": "NASA TP-2597",
+  "pdf_page": 11
+ },
+ "reset_schedules": {
+  "value": "tabulated in figure insets: Fig. 18 design settings (all 0); Fig. 21 IGV +15, S1-S3 +10 at all speeds; Fig. 22 per speed (see CSVs)",
+  "unit": "deg",
+  "quote": "The design speed peak adiabatic efficiency was obtained by resetting the IGV's +15° and each stator blade row +10° (fig. 20).",
+  "report": "NASA TP-2597",
+  "pdf_page": 13
+ },
+ "reset_sign_convention": {
+  "value": "shown only graphically in Figure 20 (top view, positive reset rotation arrow); no verbal definition",
+  "unit": "",
+  "quote": "Figure 20.—Schematic of blade rows with positive direction of vane reset specified.",
+  "report": "NASA TP-2597",
+  "pdf_page": 12
+ },
+ "measured_overflow": {
+  "value": 9.1,
+  "unit": "percent of design flow",
+  "quote": "Because the large overflow (9.1 percent of design flow) at design speed was inconsistent with past experience in predicting choke margin for transonic rotors",
+  "report": "NASA TP-2597",
+  "pdf_page": 13
+ },
+ "materials": {
+  "value": {
+   "rotors": "titanium (TI-GAL-4V, as printed)",
+   "stators": "maraging steel (18 NI 200)"
+  },
+  "unit": "",
+  "quote": "The rotor blades were made of titanium (TI-GAL-4V), and the stator blades of maraging steel (18 NI 200).",
+  "report": "NASA TP-2597",
+  "pdf_page": 9
+ },
+ "angle_definitions": {
+  "value": {
+   "KIC": "angle between blade-element mean camber line on conical surface at leading edge and meridional plane, deg",
+   "KTC": "angle between blade-element mean camber line on conical surface at transition point and meridional plane, deg",
+   "KOC": "angle between blade-element mean camber line on conical surface at trailing edge and meridional plane, deg",
+   "SETTING ANGLE": "angle between blade-element aerodynamic chord on conical surface and meridional plane, deg",
+   "BETAM": "meridional air angle, deg",
+   "CONE ANGLE": "angle between axial direction and conical surface representing blade element, deg",
+   "TOTAL CAMBER": "difference between inlet and outlet blade-element angles on mean camber lines, deg (KIC-KOC)",
+   "DELTA INC": "difference between mean camber blade angle and suction-surface blade angle at leading edge, deg",
+   "PHISS": "suction-surface camber ahead of assumed shock location, deg",
+   "TURNING RATIO": "ratio of mean camber line curvatures upstream and downstream of transition point",
+   "CHOKE MARGIN": "ratio of flow area greater than critical area to critical area"
+  },
+  "unit": "deg",
+  "quote": "Appendix C, Definitions and Units Used in Aerodynamic Design Tables",
+  "report": "NASA TP-2597",
+  "pdf_page": 17
+ },
+ "axial_coordinate_definitions": {
+  "value": {
+   "ZI": "axial distance to blade leading edge, cm",
+   "ZMC": "axial distance to blade maximum thickness point, cm",
+   "ZTC": "axial distance to transition point, cm",
+   "ZO": "axial distance to blade trailing edge, cm",
+   "origin": "not stated in the report"
+  },
+  "unit": "cm",
+  "quote": "ZI axial distance to blade leading edge, cm (Appendix C; no origin given)",
+  "report": "NASA TP-2597",
+  "pdf_page": 17
+ },
+ "percent_span_definition": {
+  "value": "percent of blade span from tip",
+  "unit": "",
+  "quote": "PERCENT SPAN percent of blade span from tip reference to rotor one outlet",
+  "report": "NASA TP-2597",
+  "pdf_page": 17
+ },
+ "table_units": {
+  "value": {
+   "RADII, RI, RO, TI, TM, TO, ZI, ZMC, ZTC, ZO, AERO CHORD": "cm",
+   "VEL, WHEEL SPEED": "m/sec",
+   "TEMP": "K",
+   "PRESS": "N/cm^2",
+   "BETAM, KIC, KTC, KOC, INCIDENCE, DELTA INC, DEV, PHISS, STREAMLINE SLOPE, CONE ANGLE, SETTING ANGLE, TOTAL CAMBER": "deg"
+  },
+  "unit": "",
+  "quote": "Appendix C, Definitions and Units Used in Aerodynamic Design Tables",
+  "report": "NASA TP-2597",
+  "pdf_page": 17
+ }
+}

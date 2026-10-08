@@ -1,0 +1,177 @@
+{
+  "rotor_running_tip_clearance": {
+    "value": 0.04,
+    "unit": "cm",
+    "quote": "The rotating radial tip clearances for both rotors were calculated to be 0.04 centimeter.",
+    "report": "NASA TP-1493",
+    "pdf_page": 6
+  },
+  "rotor1_aspect_ratio": {
+    "value": 1.56,
+    "unit": "",
+    "quote": "To eliminate the need for part span dampers, the blade aspect ratio was decreased from 2.94 to 1.56.",
+    "report": "NASA TP-1493",
+    "pdf_page": 4
+  },
+  "rotor1_aspect_ratio_original_TP1314": {
+    "value": 2.94,
+    "unit": "",
+    "quote": "the blade aspect ratio was decreased from 2.94 to 1.56.",
+    "report": "NASA TP-1493",
+    "pdf_page": 4
+  },
+  "rotor1_inlet_hub_tip_ratio": {
+    "value": 0.375,
+    "unit": "",
+    "quote": "Because of the flow-path contour (see fig. 1), the rotor-inlet hub-tip ratio decreased from 0.400 to 0.375, and the exit hub-tip ratio increased from 0.461 to 0.478.",
+    "report": "NASA TP-1493",
+    "pdf_page": 4
+  },
+  "rotor1_exit_hub_tip_ratio": {
+    "value": 0.478,
+    "unit": "",
+    "quote": "the exit hub-tip ratio increased from 0.461 to 0.478.",
+    "report": "NASA TP-1493",
+    "pdf_page": 4
+  },
+  "rotor1_stacking_line": {
+    "value": "axial position of stacking line unchanged from TP-1314 design; LE moved forward, TE moved aft",
+    "unit": "",
+    "quote": "The axial position of the blade stacking line was unchanged from the original design but, because of increased blade chord, the leading and trailing edges of the rotor moved fore and aft, respectively.",
+    "report": "NASA TP-1493",
+    "pdf_page": 4
+  },
+  "profile_type_rotor1": {
+    "value": "multiple-circular-arc (MCA) throughout",
+    "unit": "",
+    "quote": "Although multiple-circular-arc blade sections were used throughout, the blading is markedly different from that in the earlier fan because of several interrelated design changes.",
+    "report": "NASA TP-1493",
+    "pdf_page": 4
+  },
+  "unchanged_rows": {
+    "value": "first-stage stator, second-stage rotor, second-stage stator and the flow path are unchanged from TP-1314 (ref. 2)",
+    "unit": "",
+    "quote": "Only the low-aspect-ratio first-stage rotor is discussed herein. The other blade rows were unchanged (see ref. 2). The flow path of this fan, also unchanged, is shown in figure 1",
+    "report": "NASA TP-1493",
+    "pdf_page": 4
+  },
+  "rotor1_thickness_distribution": {
+    "value": "t/c described by third-order polynomial from tip to hub; max thickness moved rearward; LE and TE radii reduced",
+    "unit": "",
+    "quote": "To increase the blade natural frequency and to eliminate a potential resonant condition, the distribution of blade thickness to chord was described by a third-order polynomial from tip to hub (fig. 3). Both leading- and trailing-edge radii have been significantly reduced (fig. 3).",
+    "report": "NASA TP-1493",
+    "pdf_page": 5
+  },
+  "rotor1_choke_margin_design": {
+    "value": "about 6 percent intended; actual 3.6 to 6.5 percent",
+    "unit": "percent",
+    "quote": "The intent of present design was to achieve about 6 percent choke margin, a value which does not account for blade surface boundary layers. Actual values ranged from 3.6 to 6.5 percent (fig. 3).",
+    "report": "NASA TP-1493",
+    "pdf_page": 5
+  },
+  "rotor1_deviation_rule": {
+    "value": "Carter's rule with modifiers (low-AR modifiers largely from ref. 3, NASA TM X-3076)",
+    "unit": "",
+    "quote": "Deviation angles (fig. 3) for the both higher-aspect-ratio blading (ref. 2) and this low-aspect-ratio blading were computed using Carter's Rule along with modifiers. ... Those for the low-aspect-ratio blading were largely based on reference 3.",
+    "report": "NASA TP-1493",
+    "pdf_page": 5
+  },
+  "rotor1_incidence_rule": {
+    "value": "tip to 58% span: suction-surface angle at midpoint between LE and first captured Mach wave set to free-stream relative angle minus ~1.6 deg; 59% span to hub: suction-surface incidence 0 deg at blade inlet",
+    "unit": "",
+    "quote": "Incidence angles from tip to 58 percent of span were determined by the method described in reference 4. ... This adjustment was approximately 1.6° from the tip to 58 percent of span. For the remainder of the passage (59 percent to hub), the suction-surface incidence angle was set equal to 0° at the blade inlet.",
+    "report": "NASA TP-1493",
+    "pdf_page": 5
+  },
+  "design_mass_flow": {
+    "value": 33.248,
+    "unit": "kg/s",
+    "quote": "WT FLOW 33.248 (Table I(a))",
+    "report": "NASA TP-1493",
+    "pdf_page": 23
+  },
+  "design_speed": {
+    "value": 16042.8,
+    "unit": "rpm",
+    "quote": "RPM 16042.8 (Table I(a))",
+    "report": "NASA TP-1493",
+    "pdf_page": 23
+  },
+  "design_fan_pressure_ratio": {
+    "value": 2.399,
+    "unit": "",
+    "quote": "FAN TOTAL PRESSURE RATIO 2.399 (Table I(a))",
+    "report": "NASA TP-1493",
+    "pdf_page": 23
+  },
+  "design_fan_adiabatic_efficiency": {
+    "value": 0.849,
+    "unit": "",
+    "quote": "FAN ADIATABIC EFFICIENCY 0.849 (Table I(a))",
+    "report": "NASA TP-1493",
+    "pdf_page": 23
+  },
+  "rotor1_tip_speed": {
+    "value": 428.896,
+    "unit": "m/s",
+    "quote": "TIP SPEED 428.896 (Table I(b))",
+    "report": "NASA TP-1493",
+    "pdf_page": 23
+  },
+  "survey_stations": {
+    "value": "station 1 upstream of first rotor (fan inlet); station 2 between first stator and second rotor; station 3 downstream of second stator; axial positions shown only graphically in Fig. 1",
+    "unit": "",
+    "quote": "Radial surveys of the flow conditions were made at the fan inlet and behind the two stator-blade rows (see fig. 1).",
+    "report": "NASA TP-1493",
+    "pdf_page": 6
+  },
+  "data_translation": {
+    "value": "survey data translated to blade LE/TE along design streamlines (method of ref. 5, TM X-2379); rotor-exit/stator-inlet totals derived from data behind the adjoining stator",
+    "unit": "",
+    "quote": "All data herein have been translated to the leading and trailing edges of each blade row by the method of reference 5.",
+    "report": "NASA TP-1493",
+    "pdf_page": 8
+  },
+  "axial_reference": {
+    "value": "Z measured from first-stage rotor-blade-hub leading edge",
+    "unit": "cm",
+    "quote": "z axial distance referenced from first-stage rotor-blade-hub leading edge, cm",
+    "report": "NASA TP-1493",
+    "pdf_page": 15
+  },
+  "percent_span_definition": {
+    "value": "percent of blade span from tip referenced to first-stage-rotor outlet",
+    "unit": "",
+    "quote": "PERCENT SPAN percent of blade span from tip referenced to first-stage-rotor outlet",
+    "report": "NASA TP-1493",
+    "pdf_page": 20
+  },
+  "angle_convention": {
+    "value": "BETAM = meridional air angle, angle between air velocity and axial direction (relative meridional angle based on cone angle); KIC/KTC/KOC = angle between blade-element mean camber line on conical surface and meridional plane at LE / transition point / TE",
+    "unit": "deg",
+    "quote": "β air angle, angle between air velocity and axial direction, deg; KIC angle between blade-element mean camber line on conical surface at leading edge and meridional plane, deg",
+    "report": "NASA TP-1493",
+    "pdf_page": 15
+  },
+  "casing_treatment_groove_width": {
+    "value": 0.249,
+    "unit": "cm",
+    "quote": "The groove width was 0.249 centimeter. The ratio of groove width to land width was 2.0, and the ratio of groove depth to land width was 6.0.",
+    "report": "NASA TP-1493",
+    "pdf_page": 12
+  },
+  "best_stator_reset": {
+    "value": "first-stage stator opened 10 deg, second-stage stator closed 5 deg",
+    "unit": "deg",
+    "quote": "The maximum flow range and stall margin was obtained with the first-stage stator opened 10° and the second-stage stator closed 5° from their respective design settings.",
+    "report": "NASA TP-1493",
+    "pdf_page": 11
+  },
+  "standard_conditions": {
+    "value": "288.2 K, 10.13 N/cm2",
+    "unit": "",
+    "quote": "ratio of rotor-inlet total pressure to standard pressure of 10.13 N/cm2; ratio of rotor-inlet total temperature to standard temperature of 288.2 K",
+    "report": "NASA TP-1493",
+    "pdf_page": 15
+  }
+}

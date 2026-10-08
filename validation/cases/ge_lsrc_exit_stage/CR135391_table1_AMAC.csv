@@ -1,0 +1,35 @@
+,
+,
+"Total Pressure Ratio",23
+"Number of Stages",10
+"Corrected Inlet Tip Speed, m/sec",469
+"(fps)",(1540)
+"Physical Inlet Tip Speed, m/sec",485
+"(fps)",(1590)
+"Physical Rear Hub Speed, m/sec",370
+"(fps)",(1214)
+"Physical Speed, rpm","13,900"
+"Inlet Radius Ratio",0.496
+"Inlet Specific Flow, kg/sec-m2",178
+"(lb/sec-ft2)",(36.5)
+"Inlet Corrected Flow, (lbm/sec)",103.3
+"Inlet Tip Diameter, m",0.6660
+"(in.)",(26.22)
+"Exit Radius Ratio",0.930
+"Exit Mach Number",0.26
+"Exit Tip Diameter, m",0.5456
+"(in.)",(21.48)
+"Length to OGV Exit, m",0.6614
+"(in.)",(26.04)
+"Length to Diffuser Exit, m",0.6900
+"(in.)",(27.16)
+"Number of Airfoils",1959
+"Average Aspect Ratio",1.72
+"Average Solidity",1.40
+"Average Swirl, Degree",20.4
+"Average Reaction",0.695
+"Stall Margin, %",18
+"Adiabatic Efficiency at OGV Exit",0.860
+"Adiabatic Efficiency at Diffuser Exit",0.853
+"Compressor Weight, kg",269
+"(lb)",(592)

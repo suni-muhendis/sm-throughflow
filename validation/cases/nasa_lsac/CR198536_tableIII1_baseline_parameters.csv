@@ -1,0 +1,26 @@
+GROUP,ITEM,VALUE,UNIT
+,,,
+,Casing radius,60.96,cm
+,Hub radius,48.8,cm
+,Hub-to-tip ratio,0.80,
+,Blade span,12.19,cm
+,Rotational speed,958,rpm
+,Rotor tip speed (based on casing radius),61.15,m / s
+,Mass flow,12.3,kg / s
+,Axial velocity,24.4,m /s
+,Pressure ratio,1.042,
+,Temperature ratio,1.013,
+,"Flow coefficient, φ",0.400,
+,"Average pressure rise coefficient, ψ'/4",0.500,
+,"Average work coefficient, ψ/4",0.550,
+,Nominal axial gap,2.54,cm
+Number of blades,Rotor,39,
+Number of blades,Stator and IGV,52,
+Midspan aerodynamic chord,Rotor,10.2,cm
+Midspan aerodynamic chord,Stator,9.4,cm
+Midspan blade setting angle,Rotor,43,°
+Midspan blade setting angle,Stator,42,°
+Clearances,Rotor tip,1.7,mm
+Clearances,Rotor tip,1.4,% span
+Clearances,Stator shroud labyrinth seal,0.85,mm
+Clearances,Stator shroud labyrinth seal,0.70,% span

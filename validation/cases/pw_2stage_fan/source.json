@@ -1,0 +1,358 @@
+{
+  "citations": [
+    {
+      "citation": "Messenger, H. E.; Kennedy, E. E.: Two-Stage Fan. I: Aerodynamic and Mechanical Design. NASA CR-120859 (PWA-4148), Pratt & Whitney Aircraft, 1972.",
+      "report": "NASA CR-120859",
+      "ntrs_id": "19720013113",
+      "local_pdf": "CR120859_PW_2stg_fan_design.pdf"
+    },
+    {
+      "citation": "Ruggeri, R. S.; Benser, W. A.: Performance of a Highly Loaded Two-Stage Axial-Flow Fan. NASA TM X-3076, 1974.",
+      "report": "NASA TM X-3076",
+      "ntrs_id": "19740023305",
+      "local_pdf": "TMX3076_2stg_fan.pdf"
+    }
+  ],
+  "tables": [
+    {
+      "file": "CR120859_tableIII_rotor_blading.csv",
+      "report": "NASA CR-120859",
+      "ntrs_id": "19720013113",
+      "pdf_page": 14,
+      "printed_page": "5",
+      "title": "TABLE III ROTOR BLADING PARAMETERS",
+      "dpi": 200,
+      "notes": "Read from image; second read done. The text layer gives 2.60 for the 2nd-stage aspect ratio; the image shows 2.69 (TM X-3076 Table II also 2.69)."
+    },
+    {
+      "file": "CR120859_tableIV_stator_blading.csv",
+      "report": "NASA CR-120859",
+      "ntrs_id": "19720013113",
+      "pdf_page": 16,
+      "printed_page": "7",
+      "title": "TABLE IV STATOR BLADING PARAMETERS",
+      "dpi": 200,
+      "notes": "Second read done."
+    },
+    {
+      "file": "CR120859_tableV_rotor1_shroud.csv",
+      "report": "NASA CR-120859",
+      "ntrs_id": "19720013113",
+      "pdf_page": 19,
+      "printed_page": "10",
+      "title": "TABLE V ROTOR 1 PARTSPAN SHROUD PARAMETERS",
+      "dpi": 200,
+      "notes": "Second read done. Bending stress last digit faint ('75,00C'), read as 75,000."
+    },
+    {
+      "file": "CR120859_fig10_flowpath.csv",
+      "report": "NASA CR-120859",
+      "ntrs_id": "19720013113",
+      "pdf_page": 30,
+      "printed_page": "21",
+      "title": "Figure 10 Flowpath (dimension box)",
+      "dpi": 400,
+      "notes": "Tabulated box inside the figure. Identical digit for digit to TM X-3076 Fig. 2 box (independent print). Second read done."
+    },
+    {
+      "file": "CR120859_tableX_rotor1_SI_a.csv",
+      "report": "NASA CR-120859",
+      "ntrs_id": "19720013113",
+      "pdf_page": 70,
+      "printed_page": "64",
+      "title": "TABLE X AERODYNAMIC SUMMARY - ROTOR 1 (SI UNITS), upper block",
+      "dpi": 300,
+      "notes": "Second read done (cell by cell) at 300 dpi (faint cells re-read at 600 dpi), page rotated. Velocity triangles re-checked (V, B, VO', V', B'; M'/M vs V'/V). Correction: VM-2 at 41.45 % changed 182.76? -> 182.70? (glyph reads 182.70; the V-2 identity gives about 182.76, so '?' kept)."
+    },
+    {
+      "file": "CR120859_tableX_rotor1_SI_b.csv",
+      "report": "NASA CR-120859",
+      "ntrs_id": "19720013113",
+      "pdf_page": 70,
+      "printed_page": "64",
+      "title": "TABLE X AERODYNAMIC SUMMARY - ROTOR 1 (SI UNITS), lower block",
+      "dpi": 300,
+      "notes": "Second read done (cell by cell) at 300 dpi (faint cells re-read at 600 dpi), page rotated. Checks: LOSS-P/OMEGA-B ratios and EFF-AD from PO2/PO1 and EFF-P. Corrections: '?' removed from 3.15 % LOSS-P TOTAL/PROFILE .0108 and 41.45 % OMEGA-B .0814 (clear at 600 dpi); '?' added to 31.65 % OMEGA-B .0697 and 100 % PO2/PO1 1.8170 (faint). 100 % OMEGA-B SHOCK .0805? kept."
+    },
+    {
+      "file": "CR120859_tableX_rotor1_SI_c.csv",
+      "report": "NASA CR-120859",
+      "ntrs_id": "19720013113",
+      "pdf_page": 70,
+      "printed_page": "64",
+      "title": "TABLE X overall line (NCORR INLET ... STA-2)",
+      "dpi": 300,
+      "notes": "Second read done (cell by cell) at 300 dpi (faint cells re-read at 600 dpi), page rotated. Correction: NCORR INLET was 1122.60, but the line printer printed '122.60' on this table (no leading 1 at 300 or 600 dpi; Tables XII/XIV/XVI print 1122.60). Copied as printed."
+    },
+    {
+      "file": "CR120859_tableXII_stator1_SI_a.csv",
+      "report": "NASA CR-120859",
+      "ntrs_id": "19720013113",
+      "pdf_page": 72,
+      "printed_page": "66",
+      "title": "TABLE XII AERODYNAMIC SUMMARY - STATOR 1 (SI UNITS), upper block",
+      "dpi": 300,
+      "notes": "Second read done (cell by cell) at 300 dpi (faint cells re-read at 600 dpi), page rotated. Velocity triangles re-checked. Corrections: '?' removed from 3.15 % VO-1 252.96 and 10.40 % V'-2 328.8 (legible, identities hold). Remaining '?' cells (6.70 % VM-1, 51.85 % VM-1, 62.90 % V-1, 74.60 % VM-1) are faint glyphs."
+    },
+    {
+      "file": "CR120859_tableXII_stator1_SI_b.csv",
+      "report": "NASA CR-120859",
+      "ntrs_id": "19720013113",
+      "pdf_page": 72,
+      "printed_page": "66",
+      "title": "TABLE XII lower block",
+      "dpi": 300,
+      "notes": "Second read done (cell by cell) at 300 dpi (faint cells re-read at 600 dpi), page rotated. No value changed; '?' cells (31.65 row label and DEV, 0.00 % M'-2, 100 % PO2/PO1) remain faint."
+    },
+    {
+      "file": "CR120859_tableXII_stator1_SI_c.csv",
+      "report": "NASA CR-120859",
+      "ntrs_id": "19720013113",
+      "pdf_page": 72,
+      "printed_page": "66",
+      "title": "TABLE XII overall line",
+      "dpi": 300,
+      "notes": "Second read done (cell by cell) at 300 dpi (faint cells re-read at 600 dpi), page rotated. Correction: AREA .3252? -> .3252 (legible)."
+    },
+    {
+      "file": "CR120859_tableXIV_rotor2_SI_a.csv",
+      "report": "NASA CR-120859",
+      "ntrs_id": "19720013113",
+      "pdf_page": 74,
+      "printed_page": "68",
+      "title": "TABLE XIV AERODYNAMIC SUMMARY - ROTOR 2 (SI UNITS), upper block",
+      "dpi": 300,
+      "notes": "Second read done (cell by cell) at 300 dpi (faint cells re-read at 600 dpi), page rotated. Velocity triangles re-checked. Correction: '?' added to 74.60 % B'-1 1.0157 (identity gives 1.0152, and TURN .1446 = B'-1 - B'-2 gives 1.0151; glyph reads 1.0157)."
+    },
+    {
+      "file": "CR120859_tableXIV_rotor2_SI_b.csv",
+      "report": "NASA CR-120859",
+      "ntrs_id": "19720013113",
+      "pdf_page": 74,
+      "printed_page": "68",
+      "title": "TABLE XIV lower block",
+      "dpi": 300,
+      "notes": "Second read done (cell by cell) at 300 dpi (faint cells re-read at 600 dpi), page rotated. Correction: '?' removed from 41.45 % OMEGA-B .0788."
+    },
+    {
+      "file": "CR120859_tableXIV_rotor2_SI_c.csv",
+      "report": "NASA CR-120859",
+      "ntrs_id": "19720013113",
+      "pdf_page": 74,
+      "printed_page": "68",
+      "title": "TABLE XIV overall line",
+      "dpi": 300,
+      "notes": "Second read done (cell by cell) at 300 dpi (faint cells re-read at 600 dpi), page rotated. No change."
+    },
+    {
+      "file": "CR120859_tableXVI_stator2_SI_a.csv",
+      "report": "NASA CR-120859",
+      "ntrs_id": "19720013113",
+      "pdf_page": 76,
+      "printed_page": "70",
+      "title": "TABLE XVI AERODYNAMIC SUMMARY - STATOR 2 (SI UNITS), upper block",
+      "dpi": 300,
+      "notes": "Second read done (cell by cell) at 300 dpi (faint cells re-read at 600 dpi), page rotated. Velocity triangles re-checked. Corrections: '?' removed from 22.70 % B-1 .7586 and 31.65 % B-1 .7428 (TURN identity holds); '?' added to 62.90 % B'-1 .7817 (identity gives .7811)."
+    },
+    {
+      "file": "CR120859_tableXVI_stator2_SI_b.csv",
+      "report": "NASA CR-120859",
+      "ntrs_id": "19720013113",
+      "pdf_page": 76,
+      "printed_page": "70",
+      "title": "TABLE XVI lower block",
+      "dpi": 300,
+      "notes": "Second read done (cell by cell) at 300 dpi (faint cells re-read at 600 dpi), page rotated. Corrections: 100 % INCM '.007?' -> '.087' (at 600 dpi the glyph is clearly .087; English Table XV prints 0.5 deg = .009 rad, so the SI and English prints disagree; recorded as printed, see notes.md); '?' added to 80.70 % LOSS-P PROFILE .0183 (glyph reads .0163 or .0183; LOSS-P TOTAL .0183)."
+    },
+    {
+      "file": "CR120859_tableXVI_stator2_SI_c.csv",
+      "report": "NASA CR-120859",
+      "ntrs_id": "19720013113",
+      "pdf_page": 76,
+      "printed_page": "70",
+      "title": "TABLE XVI overall line",
+      "dpi": 300,
+      "notes": "Second read done (cell by cell) at 300 dpi (faint cells re-read at 600 dpi), page rotated. No change."
+    },
+    {
+      "file": "CR120859_tableXVII_rotor1_english.csv",
+      "report": "NASA CR-120859",
+      "ntrs_id": "19720013113",
+      "pdf_page": 78,
+      "printed_page": "72",
+      "title": "TABLE XVII AIRFOIL GEOMETRY ON CONICAL SURFACES - ROTOR 1 (English Units block)",
+      "dpi": 400,
+      "notes": "Second read done (cell by cell) at 400 dpi. Every cell the scan does not show legibly carries '?' (its value is the TM X-3076 Table XVI reading). Corrections: hub phi '75.5?' -> 75.5 (legible); 6.70 % unclear-symbol row '15.7?' -> '16.2?' (glyph '16.?', TM X 16.2); '?' added to about 40 faint cells, mostly in the 87-100 % columns."
+    },
+    {
+      "file": "CR120859_tableXVII_rotor1_metric.csv",
+      "report": "NASA CR-120859",
+      "ntrs_id": "19720013113",
+      "pdf_page": 78,
+      "printed_page": "72",
+      "title": "TABLE XVII ROTOR 1 (Metric Units block)",
+      "dpi": 400,
+      "notes": "Second read done (cell by cell) at 400 dpi. Row label '% c to max. t' as printed in this block. Corrections: '?' removed from 3.15 % beta'*1 .731, 31.65 % cf .0376, 74.60 % beta'*1 .992; 93.40 % symbol row '-.199' -> '-0.199' (leading 0 visible); '?' added to many faint cells. The metric block is not reprinted anywhere."
+    },
+    {
+      "file": "CR120859_tableXVIII_stator1_english.csv",
+      "report": "NASA CR-120859",
+      "ntrs_id": "19720013113",
+      "pdf_page": 79,
+      "printed_page": "73",
+      "title": "TABLE XVIII AIRFOIL GEOMETRY ON CONICAL SURFACES - STATOR 1 (English)",
+      "dpi": 400,
+      "notes": "Second read done (cell by cell) at 400 dpi. Row label '% c to max. t' as printed. Corrections: '?' removed from 10.40 % phi 57.1, 10.40 % phiEf 7.0, tip beta*ss 47.1; '?' added to faint cells (hub/3.15 % '% c' and a/c, 87-100 % columns, etc.). '?' values are the TM X-3076 Table XVII reading."
+    },
+    {
+      "file": "CR120859_tableXVIII_stator1_metric.csv",
+      "report": "NASA CR-120859",
+      "ntrs_id": "19720013113",
+      "pdf_page": 79,
+      "printed_page": "73",
+      "title": "TABLE XVIII STATOR 1 (Metric)",
+      "dpi": 400,
+      "notes": "Second read done (cell by cell) at 400 dpi. Corrections: a/c at 10.40 % and 22.70 % '0.546' -> '0.536?' (glyph 0.5?6; English a/c 0.536); sigma cells that had been written with fewer digits now carry a full best reading: 6.70 % 2.35?, 10.40 % 2.25?, 31.65 % 1.93?, 41.45 % 1.83?, 51.85 % 1.75?, 74.60 % 1.63? (sigma is dimensionless and identical in both blocks); '?' removed from 31.65 % cf .0262 and 74.60 % t/c .0689; '?' added to faint cells."
+    },
+    {
+      "file": "CR120859_tableXIX_rotor2_english.csv",
+      "report": "NASA CR-120859",
+      "ntrs_id": "19720013113",
+      "pdf_page": 80,
+      "printed_page": "74",
+      "title": "TABLE XIX AIRFOIL GEOMETRY ON CONICAL SURFACES - ROTOR 2 (English)",
+      "dpi": 400,
+      "notes": "Second read done (cell by cell) at 400 dpi. Row label '% c to max. t' as printed. Corrections: '?' removed from 3.15 % symbol row 12.7, 6.70 % a/c 0.518, 10.40 % beta'*ss1 50.9, 80.70 % phiE 11.0; '?' added to faint cells (tip column almost entirely faint). Reprint is TM X-3076 Table XVIII."
+    },
+    {
+      "file": "CR120859_tableXIX_rotor2_metric.csv",
+      "report": "NASA CR-120859",
+      "ntrs_id": "19720013113",
+      "pdf_page": 80,
+      "printed_page": "74",
+      "title": "TABLE XIX ROTOR 2 (Metric)",
+      "dpi": 400,
+      "notes": "Second read done (cell by cell) at 400 dpi. Corrections: 6.70 % a/c 0.516? -> 0.518? (glyph 0.518); 22.70 % beta'*ss1 0.900? -> 0.890? (glyph 0.890; English 51.6 deg = 0.9006 rad, so print and conversion disagree, recorded as read); 62.90 % a/c 0.545? -> 0.543?; 93.40 % a/c 0.610? -> 0.613?; '?' removed from 3.15 % symbol row 0.218, 31.65 % phiEf 0.106, 41.45 % sigma 1.78 (English block prints 1.77); '?' added to faint cells."
+    },
+    {
+      "file": "CR120859_tableXX_stator2_english.csv",
+      "report": "NASA CR-120859",
+      "ntrs_id": "19720013113",
+      "pdf_page": 81,
+      "printed_page": "75",
+      "title": "TABLE XX AIRFOIL GEOMETRY ON CONICAL SURFACES - STATOR 2 (English)",
+      "dpi": 400,
+      "notes": "Second read done (cell by cell) at 400 dpi; worst scan of the set, '?' alone = no reading. Span-row corrections: 41.45 % LE and average '45.?' -> '46.?'; 80.70 % LE/average/TE now 83.5?/83.45?/83.4?; 87.00 % LE/average/TE '90.0?/89.95?/89.9?' -> '89.0?/88.95?/88.9?' (glyph 8?.0, as TM X); 74.60 % average/TE 77.95?/77.9?; 62.90 % average 67.2 -> 67.25? (last digit lost). Partly legible cells now given a best reading: 31.65 % t/c 0.0530?, 41.45 % cf 0.93?, 62.90 % cf 1.13?, 62.90 % phiEf 18.0?, 80.70 % beta*2 37.1?, 80.70 % phi 47.4?, 87.00 % phif 23.9?, 93.40 % phiEf 24.6?. Use TMX3076_tableXIX_stator2_US.csv."
+    },
+    {
+      "file": "CR120859_tableXX_stator2_metric.csv",
+      "report": "NASA CR-120859",
+      "ntrs_id": "19720013113",
+      "pdf_page": 81,
+      "printed_page": "75",
+      "title": "TABLE XX STATOR 2 (Metric)",
+      "dpi": 400,
+      "notes": "Second read done (cell by cell) at 400 dpi. Same span-row corrections as the English block. New best readings / corrections: RLE=RTE 10.40 % 0.000137?, 31.65 % 0.000152?, 41.45 % 0.000165?; 31.65 % t/c 0.0530?; 41.45 % cf 0.0236?; 51.85 % a/c 0.550?; 62.90 % a/c 0.512? -> 0.542?; 62.90 % symbol row -0.02?; 74.60 % phi 0.82?, phiE 0.82?, phif 0.372?, phiEf 0.37?; 80.70 % t/c 0.0697? -> 0.0695? (last digit illegible; English 0.0695); 87.00 % a/c 0.505?, phif 0.41?, phiEf 0.42?, sigma 1.6?. Many cells still have no reading; no reprint of the metric block exists."
+    },
+    {
+      "file": "CR120859_appendixD_header_lines.csv",
+      "report": "NASA CR-120859",
+      "ntrs_id": "19720013113",
+      "pdf_page": 78,
+      "printed_page": "72-75",
+      "title": "Header lines of Tables XVII-XX (root/tip diameters, tilts, airfoil type, blade count)",
+      "dpi": 400,
+      "notes": "PDF pages 78-81. Second read done (cell by cell) at 400 dpi. Corrections: '?' added to Stator 1 exit root .428 (glyph '.?28') and Rotor 2 exit root .466 (glyph '.?66'). Stator 1 inlet tip is printed '29.67' with no 'Inches'; the stator headers have no tilt line; Stator 2 blade count glyph '?9' (59 in TM X)."
+    },
+    {
+      "file": "TMX3076_tableII_rotor_blading.csv",
+      "report": "NASA TM X-3076",
+      "ntrs_id": "19740023305",
+      "pdf_page": 6,
+      "printed_page": "4",
+      "title": "TABLE II. - ROTOR BLADING PARAMETERS",
+      "dpi": 200,
+      "notes": "Clean typeset table. Second read done (cell by cell) at 200 dpi; no change. Footnote a: 'Ratio of the average length to the axially projected root chord.' Identical to CR-120859 Table III."
+    },
+    {
+      "file": "TMX3076_tableIII_stator_blading.csv",
+      "report": "NASA TM X-3076",
+      "ntrs_id": "19740023305",
+      "pdf_page": 7,
+      "printed_page": "5",
+      "title": "TABLE III. - STATOR BLADING PARAMETERS",
+      "dpi": 200,
+      "notes": "Second read done (cell by cell) at 200 dpi from the image, all five rows (tip chord and hub solidity now read from the image, not the text layer); no change. Footnote a as Table II. Identical to CR-120859 Table IV."
+    },
+    {
+      "file": "TMX3076_tableXIII_streamline_locations.csv",
+      "report": "NASA TM X-3076",
+      "ntrs_id": "19740023305",
+      "pdf_page": 35,
+      "printed_page": "33",
+      "title": "TABLE XIII. - STREAMLINE LOCATIONS",
+      "dpi": 400,
+      "notes": "Second read done. Stator 2 LE, streamline 6 printed with a broken digit ('6?.25'), recorded '67.25?'."
+    },
+    {
+      "file": "TMX3076_tableXVI_rotor1_US.csv",
+      "report": "NASA TM X-3076",
+      "ntrs_id": "19740023305",
+      "pdf_page": 142,
+      "printed_page": "140",
+      "title": "TABLE XVI. - AIRFOIL GEOMETRY ON CONICAL SURFACES - ROTOR 1 (U.S. customary units, inches and degrees)",
+      "dpi": 400,
+      "notes": "Clean reprint of the CR-120859 Table XVII English block. Second read done."
+    },
+    {
+      "file": "TMX3076_tableXVII_stator1_US.csv",
+      "report": "NASA TM X-3076",
+      "ntrs_id": "19740023305",
+      "pdf_page": 143,
+      "printed_page": "141",
+      "title": "TABLE XVII. - AIRFOIL GEOMETRY ON CONICAL SURFACES - STATOR 1",
+      "dpi": 400,
+      "notes": "Second read done."
+    },
+    {
+      "file": "TMX3076_tableXVIII_rotor2_US.csv",
+      "report": "NASA TM X-3076",
+      "ntrs_id": "19740023305",
+      "pdf_page": 144,
+      "printed_page": "142",
+      "title": "TABLE XVIII. - AIRFOIL GEOMETRY ON CONICAL SURFACES - ROTOR 2",
+      "dpi": 400,
+      "notes": "Second read done."
+    },
+    {
+      "file": "TMX3076_tableXIX_stator2_US.csv",
+      "report": "NASA TM X-3076",
+      "ntrs_id": "19740023305",
+      "pdf_page": 145,
+      "printed_page": "143",
+      "title": "TABLE XIX. - AIRFOIL GEOMETRY ON CONICAL SURFACES - STATOR 2",
+      "dpi": 400,
+      "notes": "Second read done. Percent Flow printed 51.35 in column 8 where every other table has 51.85 (likely a print/typing slip); copied as printed."
+    },
+    {
+      "file": "TMX3076_fig2_flowpath.csv",
+      "report": "NASA TM X-3076",
+      "ntrs_id": "19740023305",
+      "pdf_page": 154,
+      "printed_page": "152",
+      "title": "Figure 2. - Flow path (dimension box)",
+      "dpi": 400,
+      "notes": "Identical to CR-120859 Fig. 10. Second read done."
+    },
+    {
+      "file": "TMX3076_appendixC_header_lines.csv",
+      "report": "NASA TM X-3076",
+      "ntrs_id": "19740023305",
+      "pdf_page": 142,
+      "printed_page": "140-143",
+      "title": "Header lines of Tables XVI-XIX (inlet/exit root and tip diameters, tilts, airfoil type, blade count)",
+      "dpi": 500,
+      "notes": "PDF pages 142-145 (rotated pages). Second read done (cell by cell) at 300/500 dpi. Corrections: Stator 2 inlet root diameter '18.?' -> '18.5?' (glyph '18.5?'; CR header 18.58?); Stator 2 exit root metric '.480?' -> '.480' (legible). Stator 1 exit tip printed '28.9?' and '.7?' (digits lost) and inlet tip '29.67' without 'Inches'; Stator 1 inlet root '1?.22' and exit root '16.85' faint (kept '?')."
+    }
+  ]
+}

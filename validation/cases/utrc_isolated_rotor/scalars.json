@@ -1,0 +1,139 @@
+{
+ "profile": {
+  "value": "NACA 65 Series contour, circular-arc camber",
+  "unit": "",
+  "quote": "Contour - NACA 65 Series; Chord (B) - 6 ins. (0.1524 m.); Camber - Circular Arc; No. of Airfoils - 28",
+  "report": "NASA CR-3701",
+  "pdf_page": 42
+ },
+ "blade_count": {
+  "value": 28,
+  "unit": "",
+  "quote": "No. of Airfoils - 28",
+  "report": "NASA CR-3701",
+  "pdf_page": 42
+ },
+ "chord": {
+  "value": 6,
+  "unit": "in. (0.1524 m), constant with span",
+  "quote": "The airfoil true chord was 6 in. (0.15 m) and was constant with span. This resulted in an airfoil aspect ratio of 1.0",
+  "report": "NASA CR-3701",
+  "pdf_page": 14
+ },
+ "axial_chord_midspan": {
+  "value": 5,
+  "unit": "in. (0.13 m)",
+  "quote": "Axial chord (Bx) at midspan was 5 in. (0.13 m).",
+  "report": "NASA CR-3701",
+  "pdf_page": 14
+ },
+ "tip_clearance": {
+  "value": {
+   "leading_edge_pct_span": 2.3,
+   "midchord_pct_span": 1.0,
+   "trailing_edge_pct_span": 3.3
+  },
+  "unit": "percent span",
+  "quote": "Rotor tip clearance varied from 2.3 percent span at the leading edge to 1.0 percent span at midchord to 3.3 percent span at the trailing edge (Fig. 2).",
+  "report": "NASA CR-3701",
+  "pdf_page": 14
+ },
+ "tip_clearance_fig2_labels": {
+  "value": {
+   "0.14 in.": "right (upstream, LE) end of the tip",
+   "0.06 in.": "middle",
+   "0.20 in.": "left (downstream, TE) end"
+  },
+  "unit": "in.",
+  "quote": "Figure 2 labels under 'ROTOR TIP CLEARANCE': 0.20 in., 0.06 in., 0.14 in. (flow from right to left)",
+  "report": "NASA CR-3701",
+  "pdf_page": 49
+ },
+ "hub_tip_radius": {
+  "value": {
+   "hub": 24,
+   "tip": 30
+  },
+  "unit": "in.",
+  "quote": "HUB RADIUS = 24 in. TIP RADIUS = 30 in.",
+  "report": "NASA CR-3701",
+  "pdf_page": 49
+ },
+ "hub_tip_ratio": {
+  "value": 0.8,
+  "unit": "",
+  "quote": "The rotor is 5 ft (1.52 m) in diameter and is shown with the 0.8 hub/tip ratio isolated compressor rotor installed in Fig. 1.",
+  "report": "NASA CR-3701",
+  "pdf_page": 14
+ },
+ "rotor_speed": {
+  "value": 510,
+  "unit": "rpm",
+  "quote": "For the present program the rotor shaft speed was 510 rpm.",
+  "report": "NASA CR-3701",
+  "pdf_page": 14
+ },
+ "flow_coefficient_range": {
+  "value": "0.65 to 0.95 (area-averaged Cx / Um); 78 to 114 ft/s",
+  "unit": "",
+  "quote": "The range of flow coefficient based on area averaged Cx (φ) was 0.65 to 0.95 which corresponds to an average axial flow velocity (Cx) range of 78 ft/s (24 m/s) to 114 ft/s (35 m/s).",
+  "report": "NASA CR-3701",
+  "pdf_page": 14
+ },
+ "reynolds_number": {
+  "value": "4.3e5 to 5.0e5 (chord, average inlet flow speed)",
+  "unit": "",
+  "quote": "a Reynolds number range (based on the average inlet flow speed) of 4.3 x 10^5 to 5.0 x 10^5",
+  "report": "NASA CR-3701",
+  "pdf_page": 14
+ },
+ "flowpath_fig2_stations": {
+  "value": {
+   "X=-4.0": "boundary-layer thickening screen / trace gas injector plane",
+   "STA. 0": 0.0,
+   "STA. 1": 9.0,
+   "hub_step_X": 11.0,
+   "STA. 2": 19.6,
+   "STA. 3": 29.3,
+   "STA. 2 definition": "(ΔX/Bx) = 0.3 traverse plane"
+  },
+  "unit": "in. (axial distance X, positive downstream)",
+  "quote": "STA. 3 X=29.3 in.; STA. 2 X=19.6 in.; STA. 1 X=9.0 in.; STA. 0 X=0.0 in.; X=-4.0 in.; X=11.0 in.; (ΔX/Bx)=0.3 TRAVERSE PLANE",
+  "report": "NASA CR-3701",
+  "pdf_page": 49
+ },
+ "station_2_definition": {
+  "value": "30 percent of axial chord aft of rotor TE at midspan",
+  "unit": "",
+  "quote": "The rotor exit traverse plane was located at Sta. 2 which was a distance 30 percent of the axial chord aft of the rotor trailing edge at midspan.",
+  "report": "NASA CR-3701",
+  "pdf_page": 14
+ },
+ "angle_convention": {
+  "value": "θ* airfoil metal angle measured from axial; yaw from axial direction positive in direction of rotation",
+  "unit": "deg",
+  "quote": "θ* Airfoil metal angle (measured from axial); Θ Yaw (from axial direction, positive in direction of rotation)",
+  "report": "NASA CR-3701",
+  "pdf_page": 10
+ },
+ "inlet_boundary_layers": {
+  "value": "thick hub and tip inlet boundary layers; profiles extending to approximately 37 percent of the rotor span from the hub and tip",
+  "unit": "",
+  "quote": "Boundary layer profiles which extended to approximately 37 percent of the rotor span from the [hub and tip ...] (sentence continues on next page)",
+  "report": "NASA CR-3701",
+  "pdf_page": 6
+ },
+ "stagger_per_section": {
+  "value": {
+   "0": "24.93",
+   "25": "31.2",
+   "50": "35.5",
+   "75": "38.5",
+   "100": "40.25"
+  },
+  "unit": "deg",
+  "quote": "SPAN: 0% STAGGER: 24.93°; SPAN: 25% STAGGER: 31.2°; SPAN: 50% STAGGER: 35.5°; SPAN: 75% STAGGER: 38.5°; SPAN: 100% STAGGER: 40.25°",
+  "report": "NASA CR-3701",
+  "pdf_page": 43
+ }
+}

@@ -1,0 +1,179 @@
+{
+  "blade_count": {
+    "value": 22,
+    "unit": "",
+    "quote": "The rotor has 22 blades and an aspect ratio of 1.56 (based on average span/root axial chord).",
+    "report": "NASA TP-2879",
+    "pdf_page": 6
+  },
+  "aspect_ratio": {
+    "value": 1.56,
+    "unit": "",
+    "quote": "an aspect ratio of 1.56 (based on average span/root axial chord).",
+    "report": "NASA TP-2879",
+    "pdf_page": 6
+  },
+  "solidity_hub_tip": {
+    "value": {
+      "hub": 3.11,
+      "tip": 1.29
+    },
+    "unit": "",
+    "quote": "The rotor solidity varies from 3.11 at the hub to 1.29 at the tip.",
+    "report": "NASA TP-2879",
+    "pdf_page": 6
+  },
+  "tip_diameters": {
+    "value": {
+      "inlet": 51.4,
+      "exit": 48.5
+    },
+    "unit": "cm",
+    "quote": "The inlet and exit tip diameters are 51.4 and 48.5 cm, respectively,",
+    "report": "NASA TP-2879",
+    "pdf_page": 6
+  },
+  "hub_tip_ratios": {
+    "value": {
+      "inlet": 0.375,
+      "exit": 0.478
+    },
+    "unit": "",
+    "quote": "the inlet and exit hub/tip radius ratios are 0.375 and 0.478, respectively.",
+    "report": "NASA TP-2879",
+    "pdf_page": 6
+  },
+  "hub_fillet_radius": {
+    "value": 1.78,
+    "unit": "mm",
+    "quote": "A fillet radius of 1.78 mm is used at the airfoil-hub juncture.",
+    "report": "NASA TP-2879",
+    "pdf_page": 6
+  },
+  "surface_finish_rms": {
+    "value": 0.8,
+    "unit": "micrometre",
+    "quote": "The square root of the mean square of the airfoil surface finish is 0.8 um or better, the airfoil surface tolerance is +-0.04 mm",
+    "report": "NASA TP-2879",
+    "pdf_page": 6
+  },
+  "running_tip_clearance": {
+    "value": 1.0,
+    "unit": "mm",
+    "quote": "the running tip clearance is approximately 1.0 mm.",
+    "report": "NASA TP-2879",
+    "pdf_page": 6
+  },
+  "design_pressure_ratio": {
+    "value": 1.63,
+    "unit": "",
+    "quote": "The rotor design pressure ratio is 1.63 at a mass flow of 33.25 kg/sec.",
+    "report": "NASA TP-2879",
+    "pdf_page": 6
+  },
+  "design_mass_flow": {
+    "value": 33.25,
+    "unit": "kg/s",
+    "quote": "The rotor design pressure ratio is 1.63 at a mass flow of 33.25 kg/sec.",
+    "report": "NASA TP-2879",
+    "pdf_page": 6
+  },
+  "design_speed": {
+    "value": 16043,
+    "unit": "rpm",
+    "quote": "The design rotational speed is 16 043 rpm, which yields a tip speed of 429 m/sec and an inlet tip relative Mach number of 1.38.",
+    "report": "NASA TP-2879",
+    "pdf_page": 6
+  },
+  "design_tip_speed": {
+    "value": 429,
+    "unit": "m/s",
+    "quote": "which yields a tip speed of 429 m/sec",
+    "report": "NASA TP-2879",
+    "pdf_page": 6
+  },
+  "design_inlet_tip_relative_mach": {
+    "value": 1.38,
+    "unit": "",
+    "quote": "an inlet tip relative Mach number of 1.38.",
+    "report": "NASA TP-2879",
+    "pdf_page": 6
+  },
+  "configuration": {
+    "value": "rotor only; stator removed; no IGV; first-stage rotor of the TP-1493 two-stage fan",
+    "unit": "",
+    "quote": "p6: 'It is an undampered low-aspect-ratio design rotor and is the first-stage rotor of a two-stage fan.' p5: 'The fan was designed for axial inflow and did not require an inlet guide vane. The fan was also operated without a stator.'",
+    "report": "NASA TP-2879",
+    "pdf_page": 5
+  },
+  "span_convention": {
+    "value": "spanwise locations measured from the tip",
+    "unit": "",
+    "quote": "(All spanwise locations discussed in this report are measured from the tip.)",
+    "report": "NASA TP-2879",
+    "pdf_page": 6
+  },
+  "blade_geometry_table_I": {
+    "value": "Table I, PDF p22-36: blade surface coordinates on surfaces of revolution at design speed (hot shape), 14 sections x 35 points plus LE/TE circles; NOT transcribed",
+    "unit": "",
+    "quote": "Blade coordinates at the design speed operating condition are given in table I for surfaces of revolution for 14 blade sections. ... The blade surface coordinates are given at 35 points for each blade section.",
+    "report": "NASA TP-2879",
+    "pdf_page": 6
+  },
+  "z_origin": {
+    "value": "Z = 0 at intersection of blade leading edge with hub (flowpath and blade geometry)",
+    "unit": "cm",
+    "quote": "The origin of all blade geometry Z-coordinates is the intersection of the blade leading edge with the hub.",
+    "report": "NASA TP-2879",
+    "pdf_page": 6
+  },
+  "blade_section_14": {
+    "value": "section 14 lies outside the physical blade tip; actual tip = section 14 minus 1.0 mm normal to shroud",
+    "unit": "mm",
+    "quote": "Blade section 14 lies outside the physical blade tip. The R,Z-location of the actual tip of the blade under design speed operating conditions can be obtained by subtracting 1.0 mm from blade section 14 in a direction which is normal to the annulus shroud contour.",
+    "report": "NASA TP-2879",
+    "pdf_page": 7
+  },
+  "hot_shape_restagger": {
+    "value": "NASTRAN-derived hot geometry corrected by 1.4 deg restagger toward closed at planar section 25.4 cm along stacking axis from centerline, faired to 0 deg at 20.32 cm",
+    "unit": "deg",
+    "quote": "This correction amounts to a 1.4 deg restagger toward the closed position at the planar manufacturing section located 25.4 cm along the stacking axis from the rotor centerline. This correction is faired to 0 deg at the planar manufacturing section located 20.32 cm along the stacking axis from the rotor centerline,",
+    "report": "NASA TP-2879",
+    "pdf_page": 7
+  },
+  "AP_to_Z_conversion": {
+    "value": "AP = Z_blade - 2.159 cm",
+    "unit": "cm",
+    "quote": "AP_laser and aerodata = Z_blade - 2.159 cm",
+    "report": "NASA TP-2879",
+    "pdf_page": 11
+  },
+  "survey_station_1_AP": {
+    "value": -4.632,
+    "unit": "cm",
+    "quote": "Figure 5 label: AP = -4.632 CM (AERO STATION 1)",
+    "report": "NASA TP-2879",
+    "pdf_page": 53
+  },
+  "survey_station_2_AP": {
+    "value": 8.852,
+    "unit": "cm",
+    "quote": "Figure 5 label: 8.852 CM (AERO STATION 2)",
+    "report": "NASA TP-2879",
+    "pdf_page": 53
+  },
+  "rotor_hub_LE_AP": {
+    "value": -2.159,
+    "unit": "cm",
+    "quote": "Figure 5 label: -2.159 CM",
+    "report": "NASA TP-2879",
+    "pdf_page": 53
+  },
+  "survey_radial_points": {
+    "value": 9,
+    "unit": "",
+    "quote": "At stations 1 and 2 measurements were acquired at nine radial locations across the annulus. Additional measurements were made in the endwall regions at station 1",
+    "report": "NASA TP-2879",
+    "pdf_page": 7
+  }
+}

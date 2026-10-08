@@ -1,0 +1,198 @@
+{
+ "rotor_blade_count": {
+  "value": 44,
+  "unit": "",
+  "quote": "This resulted in 44 rotor blades with an aspect ratio of 2. 6 and 48 stator blades with an aspect ratio of 2. 3.",
+  "report": "NASA TM X-2904",
+  "pdf_page": 5
+ },
+ "stator_blade_count": {
+  "value": 48,
+  "unit": "",
+  "quote": "This resulted in 44 rotor blades with an aspect ratio of 2. 6 and 48 stator blades with an aspect ratio of 2. 3.",
+  "report": "NASA TM X-2904",
+  "pdf_page": 5
+ },
+ "rotor_aspect_ratio": {
+  "value": 2.6,
+  "unit": "",
+  "quote": "44 rotor blades with an aspect ratio of 2. 6",
+  "report": "NASA TM X-2904",
+  "pdf_page": 5
+ },
+ "stator_aspect_ratio": {
+  "value": 2.3,
+  "unit": "",
+  "quote": "48 stator blades with an aspect ratio of 2. 3",
+  "report": "NASA TM X-2904",
+  "pdf_page": 5
+ },
+ "tip_solidity_design": {
+  "value": 1.3,
+  "unit": "",
+  "quote": "The stage was designed for a tip solidity of 1. 3 for both rotor and stator.",
+  "report": "NASA TM X-2904",
+  "pdf_page": 5
+ },
+ "profile_type": {
+  "value": "multiple-circular-arc (rotor and stator)",
+  "unit": "",
+  "quote": "Both the rotor and stator used multiple-circular-arc blade shapes.",
+  "report": "NASA TM X-2904",
+  "pdf_page": 5
+ },
+ "design_stage_pressure_ratio": {
+  "value": 1.57,
+  "unit": "",
+  "quote": "This stage was designed for an overall pressure ratio of 1. 57 at a weight flow of 26. 5 kilograms per second (178. 2 (kg/sec)/m2 of annulus area).",
+  "report": "NASA TM X-2904",
+  "pdf_page": 5
+ },
+ "design_weight_flow": {
+  "value": 26.5,
+  "unit": "kg/sec",
+  "quote": "at a weight flow of 26. 5 kilograms per second (178. 2 (kg/sec)/m2 of annulus area)",
+  "report": "NASA TM X-2904",
+  "pdf_page": 5
+ },
+ "design_tip_speed": {
+  "value": 425,
+  "unit": "m/sec",
+  "quote": "The design tip speed was 425 meters per second.",
+  "report": "NASA TM X-2904",
+  "pdf_page": 5
+ },
+ "rotor_design_pressure_ratio_radial": {
+  "value": 1.6,
+  "unit": "",
+  "quote": "This rotor was designed for a radially constant total pressure ratio of 1. 6.",
+  "report": "NASA TM X-2904",
+  "pdf_page": 5
+ },
+ "rotor_damper_location": {
+  "value": 50,
+  "unit": "percent span from outlet rotor tip",
+  "quote": "Each rotor blade has a vibration damper located at about 50 percent span from the outlet rotor tip.",
+  "report": "NASA TM X-2904",
+  "pdf_page": 5
+ },
+ "rotor_damper_max_thickness": {
+  "value": 0.215,
+  "unit": "cm",
+  "quote": "The maximum thickness of the damper was 0. 215 centimeter.",
+  "report": "NASA TM X-2904",
+  "pdf_page": 5
+ },
+ "rotor_tip_clearance_cold": {
+  "value": 0.05,
+  "unit": "cm",
+  "quote": "The radial tip clearance of the rotor was a nominal 0. 050 centimeter at ambient nonrotating conditions.",
+  "report": "NASA TM X-2904",
+  "pdf_page": 5
+ },
+ "rotor_hub_TE_to_stator_hub_LE_axial_spacing": {
+  "value": 3.148,
+  "unit": "cm",
+  "quote": "The axial spacing between the rotor hub trailing edge and the stator hub leading edge was 3. 148 centimeters (0. 7 rotor tip chord).",
+  "report": "NASA TM X-2904",
+  "pdf_page": 5
+ },
+ "station3_traverse": {
+  "value": 7.5,
+  "unit": "deg",
+  "quote": "The combination probe downstream of the stator (station 3) traversed circumferentially one stator blade passage (7. 5 deg) counterclockwise from the nominal value shown.",
+  "report": "NASA TM X-2904",
+  "pdf_page": 6
+ },
+ "survey_locations": {
+  "value": "upstream of rotor, between rotor and stator, downstream of stator",
+  "unit": "",
+  "quote": "Radial surveys of the flow were made upstream of the rotor, between the rotor and stator, and downstream of the stator (fig. 1).",
+  "report": "NASA TM X-2904",
+  "pdf_page": 6
+ },
+ "survey_radial_positions": {
+  "value": 11,
+  "unit": "",
+  "quote": "Blade-element data were obtained at 11 radial positions.",
+  "report": "NASA TM X-2904",
+  "pdf_page": 4
+ },
+ "station_1_axial_position": {
+  "value": -2.54,
+  "unit": "cm",
+  "quote": "Fig. 1 flow path coordinates: a-2. 540 (a Measuring station)",
+  "report": "NASA TM X-2904",
+  "pdf_page": 65
+ },
+ "station_2_axial_position": {
+  "value": 5.08,
+  "unit": "cm",
+  "quote": "Fig. 1 flow path coordinates: a5. 080",
+  "report": "NASA TM X-2904",
+  "pdf_page": 65
+ },
+ "station_3_axial_position": {
+  "value": 12.7,
+  "unit": "cm",
+  "quote": "Fig. 1 flow path coordinates: a12. 700",
+  "report": "NASA TM X-2904",
+  "pdf_page": 65
+ },
+ "axial_reference": {
+  "value": "rotor blade hub leading edge",
+  "unit": "",
+  "quote": "Figure 1 axis: Axial distance from rotor blade hub leading edge, Z, cm",
+  "report": "NASA TM X-2904",
+  "pdf_page": 65
+ },
+ "series_note": {
+  "value": "member of a series of stages with the same meridional flow path and pressure ratio 1.57",
+  "unit": "",
+  "quote": "a pressure ratio of 1. 57, and all had the same meridional flow path geometry.",
+  "report": "NASA TM X-2904",
+  "pdf_page": 4
+ },
+ "blade_section_surfaces": {
+  "value": "conical sections stacked on a line through their centres of gravity",
+  "unit": "",
+  "quote": "elements are then stacked on a line passing through their centers of gravity, and Cartesian blade coordinates, which are used directly in fabrication, are computed.",
+  "report": "NASA TM X-2904",
+  "pdf_page": 5
+ },
+ "annulus_area_rotor_LE": {
+  "value": 0.149,
+  "unit": "m2",
+  "quote": "Aan annulus area at rotor leading edge, 0. 149 m2",
+  "report": "NASA TM X-2904",
+  "pdf_page": 13
+ },
+ "frontal_area_rotor_LE": {
+  "value": 0.199,
+  "unit": "m2",
+  "quote": "Af frontal area at rotor leading edge, 0. 199 m2",
+  "report": "NASA TM X-2904",
+  "pdf_page": 13
+ },
+ "z_columns_definition": {
+  "value": "ZIC/ZMC/ZTC/ZOC axial distance from inlet (appendix C)",
+  "unit": "cm",
+  "quote": "ZIC axial distance to blade leading edge from inlet, cm",
+  "report": "NASA TM X-2904",
+  "pdf_page": 19
+ },
+ "percent_span_definition": {
+  "value": "percent of blade span from tip at rotor outlet",
+  "unit": "",
+  "quote": "PERCENT SPAN percent of blade span from tip at rotor outlet",
+  "report": "NASA TM X-2904",
+  "pdf_page": 18
+ },
+ "blade_angle_definition": {
+  "value": "KIC/KTC/KOC measured from the meridional plane",
+  "unit": "deg",
+  "quote": "angle between blade mean camber line and meridional plane, deg",
+  "report": "NASA TM X-2904",
+  "pdf_page": 14
+ }
+}

@@ -1,0 +1,28 @@
+[
+  {
+    "citation": "Strazisar, A. J.; Wood, J. R.; Hathaway, M. D.; Suder, K. L.: Laser Anemometer Measurements in a Transonic Axial-Flow Fan Rotor. NASA TP-2879, Lewis Research Center, 1989. NTRS 19900001929.",
+    "report": "NASA TP-2879",
+    "ntrs_id": "19900001929",
+    "pdf_file": "TP2879_R67_LDV.pdf"
+  },
+  {
+    "file": "TP2879_tableII_flowpath.csv",
+    "report": "NASA TP-2879",
+    "ntrs_id": "19900001929",
+    "pdf_page": 37,
+    "printed_page": "33",
+    "title": "TABLE II.--INNER AND OUTER FLOWPATH COORDINATES",
+    "dpi": 200,
+    "notes": "Printed in two side-by-side column sets (K 1-40, K 41-80), merged into one list. No units printed in the table; Z and R are in cm per the report (Z origin at blade LE/hub intersection, p7). Second read done. Check: Z spacing constant 0.67721-0.67727 for all 79 steps; K = 1..80 complete."
+  },
+  {
+    "file": "TP2879_tableIV_geometric_parameters.csv",
+    "report": "NASA TP-2879",
+    "ntrs_id": "19900001929",
+    "pdf_page": 40,
+    "printed_page": "36",
+    "title": "TABLE IV.--GEOMETRIC PARAMETERS USED IN PERFORMANCE CALCULATIONS",
+    "dpi": 200,
+    "notes": "Bracketed headnote: 'Areas used cover only a portion of the span. Approximately 1.5-percent blockage at the hub and 1.26-percent blockage at the tip were assumed to account for aerodynamic blockage of endwall layers. At station 1 only values of measured conditions from tables III(a) and (b) corresponding to radii herein should be used.' Minus signs printed as long dashes; transcribed as '-'. Second read done."
+  }
+]

@@ -1,0 +1,23 @@
+PARAMETER,"AMAC STAGES 6, 7, & 8",Compressor 3S1,Compressor 3S2
+,,,
+Inlet Corrected Flow; kg/sec (lbm/sec),3.90 (8.63),4.30 (9.47),4.30 (9.47)
+"Corrected Mean Wheel Speed, 50% Span; m/sec (ft/sec)",265 (869),167 (547),167 (547)
+Overall Pressure Ratio,2.09,1.357,1.324
+Overall Adiabatic Efficiency %,-,88.3,88.7
+"Aspect Ratio, Avg.",0.81,0.81,1.22
+"Solidity, Avg.",1.09,1.10,1.10
+Inlet Hub-Tip Ratio,0.88,0.915,0.915
+Exit Hub-Tip Ratio,0.92,0.915,0.915
+"Work Coefficient -E-, Avg.",0.71,0.702,0.644
+"Flow Coefficient - Vz/U, Avg. (50% Span)",0.46,0.440,0.444
+"D Factor, Avg.*",0.536,0.529,0.491
+"Delta P/(Po - P), Avg.",0.489,0.497,0.467
+"Tip Clearance, Avg.; cm (in.)",0.025 (0.010?),0.033 (0.013),0.033 (0.013)
+Reaction,,0.517,0.517
+Aspect Ratio - Inlet Guide Vane,-,1.03,1.55
+Aspect Ratio - Rotor-1,-,0.96,1.44
+Aspect Ratio - Stator-1,-,0.89,1.34
+Aspect Ratio - Rotor-2,-,0.83,1.25
+Aspect Ratio - Stator-2,-,0.77,1.16
+Aspect Ratio - Rotor-3,-,0.72,1.08
+Aspect Ratio - Stator-3,-,0.69,1.03

@@ -1,0 +1,235 @@
+[
+ {
+  "citation": "Steinke, R. J.: Design of 9.271-Pressure-Ratio Five-Stage Core Compressor and Overall Performance for First Three Stages. NASA TP-2597, May 1986. NTRS 19870008266. PDF page index = printed page + 2."
+ },
+ {
+  "file": "TP2597_fig1_flowpath_5stage.csv",
+  "report": "NASA TP-2597",
+  "ntrs_id": "19870008266",
+  "pdf_page": 4,
+  "printed_page": "2",
+  "title": "Figure 1.—Flowpath for compressor 74A.",
+  "dpi": 200,
+  "notes": "Coordinate box printed inside Figure 1 (tip column 36 rows, hub column 22 rows; cells below the hub column left blank). Printed headings carry ', cm', moved to the units row. Second read done."
+ },
+ {
+  "file": "TP2597_fig2_flowpath_3stage.csv",
+  "report": "NASA TP-2597",
+  "ntrs_id": "19870008266",
+  "pdf_page": 5,
+  "printed_page": "3",
+  "title": "Figure 2.—Flowpath for inlet stage group of compressor 74A.",
+  "dpi": 200,
+  "notes": "Coordinate box printed inside Figure 2 (3-stage test build; annulus altered downstream of stator 3). Second read done."
+ },
+ {
+  "file": "TP2597_tableI_blade_row_parameters.csv",
+  "report": "NASA TP-2597",
+  "ntrs_id": "19870008266",
+  "pdf_page": 19,
+  "printed_page": "17",
+  "title": "TABLE I.—BLADE ROW PARAMETERS",
+  "dpi": 200,
+  "notes": "All 11 rows (IGV + 5 stages). Second read done."
+ },
+ {
+  "file": "TP2597_tableII_overall.csv",
+  "report": "NASA TP-2597",
+  "ntrs_id": "19870008266",
+  "pdf_page": 19,
+  "printed_page": "17",
+  "title": "TABLE II.—DESIGN OVERALL PERFORMANCE PARAMETERS FOR CORE COMPRESSOR 74A",
+  "dpi": 200,
+  "notes": "No units printed for the mass-flow rows. '16 042.3' kept with the printed space thousands separator. Second read done."
+ },
+ {
+  "file": "TP2597_tableIII_stage_parameters.csv",
+  "report": "NASA TP-2597",
+  "ntrs_id": "19870008266",
+  "pdf_page": 19,
+  "printed_page": "17",
+  "title": "TABLE III.—DESIGN OVERALL STAGE PERFORMANCE PARAMETERS",
+  "dpi": 200,
+  "notes": "The two spanning sub-headings ('Compressor inlet equivalent values', 'Stage inlet equivalent values') are kept as label-only rows. Second read done."
+ },
+ {
+  "file": "TP2597_tableIV_igv.csv",
+  "report": "NASA TP-2597",
+  "ntrs_id": "19870008266",
+  "pdf_page": 20,
+  "printed_page": "18",
+  "title": "TABLE IV.—DESIGN-BLADE ELEMENT PARAMETERS (a) Inlet guide wave",
+  "dpi": 200,
+  "notes": "Four stacked printed blocks merged by RP; headings '<group> <sub>' as printed. No units printed in the table (see notes.md / Appendix C). Second read done (cell by cell against 1.35x full-block crops; doubtful cells zoomed 5-8x)."
+ },
+ {
+  "file": "TP2597_tableV_igv.csv",
+  "report": "NASA TP-2597",
+  "ntrs_id": "19870008266",
+  "pdf_page": 27,
+  "printed_page": "25",
+  "title": "TABLE V.—BLADE GEOMETRY (a) Inlet guide vane",
+  "dpi": 200,
+  "notes": "Three stacked printed blocks merged by RP. No units printed in the table (see notes.md / Appendix C). Second read done."
+ },
+ {
+  "file": "TP2597_tableIV_rotor1.csv",
+  "report": "NASA TP-2597",
+  "ntrs_id": "19870008266",
+  "pdf_page": 21,
+  "printed_page": "19",
+  "title": "TABLE IV.—Continued. (b) Rotor 1",
+  "dpi": 200,
+  "notes": "Four stacked printed blocks merged by RP; headings '<group> <sub>' as printed. No units printed in the table (see notes.md / Appendix C). Second read done (cell by cell against 1.35x full-block crops; doubtful cells zoomed 5-8x)."
+ },
+ {
+  "file": "TP2597_tableV_rotor1.csv",
+  "report": "NASA TP-2597",
+  "ntrs_id": "19870008266",
+  "pdf_page": 28,
+  "printed_page": "26",
+  "title": "TABLE V.—Continued. (b) Rotor 1",
+  "dpi": 200,
+  "notes": "Three stacked printed blocks merged by RP. No units printed in the table (see notes.md / Appendix C). Second read done."
+ },
+ {
+  "file": "TP2597_tableIV_stator1.csv",
+  "report": "NASA TP-2597",
+  "ntrs_id": "19870008266",
+  "pdf_page": 22,
+  "printed_page": "20",
+  "title": "TABLE IV.—Continued. (c) Stator 1",
+  "dpi": 200,
+  "notes": "Four stacked printed blocks merged by RP; headings '<group> <sub>' as printed. No units printed in the table (see notes.md / Appendix C). Second read done (cell by cell against 1.35x full-block crops; doubtful cells zoomed 5-8x)."
+ },
+ {
+  "file": "TP2597_tableV_stator1.csv",
+  "report": "NASA TP-2597",
+  "ntrs_id": "19870008266",
+  "pdf_page": 29,
+  "printed_page": "27",
+  "title": "TABLE V.—Continued. (c) Stator 1",
+  "dpi": 200,
+  "notes": "Three stacked printed blocks merged by RP. No units printed in the table (see notes.md / Appendix C). Second read done."
+ },
+ {
+  "file": "TP2597_tableIV_rotor2.csv",
+  "report": "NASA TP-2597",
+  "ntrs_id": "19870008266",
+  "pdf_page": 23,
+  "printed_page": "21",
+  "title": "TABLE IV.—Continued. (d) Rotor 2",
+  "dpi": 200,
+  "notes": "Four stacked printed blocks merged by RP; headings '<group> <sub>' as printed. No units printed in the table (see notes.md / Appendix C). Second read done (cell by cell against 1.35x full-block crops; doubtful cells zoomed 5-8x)."
+ },
+ {
+  "file": "TP2597_tableV_rotor2.csv",
+  "report": "NASA TP-2597",
+  "ntrs_id": "19870008266",
+  "pdf_page": 30,
+  "printed_page": "28",
+  "title": "TABLE V.—Continued. (d) Rotor 2",
+  "dpi": 200,
+  "notes": "Three stacked printed blocks merged by RP. No units printed in the table (see notes.md / Appendix C). Second read done."
+ },
+ {
+  "file": "TP2597_tableIV_stator2.csv",
+  "report": "NASA TP-2597",
+  "ntrs_id": "19870008266",
+  "pdf_page": 24,
+  "printed_page": "22",
+  "title": "TABLE IV.—Continued. (e) Stator 2",
+  "dpi": 200,
+  "notes": "Four stacked printed blocks merged by RP; headings '<group> <sub>' as printed. No units printed in the table (see notes.md / Appendix C). Second read done (cell by cell against 1.35x full-block crops; doubtful cells zoomed 5-8x)."
+ },
+ {
+  "file": "TP2597_tableV_stator2.csv",
+  "report": "NASA TP-2597",
+  "ntrs_id": "19870008266",
+  "pdf_page": 31,
+  "printed_page": "29",
+  "title": "TABLE V.—Continued. (e) Stator 2",
+  "dpi": 200,
+  "notes": "Three stacked printed blocks merged by RP. No units printed in the table (see notes.md / Appendix C). Second read done."
+ },
+ {
+  "file": "TP2597_tableIV_rotor3.csv",
+  "report": "NASA TP-2597",
+  "ntrs_id": "19870008266",
+  "pdf_page": 25,
+  "printed_page": "23",
+  "title": "TABLE IV.—Continued. (f) Rotor 3",
+  "dpi": 200,
+  "notes": "Four stacked printed blocks merged by RP; headings '<group> <sub>' as printed. No units printed in the table (see notes.md / Appendix C). Second read done (cell by cell against 1.35x full-block crops; doubtful cells zoomed 5-8x)."
+ },
+ {
+  "file": "TP2597_tableV_rotor3.csv",
+  "report": "NASA TP-2597",
+  "ntrs_id": "19870008266",
+  "pdf_page": 32,
+  "printed_page": "30",
+  "title": "TABLE V.—Continued. (f) Rotor 3",
+  "dpi": 200,
+  "notes": "Three stacked printed blocks merged by RP. No units printed in the table (see notes.md / Appendix C). Second read done."
+ },
+ {
+  "file": "TP2597_tableIV_stator3.csv",
+  "report": "NASA TP-2597",
+  "ntrs_id": "19870008266",
+  "pdf_page": 26,
+  "printed_page": "24",
+  "title": "TABLE IV.—Concluded. (g) Stator 3",
+  "dpi": 200,
+  "notes": "Four stacked printed blocks merged by RP; headings '<group> <sub>' as printed. No units printed in the table (see notes.md / Appendix C). Second read done (cell by cell against 1.35x full-block crops; doubtful cells zoomed 5-8x)."
+ },
+ {
+  "file": "TP2597_tableV_stator3.csv",
+  "report": "NASA TP-2597",
+  "ntrs_id": "19870008266",
+  "pdf_page": 33,
+  "printed_page": "31",
+  "title": "TABLE V.—Concluded. (g) Stator 3",
+  "dpi": 200,
+  "notes": "Three stacked printed blocks merged by RP. No units printed in the table (see notes.md / Appendix C). Second read done."
+ },
+ {
+  "file": "TP2597_tableVI_mechanical.csv",
+  "report": "NASA TP-2597",
+  "ntrs_id": "19870008266",
+  "pdf_page": 34,
+  "printed_page": "32",
+  "title": "TABLE VI.—MECHANICAL DESIGN PARAMETERS",
+  "dpi": 200,
+  "notes": "Rotors 1-3 and stators 1-3 only. Second read done."
+ },
+ {
+  "file": "TP2597_fig18_design_settings.csv",
+  "report": "NASA TP-2597",
+  "ntrs_id": "19870008266",
+  "pdf_page": 12,
+  "printed_page": "10",
+  "title": "Figure 18.—Performance of first three stages of compressor 74A at design IGV-stator setting angles.",
+  "dpi": 200,
+  "notes": "Inset box 'Design settings' in Figure 18. Second read done."
+ },
+ {
+  "file": "TP2597_fig21_reset_schedule.csv",
+  "report": "NASA TP-2597",
+  "ntrs_id": "19870008266",
+  "pdf_page": 13,
+  "printed_page": "11",
+  "title": "Figure 21.—Performance of first three stages of compressor 74A at optimized IGV-stator setting angles for maximum efficiency at design speed.",
+  "dpi": 200,
+  "notes": "Inset box 'Reset schedule for all speeds'. Units not printed in the box (text p11: degrees). Sign convention: Figure 20. Second read done."
+ },
+ {
+  "file": "TP2597_fig22_reset_schedule.csv",
+  "report": "NASA TP-2597",
+  "ntrs_id": "19870008266",
+  "pdf_page": 13,
+  "printed_page": "11",
+  "title": "Figure 22.—Performance of first three stages of compressor 74A at optimized IGV-stator setting angles for maximum efficiency at each speed shown.",
+  "dpi": 200,
+  "notes": "Inset box 'Reset Schedule' by speed (percent of design). Values copied with the printed internal space ('+ 8'). Second read done."
+ }
+]

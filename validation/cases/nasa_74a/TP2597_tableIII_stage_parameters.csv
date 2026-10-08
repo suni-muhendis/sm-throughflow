@@ -1,0 +1,25 @@
+Parameter,Inlet guide vane,Stage 1,Stage 2,Stage 3,Stage 4,Stage 5
+,,,,,,
+Rotor total pressure ratio,0.980,1.792,1.691,1.613,1.506,1.416
+Stage total pressure ratio,0.980,1.743,1.654,1.581,1.483,1.399
+Rotor total temperature ratio,1.000,1.209,1.181,1.159,1.133,1.110
+Stage total temperature ratio,1.000,1.209,1.181,1.159,1.133,1.110
+Rotor adiabatic efficiency,0,0.867,0.890,0.903,0.909,0.911
+Stage adiabatic efficiency,0,0.823,0.849,0.863,0.873,0.877
+Rotor polytropic efficiency,0,0.877,0.897,0.909,0.914,0.915
+Stage polytropic efficiency,0,0.836,0.859,0.872,0.880,0.883
+Rotor head rise coefficient,0,0.283,0.327,0.366,0.376,0.368
+Stage head rise coefficient,0,0.269,0.312,0.350,0.361,0.355
+Flow coefficient,0,0.464,0.477,0.484,0.500,0.512
+Compressor inlet equivalent values,,,,,,
+Mass flow per unit frontal area,143.896,144.153,154.041,161.706,168.937,173.677
+Mass flow per unit annulus area,172.954,189.310,276.435,385.163,528.411,691.489
+Mass flow,29.710,29.710,29.710,29.710,29.710,29.710
+"Rotative speed, rpm",16 042.300,16 042.300,16 042.300,16 042.300,16 042.300,16 042.300
+Tip speed,430.675,430.291,416.252,406.267,397.477,392.015
+Stage inlet equivalent values,,,,,,
+Mass flow per unit frontal area,143.896,147.095,99.144,68.381,48.640,35.876
+Mass flow per unit annulus area,172.954,193.173,177.919,162.876,152.140,142.838
+Mass flow,29.710,30.317,19.122,12.564,8.554,6.137
+"Rotative speed, rpm",16 042.300,16 042.300,14 590.673,13 427.144,12 469.871,11 716.563
+Tip speed,430.675,430.291,378.586,340.039,308.963,286.310

@@ -1,0 +1,115 @@
+[
+  {
+    "citation": "Cunnan, W. S.; Stevans, W.; Urasek, D. C.: Design and Performance of a 427-Meter-per-Second-Tip-Speed Two-Stage Fan Having a 2.40 Pressure Ratio. NASA TP-1314, 1978. NTRS 19780025166."
+  },
+  {
+    "file": "TP1314_tableI_overall.csv",
+    "report": "NASA TP-1314",
+    "ntrs_id": "19780025166",
+    "pdf_page": 24,
+    "printed_page": "20",
+    "title": "TABLE I. - DESIGN OVERALL PARAMETERS; (a) Two-stage fan; (b) Stage one; (c) Stage two",
+    "dpi": 200,
+    "notes": "All three parts on one page. Units per Appendix C: WT FLOW kg/sec, RPM rpm, TIP SPEED m/sec; units of WT FLOW PER UNIT FRONTAL/ANNULUS AREA not stated. Second read done; no uncertain cells."
+  },
+  {
+    "file": "TP1314_tableII_rotor1.csv",
+    "report": "NASA TP-1314",
+    "ntrs_id": "19780025166",
+    "pdf_page": 25,
+    "printed_page": "21",
+    "title": "TABLE II. - DESIGN BLADE-ELEMENT PARAMETERS (a) Rotor one",
+    "dpi": 200,
+    "notes": "Four printed blocks merged; row labels identical in all blocks. Plausibility checks (V^2=Vm^2+Vt^2, W, BETAM from velocities, Mach ratios, MERID VEL R, U/r, RADII vs Table III(a)) all consistent. One '?' cell: RP 11 RADII OUT 12.173 (digit dropout in print; Table III(a) RO prints 12.173 clearly). Second read done."
+  },
+  {
+    "file": "TP1314_tableII_stator1.csv",
+    "report": "NASA TP-1314",
+    "ntrs_id": "19780025166",
+    "pdf_page": 26,
+    "printed_page": "22",
+    "title": "TABLE II. - Continued. DESIGN BLADE-ELEMENT PARAMETERS (b) Stator one",
+    "dpi": 200,
+    "notes": "Four blocks merged; labels identical. REL BETAM IN/OUT equal ABS BETAM IN/OUT as printed (stator, wheel speed .0). Checks consistent. '?' cells: RP 1 RADII OUT 23.761 (last digit faint; Table III(b) RO prints 23.761), TIP LOSS COEFF PROF .094 (middle digit damaged; reads equal to LOSS COEFF TOT .094 as in every other stator row). Second read done."
+  },
+  {
+    "file": "TP1314_tableII_rotor2.csv",
+    "report": "NASA TP-1314",
+    "ntrs_id": "19780025166",
+    "pdf_page": 27,
+    "printed_page": "23",
+    "title": "TABLE II. - Continued. DESIGN BLADE-ELEMENT PARAMETERS (c) Rotor two",
+    "dpi": 200,
+    "notes": "Four blocks merged; labels identical. Checks consistent. '?' cells: RP 6 WHEEL SPEED OUT 329.9 (middle digit faint; U/r check gives 329.9), RP 10 WHEEL SPEED IN 244.2 (leading digits damaged; U/r check gives 244.2). HUB LOSS PARAM .020/.020 confirmed on the native 300-dpi scan. Second read done."
+  },
+  {
+    "file": "TP1314_tableII_stator2.csv",
+    "report": "NASA TP-1314",
+    "ntrs_id": "19780025166",
+    "pdf_page": 28,
+    "printed_page": "24",
+    "title": "TABLE II. - Concluded. DESIGN BLADE-ELEMENT PARAMETERS (d) Stator two",
+    "dpi": 200,
+    "notes": "Four blocks merged; labels identical. Checks consistent. '?' cells in block 2 (damaged print): TIP MERID VEL IN 168.8, RP 1 ABS VEL OUT 170.3, RP 2 REL VEL OUT 170.3, RP 3 MERID VEL IN 174.5; each agrees with the velocity/angle check and the duplicate column printed alongside. Second read done."
+  },
+  {
+    "file": "TP1314_tableIII_rotor1.csv",
+    "report": "NASA TP-1314",
+    "ntrs_id": "19780025166",
+    "pdf_page": 29,
+    "printed_page": "25",
+    "title": "TABLE III. - BLADE GEOMETRY (a) Rotor one",
+    "dpi": 200,
+    "notes": "Three blocks merged; labels identical. Checks: KIC-KOC=TOTAL CAMBER, RI/RO equal Table II RADII IN/OUT, incidence and deviation vs Table II within 0.1 deg (0.3 at HUB). '?' cells: RP 1 KOC 58.37 (second digit 3/8 ambiguous even on native scan; camber 64.50-58.37=6.13 and Table II deviation favour 58.37), RP 3 TOTAL CAMBER 5.99 (middle digits damaged; KIC-KOC=5.99). Second read done."
+  },
+  {
+    "file": "TP1314_tableIII_stator1.csv",
+    "report": "NASA TP-1314",
+    "ntrs_id": "19780025166",
+    "pdf_page": 30,
+    "printed_page": "26",
+    "title": "TABLE III. - Continued. BLADE GEOMETRY (b) Stator one",
+    "dpi": 200,
+    "notes": "Three blocks merged; labels identical. Checks consistent. No '?' cells. Second read done."
+  },
+  {
+    "file": "TP1314_tableIII_rotor2.csv",
+    "report": "NASA TP-1314",
+    "ntrs_id": "19780025166",
+    "pdf_page": 31,
+    "printed_page": "27",
+    "title": "TABLE III. - Continued. BLADE GEOMETRY (c) Rotor two",
+    "dpi": 200,
+    "notes": "Three blocks merged; labels identical. '?' cells: RP 1 KTC 57.70 (printed '57 70' with damaged digit and decimal point), RP 9 RI 15.652 and RP 10 RI 14.537 (last digit damaged; both equal Table II(c) RADII IN). Second read done."
+  },
+  {
+    "file": "TP1314_tableIII_stator2.csv",
+    "report": "NASA TP-1314",
+    "ntrs_id": "19780025166",
+    "pdf_page": 32,
+    "printed_page": "28",
+    "title": "TABLE III. - Concluded. BLADE GEOMETRY (d) Stator two",
+    "dpi": 200,
+    "notes": "Three blocks merged; labels identical. RP 5 RO first digit slightly damaged, read 20.400 (equals Table II(d) RADII OUT). Checks consistent. No '?' cells. Second read done."
+  },
+  {
+    "file": "TP1314_tableIV_blockage_blading.csv",
+    "report": "NASA TP-1314",
+    "ntrs_id": "19780025166",
+    "pdf_page": 32,
+    "printed_page": "28",
+    "title": "TABLE IV. - FAN DESIGN BLOCKAGE ALLOWANCES AND BLADING VALUES",
+    "dpi": 200,
+    "notes": "Same page as Table III(d). Second read done; no uncertain cells."
+  },
+  {
+    "file": "TP1314_fig1_flowpath.csv",
+    "report": "NASA TP-1314",
+    "ntrs_id": "19780025166",
+    "pdf_page": 84,
+    "printed_page": "80",
+    "title": "Figure 1. - Flow path for two-stage fan. (Flow path coordinates box)",
+    "dpi": 200,
+    "notes": "Read from the native 300-dpi scan zoomed 3x. Column 'footnote' holds the printed superscript a = 'Instrumentation survey plane'. Outer-radius cells printed only as a downward arrow (value continues from the row above) are written as the arrow character; no value filled in. Second read done."
+  }
+]

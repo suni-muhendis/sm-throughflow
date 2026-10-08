@@ -1,0 +1,168 @@
+[
+ {
+  "citation": "Urasek, D. C.; Moore, R. D.; Osborn, W. M.: Performance of a Single-Stage Transonic Compressor with a Blade-Tip Solidity of 1.3. NASA TM X-2645, November 1972.",
+  "report": "NASA TM X-2645",
+  "ntrs_id": "19730002275",
+  "file": "TMX2645_sol13.pdf"
+ },
+ {
+  "file": "TMX2645_tableI_design_overall.csv",
+  "report": "NASA TM X-2645",
+  "ntrs_id": "19730002275",
+  "pdf_page": 20,
+  "printed_page": "18",
+  "title": "TABLE I. - DESIGN OVERALL PARAMETERS FOR STAGE 14-10",
+  "dpi": 200,
+  "notes": "No units printed in the table; SI units per appendix C (WT FLOW kg/sec, TIP SPEED m/sec; per-area flows kg/sec/m2 per text). Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ },
+ {
+  "file": "TMX2645_tableII_rotor14_part1.csv",
+  "report": "NASA TM X-2645",
+  "ntrs_id": "19730002275",
+  "pdf_page": 21,
+  "printed_page": "19",
+  "title": "TABLE II. - DESIGN BLADE ELEMENT PARAMETERS FOR ROTOR 14",
+  "dpi": 200,
+  "notes": "Printed in four stacked blocks; part1..part4 are the blocks top to bottom. No units row printed; units in appendix C (pdf p17-18). Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ },
+ {
+  "file": "TMX2645_tableII_rotor14_part2.csv",
+  "report": "NASA TM X-2645",
+  "ntrs_id": "19730002275",
+  "pdf_page": 21,
+  "printed_page": "19",
+  "title": "TABLE II. - DESIGN BLADE ELEMENT PARAMETERS FOR ROTOR 14",
+  "dpi": 200,
+  "notes": "Block 2 (velocities). Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ },
+ {
+  "file": "TMX2645_tableII_rotor14_part3.csv",
+  "report": "NASA TM X-2645",
+  "ntrs_id": "19730002275",
+  "pdf_page": 21,
+  "printed_page": "19",
+  "title": "TABLE II. - DESIGN BLADE ELEMENT PARAMETERS FOR ROTOR 14",
+  "dpi": 200,
+  "notes": "Block 3 (Mach numbers, streamline slope). Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ },
+ {
+  "file": "TMX2645_tableII_rotor14_part4.csv",
+  "report": "NASA TM X-2645",
+  "ntrs_id": "19730002275",
+  "pdf_page": 21,
+  "printed_page": "19",
+  "title": "TABLE II. - DESIGN BLADE ELEMENT PARAMETERS FOR ROTOR 14",
+  "dpi": 200,
+  "notes": "Block 4 (span, incidence, deviation, losses). RP 4 LOSS COEFF TOT marked '?' (middle digit damaged). Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ },
+ {
+  "file": "TMX2645_tableIII_stator10_part1.csv",
+  "report": "NASA TM X-2645",
+  "ntrs_id": "19730002275",
+  "pdf_page": 22,
+  "printed_page": "20",
+  "title": "TABLE III. - DESIGN BLADE ELEMENT PARAMETERS FOR STATOR 10",
+  "dpi": 200,
+  "notes": "Four stacked blocks, part1..part4. Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ },
+ {
+  "file": "TMX2645_tableIII_stator10_part2.csv",
+  "report": "NASA TM X-2645",
+  "ntrs_id": "19730002275",
+  "pdf_page": 22,
+  "printed_page": "20",
+  "title": "TABLE III. - DESIGN BLADE ELEMENT PARAMETERS FOR STATOR 10",
+  "dpi": 200,
+  "notes": "Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ },
+ {
+  "file": "TMX2645_tableIII_stator10_part3.csv",
+  "report": "NASA TM X-2645",
+  "ntrs_id": "19730002275",
+  "pdf_page": 22,
+  "printed_page": "20",
+  "title": "TABLE III. - DESIGN BLADE ELEMENT PARAMETERS FOR STATOR 10",
+  "dpi": 200,
+  "notes": "Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ },
+ {
+  "file": "TMX2645_tableIII_stator10_part4.csv",
+  "report": "NASA TM X-2645",
+  "ntrs_id": "19730002275",
+  "pdf_page": 22,
+  "printed_page": "20",
+  "title": "TABLE III. - DESIGN BLADE ELEMENT PARAMETERS FOR STATOR 10",
+  "dpi": 200,
+  "notes": "Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ },
+ {
+  "file": "TMX2645_tableIV_rotor14_part1.csv",
+  "report": "NASA TM X-2645",
+  "ntrs_id": "19730002275",
+  "pdf_page": 23,
+  "printed_page": "21",
+  "title": "TABLE IV. - BLADE GEOMETRY FOR ROTOR 14",
+  "dpi": 200,
+  "notes": "Three stacked blocks, part1..part3. No units row printed; units in appendix C. Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ },
+ {
+  "file": "TMX2645_tableIV_rotor14_part2.csv",
+  "report": "NASA TM X-2645",
+  "ntrs_id": "19730002275",
+  "pdf_page": 23,
+  "printed_page": "21",
+  "title": "TABLE IV. - BLADE GEOMETRY FOR ROTOR 14",
+  "dpi": 200,
+  "notes": "Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ },
+ {
+  "file": "TMX2645_tableIV_rotor14_part3.csv",
+  "report": "NASA TM X-2645",
+  "ntrs_id": "19730002275",
+  "pdf_page": 23,
+  "printed_page": "21",
+  "title": "TABLE IV. - BLADE GEOMETRY FOR ROTOR 14",
+  "dpi": 200,
+  "notes": "RP 1 TOTAL CAMBER marked '?' (see notes.md). Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ },
+ {
+  "file": "TMX2645_tableV_stator10_part1.csv",
+  "report": "NASA TM X-2645",
+  "ntrs_id": "19730002275",
+  "pdf_page": 23,
+  "printed_page": "21",
+  "title": "TABLE V. - BLADE GEOMETRY FOR STATOR 10",
+  "dpi": 200,
+  "notes": "Three stacked blocks, part1..part3. Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ },
+ {
+  "file": "TMX2645_tableV_stator10_part2.csv",
+  "report": "NASA TM X-2645",
+  "ntrs_id": "19730002275",
+  "pdf_page": 23,
+  "printed_page": "21",
+  "title": "TABLE V. - BLADE GEOMETRY FOR STATOR 10",
+  "dpi": 200,
+  "notes": "Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ },
+ {
+  "file": "TMX2645_tableV_stator10_part3.csv",
+  "report": "NASA TM X-2645",
+  "ntrs_id": "19730002275",
+  "pdf_page": 23,
+  "printed_page": "21",
+  "title": "TABLE V. - BLADE GEOMETRY FOR STATOR 10",
+  "dpi": 200,
+  "notes": "Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ },
+ {
+  "file": "TMX2645_fig1_flowpath_coordinates.csv",
+  "report": "NASA TM X-2645",
+  "ntrs_id": "19730002275",
+  "pdf_page": 63,
+  "printed_page": "61",
+  "title": "Figure 1. - Flow path for stage 14-10 showing axial location of instrumentation. (inset table 'Flow path coordinates')",
+  "dpi": 200,
+  "notes": "Down arrows printed in the inset are written as the character ↓ (value continues unchanged downward). FOOTNOTE 'a' = Instrumentation survey plane. Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ }
+]

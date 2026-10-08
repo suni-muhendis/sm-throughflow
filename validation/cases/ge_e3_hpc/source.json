@@ -1,0 +1,1066 @@
+[
+  {
+    "citation": "Holloway, P. R.; Knight, G. L.; Koch, C. C.; Shaffer, S. J.: Energy Efficient Engine High Pressure Compressor Detail Design Report. NASA CR-165558 (R81AEG710), 1982.",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "local_file": "CR165558_E3_HPC.pdf",
+    "notes": "Printed page = pdf page - 9 throughout the parts used. Table XXI: SI pages pdf 121-141 (printed 112-132), U.S.-unit facing pages pdf 142-162. Table XXII: pdf 163-168 (printed 154-159), SI with inches in parentheses. Nomenclature pdf 118-120."
+  },
+  {
+    "citation": "Cline, S. J.; Fesler, W.; Liu, H. S.; Lovell, R. C.; Shaffer, S. J.: Energy Efficient Engine High Pressure Compressor Component Performance Report. NASA CR-168245 (R82AEB437), 1983.",
+    "report": "NASA CR-168245",
+    "ntrs_id": "19850025825",
+    "local_file": "CR168245_E3_HPC_perf.pdf",
+    "notes": "Used only for scalars.json and notes.md (rig VSV rows, ACC clearance closure, build descriptions, figure locations). Printed page = pdf page - 10. No tables transcribed from it."
+  },
+  {
+    "file": "CR165558_tableXXI_IGV_inlet.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 121,
+    "printed_page": "112",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- IGV INLET block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 142; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. Header prints 'IGV - 32 VANES' (not 37). No changes needed on second read. All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_IGV_exit.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 121,
+    "printed_page": "112",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- IGV EXIT block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 142; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. Header prints 'IGV - 32 VANES' (not 37). No changes needed on second read. All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_IGV_sldata.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 121,
+    "printed_page": "112",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- IGV SL DATA block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 142; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. Header prints 'IGV - 32 VANES' (not 37). No changes needed on second read. All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_IGV_planesections.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 121,
+    "printed_page": "112",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- IGV PLANE SECTIONS block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 142; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. Header prints 'IGV - 32 VANES' (not 37). No changes needed on second read. All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_R1_inlet.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 122,
+    "printed_page": "113",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- ROTOR 1 INLET block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 143; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. '?' added where a broken glyph admits two digits (inlet M-ABS SL11; exit RADIUS SL11, SL12; INC SL2); values agree with the U.S. page and R-BAR. All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_R1_exit.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 122,
+    "printed_page": "113",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- ROTOR 1 EXIT block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 143; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. '?' added where a broken glyph admits two digits (inlet M-ABS SL11; exit RADIUS SL11, SL12; INC SL2); values agree with the U.S. page and R-BAR. All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_R1_sldata.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 122,
+    "printed_page": "113",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- ROTOR 1 SL DATA block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 143; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. '?' added where a broken glyph admits two digits (inlet M-ABS SL11; exit RADIUS SL11, SL12; INC SL2); values agree with the U.S. page and R-BAR. All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_R1_planesections.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 122,
+    "printed_page": "113",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- ROTOR 1 PLANE SECTIONS block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 143; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. '?' added where a broken glyph admits two digits (inlet M-ABS SL11; exit RADIUS SL11, SL12; INC SL2); values agree with the U.S. page and R-BAR. All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_S1_inlet.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 123,
+    "printed_page": "114",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- STATOR 1 INLET block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 144; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. CUM EFF SL2 written 0.7600?: SI glyph reads 0.7300 (possibly a broken 6), U.S. page 0.7600, text layer 0.7800. Exit PHI SL10 11.34?, SL11 13.95?, ALPHA SL12 16.00?, BETA2* SL7 8.52? (broken glyphs, U.S. page agrees). All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_S1_exit.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 123,
+    "printed_page": "114",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- STATOR 1 EXIT block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 144; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. CUM EFF SL2 written 0.7600?: SI glyph reads 0.7300 (possibly a broken 6), U.S. page 0.7600, text layer 0.7800. Exit PHI SL10 11.34?, SL11 13.95?, ALPHA SL12 16.00?, BETA2* SL7 8.52? (broken glyphs, U.S. page agrees). All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_S1_sldata.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 123,
+    "printed_page": "114",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- STATOR 1 SL DATA block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 144; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. CUM EFF SL2 written 0.7600?: SI glyph reads 0.7300 (possibly a broken 6), U.S. page 0.7600, text layer 0.7800. Exit PHI SL10 11.34?, SL11 13.95?, ALPHA SL12 16.00?, BETA2* SL7 8.52? (broken glyphs, U.S. page agrees). All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_S1_planesections.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 123,
+    "printed_page": "114",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- STATOR 1 PLANE SECTIONS block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 144; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. CUM EFF SL2 written 0.7600?: SI glyph reads 0.7300 (possibly a broken 6), U.S. page 0.7600, text layer 0.7800. Exit PHI SL10 11.34?, SL11 13.95?, ALPHA SL12 16.00?, BETA2* SL7 8.52? (broken glyphs, U.S. page agrees). All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_R2_inlet.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 124,
+    "printed_page": "115",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- ROTOR 2 INLET block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 145; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. Exit M-REL SL9 0.621?, M-ABS SL12 0.785?, R-BAR SL7 27.917?, CHORD SL10 6.7282? (broken glyphs). CUM EFF SL12 printed '8654' without '0.', written 0.8654. SECT. HT. SL10 24.705 vs R-BAR 24.706 printed so. All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_R2_exit.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 124,
+    "printed_page": "115",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- ROTOR 2 EXIT block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 145; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. Exit M-REL SL9 0.621?, M-ABS SL12 0.785?, R-BAR SL7 27.917?, CHORD SL10 6.7282? (broken glyphs). CUM EFF SL12 printed '8654' without '0.', written 0.8654. SECT. HT. SL10 24.705 vs R-BAR 24.706 printed so. All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_R2_sldata.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 124,
+    "printed_page": "115",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- ROTOR 2 SL DATA block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 145; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. Exit M-REL SL9 0.621?, M-ABS SL12 0.785?, R-BAR SL7 27.917?, CHORD SL10 6.7282? (broken glyphs). CUM EFF SL12 printed '8654' without '0.', written 0.8654. SECT. HT. SL10 24.705 vs R-BAR 24.706 printed so. All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_R2_planesections.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 124,
+    "printed_page": "115",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- ROTOR 2 PLANE SECTIONS block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 145; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. Exit M-REL SL9 0.621?, M-ABS SL12 0.785?, R-BAR SL7 27.917?, CHORD SL10 6.7282? (broken glyphs). CUM EFF SL12 printed '8654' without '0.', written 0.8654. SECT. HT. SL10 24.705 vs R-BAR 24.706 printed so. All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_R3_inlet.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 125,
+    "printed_page": "116",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- ROTOR 3 INLET block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 147; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. Header printed 'ROTOR 3-50 BLADES'. Minus signs missing on the SI page and taken from the U.S. page carry '?'. Exit U SL8 361.7? converted from U.S. 1186.8 ft/s (SI glyph 0/6 ambiguous). All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_R3_exit.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 125,
+    "printed_page": "116",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- ROTOR 3 EXIT block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 147; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. Header printed 'ROTOR 3-50 BLADES'. Minus signs missing on the SI page and taken from the U.S. page carry '?'. Exit U SL8 361.7? converted from U.S. 1186.8 ft/s (SI glyph 0/6 ambiguous). All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_R3_sldata.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 125,
+    "printed_page": "116",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- ROTOR 3 SL DATA block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 147; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. Header printed 'ROTOR 3-50 BLADES'. Minus signs missing on the SI page and taken from the U.S. page carry '?'. Exit U SL8 361.7? converted from U.S. 1186.8 ft/s (SI glyph 0/6 ambiguous). All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_R3_planesections.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 125,
+    "printed_page": "116",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- ROTOR 3 PLANE SECTIONS block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 147; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. Header printed 'ROTOR 3-50 BLADES'. Minus signs missing on the SI page and taken from the U.S. page carry '?'. Exit U SL8 361.7? converted from U.S. 1186.8 ft/s (SI glyph 0/6 ambiguous). All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_S2_inlet.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 126,
+    "printed_page": "117",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- STATOR 2 INLET block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 146; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. Many minus signs lost on the SI page; signs taken from the U.S. page carry '?'. Exit CZ SL4 172.9? converted from U.S. 567.2 ft/s. All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_S2_exit.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 126,
+    "printed_page": "117",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- STATOR 2 EXIT block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 146; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. Many minus signs lost on the SI page; signs taken from the U.S. page carry '?'. Exit CZ SL4 172.9? converted from U.S. 567.2 ft/s. All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_S2_sldata.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 126,
+    "printed_page": "117",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- STATOR 2 SL DATA block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 146; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. Many minus signs lost on the SI page; signs taken from the U.S. page carry '?'. Exit CZ SL4 172.9? converted from U.S. 567.2 ft/s. All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_S2_planesections.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 126,
+    "printed_page": "117",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- STATOR 2 PLANE SECTIONS block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 146; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. Many minus signs lost on the SI page; signs taken from the U.S. page carry '?'. Exit CZ SL4 172.9? converted from U.S. 567.2 ft/s. All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_S3_inlet.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 127,
+    "printed_page": "118",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- STATOR 3 INLET block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 148; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. Exit Z SL11 33.756? (last digit partly printed). Inlet ALPHA SL1 59.81? and PHI SL11 7.86? from broken glyphs. All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_S3_exit.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 127,
+    "printed_page": "118",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- STATOR 3 EXIT block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 148; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. Exit Z SL11 33.756? (last digit partly printed). Inlet ALPHA SL1 59.81? and PHI SL11 7.86? from broken glyphs. All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_S3_sldata.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 127,
+    "printed_page": "118",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- STATOR 3 SL DATA block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 148; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. Exit Z SL11 33.756? (last digit partly printed). Inlet ALPHA SL1 59.81? and PHI SL11 7.86? from broken glyphs. All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_S3_planesections.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 127,
+    "printed_page": "118",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- STATOR 3 PLANE SECTIONS block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 148; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. Exit Z SL11 33.756? (last digit partly printed). Inlet ALPHA SL1 59.81? and PHI SL11 7.86? from broken glyphs. All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_R4_inlet.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 128,
+    "printed_page": "119",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- ROTOR 4 INLET block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 149; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. Exit PHI SL1 printed 4.84 without minus on both pages (written 4.84?). Inlet CZ SL2 173.2? converted from U.S. 568.3 ft/s. All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_R4_exit.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 128,
+    "printed_page": "119",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- ROTOR 4 EXIT block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 149; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. Exit PHI SL1 printed 4.84 without minus on both pages (written 4.84?). Inlet CZ SL2 173.2? converted from U.S. 568.3 ft/s. All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_R4_sldata.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 128,
+    "printed_page": "119",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- ROTOR 4 SL DATA block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 149; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. Exit PHI SL1 printed 4.84 without minus on both pages (written 4.84?). Inlet CZ SL2 173.2? converted from U.S. 568.3 ft/s. All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_R4_planesections.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 128,
+    "printed_page": "119",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- ROTOR 4 PLANE SECTIONS block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 149; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. Exit PHI SL1 printed 4.84 without minus on both pages (written 4.84?). Inlet CZ SL2 173.2? converted from U.S. 568.3 ft/s. All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_S4_inlet.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 129,
+    "printed_page": "120",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- STATOR 4 INLET block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 150; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. Exit ALPHA SL2: SI 24.84, U.S. page 24.81 (printed disagreement, SI value kept). All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_S4_exit.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 129,
+    "printed_page": "120",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- STATOR 4 EXIT block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 150; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. Exit ALPHA SL2: SI 24.84, U.S. page 24.81 (printed disagreement, SI value kept). All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_S4_sldata.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 129,
+    "printed_page": "120",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- STATOR 4 SL DATA block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 150; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. Exit ALPHA SL2: SI 24.84, U.S. page 24.81 (printed disagreement, SI value kept). All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_S4_planesections.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 129,
+    "printed_page": "120",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- STATOR 4 PLANE SECTIONS block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 150; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. Exit ALPHA SL2: SI 24.84, U.S. page 24.81 (printed disagreement, SI value kept). All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_R5_inlet.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 130,
+    "printed_page": "121",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- ROTOR 5 INLET block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 151; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. Inlet CZ SL12 189.1? converted from U.S. 620.4 ft/s (SI illegible). Inlet PHI SL1 4.84? and SL5 2.55? printed without minus on both pages. All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_R5_exit.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 130,
+    "printed_page": "121",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- ROTOR 5 EXIT block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 151; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. Inlet CZ SL12 189.1? converted from U.S. 620.4 ft/s (SI illegible). Inlet PHI SL1 4.84? and SL5 2.55? printed without minus on both pages. All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_R5_sldata.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 130,
+    "printed_page": "121",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- ROTOR 5 SL DATA block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 151; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. Inlet CZ SL12 189.1? converted from U.S. 620.4 ft/s (SI illegible). Inlet PHI SL1 4.84? and SL5 2.55? printed without minus on both pages. All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_R5_planesections.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 130,
+    "printed_page": "121",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- ROTOR 5 PLANE SECTIONS block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 151; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. Inlet CZ SL12 189.1? converted from U.S. 620.4 ft/s (SI illegible). Inlet PHI SL1 4.84? and SL5 2.55? printed without minus on both pages. All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_S5_inlet.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 131,
+    "printed_page": "122",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- STATOR 5 INLET block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 152; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. %C TM 42.00 (S1-S4 have 50.00). Exit % IMM SL2 8.5? (SI 6/8 ambiguous). Inlet PHI SL2 3.52? without minus on both pages. All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_S5_exit.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 131,
+    "printed_page": "122",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- STATOR 5 EXIT block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 152; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. %C TM 42.00 (S1-S4 have 50.00). Exit % IMM SL2 8.5? (SI 6/8 ambiguous). Inlet PHI SL2 3.52? without minus on both pages. All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_S5_sldata.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 131,
+    "printed_page": "122",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- STATOR 5 SL DATA block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 152; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. %C TM 42.00 (S1-S4 have 50.00). Exit % IMM SL2 8.5? (SI 6/8 ambiguous). Inlet PHI SL2 3.52? without minus on both pages. All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_S5_planesections.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 131,
+    "printed_page": "122",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- STATOR 5 PLANE SECTIONS block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 152; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. %C TM 42.00 (S1-S4 have 50.00). Exit % IMM SL2 8.5? (SI 6/8 ambiguous). Inlet PHI SL2 3.52? without minus on both pages. All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_R6_inlet.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 132,
+    "printed_page": "123",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- ROTOR 6 INLET block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 153; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. Inlet PHI SL4 3.59? without minus on both pages. Exit % IMM SL6 printed 44.8 (radii give 44.73), kept. U.S. page CAMBER SL12 25.60 vs SI 26.60 (SI consistent with metal angles). All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_R6_exit.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 132,
+    "printed_page": "123",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- ROTOR 6 EXIT block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 153; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. Inlet PHI SL4 3.59? without minus on both pages. Exit % IMM SL6 printed 44.8 (radii give 44.73), kept. U.S. page CAMBER SL12 25.60 vs SI 26.60 (SI consistent with metal angles). All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_R6_sldata.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 132,
+    "printed_page": "123",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- ROTOR 6 SL DATA block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 153; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. Inlet PHI SL4 3.59? without minus on both pages. Exit % IMM SL6 printed 44.8 (radii give 44.73), kept. U.S. page CAMBER SL12 25.60 vs SI 26.60 (SI consistent with metal angles). All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_R6_planesections.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 132,
+    "printed_page": "123",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- ROTOR 6 PLANE SECTIONS block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 153; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. Inlet PHI SL4 3.59? without minus on both pages. Exit % IMM SL6 printed 44.8 (radii give 44.73), kept. U.S. page CAMBER SL12 25.60 vs SI 26.60 (SI consistent with metal angles). All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_S6_inlet.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 133,
+    "printed_page": "124",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- STATOR 6 INLET block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 154; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. Inlet PHI SL3 2.73? and exit PHI SL1 4.09? printed without minus on both pages. All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_S6_exit.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 133,
+    "printed_page": "124",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- STATOR 6 EXIT block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 154; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. Inlet PHI SL3 2.73? and exit PHI SL1 4.09? printed without minus on both pages. All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_S6_sldata.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 133,
+    "printed_page": "124",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- STATOR 6 SL DATA block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 154; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. Inlet PHI SL3 2.73? and exit PHI SL1 4.09? printed without minus on both pages. All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_S6_planesections.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 133,
+    "printed_page": "124",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- STATOR 6 PLANE SECTIONS block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 154; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. Inlet PHI SL3 2.73? and exit PHI SL1 4.09? printed without minus on both pages. All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_R7_inlet.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 134,
+    "printed_page": "125",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- ROTOR 7 INLET block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 155; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. BETA2* SL6 printed 39.66 on the SI page, 39.56 on the U.S. page (58.32-18.75 = 39.57); SI value kept. Exit CZ SL3 163.9? from U.S. 537.6 ft/s. Inlet RADIUS SL11 27.459? (last glyph damaged). All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_R7_exit.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 134,
+    "printed_page": "125",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- ROTOR 7 EXIT block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 155; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. BETA2* SL6 printed 39.66 on the SI page, 39.56 on the U.S. page (58.32-18.75 = 39.57); SI value kept. Exit CZ SL3 163.9? from U.S. 537.6 ft/s. Inlet RADIUS SL11 27.459? (last glyph damaged). All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_R7_sldata.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 134,
+    "printed_page": "125",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- ROTOR 7 SL DATA block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 155; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. BETA2* SL6 printed 39.66 on the SI page, 39.56 on the U.S. page (58.32-18.75 = 39.57); SI value kept. Exit CZ SL3 163.9? from U.S. 537.6 ft/s. Inlet RADIUS SL11 27.459? (last glyph damaged). All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_R7_planesections.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 134,
+    "printed_page": "125",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- ROTOR 7 PLANE SECTIONS block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 155; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. BETA2* SL6 printed 39.66 on the SI page, 39.56 on the U.S. page (58.32-18.75 = 39.57); SI value kept. Exit CZ SL3 163.9? from U.S. 537.6 ft/s. Inlet RADIUS SL11 27.459? (last glyph damaged). All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_S7_inlet.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 135,
+    "printed_page": "126",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- STATOR 7 INLET block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 156; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. Inlet Z SL8 58.290? from U.S. 22.949 in (two SI digits damaged). All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_S7_exit.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 135,
+    "printed_page": "126",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- STATOR 7 EXIT block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 156; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. Inlet Z SL8 58.290? from U.S. 22.949 in (two SI digits damaged). All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_S7_sldata.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 135,
+    "printed_page": "126",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- STATOR 7 SL DATA block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 156; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. Inlet Z SL8 58.290? from U.S. 22.949 in (two SI digits damaged). All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_S7_planesections.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 135,
+    "printed_page": "126",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- STATOR 7 PLANE SECTIONS block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 156; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. Inlet Z SL8 58.290? from U.S. 22.949 in (two SI digits damaged). All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_R8_inlet.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 136,
+    "printed_page": "127",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- ROTOR 8 INLET block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 157; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. Exit PHI SL4 2.32? printed without minus on both pages; several faint-sign cells carry '?'. All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_R8_exit.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 136,
+    "printed_page": "127",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- ROTOR 8 EXIT block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 157; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. Exit PHI SL4 2.32? printed without minus on both pages; several faint-sign cells carry '?'. All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_R8_sldata.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 136,
+    "printed_page": "127",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- ROTOR 8 SL DATA block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 157; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. Exit PHI SL4 2.32? printed without minus on both pages; several faint-sign cells carry '?'. All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_R8_planesections.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 136,
+    "printed_page": "127",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- ROTOR 8 PLANE SECTIONS block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 157; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. Exit PHI SL4 2.32? printed without minus on both pages; several faint-sign cells carry '?'. All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_S8_inlet.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 137,
+    "printed_page": "128",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- STATOR 8 INLET block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 158; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. SECT. HT. SL5 printed 28.956 on the SI page vs R-BAR 28.966 and U.S. 11.404 in (=28.966): written 28.956?. Chord varies strongly hub to tip (vane frequency tuning). All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_S8_exit.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 137,
+    "printed_page": "128",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- STATOR 8 EXIT block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 158; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. SECT. HT. SL5 printed 28.956 on the SI page vs R-BAR 28.966 and U.S. 11.404 in (=28.966): written 28.956?. Chord varies strongly hub to tip (vane frequency tuning). All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_S8_sldata.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 137,
+    "printed_page": "128",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- STATOR 8 SL DATA block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 158; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. SECT. HT. SL5 printed 28.956 on the SI page vs R-BAR 28.966 and U.S. 11.404 in (=28.966): written 28.956?. Chord varies strongly hub to tip (vane frequency tuning). All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_S8_planesections.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 137,
+    "printed_page": "128",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- STATOR 8 PLANE SECTIONS block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 158; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. SECT. HT. SL5 printed 28.956 on the SI page vs R-BAR 28.966 and U.S. 11.404 in (=28.966): written 28.956?. Chord varies strongly hub to tip (vane frequency tuning). All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_R9_inlet.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 138,
+    "printed_page": "129",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- ROTOR 9 INLET block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 159; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. Header 'ROTOR 9 - 88 BLADES' (Table XXII prints 86). BETA2* SL2 written 37.39? as printed on the SI page; U.S. page 37.89 and BETA1*-CAMBER = 37.89. INC SL9 SI -0.28 vs U.S. 0.26/-0.26 (blurred). All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_R9_exit.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 138,
+    "printed_page": "129",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- ROTOR 9 EXIT block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 159; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. Header 'ROTOR 9 - 88 BLADES' (Table XXII prints 86). BETA2* SL2 written 37.39? as printed on the SI page; U.S. page 37.89 and BETA1*-CAMBER = 37.89. INC SL9 SI -0.28 vs U.S. 0.26/-0.26 (blurred). All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_R9_sldata.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 138,
+    "printed_page": "129",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- ROTOR 9 SL DATA block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 159; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. Header 'ROTOR 9 - 88 BLADES' (Table XXII prints 86). BETA2* SL2 written 37.39? as printed on the SI page; U.S. page 37.89 and BETA1*-CAMBER = 37.89. INC SL9 SI -0.28 vs U.S. 0.26/-0.26 (blurred). All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_R9_planesections.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 138,
+    "printed_page": "129",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- ROTOR 9 PLANE SECTIONS block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 159; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. Header 'ROTOR 9 - 88 BLADES' (Table XXII prints 86). BETA2* SL2 written 37.39? as printed on the SI page; U.S. page 37.89 and BETA1*-CAMBER = 37.89. INC SL9 SI -0.28 vs U.S. 0.26/-0.26 (blurred). All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_S9_inlet.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 139,
+    "printed_page": "130",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- STATOR 9 INLET block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 160; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. Exit TT/TTI SL1 2.6654? (second digit notched), M-ABS SL2 0.293? (SI) vs 0.299 (U.S.), R-BAR SL7 28.381? (broken digit). All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_S9_exit.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 139,
+    "printed_page": "130",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- STATOR 9 EXIT block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 160; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. Exit TT/TTI SL1 2.6654? (second digit notched), M-ABS SL2 0.293? (SI) vs 0.299 (U.S.), R-BAR SL7 28.381? (broken digit). All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_S9_sldata.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 139,
+    "printed_page": "130",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- STATOR 9 SL DATA block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 160; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. Exit TT/TTI SL1 2.6654? (second digit notched), M-ABS SL2 0.293? (SI) vs 0.299 (U.S.), R-BAR SL7 28.381? (broken digit). All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_S9_planesections.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 139,
+    "printed_page": "130",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- STATOR 9 PLANE SECTIONS block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 160; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. Exit TT/TTI SL1 2.6654? (second digit notched), M-ABS SL2 0.293? (SI) vs 0.299 (U.S.), R-BAR SL7 28.381? (broken digit). All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_R10_inlet.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 140,
+    "printed_page": "131",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- ROTOR 10 INLET block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 161; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. Header 'ROTOR 10 - 96 BLADES' (Table XXII prints 94). Inlet Z SL8 73.479? and exit U SL4 372.3? converted from U.S. values (SI digits unreadable). All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_R10_exit.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 140,
+    "printed_page": "131",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- ROTOR 10 EXIT block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 161; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. Header 'ROTOR 10 - 96 BLADES' (Table XXII prints 94). Inlet Z SL8 73.479? and exit U SL4 372.3? converted from U.S. values (SI digits unreadable). All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_R10_sldata.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 140,
+    "printed_page": "131",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- ROTOR 10 SL DATA block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 161; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. Header 'ROTOR 10 - 96 BLADES' (Table XXII prints 94). Inlet Z SL8 73.479? and exit U SL4 372.3? converted from U.S. values (SI digits unreadable). All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_R10_planesections.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 140,
+    "printed_page": "131",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- ROTOR 10 PLANE SECTIONS block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. First transcription by an earlier session, second read in this session. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 161; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. Header 'ROTOR 10 - 96 BLADES' (Table XXII prints 94). Inlet Z SL8 73.479? and exit U SL4 372.3? converted from U.S. values (SI digits unreadable). All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_S10_inlet.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 141,
+    "printed_page": "132",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- STATOR 10 INLET block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 162; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. Transcribed in this session (was missing). Inlet PHI SL8 SI -0.80 vs U.S. -0.90 (written -0.80?); exit PHI SL9 0.75? printed without minus on both pages; exit PHI SL11 -1.36? (faint minus on U.S. page only). Minus signs printed only on the U.S. page (inlet PHI SL1, 3, 4, 12; INC SL12; BETA2* SL1, 2, 4, 6, 7, 10) are confirmed by CAMBER = BETA1* - BETA2* and written without '?'. All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_S10_exit.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 141,
+    "printed_page": "132",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- STATOR 10 EXIT block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 162; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. Transcribed in this session (was missing). Inlet PHI SL8 SI -0.80 vs U.S. -0.90 (written -0.80?); exit PHI SL9 0.75? printed without minus on both pages; exit PHI SL11 -1.36? (faint minus on U.S. page only). Minus signs printed only on the U.S. page (inlet PHI SL1, 3, 4, 12; INC SL12; BETA2* SL1, 2, 4, 6, 7, 10) are confirmed by CAMBER = BETA1* - BETA2* and written without '?'. All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_S10_sldata.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 141,
+    "printed_page": "132",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- STATOR 10 SL DATA block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 162; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. Transcribed in this session (was missing). Inlet PHI SL8 SI -0.80 vs U.S. -0.90 (written -0.80?); exit PHI SL9 0.75? printed without minus on both pages; exit PHI SL11 -1.36? (faint minus on U.S. page only). Minus signs printed only on the U.S. page (inlet PHI SL1, 3, 4, 12; INC SL12; BETA2* SL1, 2, 4, 6, 7, 10) are confirmed by CAMBER = BETA1* - BETA2* and written without '?'. All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXI_S10_planesections.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 141,
+    "printed_page": "132",
+    "title": "Table XXI. Vector Diagram and Airfoil Geometry Data for Original-Design Blading (Continued). (SI Units) -- STATOR 10 PLANE SECTIONS block",
+    "dpi": 200,
+    "notes": "No units printed in the table; units from the nomenclature (pdf 118): RADIUS, Z, R-BAR, SECT. HT., CHORD cm; U, CZ m/sec; angles deg. Second read done cell by cell against the SI page image (200-dpi crops, 400/600-dpi zooms of doubtful glyphs) and the U.S.-unit facing page pdf 162; unit-independent columns compared directly, lengths/velocities via x2.54 / x0.3048 as a consistency check only. Transcribed in this session (was missing). Inlet PHI SL8 SI -0.80 vs U.S. -0.90 (written -0.80?); exit PHI SL9 0.75? printed without minus on both pages; exit PHI SL11 -1.36? (faint minus on U.S. page only). Minus signs printed only on the U.S. page (inlet PHI SL1, 3, 4, 12; INC SL12; BETA2* SL1, 2, 4, 6, 7, 10) are confirmed by CAMBER = BETA1* - BETA2* and written without '?'. All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXII_R1.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 163,
+    "printed_page": "154",
+    "title": "Table XXII. Airfoil Geometry Data for Final-Design Blading. EEE CORE COMPRESSOR ROTOR GEOMETRY -- ROTOR 1 PLANE SECTIONS",
+    "dpi": 200,
+    "notes": "New transcription in this session. Values in parentheses are the same quantity in inches (pdf 118: 'Table XXII presents final-design, airfoil-geometry data in SI units with the corresponding data in English units in parentheses on the same page'); they go in the '(SECT. HT.)' and '(CHORD)' columns. No units printed; SECT. HT. and CHORD cm, angles deg. Read from 600-dpi renders, second read cell by cell from 200-dpi block crops. Checks: SI = inch x 2.54 and CAMBER = BETA1* - BETA2* within print rounding unless noted. BETA2* row 7 43.82? (first glyph prints like '1'; CAMBER 12.06 = 55.88-43.82 and monotonic column support 4). All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXII_R2.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 163,
+    "printed_page": "154",
+    "title": "Table XXII. Airfoil Geometry Data for Final-Design Blading. EEE CORE COMPRESSOR ROTOR GEOMETRY -- ROTOR 2 PLANE SECTIONS",
+    "dpi": 200,
+    "notes": "New transcription in this session. Values in parentheses are the same quantity in inches (pdf 118: 'Table XXII presents final-design, airfoil-geometry data in SI units with the corresponding data in English units in parentheses on the same page'); they go in the '(SECT. HT.)' and '(CHORD)' columns. No units printed; SECT. HT. and CHORD cm, angles deg. Read from 600-dpi renders, second read cell by cell from 200-dpi block crops. Checks: SI = inch x 2.54 and CAMBER = BETA1* - BETA2* within print rounding unless noted. R2 and R4 row 6/7 print 28.924 (11.388): inch value 0.0015 cm off, kept as printed. All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXII_R3.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 163,
+    "printed_page": "154",
+    "title": "Table XXII. Airfoil Geometry Data for Final-Design Blading. EEE CORE COMPRESSOR ROTOR GEOMETRY -- ROTOR 3 PLANE SECTIONS",
+    "dpi": 200,
+    "notes": "New transcription in this session. Values in parentheses are the same quantity in inches (pdf 118: 'Table XXII presents final-design, airfoil-geometry data in SI units with the corresponding data in English units in parentheses on the same page'); they go in the '(SECT. HT.)' and '(CHORD)' columns. No units printed; SECT. HT. and CHORD cm, angles deg. Read from 600-dpi renders, second read cell by cell from 200-dpi block crops. Checks: SI = inch x 2.54 and CAMBER = BETA1* - BETA2* within print rounding unless noted. BETA1* row 9 53.07? and TTE/C row 11 0.0116? (damaged glyphs). All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXII_R4.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 163,
+    "printed_page": "154",
+    "title": "Table XXII. Airfoil Geometry Data for Final-Design Blading. EEE CORE COMPRESSOR ROTOR GEOMETRY -- ROTOR 4 PLANE SECTIONS",
+    "dpi": 200,
+    "notes": "New transcription in this session. Values in parentheses are the same quantity in inches (pdf 118: 'Table XXII presents final-design, airfoil-geometry data in SI units with the corresponding data in English units in parentheses on the same page'); they go in the '(SECT. HT.)' and '(CHORD)' columns. No units printed; SECT. HT. and CHORD cm, angles deg. Read from 600-dpi renders, second read cell by cell from 200-dpi block crops. Checks: SI = inch x 2.54 and CAMBER = BETA1* - BETA2* within print rounding unless noted. R2 and R4 row 6/7 print 28.924 (11.388): inch value 0.0015 cm off, kept as printed. All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXII_R5.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 164,
+    "printed_page": "155",
+    "title": "Table XXII. Airfoil Geometry Data for Final-Design Blading (Continued). -- ROTOR 5 PLANE SECTIONS",
+    "dpi": 200,
+    "notes": "New transcription in this session. Values in parentheses are the same quantity in inches (pdf 118: 'Table XXII presents final-design, airfoil-geometry data in SI units with the corresponding data in English units in parentheses on the same page'); they go in the '(SECT. HT.)' and '(CHORD)' columns. No units printed; SECT. HT. and CHORD cm, angles deg. Read from 600-dpi renders, second read cell by cell from 200-dpi block crops. Checks: SI = inch x 2.54 and CAMBER = BETA1* - BETA2* within print rounding unless noted. TTE/C row 6 0.0128? (8 or 3), BETA1* row 12 52.98?. All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXII_R6.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 164,
+    "printed_page": "155",
+    "title": "Table XXII. Airfoil Geometry Data for Final-Design Blading (Continued). -- ROTOR 6 PLANE SECTIONS",
+    "dpi": 200,
+    "notes": "New transcription in this session. Values in parentheses are the same quantity in inches (pdf 118: 'Table XXII presents final-design, airfoil-geometry data in SI units with the corresponding data in English units in parentheses on the same page'); they go in the '(SECT. HT.)' and '(CHORD)' columns. No units printed; SECT. HT. and CHORD cm, angles deg. Read from 600-dpi renders, second read cell by cell from 200-dpi block crops. Checks: SI = inch x 2.54 and CAMBER = BETA1* - BETA2* within print rounding unless noted. BETA1* row 4 60.71? (last digit broken). All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXII_R7.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 164,
+    "printed_page": "155",
+    "title": "Table XXII. Airfoil Geometry Data for Final-Design Blading (Continued). -- ROTOR 7 PLANE SECTIONS",
+    "dpi": 200,
+    "notes": "New transcription in this session. Values in parentheses are the same quantity in inches (pdf 118: 'Table XXII presents final-design, airfoil-geometry data in SI units with the corresponding data in English units in parentheses on the same page'); they go in the '(SECT. HT.)' and '(CHORD)' columns. No units printed; SECT. HT. and CHORD cm, angles deg. Read from 600-dpi renders, second read cell by cell from 200-dpi block crops. Checks: SI = inch x 2.54 and CAMBER = BETA1* - BETA2* within print rounding unless noted. CAMBER row 4 19.53? (prints like 13.53; 60.06-40.53 = 19.53). All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXII_R8.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 164,
+    "printed_page": "155",
+    "title": "Table XXII. Airfoil Geometry Data for Final-Design Blading (Continued). -- ROTOR 8 PLANE SECTIONS",
+    "dpi": 200,
+    "notes": "New transcription in this session. Values in parentheses are the same quantity in inches (pdf 118: 'Table XXII presents final-design, airfoil-geometry data in SI units with the corresponding data in English units in parentheses on the same page'); they go in the '(SECT. HT.)' and '(CHORD)' columns. No units printed; SECT. HT. and CHORD cm, angles deg. Read from 600-dpi renders, second read cell by cell from 200-dpi block crops. Checks: SI = inch x 2.54 and CAMBER = BETA1* - BETA2* within print rounding unless noted. TTE/C row 11 0.0147? (faded). All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXII_R9.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 165,
+    "printed_page": "156",
+    "title": "Table XXII. Airfoil Geometry Data for Final-Design Blading (Continued). -- ROTOR 9 PLANE SECTIONS",
+    "dpi": 200,
+    "notes": "New transcription in this session. Values in parentheses are the same quantity in inches (pdf 118: 'Table XXII presents final-design, airfoil-geometry data in SI units with the corresponding data in English units in parentheses on the same page'); they go in the '(SECT. HT.)' and '(CHORD)' columns. No units printed; SECT. HT. and CHORD cm, angles deg. Read from 600-dpi renders, second read cell by cell from 200-dpi block crops. Checks: SI = inch x 2.54 and CAMBER = BETA1* - BETA2* within print rounding unless noted. Block label '86 BLADES' (Table XXI: 88). (SECT. HT.) row 8 11.107?, SECT. HT. row 9 27.985?. All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXII_R10.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 165,
+    "printed_page": "156",
+    "title": "Table XXII. Airfoil Geometry Data for Final-Design Blading (Continued). -- ROTOR 10 PLANE SECTIONS",
+    "dpi": 200,
+    "notes": "New transcription in this session. Values in parentheses are the same quantity in inches (pdf 118: 'Table XXII presents final-design, airfoil-geometry data in SI units with the corresponding data in English units in parentheses on the same page'); they go in the '(SECT. HT.)' and '(CHORD)' columns. No units printed; SECT. HT. and CHORD cm, angles deg. Read from 600-dpi renders, second read cell by cell from 200-dpi block crops. Checks: SI = inch x 2.54 and CAMBER = BETA1* - BETA2* within print rounding unless noted. Block label '94 BLADES' (Table XXI: 96). STAGGER row 11 48.63? (first decimal digit mostly lost). All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXII_IGV.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 166,
+    "printed_page": "157",
+    "title": "Table XXII. Airfoil Geometry Data for Final-Design Blading (Continued). EEE CORE COMPRESSOR STATOR GEOMETRY -- IGV PLANE SECTIONS",
+    "dpi": 200,
+    "notes": "New transcription in this session. Values in parentheses are the same quantity in inches (pdf 118: 'Table XXII presents final-design, airfoil-geometry data in SI units with the corresponding data in English units in parentheses on the same page'); they go in the '(SECT. HT.)' and '(CHORD)' columns. No units printed; SECT. HT. and CHORD cm, angles deg. Read from 600-dpi renders, second read cell by cell from 200-dpi block crops. Checks: SI = inch x 2.54 and CAMBER = BETA1* - BETA2* within print rounding unless noted. Columns printed: SECT. HT., CHORD, STAGGER, CLO, TM/C, %C TM, TTE/C (no camber or metal angles). (CHORD) row 1 2.466?; row 10 prints 4.5938 (1.803) although 4.5938/2.54 = 1.8086 (printed inconsistency, kept). All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXII_S1.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 166,
+    "printed_page": "157",
+    "title": "Table XXII. Airfoil Geometry Data for Final-Design Blading (Continued). EEE CORE COMPRESSOR STATOR GEOMETRY -- STATOR 1 PLANE SECTIONS",
+    "dpi": 200,
+    "notes": "New transcription in this session. Values in parentheses are the same quantity in inches (pdf 118: 'Table XXII presents final-design, airfoil-geometry data in SI units with the corresponding data in English units in parentheses on the same page'); they go in the '(SECT. HT.)' and '(CHORD)' columns. No units printed; SECT. HT. and CHORD cm, angles deg. Read from 600-dpi renders, second read cell by cell from 200-dpi block crops. Checks: SI = inch x 2.54 and CAMBER = BETA1* - BETA2* within print rounding unless noted. BETA2* row 11 written -2.89? (no minus visible; camber 44.55 = 41.67+2.89 requires it). All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXII_S2.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 166,
+    "printed_page": "157",
+    "title": "Table XXII. Airfoil Geometry Data for Final-Design Blading (Continued). EEE CORE COMPRESSOR STATOR GEOMETRY -- STATOR 2 PLANE SECTIONS",
+    "dpi": 200,
+    "notes": "New transcription in this session. Values in parentheses are the same quantity in inches (pdf 118: 'Table XXII presents final-design, airfoil-geometry data in SI units with the corresponding data in English units in parentheses on the same page'); they go in the '(SECT. HT.)' and '(CHORD)' columns. No units printed; SECT. HT. and CHORD cm, angles deg. Read from 600-dpi renders, second read cell by cell from 200-dpi block crops. Checks: SI = inch x 2.54 and CAMBER = BETA1* - BETA2* within print rounding unless noted. Identical to Table XXI S2 plane sections. All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXII_S3.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 166,
+    "printed_page": "157",
+    "title": "Table XXII. Airfoil Geometry Data for Final-Design Blading (Continued). EEE CORE COMPRESSOR STATOR GEOMETRY -- STATOR 3 PLANE SECTIONS",
+    "dpi": 200,
+    "notes": "New transcription in this session. Values in parentheses are the same quantity in inches (pdf 118: 'Table XXII presents final-design, airfoil-geometry data in SI units with the corresponding data in English units in parentheses on the same page'); they go in the '(SECT. HT.)' and '(CHORD)' columns. No units printed; SECT. HT. and CHORD cm, angles deg. Read from 600-dpi renders, second read cell by cell from 200-dpi block crops. Checks: SI = inch x 2.54 and CAMBER = BETA1* - BETA2* within print rounding unless noted. CAMBER row 10 printed 31.35 although BETA1*-BETA2* = 31.85 and Table XXI has 31.85 (printed inconsistency, kept). CHORD row 12 2.8194? (9 or 8). All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXII_S4.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 167,
+    "printed_page": "158",
+    "title": "Table XXII. Airfoil Geometry Data for Final-Design Blading (Continued). -- STATOR 4 PLANE SECTIONS",
+    "dpi": 200,
+    "notes": "New transcription in this session. Values in parentheses are the same quantity in inches (pdf 118: 'Table XXII presents final-design, airfoil-geometry data in SI units with the corresponding data in English units in parentheses on the same page'); they go in the '(SECT. HT.)' and '(CHORD)' columns. No units printed; SECT. HT. and CHORD cm, angles deg. Read from 600-dpi renders, second read cell by cell from 200-dpi block crops. Checks: SI = inch x 2.54 and CAMBER = BETA1* - BETA2* within print rounding unless noted. (SECT. HT.) row 8 11.217?, CHORD row 9 2.4891? (9 or 8; Table XXI 2.4881). All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXII_S5.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 167,
+    "printed_page": "158",
+    "title": "Table XXII. Airfoil Geometry Data for Final-Design Blading (Continued). -- STATOR 5 PLANE SECTIONS",
+    "dpi": 200,
+    "notes": "New transcription in this session. Values in parentheses are the same quantity in inches (pdf 118: 'Table XXII presents final-design, airfoil-geometry data in SI units with the corresponding data in English units in parentheses on the same page'); they go in the '(SECT. HT.)' and '(CHORD)' columns. No units printed; SECT. HT. and CHORD cm, angles deg. Read from 600-dpi renders, second read cell by cell from 200-dpi block crops. Checks: SI = inch x 2.54 and CAMBER = BETA1* - BETA2* within print rounding unless noted. SECT. HT. rows 7, 8 28.883?, 28.487?; CAMBER row 8 36.22?. All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXII_S6.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 167,
+    "printed_page": "158",
+    "title": "Table XXII. Airfoil Geometry Data for Final-Design Blading (Continued). -- STATOR 6 PLANE SECTIONS",
+    "dpi": 200,
+    "notes": "New transcription in this session. Values in parentheses are the same quantity in inches (pdf 118: 'Table XXII presents final-design, airfoil-geometry data in SI units with the corresponding data in English units in parentheses on the same page'); they go in the '(SECT. HT.)' and '(CHORD)' columns. No units printed; SECT. HT. and CHORD cm, angles deg. Read from 600-dpi renders, second read cell by cell from 200-dpi block crops. Checks: SI = inch x 2.54 and CAMBER = BETA1* - BETA2* within print rounding unless noted. SECT. HT. rows 3, 4 30.071?, 29.732?. All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXII_S7.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 167,
+    "printed_page": "158",
+    "title": "Table XXII. Airfoil Geometry Data for Final-Design Blading (Continued). -- STATOR 7 PLANE SECTIONS",
+    "dpi": 200,
+    "notes": "New transcription in this session. Values in parentheses are the same quantity in inches (pdf 118: 'Table XXII presents final-design, airfoil-geometry data in SI units with the corresponding data in English units in parentheses on the same page'); they go in the '(SECT. HT.)' and '(CHORD)' columns. No units printed; SECT. HT. and CHORD cm, angles deg. Read from 600-dpi renders, second read cell by cell from 200-dpi block crops. Checks: SI = inch x 2.54 and CAMBER = BETA1* - BETA2* within print rounding unless noted. Block label printed '112 VANES*'; no footnote for the asterisk exists in the scanned report. (SECT. HT.) row 1 11.871? (leading 1 missing). All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXII_S8.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 168,
+    "printed_page": "159",
+    "title": "Table XXII. Airfoil Geometry Data for Final-Design Blading (Concluded). -- STATOR 8 PLANE SECTIONS",
+    "dpi": 200,
+    "notes": "New transcription in this session. Values in parentheses are the same quantity in inches (pdf 118: 'Table XXII presents final-design, airfoil-geometry data in SI units with the corresponding data in English units in parentheses on the same page'); they go in the '(SECT. HT.)' and '(CHORD)' columns. No units printed; SECT. HT. and CHORD cm, angles deg. Read from 600-dpi renders, second read cell by cell from 200-dpi block crops. Checks: SI = inch x 2.54 and CAMBER = BETA1* - BETA2* within print rounding unless noted. STAGGER rows 2, 7, 8, 11 and BETA1* row 5, TTE/C row 12 carry '?' (broken glyphs). CAMBER row 9 47.66 vs 49.22-1.54 = 47.68. All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXII_S9.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 168,
+    "printed_page": "159",
+    "title": "Table XXII. Airfoil Geometry Data for Final-Design Blading (Concluded). -- STATOR 9 PLANE SECTIONS",
+    "dpi": 200,
+    "notes": "New transcription in this session. Values in parentheses are the same quantity in inches (pdf 118: 'Table XXII presents final-design, airfoil-geometry data in SI units with the corresponding data in English units in parentheses on the same page'); they go in the '(SECT. HT.)' and '(CHORD)' columns. No units printed; SECT. HT. and CHORD cm, angles deg. Read from 600-dpi renders, second read cell by cell from 200-dpi block crops. Checks: SI = inch x 2.54 and CAMBER = BETA1* - BETA2* within print rounding unless noted. (CHORD) rows 1, 5, CHORD row 5, BETA1* rows 4, 10, TTE/C row 5 carry '?' (broken glyphs). All cells with '?' are listed in notes.md."
+  },
+  {
+    "file": "CR165558_tableXXII_S10.csv",
+    "report": "NASA CR-165558",
+    "ntrs_id": "19850002690",
+    "pdf_page": 168,
+    "printed_page": "159",
+    "title": "Table XXII. Airfoil Geometry Data for Final-Design Blading (Concluded). -- STATOR 10 PLANE SECTIONS",
+    "dpi": 200,
+    "notes": "New transcription in this session. Values in parentheses are the same quantity in inches (pdf 118: 'Table XXII presents final-design, airfoil-geometry data in SI units with the corresponding data in English units in parentheses on the same page'); they go in the '(SECT. HT.)' and '(CHORD)' columns. No units printed; SECT. HT. and CHORD cm, angles deg. Read from 600-dpi renders, second read cell by cell from 200-dpi block crops. Checks: SI = inch x 2.54 and CAMBER = BETA1* - BETA2* within print rounding unless noted. BETA1* rows 4, 12 and (SECT. HT.) row 12 carry '?' (broken glyphs). Identical to Table XXI S10 plane sections. All cells with '?' are listed in notes.md."
+  }
+]

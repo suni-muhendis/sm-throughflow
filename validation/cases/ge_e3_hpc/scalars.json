@@ -1,0 +1,712 @@
+{
+  "blade_count_original_IGV": {
+    "value": 32,
+    "unit": "",
+    "quote": "EEE CORE COMPRESSOR  IGV - 32 VANES  (Table XXI page header, original-design blading)",
+    "report": "NASA CR-165558",
+    "pdf_page": 121,
+    "printed_page": "112"
+  },
+  "blade_count_original_R1": {
+    "value": 28,
+    "unit": "",
+    "quote": "EEE CORE COMPRESSOR  ROTOR 1 - 28 BLADES  (Table XXI page header, original-design blading)",
+    "report": "NASA CR-165558",
+    "pdf_page": 122,
+    "printed_page": "113"
+  },
+  "blade_count_original_S1": {
+    "value": 50,
+    "unit": "",
+    "quote": "EEE CORE COMPRESSOR  STATOR 1 - 50 VANES  (Table XXI page header, original-design blading)",
+    "report": "NASA CR-165558",
+    "pdf_page": 123,
+    "printed_page": "114"
+  },
+  "blade_count_original_R2": {
+    "value": 38,
+    "unit": "",
+    "quote": "EEE CORE COMPRESSOR  ROTOR 2 - 38 BLADES  (Table XXI page header, original-design blading)",
+    "report": "NASA CR-165558",
+    "pdf_page": 124,
+    "printed_page": "115"
+  },
+  "blade_count_original_R3": {
+    "value": 50,
+    "unit": "",
+    "quote": "EEE CORE COMPRESSOR  ROTOR 3-50 BLADES  (Table XXI page header, original-design blading)",
+    "report": "NASA CR-165558",
+    "pdf_page": 125,
+    "printed_page": "116"
+  },
+  "blade_count_original_S2": {
+    "value": 68,
+    "unit": "",
+    "quote": "EEE CORE COMPRESSOR  STATOR 2  68 VANES  (Table XXI page header, original-design blading)",
+    "report": "NASA CR-165558",
+    "pdf_page": 126,
+    "printed_page": "117"
+  },
+  "blade_count_original_S3": {
+    "value": 82,
+    "unit": "",
+    "quote": "EEE CORE COMPRESSOR  STATOR 3 82 VANES  (Table XXI page header, original-design blading)",
+    "report": "NASA CR-165558",
+    "pdf_page": 127,
+    "printed_page": "118"
+  },
+  "blade_count_original_R4": {
+    "value": 60,
+    "unit": "",
+    "quote": "EEE CORE COMPRESSOR  ROTOR 4  60 BLADES  (Table XXI page header, original-design blading)",
+    "report": "NASA CR-165558",
+    "pdf_page": 128,
+    "printed_page": "119"
+  },
+  "blade_count_original_S4": {
+    "value": 92,
+    "unit": "",
+    "quote": "EEE CORE COMPRESSOR  STATOR 4 - 92 VANES  (Table XXI page header, original-design blading)",
+    "report": "NASA CR-165558",
+    "pdf_page": 129,
+    "printed_page": "120"
+  },
+  "blade_count_original_R5": {
+    "value": 70,
+    "unit": "",
+    "quote": "EEE CORE COMPRESSOR  ROTOR 5 - 70 BLADES  (Table XXI page header, original-design blading)",
+    "report": "NASA CR-165558",
+    "pdf_page": 130,
+    "printed_page": "121"
+  },
+  "blade_count_original_S5": {
+    "value": 110,
+    "unit": "",
+    "quote": "EEE CORE COMPRESSOR  STATOR 5 - 110 VANES  (Table XXI page header, original-design blading)",
+    "report": "NASA CR-165558",
+    "pdf_page": 131,
+    "printed_page": "122"
+  },
+  "blade_count_original_R6": {
+    "value": 80,
+    "unit": "",
+    "quote": "EEE CORE COMPRESSOR  ROTOR 6 - 80 BLADES  (Table XXI page header, original-design blading)",
+    "report": "NASA CR-165558",
+    "pdf_page": 132,
+    "printed_page": "123"
+  },
+  "blade_count_original_S6": {
+    "value": 120,
+    "unit": "",
+    "quote": "EEE CORE COMPRESSOR  STATOR 6 - 120 VANES  (Table XXI page header, original-design blading)",
+    "report": "NASA CR-165558",
+    "pdf_page": 133,
+    "printed_page": "124"
+  },
+  "blade_count_original_R7": {
+    "value": 82,
+    "unit": "",
+    "quote": "EEE CORE COMPRESSOR  ROTOR 7 - 82 BLADES  (Table XXI page header, original-design blading)",
+    "report": "NASA CR-165558",
+    "pdf_page": 134,
+    "printed_page": "125"
+  },
+  "blade_count_original_S7": {
+    "value": 112,
+    "unit": "",
+    "quote": "EEE CORE COMPRESSOR  STATOR 7 - 112 VANES  (Table XXI page header, original-design blading)",
+    "report": "NASA CR-165558",
+    "pdf_page": 135,
+    "printed_page": "126"
+  },
+  "blade_count_original_R8": {
+    "value": 84,
+    "unit": "",
+    "quote": "EEE CORE COMPRESSOR  ROTOR 8 - 84 BLADES  (Table XXI page header, original-design blading)",
+    "report": "NASA CR-165558",
+    "pdf_page": 136,
+    "printed_page": "127"
+  },
+  "blade_count_original_S8": {
+    "value": 104,
+    "unit": "",
+    "quote": "EEE CORE COMPRESSOR  STATOR 8 - 104 VANES  (Table XXI page header, original-design blading)",
+    "report": "NASA CR-165558",
+    "pdf_page": 137,
+    "printed_page": "128"
+  },
+  "blade_count_original_R9": {
+    "value": 88,
+    "unit": "",
+    "quote": "EEE CORE COMPRESSOR  ROTOR 9 - 88 BLADES  (Table XXI page header, original-design blading)",
+    "report": "NASA CR-165558",
+    "pdf_page": 138,
+    "printed_page": "129"
+  },
+  "blade_count_original_S9": {
+    "value": 118,
+    "unit": "",
+    "quote": "EEE CORE COMPRESSOR  STATOR 9 - 118 VANES  (Table XXI page header, original-design blading)",
+    "report": "NASA CR-165558",
+    "pdf_page": 139,
+    "printed_page": "130"
+  },
+  "blade_count_original_R10": {
+    "value": 96,
+    "unit": "",
+    "quote": "EEE CORE COMPRESSOR  ROTOR 10 - 96 BLADES  (Table XXI page header, original-design blading)",
+    "report": "NASA CR-165558",
+    "pdf_page": 140,
+    "printed_page": "131"
+  },
+  "blade_count_original_S10": {
+    "value": 140,
+    "unit": "",
+    "quote": "EEE CORE COMPRESSOR  STATOR 10 - 140 VANES  (Table XXI page header, original-design blading)",
+    "report": "NASA CR-165558",
+    "pdf_page": 141,
+    "printed_page": "132"
+  },
+  "blade_count_final_R1": {
+    "value": 28,
+    "unit": "",
+    "quote": "ROTOR 1 / 28 BLADES / PLANE SECTIONS  (Table XXII block label, final-design blading)",
+    "report": "NASA CR-165558",
+    "pdf_page": 163,
+    "printed_page": "154"
+  },
+  "blade_count_final_R2": {
+    "value": 38,
+    "unit": "",
+    "quote": "ROTOR 2 / 38 BLADES / PLANE SECTIONS  (Table XXII block label, final-design blading)",
+    "report": "NASA CR-165558",
+    "pdf_page": 163,
+    "printed_page": "154"
+  },
+  "blade_count_final_R3": {
+    "value": 50,
+    "unit": "",
+    "quote": "ROTOR 3 / 50 BLADES / PLANE SECTIONS  (Table XXII block label, final-design blading)",
+    "report": "NASA CR-165558",
+    "pdf_page": 163,
+    "printed_page": "154"
+  },
+  "blade_count_final_R4": {
+    "value": 60,
+    "unit": "",
+    "quote": "ROTOR 4 / 60 BLADES / PLANE SECTIONS  (Table XXII block label, final-design blading)",
+    "report": "NASA CR-165558",
+    "pdf_page": 163,
+    "printed_page": "154"
+  },
+  "blade_count_final_R5": {
+    "value": 70,
+    "unit": "",
+    "quote": "ROTOR 5 / 70 BLADES / PLANE SECTIONS  (Table XXII block label, final-design blading)",
+    "report": "NASA CR-165558",
+    "pdf_page": 164,
+    "printed_page": "155"
+  },
+  "blade_count_final_R6": {
+    "value": 80,
+    "unit": "",
+    "quote": "ROTOR 6 / 80 BLADES / PLANE SECTIONS  (Table XXII block label, final-design blading)",
+    "report": "NASA CR-165558",
+    "pdf_page": 164,
+    "printed_page": "155"
+  },
+  "blade_count_final_R7": {
+    "value": 82,
+    "unit": "",
+    "quote": "ROTOR 7 / 82 BLADES / PLANE SECTIONS  (Table XXII block label, final-design blading)",
+    "report": "NASA CR-165558",
+    "pdf_page": 164,
+    "printed_page": "155"
+  },
+  "blade_count_final_R8": {
+    "value": 84,
+    "unit": "",
+    "quote": "ROTOR 8 / 84 BLADES / PLANE SECTIONS  (Table XXII block label, final-design blading)",
+    "report": "NASA CR-165558",
+    "pdf_page": 164,
+    "printed_page": "155"
+  },
+  "blade_count_final_R9": {
+    "value": 86,
+    "unit": "",
+    "quote": "ROTOR 9 / 86 BLADES / PLANE SECTIONS  (Table XXII block label, final-design blading)",
+    "report": "NASA CR-165558",
+    "pdf_page": 165,
+    "printed_page": "156",
+    "note": "Differs from the Table XXI (original design) count of the same row (R9 88, R10 96)."
+  },
+  "blade_count_final_R10": {
+    "value": 94,
+    "unit": "",
+    "quote": "ROTOR 10 / 94 BLADES / PLANE SECTIONS  (Table XXII block label, final-design blading)",
+    "report": "NASA CR-165558",
+    "pdf_page": 165,
+    "printed_page": "156",
+    "note": "Differs from the Table XXI (original design) count of the same row (R9 88, R10 96)."
+  },
+  "blade_count_final_IGV": {
+    "value": 32,
+    "unit": "",
+    "quote": "IGV / 32 VANES / PLANE SECTIONS  (Table XXII block label, final-design blading)",
+    "report": "NASA CR-165558",
+    "pdf_page": 166,
+    "printed_page": "157"
+  },
+  "blade_count_final_S1": {
+    "value": 50,
+    "unit": "",
+    "quote": "STATOR 1 / 50 VANES / PLANE SECTIONS  (Table XXII block label, final-design blading)",
+    "report": "NASA CR-165558",
+    "pdf_page": 166,
+    "printed_page": "157"
+  },
+  "blade_count_final_S2": {
+    "value": 68,
+    "unit": "",
+    "quote": "STATOR 2 / 68 VANES / PLANE SECTIONS  (Table XXII block label, final-design blading)",
+    "report": "NASA CR-165558",
+    "pdf_page": 166,
+    "printed_page": "157"
+  },
+  "blade_count_final_S3": {
+    "value": 82,
+    "unit": "",
+    "quote": "STATOR 3 / 82 VANES / PLANE SECTIONS  (Table XXII block label, final-design blading)",
+    "report": "NASA CR-165558",
+    "pdf_page": 166,
+    "printed_page": "157"
+  },
+  "blade_count_final_S4": {
+    "value": 92,
+    "unit": "",
+    "quote": "STATOR 4 / 92 VANES / PLANE SECTIONS  (Table XXII block label, final-design blading)",
+    "report": "NASA CR-165558",
+    "pdf_page": 167,
+    "printed_page": "158"
+  },
+  "blade_count_final_S5": {
+    "value": 110,
+    "unit": "",
+    "quote": "STATOR 5 / 110 VANES / PLANE SECTIONS  (Table XXII block label, final-design blading)",
+    "report": "NASA CR-165558",
+    "pdf_page": 167,
+    "printed_page": "158"
+  },
+  "blade_count_final_S6": {
+    "value": 120,
+    "unit": "",
+    "quote": "STATOR 6 / 120 VANES / PLANE SECTIONS  (Table XXII block label, final-design blading)",
+    "report": "NASA CR-165558",
+    "pdf_page": 167,
+    "printed_page": "158"
+  },
+  "blade_count_final_S7": {
+    "value": 112,
+    "unit": "",
+    "quote": "STATOR 7 / 112 VANES* / PLANE SECTIONS  (Table XXII block label, final-design blading)",
+    "report": "NASA CR-165558",
+    "pdf_page": 167,
+    "printed_page": "158",
+    "note": "The asterisk is printed, but no footnote exists anywhere in the scanned report (pdf p163-169 checked)."
+  },
+  "blade_count_final_S8": {
+    "value": 104,
+    "unit": "",
+    "quote": "STATOR 8 / 104 VANES / PLANE SECTIONS  (Table XXII block label, final-design blading)",
+    "report": "NASA CR-165558",
+    "pdf_page": 168,
+    "printed_page": "159"
+  },
+  "blade_count_final_S9": {
+    "value": 118,
+    "unit": "",
+    "quote": "STATOR 9 / 118 VANES / PLANE SECTIONS  (Table XXII block label, final-design blading)",
+    "report": "NASA CR-165558",
+    "pdf_page": 168,
+    "printed_page": "159"
+  },
+  "blade_count_final_S10": {
+    "value": 140,
+    "unit": "",
+    "quote": "STATOR 10 / 140 VANES / PLANE SECTIONS  (Table XXII block label, final-design blading)",
+    "report": "NASA CR-165558",
+    "pdf_page": 168,
+    "printed_page": "159"
+  },
+  "total_airfoil_count_final": {
+    "value": 1672,
+    "unit": "",
+    "quote": "Number of Rotors and Stators ... AMAC 10-Stage 1956 ... E3 1672 (Table VIII. Aerodynamic Design Comparison of Final E3 and Recommended AMAC Compressors)",
+    "report": "NASA CR-165558",
+    "pdf_page": 26,
+    "printed_page": "17",
+    "note": "Equals the sum of the Table XXI (original-design) counts of Rotors 1-10 and Stators 1-10 without the IGV (1704 - 32 = 1672); the Table XXII counts give 1668 without the IGV (R9 86, R10 94)."
+  },
+  "corrected_tip_speed": {
+    "value": 456,
+    "unit": "m/sec",
+    "quote": "Corrected Tip Speed, m/sec (ft/sec) ... E3 456 (1495)  (Table VIII)",
+    "report": "NASA CR-165558",
+    "pdf_page": 26,
+    "printed_page": "17"
+  },
+  "design_point_definition": {
+    "value": {
+      "corrected_speed_pct": 100,
+      "tip_speed_m_s": 456.0,
+      "corrected_airflow_kg_s": 54.4,
+      "total_pressure_ratio": 25,
+      "adiabatic_efficiency": 0.847
+    },
+    "unit": "",
+    "quote": "The aerodynamic design calculations were conducted at 100% corrected speed (456.0 m/sec blade speed at the first rotor's inlet tip radius) and 100% corrected airflow (54.4 kg/sec) at a total pressure ratio of 25 and at an adiabatic efficiency of 0.847. Selecting a design pressure ratio approximately 9% above the operating line was done to help assure that high stall margin at design speed would be obtained.",
+    "report": "NASA CR-165558",
+    "pdf_page": 27,
+    "printed_page": "18",
+    "note": "Table XXI vector diagrams are for this 25:1 design point, not the 23:1 operating-line requirement. Physical design rpm is not stated in the text read."
+  },
+  "design_point_choice": {
+    "value": "altitude maximum-climb, PR set to 25",
+    "unit": "",
+    "quote": "the core compressor design point was chosen to be the altitude maximum-climb-thrust engine power setting in terms of inlet corrected airflow and corrected tip speed. The design point pressure ratio, however, was set at 25:1 rather than the maximum climb requirement of 23:1. The design point efficiency of 0.847 was selected to be the same as the target adiabatic efficiency of the test engines at the 23:1 pressure ratio operating line.",
+    "report": "NASA CR-165558",
+    "pdf_page": 37,
+    "printed_page": "28"
+  },
+  "operating_requirement_max_climb": {
+    "value": {
+      "corrected_speed_pct": 100.0,
+      "corrected_airflow_kg_s": 54.4,
+      "corrected_airflow_lbm_s": 120.0,
+      "total_pressure_ratio": 23.0,
+      "adiabatic_efficiency": 0.857,
+      "polytropic_efficiency": 0.903,
+      "inlet_temperature_K": 304.4,
+      "inlet_temperature_R": 547.9,
+      "inlet_pressure_N_m2": 59641.8,
+      "inlet_pressure_lb_in2": 8.65
+    },
+    "unit": "",
+    "quote": "Table IX. Core Compressor Aerodynamic Operating Requirements, column Max. Climb: Corrected Speed, % Design 100.0; Corrected Airflow, kg/sec (lbm/sec) 54.4 (120.0); Total Pressure Ratio 23.0; Adiabatic Efficiency 0.857; Polytropic Efficiency 0.903; Inlet Temperature, K (deg R) 304.4 (547.9); Inlet Pressure, N/m2 (lb/in.2) 59,641.8 (8.65)",
+    "report": "NASA CR-165558",
+    "pdf_page": 26,
+    "printed_page": "17",
+    "note": "Table IX also gives Max. Cruise: 99.5, 53.5 (118.0), 22.4, 0.861, 0.905, 301.4 (542.5), 58,055.9 (8.42); Takeoff: 97.7, 49.3 (108.7), 20.1, 0.865, 0.908, 327.8 (590.1), 150,586.8 (21.84)."
+  },
+  "inlet_radius_ratio": {
+    "value": 0.503,
+    "unit": "",
+    "quote": "The hub-to-tip radius ratio at the inlet of the first rotor is 0.503",
+    "report": "NASA CR-165558",
+    "pdf_page": 27,
+    "printed_page": "18"
+  },
+  "exit_radius_ratio": {
+    "value": 0.931,
+    "unit": "",
+    "quote": "The radius ratio at the exit of the last rotor is 0.931.",
+    "report": "NASA CR-165558",
+    "pdf_page": 27,
+    "printed_page": "18"
+  },
+  "specific_flow": {
+    "value": 38,
+    "unit": "lbm/sec-ft2",
+    "quote": "The first rotor inlet Mach number of 0.602 resulted from selecting a specific flow of 38 lbm/sec-ft2 with an effective area coefficient (blockage factor) of 0.97.",
+    "report": "NASA CR-165558",
+    "pdf_page": 29,
+    "printed_page": "20",
+    "note": "Table VIII (pdf 26) gives Flow/Annulus Area 185.5 kg/sec m2 (38.0 lbm/sec ft2)."
+  },
+  "inlet_blockage_factor": {
+    "value": 0.97,
+    "unit": "",
+    "quote": "with an effective area coefficient (blockage factor) of 0.97",
+    "report": "NASA CR-165558",
+    "pdf_page": 29,
+    "printed_page": "20"
+  },
+  "exit_blockage_factor": {
+    "value": 0.9,
+    "unit": "",
+    "quote": "The design point exit Mach number of 0.28 (at an exit blockage factor of 0.90) becomes 0.30 at the 23:1 total pressure ratio operating line.",
+    "report": "NASA CR-165558",
+    "pdf_page": 29,
+    "printed_page": "20"
+  },
+  "rotor1_inlet_mach_pitchline": {
+    "value": 0.602,
+    "unit": "",
+    "quote": "The first rotor inlet Mach number of 0.602",
+    "report": "NASA CR-165558",
+    "pdf_page": 29,
+    "printed_page": "20"
+  },
+  "exit_mach_design_point": {
+    "value": 0.28,
+    "unit": "",
+    "quote": "The design point exit Mach number of 0.28 (at an exit blockage factor of 0.90)",
+    "report": "NASA CR-165558",
+    "pdf_page": 29,
+    "printed_page": "20"
+  },
+  "rotor10_exit_hub_speed": {
+    "value": 352.7,
+    "unit": "m/sec",
+    "quote": "Rotor 10 Exit Hub Speed, m/sec (ft/sec) ... E3 352.7 (1157)  (Table VIII)",
+    "report": "NASA CR-165558",
+    "pdf_page": 26,
+    "printed_page": "17"
+  },
+  "average_aspect_ratio": {
+    "value": 1.48,
+    "unit": "",
+    "quote": "Average Aspect Ratio ... E3 1.48  (Table VIII)",
+    "report": "NASA CR-165558",
+    "pdf_page": 26,
+    "printed_page": "17"
+  },
+  "average_pitch_solidity": {
+    "value": 1.36,
+    "unit": "",
+    "quote": "Average Pitch Solidity ... E3 1.36  (Table VIII)",
+    "report": "NASA CR-165558",
+    "pdf_page": 26,
+    "printed_page": "17"
+  },
+  "inlet_conditions_vector_diagrams": {
+    "value": "standard-day, sea level static",
+    "unit": "",
+    "quote": "The average total pressure and total temperature at the inlet of the core compressor inlet guide vane were set at standard-day, sea level static conditions. Radial profiles of both pressure and temperature were specified to simulate typical core inlet distributions as experienced on similar turbofan engines.",
+    "report": "NASA CR-165558",
+    "pdf_page": 38,
+    "printed_page": "29",
+    "note": "PT/PTI and TT/TTI in Table XXI are referred to these inlet averages; the IGV inlet profiles are not uniform."
+  },
+  "bleed_locations": {
+    "value": "aft of Stators 5 and 7",
+    "unit": "",
+    "quote": "Included in the flowpath definition were provisions for extracting bleed air from the stator casing aft of Stators 5 and 7. Bleed ports required increases in the axial spacings aft of these two stators and alterations in the flowpath downstream of the bleed ports to accommodate the reduced through-flow.",
+    "report": "NASA CR-165558",
+    "pdf_page": 37,
+    "printed_page": "28"
+  },
+  "bleed_design_vector_diagrams": {
+    "value": {
+      "stage5_pct": 1.3,
+      "stage7_pct": 2.3
+    },
+    "unit": "% of flow",
+    "quote": "For the design vector diagrams, the bleed flow rates employed were 1.3% fifth-stage bleed and 2.3% seventh-stage bleed, representing nominal cooling flow requirements only.",
+    "report": "NASA CR-165558",
+    "pdf_page": 38,
+    "printed_page": "29"
+  },
+  "bleed_max_capacity": {
+    "value": {
+      "stage5_pct": 10.3,
+      "stage7_pct": 22.3
+    },
+    "unit": "% of flow",
+    "quote": "The maximum allowable flow rate for the Stage 5 bleed was 10.3% of through-flow (9% maximum customer bleed plus 1.3% for low pressure turbine use). The Stage 7 bleed was sized to handle up to 22.3% of design flow (20% maximum starting bleed plus 2.3% for the HPT Stage 2 nozzle cooling system).",
+    "report": "NASA CR-165558",
+    "pdf_page": 37,
+    "printed_page": "28-29",
+    "note": "Quote spans pdf pages 37-38."
+  },
+  "bleed_customer_design_calc": {
+    "value": 0,
+    "unit": "%",
+    "quote": "The design calculations were performed for zero Stator 5 exit customer bleed",
+    "report": "NASA CR-165558",
+    "pdf_page": 29,
+    "printed_page": "20"
+  },
+  "bleed_rig_10A": {
+    "value": "figure only",
+    "unit": "",
+    "quote": "Figure 60. Compressor 10A Rig Bleeds (0-9% CUSTOMER BLEED, 0-30% START BLEED, ...)",
+    "report": "NASA CR-165558",
+    "pdf_page": 107,
+    "printed_page": "98",
+    "note": "Text on pdf 89 (printed 80): 'Zero to 9% of Rotor 5 tip discharge air is extracted aft of Stator 5 for customer bleed, HP turbine rotor cavity purge, and the aft case active clearance control. Zero to 30% of Rotor 7 tip discharge, extracted aft of Stator 7, is utilized for start bleed and HP turbine nozzle cooling.'"
+  },
+  "variable_vanes_design": {
+    "value": "IGV and Stators 1-4",
+    "unit": "",
+    "quote": "The inlet guide vane and first four stator vane rows are variable.",
+    "report": "NASA CR-165558",
+    "pdf_page": 28,
+    "printed_page": "20"
+  },
+  "variable_vanes_rig": {
+    "value": "IGV and Stators 1-6",
+    "unit": "",
+    "quote": "the following features of the first 10-stage vehicle were retained in the second build: ... Variable inlet guide vane and Stators 1 through 6",
+    "report": "NASA CR-168245",
+    "pdf_page": 68,
+    "printed_page": "58",
+    "note": "CR-165558 pdf 58 (printed 49) also calls the six-stage rig 'the front six variable-stator stages'."
+  },
+  "vsv_schedules": {
+    "value": "figure only",
+    "unit": "deg",
+    "quote": "Figure 10. Compressor Six-Stage Test Stator Schedule.",
+    "report": "NASA CR-168245",
+    "pdf_page": 52,
+    "printed_page": "42",
+    "note": "Stator setting angle (deg) versus percent corrected speed for IGV and S1-S6. First 10-stage build schedule: Fig. 13 (pdf 61); second 10-stage build: Fig. 18 (pdf 71). Not digitized here."
+  },
+  "stall_margin_potential": {
+    "value": 25,
+    "unit": "%",
+    "quote": "The design speed stall margin potential (25%) was selected to be somewhat higher than experience (on current commercial engines) has indicated is required.",
+    "report": "NASA CR-165558",
+    "pdf_page": 27,
+    "printed_page": "18"
+  },
+  "last_vane_design": {
+    "value": "nearly uniform exit swirl",
+    "unit": "",
+    "quote": "The last stator vane was a unique design; the incoming swirl distribution was similar to that of the other stators, but the desired exit swirl was nearly uniform radially. ... For this vane the chord was set substantially higher at both ends than at the pitch line in order to reduce end-wall diffusion factors.",
+    "report": "NASA CR-165558",
+    "pdf_page": 58,
+    "printed_page": "49",
+    "note": "Stator 10 is the outlet guide vane: 'Campbell diagrams for IGV through Stage 10 (OGV)' (pdf 89, printed 80). There is no separate OGV row in Table XXI or XXII."
+  },
+  "profile_rotors_1_4": {
+    "value": "custom (no standard family named)",
+    "unit": "",
+    "quote": "Shaping of the rotor blade forward of the passage mouth was accomplished by relating the suction surface shape to that of the \"free-flow\" streamline. ... For the subsonic rotor sections near the hub, the General Electric Cascade Analysis by Streamline Curvature (CASC) computer program ... was employed to design the airfoils.",
+    "report": "NASA CR-165558",
+    "pdf_page": 47,
+    "printed_page": "38",
+    "note": "No meanline or thickness family is named for Rotors 1-4; Fig. 21 (pdf 49) is a photograph only."
+  },
+  "profile_rotors_5_10": {
+    "value": "modified circular arc meanline with multicircular arc or 65-series thickness",
+    "unit": "",
+    "quote": "Blade shapes developed for these rotors have a modified circular arc meanline with either a multicircular arc or a 65-series chordwise thickness distribution. ... In the pitch-line region of each rear stage rotor blade, a circular arc meanline gave the desired velocity distribution.",
+    "report": "NASA CR-165558",
+    "pdf_page": 48,
+    "printed_page": "39-41",
+    "note": "Which rotor uses which thickness family is not stated. Quote spans pdf 48 and 50. The meanline modification is described only qualitatively (tip: lightly loaded forward, more heavily loaded aft; hub: unloaded in the trailing edge region)."
+  },
+  "profile_stators_1_4": {
+    "value": "modified circular arc meanline, multicircular arc thickness",
+    "unit": "",
+    "quote": "Stator airfoil sections for Stages 1 through 4 consist of multicircular arc thickness distributions with modified circular arc meanlines. High end-wall swirl levels combined with medium to high inlet Mach numbers made it necessary to straighten the leading edge portions in the end-wall regions for these stages to keep the peak suction surface Mach numbers as low as possible.",
+    "report": "NASA CR-165558",
+    "pdf_page": 52,
+    "printed_page": "43",
+    "note": "pdf 54 (printed 45): 'The trailing edge regions of these front stators with multicircular arc thickness distributions were also straightened slightly'."
+  },
+  "profile_stators_5_9": {
+    "value": "circular arc meanline, NACA 65-series thickness",
+    "unit": "",
+    "quote": "Stators 5 through 9 employ conventional circular arc meanline sections with NACA 65-series chordwise thickness distributions.",
+    "report": "NASA CR-165558",
+    "pdf_page": 54,
+    "printed_page": "45"
+  },
+  "profile_stator_10": {
+    "value": "not stated",
+    "unit": "",
+    "quote": "The last stator vane was a unique design",
+    "report": "NASA CR-165558",
+    "pdf_page": 58,
+    "printed_page": "49",
+    "note": "No profile family stated; %C TM 42.00 as for Stators 5-9."
+  },
+  "profile_igv": {
+    "value": "designed with Dunavant cascade correlation (Reference 6)",
+    "unit": "",
+    "quote": "The correlation of cascade data by Dunavant (Reference 6) was used to design the inlet guide vane.",
+    "report": "NASA CR-165558",
+    "pdf_page": 58,
+    "printed_page": "49",
+    "note": "The IGV block prints CLO (lift coefficient) instead of camber and metal angles; TM/C 0.0850 at %C TM 35.00 on every section."
+  },
+  "stator_chord_rule": {
+    "value": "constant chord inner half, constant solidity outer half (not S8-S10)",
+    "unit": "",
+    "quote": "The chord was maintained constant over the inner half of the span but was increased as the radius increased outboard of midspan to maintain constant solidity. ... the solidity distributions for Stators 8, 9, and 10 do not exhibit the constant solidity feature over the outer half of the vane span.",
+    "report": "NASA CR-165558",
+    "pdf_page": 54,
+    "printed_page": "45"
+  },
+  "plane_section_definition": {
+    "value": "flat plane manufacturing sections normal to the stacking axis",
+    "unit": "",
+    "quote": "The bottom row, labeled \"Plane Sections,\" provides a description of the airfoil geometry on flat plane manufacturing sections. These sections are generally located at the average radius of a calculated streamline, and thus part of the first and last sections may be outside the flowpath.",
+    "report": "NASA CR-165558",
+    "pdf_page": 38,
+    "printed_page": "29"
+  },
+  "station_definition": {
+    "value": "blade edges",
+    "unit": "",
+    "quote": "The stations defined by the \"radius\" and \"Z\" columns lie along the blade edges at both inlet and exit. The hub coordinates are for the smoothed-out aerodynamic representation of the actual hardware.",
+    "report": "NASA CR-165558",
+    "pdf_page": 38,
+    "printed_page": "29"
+  },
+  "hub_tilt": {
+    "value": "2 to 3",
+    "unit": "deg",
+    "quote": "Stator shrouds were tilted radially inward slightly at the leading edge and radially outward at the trailing edge for Stages 1 through 6. Rotor platforms were tilted similarly for Stages 7 through 10. The magnitude of the tilt was 2° to 3° from an otherwise smooth contour.",
+    "report": "NASA CR-165558",
+    "pdf_page": 38,
+    "printed_page": "29"
+  },
+  "nomenclature": {
+    "value": "Tables XXI and XXII",
+    "unit": "",
+    "quote": "SL Streamline Number; % IMM Percent Immersion from Outer Wall; RADIUS Streamline Radius cm (in.); Z Axial Dimension cm (in.); R-BAR Average Streamline Radius Based on Streamline Radii at Blade Edges cm (in.); SECT. HT. Height of Plane Sections from Compressor Centerline cm (in.); BETA Relative Flow Angle, Arctan -Wu/Cz deg; ALPHA Absolute Flow Angle, Arctan Cu/Cz deg; PHI Meridional Flow Angle deg; U Blade Speed m/sec (ft/sec); CZ Axial Velocity m/sec (ft/sec); STAGGER Blade Chord Angle, angle in plane section normal to stacking axis between blade chord and axial direction deg; BETA1* Leading Edge Metal Angle, angle between tangent to camber line and axial direction at the leading edge in a plane section normal to stacking axis deg",
+    "report": "NASA CR-165558",
+    "pdf_page": 118,
+    "printed_page": "109-111",
+    "note": "Nomenclature spans pdf 118-120. INC and DEV are defined 'in cascade projection'; CHORD, CAMBER, STAGGER, BETA1*, BETA2*, TM/C, %C TM, TTE/c in the plane section normal to the stacking axis."
+  },
+  "clearance_elements": {
+    "value": {
+      "rub_allowance_cm": 0.013,
+      "rub_allowance_in": 0.005,
+      "stall_allowance_stage1_cm": 0.025,
+      "stall_allowance_stage1_in": 0.01
+    },
+    "unit": "",
+    "quote": "Table XVI. Elements of E3 Compressor Clearances. ... Rub Allowance - 0.013 cm (0.005 in.) ... Stall Allowance - 0.025 cm (0.010 in.) Stage 1 Only",
+    "report": "NASA CR-165558",
+    "pdf_page": 105,
+    "printed_page": "96",
+    "note": "Other elements (axisymmetric closures, beam bending deflections, casing ovalization, system vibration, manufacturing and assembly tolerances RSS) carry no numbers. Text pdf 89: 'Compressor clearances were calculated considering the elements listed on Table XVI.'"
+  },
+  "clearances_by_stage": {
+    "value": "figure only",
+    "unit": "mm (mils)",
+    "quote": "Figure 61. Compressor Clearances (FPS BUILD UP, FPS CRUISE, E3 EFFICIENCY OBJECTIVE; stages 1-10)",
+    "report": "NASA CR-165558",
+    "pdf_page": 109,
+    "printed_page": "100",
+    "note": "Figure 62. E3 10A Compressor Clearances (pdf 110, printed 101): 'E3 RIG DESIGN POINT 100% Nc @ T25 = 220 K (-63°F)', curves GOAL - FPS CRUISE, POST TEST ANALYTICAL CALCULATION, TOUCH PROBE READINGS (stages 3, 5, 10), AVERAGE RUNNING CLEARANCE, mm. Plotted only, not digitized; the figures do not say whether a stage value is the rotor tip or the stator hub clearance."
+  },
+  "acc_clearance_closure_10B": {
+    "value": {
+      "touchprobe_mm": 0.076,
+      "clearanceometer_rotor10_mm": 0.152,
+      "predicted_mm": 0.127
+    },
+    "unit": "mm",
+    "quote": "Rotor 3, 5 and 10 tip clearances were measured with ACC flows of 0, 0.6% WC, and 1.32% WC. The maximum clearance closure attained with the ACC was 0.076 mm (3 mils) as measured by the touchprobe and 0.152 mm (6 mils) as measured by the clearanceometer over rotor 10 in comparison to a predicted closure of 0.127 mm (5 mils).",
+    "report": "NASA CR-168245",
+    "pdf_page": 163,
+    "printed_page": "153",
+    "note": "Condition: 'Data were taken at a vehicle speed of 100% Nc with T25 = 211 K (-80° F) and P25 = 31.7 kPa (4.6 psia).' Absolute running clearances are not tabulated."
+  }
+}

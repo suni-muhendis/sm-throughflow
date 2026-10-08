@@ -1,0 +1,23 @@
+{
+  "case": "naca_8stage",
+  "citations": [
+    {"citation": "Voit, C. H.: Investigation of a High-Pressure-Ratio Eight-Stage Axial-Flow Research Compressor with Two Transonic Inlet Stages. I - Aerodynamic Design. NACA RM E53I24, 1953.", "report": "NACA RM E53I24", "ntrs_id": "19930087928", "file": "RM-E53I24_8stg_I.pdf"},
+    {"citation": "Geye, R. P.; Voit, C. H.: Investigation of a High-Pressure-Ratio Eight-Stage Axial-Flow Research Compressor with Two Transonic Inlet Stages. IV - Modification of Aerodynamic Design and Prediction of Performance. NACA RM E55B28, 1955.", "report": "NACA RM E55B28", "ntrs_id": "19930088710", "file": "RM-E55B28_8stg_IV.pdf"},
+    {"citation": "Standahar, R. M.; Geye, R. P.: Investigation of a High-Pressure-Ratio Eight-Stage Axial-Flow Research Compressor with Two Transonic Inlet Stages. V - Preliminary Analysis of Over-All Performance of Modified Compressor. NACA RM E55A03, 1955. (consulted for facts only)", "report": "NACA RM E55A03", "ntrs_id": "19930088557", "file": "RM-E55A03_8stg_V.pdf"}
+  ],
+  "tables": [
+    {"file": "E53I24_tableI_design_data.csv", "report": "NACA RM E53I24", "ntrs_id": "19930087928", "pdf_page": 22, "printed_page": "21", "title": "TABLE I. - DESIGN DATA", "dpi": 250,
+     "notes": "Two printed blocks 'Subsonic stages' (1-9: the stages of the original nine-stage subsonic design of reference 6, of which stages 3-8 are used here) and 'Transonic stages' (1-2) kept as separator rows. No units printed (angle in deg). Second read from zoomed crop done."},
+    {"file": "E53I24_tableIIa_vector_rotor.csv", "report": "NACA RM E53I24", "ntrs_id": "19930087928", "pdf_page": 23, "printed_page": "22", "title": "TABLE II. - VECTOR-DIAGRAM DATA (a) Rotor.", "dpi": 250,
+     "notes": "Column groups: Entrance (Z, X, Y', h, V'/Ut, M', β'), Change through blade row (Δh, Δβ'), D'. Stage and axial station printed on first line of each block; repeated on every line. '-----' cells printed as dashes. Second read from 1.7x zoomed crops done. See notes.md for the numerical checks."},
+    {"file": "E53I24_tableIIb_vector_stator.csv", "report": "NACA RM E53I24", "ntrs_id": "19930087928", "pdf_page": 24, "printed_page": "23", "title": "TABLE II. - Concluded. VECTOR-DIAGRAM DATA (b) Stator.", "dpi": 250,
+     "notes": "Columns: Entrance (Z, X, Y, h, V/Ut, M, β), Change through blade row (Δh, Δβ), D. Second read from 1.7x zoomed crops done. Stage 5 line Z=.9520: Δβ printed '21..70' (stray dot), transcribed 21.70. Stage 6 line Z=.8839: X printed with a smudge ':6813', transcribed .6813."},
+    {"file": "E53I24_tableIIIa_blade_rotor.csv", "report": "NACA RM E53I24", "ntrs_id": "19930087928", "pdf_page": 25, "printed_page": "24", "title": "TABLE III. - BLADE DESIGN DATA (a) Rotor.", "dpi": 250,
+     "notes": "Units were printed inside the headings; repeated in row 2. Number of blades printed once per stage (first line). '----'/'-----' cells printed as dashes (CL,i not applicable to the circular-arc transonic rotors 1-2; φ not applicable to 65-series rotors 3-8). Second read from zoomed crop done."},
+    {"file": "E53I24_tableIIIb_blade_stator.csv", "report": "NACA RM E53I24", "ntrs_id": "19930087928", "pdf_page": 26, "printed_page": "25", "title": "TABLE III. - Concluded. BLADE DESIGN DATA (b) Stator.", "dpi": 250,
+     "notes": "Stage 1 line Z=.8941: setting angle printed '21:3' (smudged dot), transcribed 21.3. Second read from zoomed crop done; solidity = N c/(2π r_t Z) with r_t = 10 in. checks for every stator line."},
+    {"file": "E55B28_tableI_design_data_modified.csv", "report": "NACA RM E55B28", "ntrs_id": "19930088710", "pdf_page": 14, "printed_page": "13", "title": "TABLE I. - DESIGN DATA", "dpi": 250,
+     "notes": "Station 1 has blank cells except β = 0; station 9 has only Tn/Tn-1. Stations 1-9 are stage-entrance stations of the modified compressor (Fig. 2 of RM E55B28), numbered differently from RM E53I24. Text (pdf p. 5): 'the values of area ratio, radius ratio, design temperature ratio (ref. 1), and absolute air angle (ref. 1) presented in table I' - i.e. temperature ratio and air angle are from the original design (RM E53I24); area and radius ratios are for the modified flow passage. Second read done."}
+  ],
+  "scalars_file": "scalars.json"
+}

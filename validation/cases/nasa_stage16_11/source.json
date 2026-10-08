@@ -1,0 +1,168 @@
+[
+ {
+  "citation": "Moore, R. D.; Urasek, D. C.; Kovich, G.: Performance of Transonic Fan Stage with Weight Flow per Unit Annulus Area of 178 Kilograms per Second per Square Meter (36.5 (lb/sec)/(ft2)). NASA TM X-2904, November 1973.",
+  "report": "NASA TM X-2904",
+  "ntrs_id": "19740001906",
+  "file": "TMX2904_fan178.pdf"
+ },
+ {
+  "file": "TMX2904_tableI_design_overall.csv",
+  "report": "NASA TM X-2904",
+  "ntrs_id": "19740001906",
+  "pdf_page": 22,
+  "printed_page": "20",
+  "title": "TABLE I. - DESIGN OVERALL PARAMETERS FOR STAGE 16-11",
+  "dpi": 200,
+  "notes": "No units printed. Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ },
+ {
+  "file": "TMX2904_tableII_rotor16_part1.csv",
+  "report": "NASA TM X-2904",
+  "ntrs_id": "19740001906",
+  "pdf_page": 23,
+  "printed_page": "21",
+  "title": "TABLE II. - DESIGN BLADE-ELEMENT PARAMETERS FOR ROTOR 16",
+  "dpi": 200,
+  "notes": "Four stacked blocks. Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ },
+ {
+  "file": "TMX2904_tableII_rotor16_part2.csv",
+  "report": "NASA TM X-2904",
+  "ntrs_id": "19740001906",
+  "pdf_page": 23,
+  "printed_page": "21",
+  "title": "TABLE II. - DESIGN BLADE-ELEMENT PARAMETERS FOR ROTOR 16",
+  "dpi": 200,
+  "notes": "Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ },
+ {
+  "file": "TMX2904_tableII_rotor16_part3.csv",
+  "report": "NASA TM X-2904",
+  "ntrs_id": "19740001906",
+  "pdf_page": 23,
+  "printed_page": "21",
+  "title": "TABLE II. - DESIGN BLADE-ELEMENT PARAMETERS FOR ROTOR 16",
+  "dpi": 200,
+  "notes": "Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ },
+ {
+  "file": "TMX2904_tableII_rotor16_part4.csv",
+  "report": "NASA TM X-2904",
+  "ntrs_id": "19740001906",
+  "pdf_page": 23,
+  "printed_page": "21",
+  "title": "TABLE II. - DESIGN BLADE-ELEMENT PARAMETERS FOR ROTOR 16",
+  "dpi": 200,
+  "notes": "Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ },
+ {
+  "file": "TMX2904_tableIII_stator11_part1.csv",
+  "report": "NASA TM X-2904",
+  "ntrs_id": "19740001906",
+  "pdf_page": 24,
+  "printed_page": "22",
+  "title": "TABLE III. - DESIGN BLADE-ELEMENT PARAMETERS FOR STATOR 11",
+  "dpi": 200,
+  "notes": "Four stacked blocks. Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ },
+ {
+  "file": "TMX2904_tableIII_stator11_part2.csv",
+  "report": "NASA TM X-2904",
+  "ntrs_id": "19740001906",
+  "pdf_page": 24,
+  "printed_page": "22",
+  "title": "TABLE III. - DESIGN BLADE-ELEMENT PARAMETERS FOR STATOR 11",
+  "dpi": 200,
+  "notes": "Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ },
+ {
+  "file": "TMX2904_tableIII_stator11_part3.csv",
+  "report": "NASA TM X-2904",
+  "ntrs_id": "19740001906",
+  "pdf_page": 24,
+  "printed_page": "22",
+  "title": "TABLE III. - DESIGN BLADE-ELEMENT PARAMETERS FOR STATOR 11",
+  "dpi": 200,
+  "notes": "Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ },
+ {
+  "file": "TMX2904_tableIII_stator11_part4.csv",
+  "report": "NASA TM X-2904",
+  "ntrs_id": "19740001906",
+  "pdf_page": 24,
+  "printed_page": "22",
+  "title": "TABLE III. - DESIGN BLADE-ELEMENT PARAMETERS FOR STATOR 11",
+  "dpi": 200,
+  "notes": "Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ },
+ {
+  "file": "TMX2904_tableIV_rotor16_part1.csv",
+  "report": "NASA TM X-2904",
+  "ntrs_id": "19740001906",
+  "pdf_page": 25,
+  "printed_page": "23",
+  "title": "TABLE IV. - BLADE GEOMETRY FOR ROTOR 16",
+  "dpi": 200,
+  "notes": "Three stacked blocks. Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ },
+ {
+  "file": "TMX2904_tableIV_rotor16_part2.csv",
+  "report": "NASA TM X-2904",
+  "ntrs_id": "19740001906",
+  "pdf_page": 25,
+  "printed_page": "23",
+  "title": "TABLE IV. - BLADE GEOMETRY FOR ROTOR 16",
+  "dpi": 200,
+  "notes": "Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ },
+ {
+  "file": "TMX2904_tableIV_rotor16_part3.csv",
+  "report": "NASA TM X-2904",
+  "ntrs_id": "19740001906",
+  "pdf_page": 25,
+  "printed_page": "23",
+  "title": "TABLE IV. - BLADE GEOMETRY FOR ROTOR 16",
+  "dpi": 200,
+  "notes": "Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ },
+ {
+  "file": "TMX2904_tableV_stator11_part1.csv",
+  "report": "NASA TM X-2904",
+  "ntrs_id": "19740001906",
+  "pdf_page": 26,
+  "printed_page": "24",
+  "title": "TABLE V. - BLADE GEOMETRY FOR STATOR 11",
+  "dpi": 200,
+  "notes": "Three stacked blocks. Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ },
+ {
+  "file": "TMX2904_tableV_stator11_part2.csv",
+  "report": "NASA TM X-2904",
+  "ntrs_id": "19740001906",
+  "pdf_page": 26,
+  "printed_page": "24",
+  "title": "TABLE V. - BLADE GEOMETRY FOR STATOR 11",
+  "dpi": 200,
+  "notes": "Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ },
+ {
+  "file": "TMX2904_tableV_stator11_part3.csv",
+  "report": "NASA TM X-2904",
+  "ntrs_id": "19740001906",
+  "pdf_page": 26,
+  "printed_page": "24",
+  "title": "TABLE V. - BLADE GEOMETRY FOR STATOR 11",
+  "dpi": 200,
+  "notes": "Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ },
+ {
+  "file": "TMX2904_fig1_flowpath_coordinates.csv",
+  "report": "NASA TM X-2904",
+  "ntrs_id": "19740001906",
+  "pdf_page": 65,
+  "printed_page": "63",
+  "title": "Figure 1. - Flow path for stage 16-11 showing axial location of instrumentation. (inset 'Flow path coordinates')",
+  "dpi": 200,
+  "notes": "Down-arrows written as ↓. FOOTNOTE a = Measuring station. Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ }
+]

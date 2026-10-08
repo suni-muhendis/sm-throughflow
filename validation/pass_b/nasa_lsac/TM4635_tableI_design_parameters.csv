@@ -1,0 +1,26 @@
+GROUP,ITEM,VALUE,UNIT
+,,,
+,Tip speed,61.0,m/sec
+,Rotative speed,980,rpm
+,Axial velocity,24.4,m/sec
+,Mass flow,12.3,kg/sec
+,Pressure ratio,1.042,
+,Temperature ratio,1.013,
+,Tip radius,61.0,cm
+,Hub radius,48.8,cm
+,Blade span,12.2,cm
+Aspect ratio (span/chord),Rotor,1.20,
+Aspect ratio (span/chord),Stator,1.31,
+Aerodynamic chord midspan,Rotor,10.2,cm
+Aerodynamic chord midspan,Stator,9.4,cm
+Blade setting angle midspan,Rotor,43,°
+Blade setting angle midspan,Stator,42,°
+Axially projected chord midspan,Rotor,7.6,cm
+Axially projected chord midspan,Stator,6.6,cm
+Number of blades,Rotor,39,
+Number of blades,Stator and IGV,52,
+,Axial gap between blade rows,2.54,cm
+Clearances,Rotor tip,1.40,percent span
+Clearances,Rotor tip,0.17,cm
+Clearances,Stator seal,0.78,percent span
+Clearances,Stator seal,0.09,cm

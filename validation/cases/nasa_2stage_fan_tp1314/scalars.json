@@ -1,0 +1,264 @@
+{
+  "design_weight_flow": {
+    "value": 33.248,
+    "unit": "kg/sec",
+    "quote": "The fan was designed for a weight flow of 33.248 kilograms per second, an overall pressure ratio of 2.40, an adiabatic efficiency of 0.846, and a rotative speed of 16042.8 rpm.",
+    "report": "NASA TP-1314",
+    "pdf_page": 6
+  },
+  "design_pressure_ratio": {
+    "value": 2.4,
+    "unit": "",
+    "quote": "The fan was designed for a weight flow of 33.248 kilograms per second, an overall pressure ratio of 2.400, an adiabatic efficiency of 0.846, and a rotative speed of 16 042.8 rpm.",
+    "report": "NASA TP-1314",
+    "pdf_page": 5
+  },
+  "design_adiabatic_efficiency": {
+    "value": 0.846,
+    "unit": "",
+    "quote": "an adiabatic efficiency of 0.846",
+    "report": "NASA TP-1314",
+    "pdf_page": 5
+  },
+  "design_speed": {
+    "value": 16042.8,
+    "unit": "rpm",
+    "quote": "and a rotative speed of 16 042.8 rpm.",
+    "report": "NASA TP-1314",
+    "pdf_page": 5
+  },
+  "design_tip_speed": {
+    "value": 426.72,
+    "unit": "m/sec",
+    "quote": "Table I(b), equivalent values based on compressor inlet: TIP SPEED 426.720 (report title: 427-Meter-per-Second-Tip-Speed)",
+    "report": "NASA TP-1314",
+    "pdf_page": 24
+  },
+  "blade_count_rotor1": {
+    "value": 43,
+    "unit": "",
+    "quote": "Table IV: ROTOR ONE ... NUMBER OF BLADES 43",
+    "report": "NASA TP-1314",
+    "pdf_page": 32
+  },
+  "blade_count_stator1": {
+    "value": 34,
+    "unit": "",
+    "quote": "Table IV: STATOR ONE ... NUMBER OF BLADES 34",
+    "report": "NASA TP-1314",
+    "pdf_page": 32
+  },
+  "blade_count_rotor2": {
+    "value": 38,
+    "unit": "",
+    "quote": "Table IV: ROTOR TWO ... NUMBER OF BLADES 38",
+    "report": "NASA TP-1314",
+    "pdf_page": 32
+  },
+  "blade_count_stator2": {
+    "value": 42,
+    "unit": "",
+    "quote": "Table IV: STATOR TWO ... NUMBER OF BLADES 42",
+    "report": "NASA TP-1314",
+    "pdf_page": 32
+  },
+  "profile_rotor1": {
+    "value": "MCA over entire span",
+    "unit": "",
+    "quote": "In the first-stage rotor, the blading was of multiple circular arc (MCA) cross section across the entire blade span;",
+    "report": "NASA TP-1314",
+    "pdf_page": 6
+  },
+  "profile_rotor2": {
+    "value": "MCA from tip to 44 percent span, DCA over remainder",
+    "unit": "",
+    "quote": "in the second-stage rotor the blading was MCA from the tip to 44 percent of span and double circular arc (DCA) over the remainder of the span.",
+    "report": "NASA TP-1314",
+    "pdf_page": 6
+  },
+  "profile_stators": {
+    "value": "DCA over entire span (both stators)",
+    "unit": "",
+    "quote": "Both stators had DCA blading over their entire span. (Percent span is measured from the tip.)",
+    "report": "NASA TP-1314",
+    "pdf_page": 6
+  },
+  "mca_max_thickness_location": {
+    "value": 50,
+    "unit": "percent chord",
+    "quote": "For the MCA blading the maximum thickness was specified at 50 percent of chord, and the transition point was located where a normal passage shock was predicted to intersect the suction surface.",
+    "report": "NASA TP-1314",
+    "pdf_page": 6
+  },
+  "mca_choke_margin_target": {
+    "value": 4,
+    "unit": "percent",
+    "quote": "The turning ratios for all MCA blade elements were selected to provide a choke margin of 4 percent. However, because of an error in the choke margin calculation in the computer program, the actual choke margins were about 3/4 of a percent-age point below the values listed in table III.",
+    "report": "NASA TP-1314",
+    "pdf_page": 6
+  },
+  "design_incidence_rotors_ss": {
+    "value": 0,
+    "unit": "deg",
+    "quote": "The incidence angles were set at 0° to the suction surface for all the rotor-blade elements and -3° with reference to the suction surface for all of the stator elements.",
+    "report": "NASA TP-1314",
+    "pdf_page": 7
+  },
+  "design_incidence_stators_ss": {
+    "value": -3,
+    "unit": "deg",
+    "quote": "and -3° with reference to the suction surface for all of the stator elements.",
+    "report": "NASA TP-1314",
+    "pdf_page": 7
+  },
+  "deviation_rule": {
+    "value": "modified Carter's rule",
+    "unit": "",
+    "quote": "Deviation angle estimates were based on a modified Carter's rule, as discussed in reference 5, and adjusted to reflect the differences noted between the estimated and measured values presented in references 1 and 2.",
+    "report": "NASA TP-1314",
+    "pdf_page": 7
+  },
+  "rotor1_damper_span_location": {
+    "value": 42,
+    "unit": "percent span from outlet rotor tip",
+    "quote": "The first-stage rotor had part span dampers to reduce blade vibratory stresses. These dampers were located at 42 percent of blade span from the outlet rotor tip.",
+    "report": "NASA TP-1314",
+    "pdf_page": 7
+  },
+  "rotor1_damper_max_thickness": {
+    "value": 0.203,
+    "unit": "cm",
+    "quote": "The maximum thickness of the damper was 0.203 centimeter.",
+    "report": "NASA TP-1314",
+    "pdf_page": 7
+  },
+  "rotor1_damper_edge_radii": {
+    "value": 0.025,
+    "unit": "cm",
+    "quote": "Leading- and trailing-edge radii were 0.025 centimeter, and the damper axial chord was 1.129 centimeters.",
+    "report": "NASA TP-1314",
+    "pdf_page": 7
+  },
+  "rotor1_damper_axial_chord": {
+    "value": 1.129,
+    "unit": "cm",
+    "quote": "and the damper axial chord was 1.129 centimeters.",
+    "report": "NASA TP-1314",
+    "pdf_page": 7
+  },
+  "rotor1_damper_geometry": {
+    "value": "conical meanline in approximate streamline plane; circular-arc surfaces; axially at blade midchord; not in aero design",
+    "unit": "",
+    "quote": "The damper meanline forms a conical surface, which lies in the approximate plane of a streamline. ... The outboard and inboard surfaces of the damper were circular arcs tangent to the leading- and trailing-edge arcs. The damper was located axially at blade midchord. The aerodynamic design did not account for loss or local blockage due to the damper.",
+    "report": "NASA TP-1314",
+    "pdf_page": 7
+  },
+  "thickness_distribution": {
+    "value": "rotor 1 and both stators linear hub to tip; rotor 2 cubic",
+    "unit": "",
+    "quote": "The blade thickness distribution of the first-stage rotor and the two stators varied linearly from hub to tip. However, the blade thickness distribution of the second-stage rotor followed a cubic relation to provide an acceptable frequency margin",
+    "report": "NASA TP-1314",
+    "pdf_page": 7
+  },
+  "static_tip_clearance_rotor1": {
+    "value": 0.114,
+    "unit": "cm",
+    "quote": "The static radial tip clearances for the first- and second-stage rotors were set at 0.114 and 0.127 centimeter, respectively.",
+    "report": "NASA TP-1314",
+    "pdf_page": 8
+  },
+  "static_tip_clearance_rotor2": {
+    "value": 0.127,
+    "unit": "cm",
+    "quote": "The static radial tip clearances for the first- and second-stage rotors were set at 0.114 and 0.127 centimeter, respectively.",
+    "report": "NASA TP-1314",
+    "pdf_page": 8
+  },
+  "running_tip_clearance_rotors": {
+    "value": 0.025,
+    "unit": "cm",
+    "quote": "With these dimensions, the running clearances were calculated to be 0.025 centimeter at design conditions.",
+    "report": "NASA TP-1314",
+    "pdf_page": 8
+  },
+  "stator_endwall_clearance": {
+    "value": 0.058,
+    "unit": "cm",
+    "quote": "Both stator blade rows were shrouded and had endwall clearances of 0.058 centimeter to provide reset capabilities of ±10° from their design values.",
+    "report": "NASA TP-1314",
+    "pdf_page": 8
+  },
+  "energy_split": {
+    "value": "equal between the two rotors; rotor-exit total pressure radially constant",
+    "unit": "",
+    "quote": "The energy input was divided equally between the two rotors. The design radial distribution of the total-pressure profile at each rotor exit was specified as constant.",
+    "report": "NASA TP-1314",
+    "pdf_page": 6
+  },
+  "survey_stations": {
+    "value": {
+      "1": -2.347,
+      "2": 18.659,
+      "3": 36.706
+    },
+    "unit": "cm (Z)",
+    "quote": "Radial surveys of the flow conditions were made at the fan inlet and behind the two stator-blade rows (see fig. 1). / Fig. 1 coordinate box footnote a: Instrumentation survey plane (Z = -2.347, 18.659, 36.706). / Symbols: 1 instrumentation plane upstream of first rotor; 2 instrumentation plane between first stator and second rotor; 3 instrumentation plane downstream of second stator",
+    "report": "NASA TP-1314",
+    "pdf_page": 9
+  },
+  "survey_radial_positions": {
+    "value": 11,
+    "unit": "",
+    "quote": "At each selected flow the data were recorded at 11 radial positions at each of the 3 measuring stations.",
+    "report": "NASA TP-1314",
+    "pdf_page": 10
+  },
+  "Z_reference": {
+    "value": "rotor-blade-hub leading edge",
+    "unit": "cm",
+    "quote": "Z axial distance referenced from rotor-blade-hub leading edge, cm",
+    "report": "NASA TP-1314",
+    "pdf_page": 16
+  },
+  "percent_span_definition": {
+    "value": "from tip, referenced to rotor one outlet",
+    "unit": "",
+    "quote": "PERCENT SPAN percent of blade span from tip referenced to rotor one outlet",
+    "report": "NASA TP-1314",
+    "pdf_page": 21
+  },
+  "air_angle_definition": {
+    "value": "angle between air velocity and axial direction; BETAM meridional air angle",
+    "unit": "deg",
+    "quote": "β air angle, angle between air velocity and axial direction, deg (App. A); BETAM meridional air angle, deg (App. C)",
+    "report": "NASA TP-1314",
+    "pdf_page": 16
+  },
+  "blade_angle_definition": {
+    "value": "KIC/KTC/KOC: blade-element mean camber line on conical surface vs meridional plane at LE / transition point / TE",
+    "unit": "deg",
+    "quote": "KIC angle between blade-element mean camber line on conical surface at leading edge and meridional plane, deg; KTC ... at transition point ...; KOC ... at trailing edge ...",
+    "report": "NASA TP-1314",
+    "pdf_page": 21
+  },
+  "standard_conditions": {
+    "value": {
+      "T_std_K": 288.2,
+      "p_std_N_per_cm2": 10.13
+    },
+    "unit": "",
+    "quote": "θ ratio of rotor-inlet total temperature to standard temperature of 288.2 K; δ ratio of rotor-inlet total pressure to standard pressure of 10.13 N/cm2",
+    "report": "NASA TP-1314",
+    "pdf_page": 17
+  },
+  "gas_properties": {
+    "value": {
+      "cp_J_per_kgK": 1004,
+      "gamma": 1.4
+    },
+    "unit": "",
+    "quote": "Cp specific heat at constant pressure, 1004 (J/kg) K; γ ratio of specific heats (1.40)",
+    "report": "NASA TP-1314",
+    "pdf_page": 16
+  }
+}

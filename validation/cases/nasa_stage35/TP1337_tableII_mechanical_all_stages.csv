@@ -1,0 +1,17 @@
+Row,Parameter,Unit (from label),Stage 35,Stage 36,Stage 37,Stage 38
+,,,,,,
+(a) Rotor,Material,,Maraging 200,Maraging 200,Maraging 200,Maraging 200
+(a) Rotor,Yield strength,N/cm2,142 720,142 720,142 720,142 720
+(a) Rotor,Maximum stress,N/cm2,51 848,46 306,60 604,49 998
+(a) Rotor,"Flutter parameter, bending",,2.2,6.03,2.9,5.43
+(a) Rotor,"Flutter parameter, torsion",,0.8,1.74,0.9,1.66
+(a) Rotor,Number of blades,,36,48,36,48
+(a) Rotor,Design speed,rpm,17 188.7,17 188.7,17 188.7,17 188.7
+(a) Rotor,Possible resonance rpm,rpm,15 000,11 000,13 000,12 000
+(b) Stator,Material,,Maraging 200,Maraging 200,Maraging 200,Maraging 200
+(b) Stator,Yield strength,N/cm2,142 720,142 720,142 720,142 720
+(b) Stator,Maximum stress,N/cm2,12 250,7101,15 168,10 480
+(b) Stator,"Flutter parameter, bending",,2.1,3.42,1.9,3.23
+(b) Stator,"Flutter parameter, torsion",,0.98,1.34,0.9,1.43
+(b) Stator,Number of blades,,46,62,46,62
+(b) Stator,Possible resonance rpm,rpm,20 000,12 000,16 000,14 000

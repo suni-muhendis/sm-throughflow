@@ -1,0 +1,7 @@
+PARAMETER,First stage,Second stage
+,,
+Number of airfoils,28,60
+Aspect ratio(a),2.48,2.69
+"Hub chord, in. (m)",3.62 (0.092),2.10 (0.053)
+"Tip chord, in. (m)",4.55 (0.116),2.10 (0.053)
+Tip solidity,1.33,1.43

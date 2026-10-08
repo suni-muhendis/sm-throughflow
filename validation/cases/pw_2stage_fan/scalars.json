@@ -1,0 +1,278 @@
+{
+  "design_corrected_speed": {
+    "value": 10720,
+    "unit": "rpm",
+    "quote": "Corrected Speed - rpm: 10720",
+    "report": "NASA CR-120859",
+    "pdf_page": 12
+  },
+  "design_corrected_flow": {
+    "value": 184.2,
+    "unit": "lbm/sec (83.5 kg/sec)",
+    "quote": "Corrected Flow - lbm/sec (kg/sec): 184.2 (83.5)",
+    "report": "NASA CR-120859",
+    "pdf_page": 12
+  },
+  "design_corrected_flow_TMX": {
+    "value": 184.2,
+    "unit": "lbm/sec (83.55 kg/sec)",
+    "quote": "Corrected speed, 10 720 rpm; corrected flow, 184.20 lbm/sec (83.55 kg/sec).",
+    "report": "NASA TM X-3076",
+    "pdf_page": 4
+  },
+  "design_pressure_ratio_overall": {
+    "value": 2.8,
+    "unit": "",
+    "quote": "Stator 2 .975 2.80 (overall) ... 83.9 (overall)",
+    "report": "NASA CR-120859",
+    "pdf_page": 12
+  },
+  "design_adiabatic_efficiency_overall": {
+    "value": 83.9,
+    "unit": "percent",
+    "quote": "Overall Adiabatic Efficiency (%) 83.9",
+    "report": "NASA CR-120859",
+    "pdf_page": 10
+  },
+  "rotor1_tip_speed": {
+    "value": 1450,
+    "unit": "ft/sec (441.96 m/sec)",
+    "quote": "With a required first rotor tip-speed of 1450 ft/sec (441.96 m/sec), the design speed corrected to standard inlet conditions is 10,720 rpm.",
+    "report": "NASA CR-120859",
+    "pdf_page": 12
+  },
+  "rotor1_inlet_tip_diameter": {
+    "value": 31.0,
+    "unit": "inches (0.787 m)",
+    "quote": "The first rotor inlet tip diameter was selected as 31 inches (0.787 m)",
+    "report": "NASA CR-120859",
+    "pdf_page": 12
+  },
+  "inlet_hub_tip_ratio": {
+    "value": 0.4,
+    "unit": "",
+    "quote": "Hub/Tip Ratio 0.4",
+    "report": "NASA CR-120859",
+    "pdf_page": 10
+  },
+  "specific_flow": {
+    "value": 42,
+    "unit": "lbm/sec-ft2 (205 kg/sec-m2)",
+    "quote": "Specific Flow - lbm/sec-ft2 (kg/sec-m2) 42 (205)",
+    "report": "NASA CR-120859",
+    "pdf_page": 10
+  },
+  "per_row_design_performance": {
+    "value": {
+      "Rotor 1": {
+        "PR local": 1.787,
+        "PR cum": 1.787,
+        "eta_ad local": 89.4,
+        "eta_ad cum": 89.4
+      },
+      "Stator 1": {
+        "PR local": 0.977,
+        "PR cum": 1.744,
+        "eta_ad cum": 85.4
+      },
+      "Rotor 2": {
+        "PR local": 1.646,
+        "PR cum": 2.872,
+        "eta_ad local": 89.2,
+        "eta_ad cum": 86.2
+      },
+      "Stator 2": {
+        "PR local": 0.975,
+        "PR cum": 2.8,
+        "eta_ad cum": 83.9
+      }
+    },
+    "unit": "",
+    "quote": "TABLE I DESIGN PERFORMANCE (rows Rotor 1, Stator 1, Rotor 2, Stator 2)",
+    "report": "NASA CR-120859",
+    "pdf_page": 12
+  },
+  "igv": {
+    "value": "none",
+    "unit": "",
+    "quote": "The fan was designed without inlet guide vanes (IGV) but with the provision for adding a variable camber IGV at a later date.",
+    "report": "NASA CR-120859",
+    "pdf_page": 12
+  },
+  "stator_exit_flow_angle": {
+    "value": 0,
+    "unit": "deg",
+    "quote": "The vanes for both stator rows were designed to have zero exit flow angle at all radii and to be resettable +-10 degrees (.17 radians) from the design stagger in increments of 2.5 degrees (0.044 radians).",
+    "report": "NASA CR-120859",
+    "pdf_page": 10
+  },
+  "annulus_blockages_design": {
+    "value": {
+      "Rotor 1 L.E.": 2.4,
+      "Rotor 1 T.E. to Stator 1 L.E.": 4.1,
+      "Stator 1 T.E. to Rotor 2 L.E.": 2.8,
+      "Rotor 2 T.E. to Stator 2 L.E.": 3.8,
+      "Stator 2 T.E.": 3.5
+    },
+    "unit": "percent",
+    "quote": "TABLE II ANNULUS BLOCKAGES",
+    "report": "NASA CR-120859",
+    "pdf_page": 13
+  },
+  "annulus_blockages_data_reduction": {
+    "value": {
+      "Upstream to rotor 1 leading edge": 2.4,
+      "Rotor 1 trailing edge": 4.1,
+      "Stator 1 leading edge": 4.1,
+      "Stator 1 trailing edge": 2.8,
+      "Rotor 2 leading edge": 2.8,
+      "Rotor 2 trailing edge": 3.8,
+      "Stator 2 leading edge": 3.8,
+      "Stator 2 trailing edge and downstream": 4.1
+    },
+    "unit": "percent",
+    "quote": "TABLE VI. - ANNULUS BLOCKAGES (Data reduction column; design column identical except last row 3.5)",
+    "report": "NASA TM X-3076",
+    "pdf_page": 14
+  },
+  "profile_type": {
+    "value": "MCA on conical surfaces",
+    "unit": "",
+    "quote": "Rotor and stator blade sections for both stages of the fan are multiple-circular-arc (MCA) airfoils designed on conical surfaces which approximate streamsurfaces of revolution.",
+    "report": "NASA CR-120859",
+    "pdf_page": 14
+  },
+  "rotor_transition_point": {
+    "value": 0.8,
+    "unit": "fraction of distance LE to normal shock location on suction surface",
+    "quote": "The ratio of front-chord to total-chord was set to provide a transition point 0.8 of the distance from the leading edge to the normal shock location on the suction surface (point B in Figure 12).",
+    "report": "NASA CR-120859",
+    "pdf_page": 14
+  },
+  "rotor_tc_distribution": {
+    "value": "rotor 1 hub 0.08, rotor 2 hub 0.095, linear to 0.025 at tip",
+    "unit": "",
+    "quote": "Rotor 1 has a hub t/c of 0.08 and a partspan shroud at 61 percent span from the hub. Rotor 2 has a hub t/c of 0.095 but no partspan shroud. Spanwise distributions of t/c for both rotors are linear from root values to a t/c of 0.025 at the tip.",
+    "report": "NASA CR-120859",
+    "pdf_page": 15
+  },
+  "stator_tc_distribution": {
+    "value": "0.04 hub to 0.075 tip, linear",
+    "unit": "",
+    "quote": "Maximum thickness to chord ratio was set to vary linearly from 0.04 at the hub to 0.075 at the tip ... At the tip sections, maximum thickness was set at midchord.",
+    "report": "NASA CR-120859",
+    "pdf_page": 16
+  },
+  "rotor1_partspan_shroud_location": {
+    "value": 61,
+    "unit": "percent span from hub",
+    "quote": "Blades of the first rotor have a partspan shroud at 61 percent span from the hub",
+    "report": "NASA CR-120859",
+    "pdf_page": 10
+  },
+  "stacking": {
+    "value": "radial line through c.g. of root conical section",
+    "unit": "",
+    "quote": "For manufacturing purposes, the airfoil sections were redefined on planes normal to the stacking line, a radial line through the center of gravity of the root conical section.",
+    "report": "NASA CR-120859",
+    "pdf_page": 16
+  },
+  "tip_clearance": {
+    "value": null,
+    "unit": "",
+    "quote": "Two proximity detectors, located over the tips of each rotor blade at midchord were used to monitor blade tip clearance. (no clearance values printed)",
+    "report": "NASA TM X-3076",
+    "pdf_page": 10
+  },
+  "instrument_station_6": {
+    "value": 2.25,
+    "unit": "in. upstream of rotor 1",
+    "quote": "6 Rotor 1 inlet (2.25 in. upstream of rotor 1)",
+    "report": "NASA TM X-3076",
+    "pdf_page": 9
+  },
+  "instrument_stations_other": {
+    "value": {
+      "7": "Rotor 1 exit (approx. halfway between rotor 1 trailing edge and stator 1 leading edge)",
+      "8": "Stator 1 exit (halfway between stator 1 trailing edge and rotor 2 leading edge)",
+      "9": "Rotor 2 exit; stator 2 leading-edge probes",
+      "10": "Fan discharge (within 1/2 chord downstream of stator 2)"
+    },
+    "unit": "",
+    "quote": "TABLE IV. - PERFORMANCE AND BLADE-ELEMENT INSTRUMENTATION",
+    "report": "NASA TM X-3076",
+    "pdf_page": 9
+  },
+  "measurement_streamlines": {
+    "value": [
+      5,
+      10,
+      15,
+      30,
+      50,
+      70,
+      85,
+      90,
+      95
+    ],
+    "unit": "percent of passage height at rotor 1 TE",
+    "quote": "The nine radial positions of each axial station are defined by the intersection of the axial station and the design streamlines which pass through 5, 10, 15, 30, 50, 70, 85, 90, and 95 percent of the passage height at the first-stage-rotor trailing edge.",
+    "report": "NASA TM X-3076",
+    "pdf_page": 10
+  },
+  "stator1_reset_test": {
+    "value": "5 deg closed",
+    "unit": "deg",
+    "quote": "A 5 deg closed reset of the first-stage stator eliminated second-stage flutter",
+    "report": "NASA TM X-3076",
+    "pdf_page": 2
+  },
+  "forward_support_struts": {
+    "value": 14,
+    "unit": "inches (0.356 m) upstream of the rotor leading edge; 10 struts",
+    "quote": "Ten struts, 14 inches (0. 356 m) upstream of the rotor leading edge, supported the forward bearing and the assembly for the strain-gage slip ring.",
+    "report": "NASA TM X-3076",
+    "pdf_page": 8
+  },
+  "rear_support_struts": {
+    "value": 11,
+    "unit": "inches (0.28 m) downstream of the stator trailing edge; 8 struts",
+    "quote": "Eight struts located 11 inches (0. 28 m) downstream of the stator trailing edge supported the rear bearing.",
+    "report": "NASA TM X-3076",
+    "pdf_page": 8
+  },
+  "instrument_station_10_position": {
+    "value": "within 1/2 chord downstream of stator 2",
+    "unit": "",
+    "quote": "10 Fan discharge (within 1/2 chord downstream of stator 2)",
+    "report": "NASA TM X-3076",
+    "pdf_page": 9
+  },
+  "stator2_leading_edge_probe_spans": {
+    "value": [
+      10,
+      30,
+      50,
+      70,
+      90
+    ],
+    "unit": "percent of span; two circumferential positions",
+    "quote": "Stator 2 leading-edge probes  Total pressure, P  Two circumferential positions and five radial positions (10, 30, 50, 70, and 90 percent of span)",
+    "report": "NASA TM X-3076",
+    "pdf_page": 9
+  },
+  "blade_edge_stations_for_data_reduction": {
+    "value": "slanted straight lines approximating manufactured blade-edge meridional profiles",
+    "unit": "",
+    "quote": "The blade-edge stations that were used as input to the flow-field calculation were slanted straight lines closely approximating the meridional profiles of the manufactured blade edges.",
+    "report": "NASA TM X-3076",
+    "pdf_page": 10
+  },
+  "instrument_plane_axial_positions_figure": {
+    "value": null,
+    "unit": "in. (axis of TM X-3076 Fig. 7)",
+    "quote": "Figure 7. - Axial location of instrumentation planes. (drawing with axis 'Axial distance, z, in.' from -50 to 20 and z, m; no tabulated station positions; only station 6 is stated in text)",
+    "report": "NASA TM X-3076",
+    "pdf_page": 159
+  }
+}

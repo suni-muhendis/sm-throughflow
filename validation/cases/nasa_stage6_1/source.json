@@ -1,0 +1,168 @@
+[
+ {
+  "citation": "Kovich, G.; Reid, L.: Overall and Blade-Element Performance of a Transonic Compressor Stage with Multiple-Circular-Arc Blades at Tip Speed of 419 Meters per Second. NASA TM X-2731, March 1973.",
+  "report": "NASA TM X-2731",
+  "ntrs_id": "19730011268",
+  "file": "TMX2731_MCA419.pdf"
+ },
+ {
+  "file": "TMX2731_tableI_design_overall.csv",
+  "report": "NASA TM X-2731",
+  "ntrs_id": "19730011268",
+  "pdf_page": 23,
+  "printed_page": "20",
+  "title": "TABLE I. - DESIGN OVERALL PARAMETERS FOR STAGE 6-1",
+  "dpi": 200,
+  "notes": "No units printed. Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ },
+ {
+  "file": "TMX2731_tableII_rotor6_part1.csv",
+  "report": "NASA TM X-2731",
+  "ntrs_id": "19730011268",
+  "pdf_page": 24,
+  "printed_page": "21",
+  "title": "TABLE II. - DESIGN BLADE-ELEMENT PARAMETERS FOR ROTOR 6",
+  "dpi": 200,
+  "notes": "Four stacked blocks. Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ },
+ {
+  "file": "TMX2731_tableII_rotor6_part2.csv",
+  "report": "NASA TM X-2731",
+  "ntrs_id": "19730011268",
+  "pdf_page": 24,
+  "printed_page": "21",
+  "title": "TABLE II. - DESIGN BLADE-ELEMENT PARAMETERS FOR ROTOR 6",
+  "dpi": 200,
+  "notes": "Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ },
+ {
+  "file": "TMX2731_tableII_rotor6_part3.csv",
+  "report": "NASA TM X-2731",
+  "ntrs_id": "19730011268",
+  "pdf_page": 24,
+  "printed_page": "21",
+  "title": "TABLE II. - DESIGN BLADE-ELEMENT PARAMETERS FOR ROTOR 6",
+  "dpi": 200,
+  "notes": "Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ },
+ {
+  "file": "TMX2731_tableII_rotor6_part4.csv",
+  "report": "NASA TM X-2731",
+  "ntrs_id": "19730011268",
+  "pdf_page": 24,
+  "printed_page": "21",
+  "title": "TABLE II. - DESIGN BLADE-ELEMENT PARAMETERS FOR ROTOR 6",
+  "dpi": 200,
+  "notes": "RP 9 LOSS COEFF PROF printed with smudged leading digit, transcribed 0.075?. Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ },
+ {
+  "file": "TMX2731_tableIII_stator1_part1.csv",
+  "report": "NASA TM X-2731",
+  "ntrs_id": "19730011268",
+  "pdf_page": 25,
+  "printed_page": "22",
+  "title": "TABLE III. - DESIGN BLADE-ELEMENT PARAMETERS FOR STATOR 1",
+  "dpi": 200,
+  "notes": "Four stacked blocks. Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ },
+ {
+  "file": "TMX2731_tableIII_stator1_part2.csv",
+  "report": "NASA TM X-2731",
+  "ntrs_id": "19730011268",
+  "pdf_page": 25,
+  "printed_page": "22",
+  "title": "TABLE III. - DESIGN BLADE-ELEMENT PARAMETERS FOR STATOR 1",
+  "dpi": 200,
+  "notes": "Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ },
+ {
+  "file": "TMX2731_tableIII_stator1_part3.csv",
+  "report": "NASA TM X-2731",
+  "ntrs_id": "19730011268",
+  "pdf_page": 25,
+  "printed_page": "22",
+  "title": "TABLE III. - DESIGN BLADE-ELEMENT PARAMETERS FOR STATOR 1",
+  "dpi": 200,
+  "notes": "Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ },
+ {
+  "file": "TMX2731_tableIII_stator1_part4.csv",
+  "report": "NASA TM X-2731",
+  "ntrs_id": "19730011268",
+  "pdf_page": 25,
+  "printed_page": "22",
+  "title": "TABLE III. - DESIGN BLADE-ELEMENT PARAMETERS FOR STATOR 1",
+  "dpi": 200,
+  "notes": "Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ },
+ {
+  "file": "TMX2731_tableIV_rotor6_part1.csv",
+  "report": "NASA TM X-2731",
+  "ntrs_id": "19730011268",
+  "pdf_page": 26,
+  "printed_page": "23",
+  "title": "TABLE IV. - BLADE GEOMETRY FOR ROTOR 6",
+  "dpi": 200,
+  "notes": "Three stacked blocks. Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ },
+ {
+  "file": "TMX2731_tableIV_rotor6_part2.csv",
+  "report": "NASA TM X-2731",
+  "ntrs_id": "19730011268",
+  "pdf_page": 26,
+  "printed_page": "23",
+  "title": "TABLE IV. - BLADE GEOMETRY FOR ROTOR 6",
+  "dpi": 200,
+  "notes": "Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ },
+ {
+  "file": "TMX2731_tableIV_rotor6_part3.csv",
+  "report": "NASA TM X-2731",
+  "ntrs_id": "19730011268",
+  "pdf_page": 26,
+  "printed_page": "23",
+  "title": "TABLE IV. - BLADE GEOMETRY FOR ROTOR 6",
+  "dpi": 200,
+  "notes": "Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ },
+ {
+  "file": "TMX2731_tableV_stator1_part1.csv",
+  "report": "NASA TM X-2731",
+  "ntrs_id": "19730011268",
+  "pdf_page": 27,
+  "printed_page": "24",
+  "title": "TABLE V. - BLADE GEOMETRY FOR STATOR 1",
+  "dpi": 200,
+  "notes": "Three stacked blocks. HUB KTC glyph damaged, read 18.10. Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ },
+ {
+  "file": "TMX2731_tableV_stator1_part2.csv",
+  "report": "NASA TM X-2731",
+  "ntrs_id": "19730011268",
+  "pdf_page": 27,
+  "printed_page": "24",
+  "title": "TABLE V. - BLADE GEOMETRY FOR STATOR 1",
+  "dpi": 200,
+  "notes": "Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ },
+ {
+  "file": "TMX2731_tableV_stator1_part3.csv",
+  "report": "NASA TM X-2731",
+  "ntrs_id": "19730011268",
+  "pdf_page": 27,
+  "printed_page": "24",
+  "title": "TABLE V. - BLADE GEOMETRY FOR STATOR 1",
+  "dpi": 200,
+  "notes": "Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ },
+ {
+  "file": "TMX2731_fig1_flowpath_coordinates.csv",
+  "report": "NASA TM X-2731",
+  "ntrs_id": "19730011268",
+  "pdf_page": 64,
+  "printed_page": "61",
+  "title": "Figure 1. - Compressor flow path. (coordinate box)",
+  "dpi": 200,
+  "notes": "Units row printed (cm). Down-arrows written as the character ↓. Read from 200-dpi render (zoomed crops); second cell-by-cell read from the image done; cross-checked with velocity-triangle/solidity/camber consistency checks."
+ }
+]

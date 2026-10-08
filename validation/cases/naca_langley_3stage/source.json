@@ -1,0 +1,13 @@
+{
+  "case": "naca_langley_3stage",
+  "citations": [
+    {"citation": "Savage, M.; Beatty, L. A.: Investigation of a Three-Stage Transonic Research Axial-Flow Compressor: Aerodynamic Design and Overall Performance. NACA RM L55G27, 1955.", "report": "NACA RM L55G27", "ntrs_id": "19930088901", "file": "RM-L55G27_3stg_Langley.pdf"}
+  ],
+  "tables": [
+    {"file": "L55G27_tableI_velocity_diagram.csv", "report": "NACA RM L55G27", "ntrs_id": "19930088901", "pdf_page": 40, "printed_page": "39", "title": "TABLE I SUMMARY OF VELOCITY DIAGRAM DATA", "dpi": 250, "notes": "Page printed in landscape. Blade row label printed once per block; repeated on every line. Second read from zoomed crops done."},
+    {"file": "L55G27_tableII_inner_contour_blockage.csv", "report": "NACA RM L55G27", "ntrs_id": "19930088901", "pdf_page": 41, "printed_page": "40", "title": "TABLE II INNER CONTOUR AND BOUNDARY-LAYER BLOCKAGE FACTORS", "dpi": 250, "notes": "First column has no printed heading (row labels R1-i ... S3-e: i = inlet, e = exit of each row). Second read from zoomed crop done."},
+    {"file": "L55G27_tableIII_blade_selection.csv", "report": "NACA RM L55G27", "ntrs_id": "19930088901", "pdf_page": 42, "printed_page": "41", "title": "TABLE III SUMMARY OF BLADE-SELECTION DATA", "dpi": 250, "notes": "Heading (ri + re)/2rt printed as a fraction. Blade-section designations printed with subscripts (A10, A6I4b, A2I8b); written inline as 65(17.5A10)10 etc. For R2 and R3 the mean and tip lines print 'Rest of blade obtained from rotor 1 master' across three lines; placed in the mean line, tip cell left empty. Second read from zoomed crops done."},
+    {"file": "scalars.json:stator_hub_clearance_measured", "report": "NACA RM L55G27", "ntrs_id": "19930088901", "pdf_page": 18, "printed_page": "17", "title": "(untitled in-text table of measured stator hub clearances)", "dpi": 250, "notes": "Transcribed into scalars.json because it is a short text table."}
+  ],
+  "scalars_file": "scalars.json"
+}

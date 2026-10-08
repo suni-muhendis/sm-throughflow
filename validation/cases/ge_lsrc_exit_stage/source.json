@@ -1,0 +1,141 @@
+{
+ "citations": [
+  {
+   "citation": "Wisler, D. C.: Core Compressor Exit Stage Study, Volume I - Blading Design. NASA CR-135391 (R77AEG400), 1977.",
+   "ntrs_id": "19780021156",
+   "file": "CR135391_GE_LSRC_v1_design.pdf"
+  },
+  {
+   "citation": "Wisler, D. C.: Core Compressor Exit Stage Study, Volume II - Data and Performance Report for the Baseline Configuration. NASA CR-159498.",
+   "ntrs_id": "19810007536",
+   "file": "CR159498_GE_LSRC_v2_baseline.pdf"
+  },
+  {
+   "citation": "Core Compressor Exit Stage Study, Volume IV (Rotor B/Stator B, best stage). NASA CR-165357.",
+   "ntrs_id": "19820006219",
+   "file": "CR165357_GE_LSRC_v4_best.pdf"
+  },
+  {
+   "citation": "Core Compressor Exit Stage Study, Volume V (Rotor C/Stator B design and performance). NASA CR-165358.",
+   "ntrs_id": "19820006220",
+   "file": "CR165358_GE_LSRC_v5_RotorC.pdf"
+  },
+  {
+   "citation": "Core Compressor Exit Stage Study, Volume VI - Final Report. NASA CR-165553.",
+   "ntrs_id": "19820019434",
+   "file": "CR165553_GE_LSRC_v6.pdf"
+  }
+ ],
+ "entries": [
+  {
+   "file": "CR135391_table1_AMAC.csv",
+   "report": "NASA CR-135391",
+   "ntrs_id": "19780021156",
+   "pdf_page": 26,
+   "printed_page": "17",
+   "title": "Table 1. Design Parameters for AMAC Compressor.",
+   "dpi": 200,
+   "notes": "High-speed parent compressor, not the LSRC. Two-column table; units are inside the parameter labels, so row 2 is blank. Second cell-by-cell read from the zoomed image done. The table prints no column headings; row 1 is left blank (was 'PARAMETER,VALUE', supplied by the first transcriber). Third, independent cell-by-cell read from fresh 300-dpi renders by the verifying agent (2026-10-08), plus consistency checks (camber vs metal angles, i/δ vs vector diagrams, β' vs atan(Vθ/Vz)): no transcription error found."
+  },
+  {
+   "file": "CR135391_table2_stage7_stageA.csv",
+   "report": "NASA CR-135391",
+   "ntrs_id": "19780021156",
+   "pdf_page": 27,
+   "printed_page": "18",
+   "title": "Table 2. Design Parameters for AMAC Stage 7 and the Low Speed Stage A.",
+   "dpi": 400,
+   "notes": "Footnotes: † 'The flow coefficient was computed as the average rotor inlet axial velocity divided by the rotor pitch speed, using the full physical annulus area (blockage = 1.0). Based on the rotor tip speed, this flow coefficient becomes 0.407.' ‡ 'The pressure coefficient was computed by using the rotor pitchline wheel speed. Based on rotor tip speed, this value becomes 0.555.' Cell 'Pressure-Rise Coefficient / AMAC Stage 7' read 0.638 with the last digit ambiguous (3 or 8; text layer says 0.633). Second cell-by-cell read from the zoomed image done. Third, independent cell-by-cell read from fresh 300-dpi renders by the verifying agent (2026-10-08), plus consistency checks (camber vs metal angles, i/δ vs vector diagrams, β' vs atan(Vθ/Vz)): no transcription error found."
+  },
+  {
+   "file": "CR135391_table3_vector_diagrams_stage7_stageA.csv",
+   "report": "NASA CR-135391",
+   "ntrs_id": "19780021156",
+   "pdf_page": 28,
+   "printed_page": "19",
+   "title": "Table 3. Vector Diagram Parameters for AMAC Stage 7 and Stage A.",
+   "dpi": 300,
+   "notes": "Page rotated; read after rotating 90 deg. Stage 7 radii printed '-'. Printed values kept although two look like misprints: Rotor Inlet V'θ SL4 Stg.A = 42.25 (tan(β')·Vz gives about 45.2), Rotor Exit V'θ SL9 Stg.A = 29.52 (sequence suggests 20.52). Footnote '† SL ≡ Streamline'. Second cell-by-cell read from the zoomed image done. Further printed inconsistency: Rotor Exit β' Pitch SL6 Stg.7 = 46.2 while atan(172.4/178.2) = 44.0; all three cells re-checked in the image and kept as printed. Rotor Inlet U SL10 = 49.98 at r = 66.0 (U/r of the other columns gives 49.90); kept. Third, independent cell-by-cell read from fresh 300-dpi renders by the verifying agent (2026-10-08), plus consistency checks (camber vs metal angles, i/δ vs vector diagrams, β' vs atan(Vθ/Vz)): no transcription error found."
+  },
+  {
+   "file": "CR135391_table4_vector_diagrams_stageB.csv",
+   "report": "NASA CR-135391",
+   "ntrs_id": "19780021156",
+   "pdf_page": 29,
+   "printed_page": "20",
+   "title": "Table 4. Vector Diagram Parameters for Stator B.",
+   "dpi": 300,
+   "notes": "Vector diagrams of the stage with Stator B (rotor rows as computed for a hypothetical matched rotor; Rotor A was kept, see notes.md). Second cell-by-cell read from the zoomed image done. Stator Exit VZ SL4 printed '25.5' (one decimal; atan(8.93/25.5) = 19.3 vs printed β 19.6, 25.05 would give 19.6); kept as printed. Third, independent cell-by-cell read from fresh 300-dpi renders by the verifying agent (2026-10-08), plus consistency checks (camber vs metal angles, i/δ vs vector diagrams, β' vs atan(Vθ/Vz)): no transcription error found."
+  },
+  {
+   "file": "CR135391_table5_rotor7_rotorA_geometry.csv",
+   "report": "NASA CR-135391",
+   "ntrs_id": "19780021156",
+   "pdf_page": 30,
+   "printed_page": "21",
+   "title": "Table 5. Rotor 7 and Rotor A Airfoil Geometry.",
+   "dpi": 400,
+   "notes": "Rotated page. Check: camber = β1* - β2* holds for every column. Second cell-by-cell read from the zoomed image done. Incidence/deviation agree with Table 3 (i = β1 - β1*, δ = β2 - β2*) within rounding for all Rotor A columns. Third, independent cell-by-cell read from fresh 300-dpi renders by the verifying agent (2026-10-08), plus consistency checks (camber vs metal angles, i/δ vs vector diagrams, β' vs atan(Vθ/Vz)): no transcription error found."
+  },
+  {
+   "file": "CR135391_table6_stator7_statorA_geometry.csv",
+   "report": "NASA CR-135391",
+   "ntrs_id": "19780021156",
+   "pdf_page": 31,
+   "printed_page": "22",
+   "title": "Table 6. Stator 7 and Stator A Airfoil Geometry.",
+   "dpi": 400,
+   "notes": "Rotated page. Column headings printed 'OD S7', 'SA', 'SL2† SA', ..., 'Pitch S7', 'SA', ..., 'ID S7', 'SA' (no SL1/SL6/SL11 labels). Hub (ID SA) radius printed 67.770; every other table gives 64.770 at the hub, so 67.770 is probably a misprint, kept as printed. Row label printed 'Avg. Radius, r (cm' (parenthesis missing). Second cell-by-cell read from the zoomed image done. Printed deviations at SL5 SA (6.69) and Pitch SA (6.16) disagree with Table 3 (β2 - β2* = 6.96 and 6.60; digit transpositions in the source?); re-checked in the image, kept as printed. Third, independent cell-by-cell read from fresh 300-dpi renders by the verifying agent (2026-10-08), plus consistency checks (camber vs metal angles, i/δ vs vector diagrams, β' vs atan(Vθ/Vz)): no transcription error found."
+  },
+  {
+   "file": "CR135391_table7_rotorB_geometry.csv",
+   "report": "NASA CR-135391",
+   "ntrs_id": "19780021156",
+   "pdf_page": 32,
+   "printed_page": "23",
+   "title": "Table 7. Rotor B Airfoil Geometry.",
+   "dpi": 400,
+   "notes": "Rotated page. Hub radius printed 67.770 (probable misprint for 64.770). Second cell-by-cell read from the zoomed image done. Printed Camber row SL2-SL9 is shifted by one column relative to β1*-β2* (computed 30.20, 30.15, 30.49, 31.05, 31.80, 32.80, 34.00, 35.70; printed 30.26, 30.20, 30.15, 30.49, 31.05, 31.80, 32.80, 34.00); Stagger SL6-SL9 (51.66, 50.36, 49.18, 47.87) looks similarly shifted against Rotor A (Rotor A SL6-SL9: 50.36, 49.18, 47.87, 46.5). Re-checked in the image: this is how the source prints it. Incidence/deviation agree with Table 3 (Stage A vector diagrams), not Table 4. Third, independent cell-by-cell read from fresh 300-dpi renders by the verifying agent (2026-10-08), plus consistency checks (camber vs metal angles, i/δ vs vector diagrams, β' vs atan(Vθ/Vz)): no transcription error found."
+  },
+  {
+   "file": "CR135391_table8_statorB_geometry.csv",
+   "report": "NASA CR-135391",
+   "ntrs_id": "19780021156",
+   "pdf_page": 33,
+   "printed_page": "24",
+   "title": "Table 8. Stator B Airfoil Geometry.",
+   "dpi": 400,
+   "notes": "Rotated page. t_max/c at OD printed '0.90' (probably 0.090). Here camber = β1* - β2* - ΔCAM_LE. Second cell-by-cell read from the zoomed image done. Incidence SL8 printed -7.00 while Table 4 gives β1 - β1* = 46.4 - 53.80 = -7.40; kept as printed. Third, independent cell-by-cell read from fresh 300-dpi renders by the verifying agent (2026-10-08), plus consistency checks (camber vs metal angles, i/δ vs vector diagrams, β' vs atan(Vθ/Vz)): no transcription error found."
+  },
+  {
+   "file": "CR135391_table9_statorC_geometry.csv",
+   "report": "NASA CR-135391",
+   "ntrs_id": "19780021156",
+   "pdf_page": 34,
+   "printed_page": "25",
+   "title": "Table 9. Stator C Airfoil Geometry.",
+   "dpi": 400,
+   "notes": "Rotated page. Chord at SL3 printed 3.799 (probably 8.799); hub radius printed 67.770 (probably 64.770). Camber = β1* - β2* - ΔCAM_LE - ΔCAM_TE. Second cell-by-cell read from the zoomed image done. SL3: printed β1* = 54.50, but incidence (-7.37) and camber (47.40 = β1*-β2*-ΔCAM_LE-ΔCAM_TE) both imply β1* = 56.47-56.50; printed t_max/c SL2 = 0.081 breaks the 0.090/0.087/0.084 sequence (Stator B SL2 is 0.087). All re-checked in the image; kept as printed. Incidence/deviation otherwise agree with Table 3 (Stage A stator inlet/exit). Third, independent cell-by-cell read from fresh 300-dpi renders by the verifying agent (2026-10-08), plus consistency checks (camber vs metal angles, i/δ vs vector diagrams, β' vs atan(Vθ/Vz)): no transcription error found."
+  },
+  {
+   "file": "CR165358_table1_vector_diagrams_rotorC_statorB.csv",
+   "report": "NASA CR-165358",
+   "ntrs_id": "19820006220",
+   "pdf_page": 80,
+   "printed_page": "78",
+   "title": "Table 1. Vector Diagram Parameters for Rotor C/Stator B.",
+   "dpi": 400,
+   "notes": "Rotated page; 13 streamlines. Rotor Exit β' SL9 printed with a broken first digit, read 39.77? (atan(22.93/27.52) = 39.8). Stator Exit M SL11 printed '0.0?4', read 0.084?. Footnote '*SL = Streamline'. Second cell-by-cell read from the zoomed image done. Rotor Exit V'θ SL8 printed 26.61 (clear in a 600-dpi crop) while tan(41.98)·27.34 = 24.61; kept as printed. Third, independent cell-by-cell read from fresh 300-dpi renders by the verifying agent (2026-10-08), plus consistency checks (camber vs metal angles, i/δ vs vector diagrams, β' vs atan(Vθ/Vz)): no transcription error found."
+  },
+  {
+   "file": "CR165358_table2_rotorC_geometry.csv",
+   "report": "NASA CR-165358",
+   "ntrs_id": "19820006220",
+   "pdf_page": 81,
+   "printed_page": "79",
+   "title": "Table 2. Rotor C Airfoil Geometry.",
+   "dpi": 400,
+   "notes": "Rotated page; 13 streamlines. Footnotes '† SL ≡ Streamline', '*† Special Airfoil Section' (SL1-SL3 use the special tip meanline; ΔCAM and blend not given). Second cell-by-cell read from the zoomed image done. Incidence/deviation agree with Table 1 within rounding. Third, independent cell-by-cell read from fresh 300-dpi renders by the verifying agent (2026-10-08), plus consistency checks (camber vs metal angles, i/δ vs vector diagrams, β' vs atan(Vθ/Vz)): no transcription error found."
+  }
+ ]
+}

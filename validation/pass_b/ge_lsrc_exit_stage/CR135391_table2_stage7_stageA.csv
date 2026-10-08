@@ -1,0 +1,24 @@
+Design Parameter,AMAC Stage 7,Stage A Low Speed Model
+,,
+Flow Coefficient,0.442,0.442
+Pressure-Rise Coefficient,0.638,0.647
+Reaction Ratio,0.682,0.628
+Rotor Inlet Hub:Tip Radius Ratio,0.893,0.850
+Tip Diameter,56.64,152.4
+cm (in.),(22.3),(60.0)
+"Rotor Tip Clearance/Blade Height, %",1.28,1.35
+Average Reynolds Number Based on UTip,"740,000","360,000"
+"Rotor Pitch Inlet Rel. Air Angle, deg",59.7,60.1
+"Rotor Pitch Exit Rel. Air Angle, deg",45.6,44.1
+Rotor Pitch Inlet Mach Number,0.74,0.146
+Rotor Axial Velocity Ratio,0.93,1.00
+Rotor Pitch Diffusion Factor,0.481,0.470
+Rotor Aspect Ratio,1.28,1.20
+Rotor Pitch Solidity,1.25,1.16
+"Stator Pitch Inlet Abs. Air Angle, deg",49.7,50.5
+"Stator Pitch Exit Abs. Air Angle, deg.",21.0,21.0
+Stator Pitch Inlet Mach Number,0.55,0.112
+Stator Axial Velocity Ratio,0.998,1.00
+Stator Pitch Diffusion Factor,0.465,0.464
+Stator Aspect Ratio,1.37,1.21
+Stator Pitch Solidity,1.67,1.58

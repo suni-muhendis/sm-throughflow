@@ -1,0 +1,14 @@
+PARAMETER,UNIT (as printed in the row label),3S1 Test,3S1 Design,3S2 Test,3S2 Design
+,,,,,
+Inlet Corrected Flow,kg/sec,4.28,4.30,4.35,4.30
+Inlet Corrected Flow,lbm/sec,9.43,9.47,9.58,9.47
+Design Corrected Flow,%,99.58,100.0,101.16,100.0
+Corrected Flow Per Unit Inlet Annulus Area,kg/m2-sec,89.61,90.05,91.10,90.05
+Corrected Flow Per Unit Inlet Annulus Area,lbm/ft2-sec,18.35,18.43,18.65,18.43
+Pressure Ratio at Peak Efficiency,,1.346,1.357,1.314,1.324
+Surge Margin (From Peak Efficiency),%,24.0,15.0,12.4,15.0
+Adiabatic Efficiency,%,86.1,88.3,87.0,88.7
+Average Running Tip Clearance,cm,0.0366,0.033,0.0427,0.033
+Average Running Tip Clearance,in.,0.0144,0.013,0.0168,0.013
+Average Tip Clearance/Average Span,,0.014,0.0126,0.0163,0.0126
+Average Tip Clearance/Average Chord,,0.0112,0.0101,0.0199,0.0154

@@ -1,0 +1,227 @@
+{
+ "lsrc_casing_diameter": {
+  "value": 1.524,
+  "unit": "m",
+  "quote": "is a four-stage compressor having a constant casing diameter of 1.524 m (60 in.) and a radius ratio of 0.85.",
+  "report": "NASA CR-159498",
+  "pdf_page": 17
+ },
+ "lsrc_radius_ratio": {
+  "value": 0.85,
+  "unit": "",
+  "quote": "is a four-stage compressor having a constant casing diameter of 1.524 m (60 in.) and a radius ratio of 0.85.",
+  "report": "NASA CR-159498",
+  "pdf_page": 17
+ },
+ "number_of_stages": {
+  "value": 4,
+  "unit": "",
+  "quote": "The LSRC configuration for these tests, shown schematically in Figure 1, is a four-stage compressor having a constant casing diameter of 1.524 m (60 in.)",
+  "report": "NASA CR-159498",
+  "pdf_page": 17,
+  "notes": "Four identical stages plus IGV; the third stage is the test stage (CR-135391 pdf p12: 'four identical stages will be employed. The third stage will be the test stage.')."
+ },
+ "airfoil_span": {
+  "value": 11.43,
+  "unit": "cm",
+  "quote": "The airfoils are 11.43 cm (4.5 in.) in span and approximately 9 cm (3.5 in.) in chord",
+  "report": "NASA CR-159498",
+  "pdf_page": 17
+ },
+ "rotor_blade_count": {
+  "value": 54,
+  "unit": "",
+  "quote": "54 Rotor Blades",
+  "report": "NASA CR-159498",
+  "pdf_page": 42,
+  "notes": "Label in Figure 3 'Cross Section of 0.85 Radius Ratio Compressor Stage' (printed page 27). No separate count is printed for Rotor B/C."
+ },
+ "stator_vane_count": {
+  "value": 74,
+  "unit": "",
+  "quote": "74 Stator Vanes",
+  "report": "NASA CR-159498",
+  "pdf_page": 42,
+  "notes": "Label in Figure 3 (printed page 27)."
+ },
+ "igv_vane_count": {
+  "value": 53,
+  "unit": "",
+  "quote": "The pitchline solidity of the 53 IGV's was chosen to be approximately 1.0 and the pitchline chord was computed.",
+  "report": "NASA CR-135391",
+  "pdf_page": 21
+ },
+ "rotor_tip_clearance_over_blade_height_baseline": {
+  "value": 1.36,
+  "unit": "%",
+  "quote": "The average rotor tip-clearance-to-blade-height ratio was 1.36% and the average stator seal-clearance-to-blade-height ratio was 0.78%.",
+  "report": "NASA CR-159498",
+  "pdf_page": 18,
+  "notes": "Rotor A/Stator A tests. Design value in CR-135391 Table 2 is 1.35 % (Stage A)."
+ },
+ "stator_seal_clearance_over_blade_height_baseline": {
+  "value": 0.78,
+  "unit": "%",
+  "quote": "The average rotor tip-clearance-to-blade-height ratio was 1.36% and the average stator seal-clearance-to-blade-height ratio was 0.78%.",
+  "report": "NASA CR-159498",
+  "pdf_page": 18,
+  "notes": "Shrouded stators ('Shrouded stators are used.', pdf p17)."
+ },
+ "casing_treatment": {
+  "value": "circumferential groove, first rotor only",
+  "unit": "",
+  "quote": "Circumferential groove casing treatment was applied over the tip of only the first rotor to assure that Stage 1 would not be the stall-limiting blading.",
+  "report": "NASA CR-159498",
+  "pdf_page": 18
+ },
+ "rotor_tip_clearance_over_blade_height_rotorC_test": {
+  "value": 1.53,
+  "unit": "%",
+  "quote": "The tests were conducted at an average rotor tip-clearance-to-blade-height ratio of 1.53% and an average stator seal-clearance-to-blade-height ratio of 0.78%.",
+  "report": "NASA CR-165358",
+  "pdf_page": 19,
+  "notes": "Quote checked against the page image (pdf p19, printed 13)."
+ },
+ "rotor_tip_clearance_over_blade_height_rotorB_test": {
+  "value": 1.43,
+  "unit": "%",
+  "quote": "Rotor C is running with a slightly larger rotor tip-clearance-to-blade-height, e/h, of 1.53% compared to 1.43% for Rotor B.",
+  "report": "NASA CR-165358",
+  "pdf_page": 19,
+  "notes": "Quote checked against the page image (pdf p19, printed 13)."
+ },
+ "rotor_tip_clearance_over_blade_height_rotorB_increased": {
+  "value": 2.8,
+  "unit": "%",
+  "quote": "Overall performance of the Rotor B/Stator B Four-Stage Configuration was obtained at an increased tip-clearance-to-blade-height ratio of 2.80%",
+  "report": "NASA CR-165357",
+  "pdf_page": 25,
+  "notes": "Quote checked against the page image (pdf p25, printed 6). CR-165357 pdf p22 repeats the nominal 1.36 % / 0.78 %; CR-165358 p19 gives 1.43 % for the Rotor B tests (inconsistent with 1.36 %, both kept)."
+ },
+ "stator_B_stacking": {
+  "value": "30 percent chord",
+  "unit": "",
+  "quote": "the airfoil sections were stacked at 30 percent chord rather than at the usual 50 percent chord location.",
+  "report": "NASA CR-135391",
+  "pdf_page": 23,
+  "notes": "CR-165553 pdf p16: 'the vane was stacked at 30 percent chord from the leading edge in order to reduce the leading edge lean angle.'"
+ },
+ "design_flow_coefficient": {
+  "value": 0.407,
+  "unit": "",
+  "quote": "which is somewhat larger than the design flow coefficient of 0.407.",
+  "report": "NASA CR-159498",
+  "pdf_page": 24,
+  "notes": "Based on rotor tip speed (CR-135391 Table 2 footnote: 0.442 on pitch speed, 0.407 on tip speed). CR-159498 summary (pdf p15, image checked) says 'design intent flow coefficient of 0.408'."
+ },
+ "design_pressure_coefficient_tip_speed": {
+  "value": 0.555,
+  "unit": "",
+  "quote": "Based on rotor tip speed, this value becomes 0.555.",
+  "report": "NASA CR-135391",
+  "pdf_page": 27,
+  "notes": "Footnote to Table 2. CR-159498 summary (pdf p15, image checked): 'the design intent pressure coefficient of 0.554 has been achieved at the design intent flow coefficient of 0.408.'"
+ },
+ "tip_speed_lsrc": {
+  "value": 60,
+  "unit": "m/sec",
+  "quote": "the large size (1.5 m diameter) and low tip speed (60 m/sec) of this test rig",
+  "report": "NASA CR-135391",
+  "pdf_page": 12,
+  "notes": "Approximate. Tables 3/4 give U = 57.61 m/sec at r = 76.20 cm."
+ },
+ "reynolds_number": {
+  "value": 360000,
+  "unit": "",
+  "quote": "the blade chord Reynolds number is about 360,000.",
+  "report": "NASA CR-135391",
+  "pdf_page": 12
+ },
+ "rotor_profile": {
+  "value": "modified circular-arc meanline, double-circular-arc-type thickness",
+  "unit": "",
+  "quote": "The rotor airfoil sections consisted of modified circular arc meanlines with double-circular-arc-type thickness distributions.",
+  "report": "NASA CR-135391",
+  "pdf_page": 16
+ },
+ "stator_profile": {
+  "value": "modified circular-arc meanline, 65-series thickness",
+  "unit": "",
+  "quote": "The stator airfoil sections consisted of modified circular-arc meanlines with 65-series thickness distributions.",
+  "report": "NASA CR-135391",
+  "pdf_page": 16
+ },
+ "stage7_rotor_profile": {
+  "value": "double-circular-arc-type",
+  "unit": "",
+  "quote": "Rotor 7 airfoil sections were designed to be double-circular-arc-type airfoils",
+  "report": "NASA CR-135391",
+  "pdf_page": 19
+ },
+ "stage7_stator_profile": {
+  "value": "65-series thickness on circular-arc meanline",
+  "unit": "",
+  "quote": "Stator 7 airfoil sections were designed by using a 65-series thickness distribution on a circular arc meanline",
+  "report": "NASA CR-135391",
+  "pdf_page": 20
+ },
+ "rotorA_DCAM_LE": {
+  "value": 6.5,
+  "unit": "deg",
+  "quote": "The amount of overcambering required for Rotor A was 6.5 degrees at all radii.",
+  "report": "NASA CR-135391",
+  "pdf_page": 19,
+  "notes": "Table 5 shows 6.50 to SL7 and 6.60-8.50 from SL8 to the hub."
+ },
+ "rotorA_DCAM_TE_hub": {
+  "value": -8,
+  "unit": "deg",
+  "quote": "a similar decambering (ΔCAMTE = -8 degrees) was employed in the Rotor A hub region.",
+  "report": "NASA CR-135391",
+  "pdf_page": 20
+ },
+ "statorA_DCAM_LE": {
+  "value": 3.5,
+  "unit": "deg",
+  "quote": "Stator A required 3.5 degrees of leading edge overcambering (ΔCAMLE) relative to a circular-arc-type meanline",
+  "report": "NASA CR-135391",
+  "pdf_page": 20
+ },
+ "rotorB_tip_mods": {
+  "value": "DCAM_LE 2.0 deg, DCAM_TE 6.0 deg, tmax at 60% chord at tip",
+  "unit": "",
+  "quote": "for Rotor B, 2.0 degrees of ΔCAM were specified in the leading edge tip region (Rotor A had 6.5 degrees) and 6.0 degrees of ΔCAM were specified in the trailing edge tip region (Rotor A had 0.0 degrees). In addition, the maximum thickness was moved from 50 percent chord to 60 percent chord",
+  "report": "NASA CR-135391",
+  "pdf_page": 22
+ },
+ "stage7_tip_diameter": {
+  "value": 56.64,
+  "unit": "cm",
+  "quote": "Tip Diameter cm (in.) 56.64 (22.3) 152.4 (60.0)",
+  "report": "NASA CR-135391",
+  "pdf_page": 27
+ },
+ "meanline_modification_equation_1": {
+  "value": "X_p ≡ β_CAFD - β_CASC",
+  "unit": "deg",
+  "quote": "X_p ≡ β_CAFD - β_CASC (1)",
+  "report": "NASA CR-135391",
+  "pdf_page": 17,
+  "notes": "Definition of the empirical X-factor; its radial distribution for Stage A is Figure 13 (figure only)."
+ },
+ "igv_design_method": {
+  "value": "Dunavant curves; constant chord; pitchline solidity about 1.0",
+  "unit": "",
+  "quote": "The IGV was designed following the guidelines of Dunavant (Reference 5). The pitchline solidity of the 53 IGV's was chosen to be approximately 1.0 and the pitchline chord was computed. This chord was held constant and values of solidity across the span were computed. Then values of lift coefficient, CLo, and angle-of-attack (stagger) were determined from the curves of Dunavant. These values of lift coefficient and angle-of-attack are shown in Figure 22.",
+  "report": "NASA CR-135391",
+  "pdf_page": 21,
+  "notes": "IGV chord value is not printed; C_Lo and angle of attack only in Fig. 22 (figure only)."
+ },
+ "shrouded_stators": {
+  "value": true,
+  "unit": "",
+  "quote": "Shrouded stators are used.",
+  "report": "NASA CR-159498",
+  "pdf_page": 17
+ }
+}

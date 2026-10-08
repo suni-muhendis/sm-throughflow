@@ -1,0 +1,66 @@
+## ge_lsrc_exit_stage
+
+- CR135391_table1_AMAC.csv: 66 cells, 0 differ, 0 doubtful in either pass
+- CR135391_table2_stage7_stageA.csv: 66 cells, 4 differ, 1 doubtful in either pass
+  - row Flow Coefficient col Stage A Low Speed Model: A=0.442† B=0.442
+  - row Pressure-Rise Coefficient col Stage A Low Speed Model: A=0.647‡ B=0.647
+  - row Tip Diameter cm col Design Parameter: A=Tip Diameter cm B=Tip Diameter
+  - row (in.) col Design Parameter: A=(in.) B=cm (in.)
+- CR135391_table3_vector_diagrams_stage7_stageA.csv: 334 cells, 4 differ, 0 doubtful in either pass
+  - row VZ (m/sec) col : A=VZ (m/sec) B=Vz (m/sec)
+  - row VZ (m/sec)' col : A=VZ (m/sec) B=Vz (m/sec)
+  - row VZ (m/sec)'' col : A=VZ (m/sec) B=Vz (m/sec)
+  - row VZ (m/sec)''' col : A=VZ (m/sec) B=Vz (m/sec)
+- CR135391_table4_vector_diagrams_stageB.csv: 268 cells, 4 differ, 0 doubtful in either pass
+  - row VZ (m/sec) col : A=VZ (m/sec) B=Vz (m/sec)
+  - row VZ (m/sec)' col : A=VZ (m/sec) B=Vz (m/sec)
+  - row VZ (m/sec)'' col : A=VZ (m/sec) B=Vz (m/sec)
+  - row VZ (m/sec)''' col : A=VZ (m/sec) B=Vz (m/sec)
+- CR135391_table5_rotor7_rotorA_geometry.csv: 240 cells, 7 differ, 0 doubtful in either pass
+  - row ΔCAM_LE (deg) col : A=ΔCAM_LE (deg) B=ΔCAMLE (deg)
+  - row ΔCAM_TE (deg) col : A=ΔCAM_TE (deg) B=ΔCAMTE (deg)
+  - row Blend_LE, %c col : A=Blend_LE, %c B=BlendLE, %c
+  - row Blend_TE, %c col : A=Blend_TE, %c B=BlendTE, %c
+  - row t_max/c col : A=t_max/c B=tmax/c
+  - row t_TE/c col : A=t_TE/c B=tTE/c
+  - row t_max Location, %c col : A=t_max Location, %c B=tmax Location, %c
+- CR135391_table6_stator7_statorA_geometry.csv: 225 cells, 6 differ, 0 doubtful in either pass
+  - row ΔCAM_LE, (deg) col : A=ΔCAM_LE, (deg) B=ΔCAMLE, (deg)
+  - row ΔCAM_TE, (deg) col : A=ΔCAM_TE, (deg) B=ΔCAMTE, (deg)
+  - row Blend_LE, %c col : A=Blend_LE, %c B=BlendLE, %c
+  - row t_max/c col : A=t_max/c B=tmax/c
+  - row t_TE /c col : A=t_TE /c B=tTE/c
+  - row t_max Location, %c col : A=t_max Location, %c B=tmax Location, %c
+- CR135391_table7_rotorB_geometry.csv: 192 cells, 7 differ, 0 doubtful in either pass
+  - row ΔCAM_LE, (deg) col : A=ΔCAM_LE, (deg) B=ΔCAMLE, (deg)
+  - row ΔCAM_TE, (deg) col : A=ΔCAM_TE, (deg) B=ΔCAMTE, (deg)
+  - row Blend_LE, %c col : A=Blend_LE, %c B=BlendLE, %c
+  - row Blend_TE, %c col : A=Blend_TE, %c B=BlendTE, %c
+  - row t_max/c col : A=t_max/c B=tmax/c
+  - row t_TE /c col : A=t_TE /c B=tTE/c
+  - row t_max Location, %c col : A=t_max Location, %c B=tmax Location, %c
+- CR135391_table8_statorB_geometry.csv: 180 cells, 6 differ, 0 doubtful in either pass
+  - row ΔCAM_LE col : A=ΔCAM_LE B=ΔCAMLE
+  - row ΔCAM_TE col : A=ΔCAM_TE B=ΔCAMTE
+  - row Blend_LE, %c col : A=Blend_LE, %c B=BlendLE, %c
+  - row t_max/c col : A=t_max/c B=tmax/c
+  - row t_TE/c col : A=t_TE/c B=tTE/c
+  - row t_max Location, %c col : A=t_max Location, %c B=tmax Location, %c
+- CR135391_table9_statorC_geometry.csv: 192 cells, 7 differ, 0 doubtful in either pass
+  - row ΔCAM_LE (deg) col : A=ΔCAM_LE (deg) B=ΔCAMLE (deg)
+  - row ΔCAM_TE (deg) col : A=ΔCAM_TE (deg) B=ΔCAMTE (deg)
+  - row Blend_LE, %c col : A=Blend_LE, %c B=BlendLE, %c
+  - row Blend_TE, %c col : A=Blend_TE, %c B=BlendTE, %c
+  - row t_max/c col : A=t_max/c B=tmax/c
+  - row t_TE/c col : A=t_TE/c B=tTE/c
+  - row t_max Location, %c col : A=t_max Location, %c B=tmax Location, %c
+- CR165358_table1_vector_diagrams_rotorC_statorB.csv: 312 cells, 0 differ, 2 doubtful in either pass
+- CR165358_table2_rotorC_geometry.csv: 224 cells, 7 differ, 1 doubtful in either pass
+  - row Δ CAM_LE, (deg) col : A=Δ CAM_LE, (deg) B=Δ CAMLE, (deg)
+  - row Δ CAM_TE, (deg) col : A=Δ CAM_TE, (deg) B=Δ CAMTE, (deg)
+  - row Blend_LE, % C col : A=Blend_LE, % C B=BlendLE, % C
+  - row Blend_TE % C col : A=Blend_TE % C B=Blend TE % C
+  - row t_max./C col : A=t_max./C B=tmax./C
+  - row t_TE/C col : A=t_TE/C B=tTE/C
+  - row t_max. Location, % C col : A=t_max. Location, % C B=tmax. Location, % C
+
