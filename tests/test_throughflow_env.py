@@ -1,16 +1,15 @@
-"""Version 2 contracts, design-rule check and simulator v5 through the environment."""
+"""Contracts, design-rule check and simulator through the environment."""
 import copy
 
 import pytest
 from pydantic import ValidationError
 
 from sm_core import make_env
-from scripts.run_throughflow_v2 import build_case
+from scripts.run_throughflow import build_case
 from sm_throughflow import ThroughflowDesignV2, ThroughflowTaskV2
-from sm_throughflow.drc_v2 import run_drc_v2
+from sm_throughflow.drc import run_drc
 from sm_throughflow.score import ExperimentalThroughflowScore
-from sm_throughflow.simulator import NasaTurboDesignSimulator
-from sm_throughflow.simulator_v5 import SlcAungierSimulator
+from sm_throughflow.simulator import SlcAungierSimulator
 
 
 @pytest.fixture(scope="module")
@@ -83,7 +82,7 @@ def test_double_circular_arc_rows_carry_their_edge_radius():
 
 # ------------------------------------------------------------------ design rules
 def _drc(design):
-    return run_drc_v2(ThroughflowDesignV2.model_validate(design))
+    return run_drc(ThroughflowDesignV2.model_validate(design))
 
 
 def test_reference_case_passes_the_design_rules():
@@ -113,7 +112,7 @@ def test_seal_clearance_is_limited_by_eglis_model():
 
 
 # ------------------------------------------------------------------ evaluation
-def test_v2_task_runs_on_simulator_v5_and_is_stamped(one_stage):
+def test_task_runs_and_is_stamped(one_stage):
     _, _, result = one_stage
     assert result.status == "success", result.error_message
     assert result.simulator_version == SlcAungierSimulator.VERSION
@@ -134,27 +133,6 @@ def test_every_operating_point_is_reported(one_stage):
     m = result.metrics
     assert "part_speed.pressure_ratio_total" in m
     assert m["part_speed.pressure_ratio_total"] < m["pressure_ratio_total"]
-
-
-def test_v1_tasks_still_run_on_the_nasa_simulator():
-    env = make_env("turbomachinery_throughflow")
-    assert env.simulator.VERSION == SlcAungierSimulator.VERSION
-    from scripts.run_throughflow import build_case as build_v1
-    design, task = build_v1(1, streamtubes=2)
-    import contextlib
-    import io
-    with contextlib.redirect_stdout(io.StringIO()):
-        result = env.evaluate("t", task, "d", design)
-    assert result.simulator_version == NasaTurboDesignSimulator.VERSION
-
-
-def test_mixed_contract_versions_are_not_simulated():
-    design, _ = build_case(1)
-    from scripts.run_throughflow import build_case as build_v1
-    _, task_v1 = build_v1(1, streamtubes=2)
-    # A task and a design of different contract versions is the task author's error.
-    with pytest.raises(ValueError, match="throughflow_task_v2 needs a throughflow_design_v2"):
-        make_env("turbomachinery_throughflow").evaluate("t", task_v1, "d", design)
 
 
 def test_evaluation_is_deterministic(one_stage):
@@ -190,7 +168,7 @@ def test_shrouded_stators_and_inlet_guide_vanes_run():
     assert max(rows["S1"]["seal_loss"]) > 0.0
 
 
-# Characterization goldens of simulator v5 on the one-stage reference case. A change
+# Characterization goldens of the simulator (slc_aungier_experimental_v5) on the one-stage reference case. A change
 # here moves a number: it needs a new simulator version, not new goldens.
 GOLDEN_V5 = {
     "pressure_ratio_total": 1.1559528688496092,
@@ -204,7 +182,7 @@ GOLDEN_V5 = {
 }
 
 
-def test_simulator_v5_goldens(one_stage):
+def test_simulator_goldens(one_stage):
     _, _, result = one_stage
     for key, value in GOLDEN_V5.items():
         assert result.metrics[key] == pytest.approx(value, rel=1e-7), key

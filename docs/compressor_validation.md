@@ -1,5 +1,12 @@
 # Compressor validation status
 
+> **Historical sections.** The comparison and findings below were made with
+> the NASA turbo-design simulators (`nasa_turbo_design_experimental_v3`/`v4`),
+> which have since been removed from the package; the scripts they cite are in
+> the git history. They are kept because they explain why the package has its
+> own solver. The acceptance gate at the end applies to the current simulator,
+> and the open test cases for it are in `validation/`.
+
 The compressor environment can run a complete one- or two-stage axial design
 through the public `make_env("turbomachinery_throughflow")` API with 11 radial
 solution points (10 streamtubes). It is not yet an experimentally validated

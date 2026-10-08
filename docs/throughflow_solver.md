@@ -1,9 +1,10 @@
 # Streamline-curvature throughflow solver
 
 `sm_throughflow.solver` is the environment's own meridional throughflow
-solver. It replaces NASA turbo-design as the simulator; turbo-design stays as a
-cross-check. It solves compressors first and is built so that turbines use the
-same core.
+solver. It replaced NASA turbo-design as the simulator (the turbo-design path
+was later removed from the package; the comparisons below were made while it
+was still installed). It solves compressors first and is built so that
+turbines use the same core.
 
 ## Why our own solver
 

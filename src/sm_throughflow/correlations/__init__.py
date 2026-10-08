@@ -1,8 +1,8 @@
 """Cascade correlations for axial blade rows, independent of any flow solver.
 
 Every function here is plain numpy on per-streamline arrays and imports no
-solver, so the same correlations can serve turbo-design (through
-``sm_throughflow.backend``) or any other throughflow or cascade solver.
+solver, so the same correlations can serve the package's streamline-curvature
+solver (``sm_throughflow.solver``) or any other throughflow or cascade solver.
 
 Conventions, shared by every correlation:
 

@@ -6,6 +6,15 @@ different simulator or score versions comparable.
 
 ## [Unreleased]
 
+### Removed
+
+- **Simulators `nasa_turbo_design_experimental_v2`…`v4`, the v1 design and task
+  contracts, their physics profiles, loss-chart assets and reference scripts.**
+  The package no longer depends on NASA `turbo-design` or Cantera; the
+  environment runs only `slc_aungier_experimental_v5`. Turbines, which only
+  the NASA path supported, return later on the package's own solver. None of
+  the removed simulators was ever tagged or used by SM-Bench.
+
 ### Added
 
 - **Simulator `slc_aungier_experimental_v5`** with the v2 contracts
@@ -15,9 +24,7 @@ different simulator or score versions comparable.
   Mach number and choke limits, shock loss), tip-clearance and shroud-seal
   leakage, wake and end-wall blockage, and his end-wall boundary-layer
   analysis. A task may list several operating points. The design rules keep
-  designs inside the range of the cascade data. v1 tasks still run on
-  `nasa_turbo_design_experimental_v4`; the environment hands each task to the
-  simulator it names. The score stays disabled. Blade throats, which set
+  designs inside the range of the cascade data. The score stays disabled. Blade throats, which set
   the choke limit on incidence, come from the constructed blade sections
   (NACA 65, C.4 and double circular arc on their camberlines).
 

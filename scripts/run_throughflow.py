@@ -1,32 +1,110 @@
-"""Run a one- or two-stage axial turbine through the public API."""
+"""A repeating-stage subsonic axial compressor, solved with the throughflow environment.
+
+The blading is a free-vortex design (r C_theta constant across the span)
+with a fixed allowance for incidence and deviation; it is a reference case
+for the environment, not a validated machine.
+
+    python scripts/run_throughflow.py --stages 3
+"""
 import argparse
-from sm_core import make_env
+import json
+import math
 
-def _span(value): return [float(value)]*11
+import numpy as np
 
-def build_case(stages,streamtubes=10):
-    if stages not in (1,2): raise ValueError("demo supports 1 or 2 stages")
-    if streamtubes<1: raise ValueError("streamtubes must be positive")
-    h1=.04; h2=1.159*h1; h3=1.317*h2
-    heights=[h1,h1,h2,h3] if stages==1 else [h1,h1,h2,h3,1.1*h3,1.21*h3]
-    cax=(h1+h2+h3)/3; mean=.389
-    stations=[{"axial_m":i*cax,"hub_radius_m":mean-h/2,"shroud_radius_m":mean+h/2} for i,h in enumerate(heights)]
-    rows=[{"row_id":"inlet","row_type":"inlet","axial_location_m":0.0}]
-    angles=[(73.0,-67.6),(70.0,-65.0)]
-    for i in range(stages):
-        stage=f"stage_{i+1}"; sx=(2+2*i)*cax; rx=(3+2*i)*cax
-        rows += [{"row_id":f"stator_{i+1}","stage_id":stage,"row_type":"stator","axial_location_m":sx,"blade_count":40,"axial_chord_m":cax,"metal_angle_in_deg":_span(0.0),"metal_angle_out_deg":_span(angles[i][0])},{"row_id":f"rotor_{i+1}","stage_id":stage,"row_type":"rotor","axial_location_m":rx,"blade_count":50,"axial_chord_m":cax,"tip_clearance_m":.0005,"metal_angle_in_deg":_span(0.0),"metal_angle_out_deg":_span(angles[i][1])}]
-    rows.append({"row_id":"outlet","row_type":"outlet","axial_location_m":stations[-1]["axial_m"]})
-    design={"machine_type":"turbine","flow_path":"axial","passage":{"stations":stations},"rows":rows}
-    if stages==1: mass,p0,t0,rpm,pout=35.9,500000.0,676.3,7500.0,500000.0/3.96
-    else: mass,p0,t0,rpm,pout=22.0,1000000.0,1300.0,7500.0,1000000.0/4.45
-    fractions={}
-    for i in range(stages): fractions[f"stator_{i+1}"]=.221 if stages==1 else .15; fractions[f"rotor_{i+1}"]=.30 if stages==1 else .18
-    task={"physics_profile":"optturb_turbine_regression_v1","operating_conditions":{"mass_flow_kg_s":mass,"inlet_total_pressure_pa":p0,"inlet_total_temperature_k":t0,"shaft_speed_rpm":rpm,"outlet_static_pressure_pa":pout},"physics":{"default_loss_model":"fixed_pressure","row_fixed_pressure_loss_fractions":fractions},"numerics":{"streamlines":streamtubes+1}}
-    return design,task
+SPAN = np.linspace(0.0, 1.0, 11)
+
+
+def build_case(stages=3, rpm=4775.0, mass_flow=80.0, axial_velocity=150.0, work_coefficient=0.30, chord=0.05, gap=0.02,
+               stream_surfaces=11, inlet_guide_vane=False):
+    omega = rpm * 2.0 * math.pi / 60.0
+    hub_in, hub_out, tip_in, tip_out = 0.30, 0.33, 0.50, 0.485
+    k = work_coefficient * omega * 0.4 ** 2  # r C_theta added by each rotor at the reference radius 0.4 m
+
+    def angles(r, swirl_in, swirl_out, frame_speed):
+        w_in = np.degrees(np.arctan2(swirl_in / r - frame_speed * r, axial_velocity))
+        w_out = np.degrees(np.arctan2(swirl_out / r - frame_speed * r, axial_velocity))
+        return w_in, w_out
+
+    rows, x = [], 0.08
+    length_guess = 0.08 + stages * 2 * (0.05 + gap) + 0.1
+    hub = lambda z: hub_in + (hub_out - hub_in) * z / length_guess
+    tip = lambda z: tip_in + (tip_out - tip_in) * z / length_guess
+
+    def add(row_id, stage_id, row_type, k_in, k_out, blade_count):
+        nonlocal x
+        stagger = 0.5 * (k_in + k_out)  # circular arc
+        width = float(np.max(chord * np.abs(np.cos(np.radians(stagger)))))
+        row = {
+            "row_id": row_id, "row_type": row_type, "leading_edge_axial_m": round(x, 6), "trailing_edge_axial_m": round(x + width, 6),
+            "blade_count": blade_count, "profile": "naca65", "camberline": "naca65",
+            "metal_angle_in_deg": [round(float(v), 4) for v in k_in], "metal_angle_out_deg": [round(float(v), 4) for v in k_out],
+            "chord_m": [chord] * 11, "thickness_to_chord": [0.07] * 11,
+        }
+        if stage_id is not None:
+            row["stage_id"] = stage_id
+        if row_type == "rotor":
+            row["tip_clearance_m"] = 4e-4
+        else:
+            row["hub_clearance_m"] = 4e-4
+        rows.append(row)
+        x += width + gap
+
+    def radius(span):
+        z = x + 0.02
+        return hub(z) + span * (tip(z) - hub(z))
+
+    swirl = 0.0
+    if inlet_guide_vane:
+        r = radius(SPAN)
+        a_out = np.degrees(np.arctan2(k / r, axial_velocity))
+        add("IGV", None, "stator", np.zeros(11), a_out + 3.0 * np.sign(a_out), 40)
+        swirl = k
+    for s in range(stages):
+        r = radius(SPAN)
+        b_in, b_out = angles(r, swirl, swirl + k, omega)
+        add("R{}".format(s + 1), "stage{}".format(s + 1), "rotor", b_in + 2.0, b_out + 6.0, 36)
+        r = radius(SPAN)
+        # Each stator returns the flow to the stage's inlet swirl; the last one to axial.
+        target = 0.0 if s == stages - 1 else swirl
+        a_in, a_out = angles(r, swirl + k, target, 0.0)
+        add("S{}".format(s + 1), "stage{}".format(s + 1), "stator", a_in - 2.0, a_out - 6.0, 44)
+        swirl = target
+    length = x + 0.08
+    design = {
+        "schema_version": "throughflow_design_v2", "machine_type": "compressor", "flow_path": "axial",
+        "passage": {"stations": [
+            {"axial_m": 0.0, "hub_radius_m": hub_in, "shroud_radius_m": tip_in},
+            {"axial_m": round(length, 6), "hub_radius_m": round(hub(length), 6), "shroud_radius_m": round(tip(length), 6)},
+        ]},
+        "rows": rows,
+    }
+    task = {
+        "task_schema_version": "throughflow_task_v2",
+        "inlet": {"total_pressure_pa": 101325.0, "total_temperature_k": 288.15, "flow_angle_deg": 0.0},
+        "operating_points": [{"name": "design", "mass_flow_kg_s": mass_flow, "shaft_speed_rpm": rpm}],
+        "numerics": {"stream_surfaces": stream_surfaces},
+    }
+    return design, task
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    parser.add_argument("--stages", type=int, default=3)
+    parser.add_argument("--json", action="store_true", help="print the design and task instead of solving")
+    args = parser.parse_args()
+    design, task = build_case(args.stages)
+    if args.json:
+        print(json.dumps({"design": design, "task": task}, indent=2))
+        return
+    from sm_core import make_env
+
+    result = make_env("turbomachinery_throughflow").evaluate("v2-demo", task, "repeating-{}".format(args.stages), design)
+    print(result.status, result.simulator_version, result.error_message or "")
+    for key in ("pressure_ratio_total", "efficiency_polytropic", "power_W", "exit_blockage", "min_stall_margin", "max_loss_coefficient", "solver_iterations"):
+        if key in result.metrics:
+            print("{:28s} {:.6g}".format(key, result.metrics[key]))
+
 
 if __name__ == "__main__":
-    parser=argparse.ArgumentParser(); parser.add_argument("--stages",type=int,choices=(1,2),default=1); parser.add_argument("--streamtubes",type=int,default=10); args=parser.parse_args()
-    design,task=build_case(args.stages,args.streamtubes)
-    result=make_env("turbomachinery_throughflow").evaluate("throughflow_demo",task,f"axial_turbine_{args.stages}",design)
-    print(result.model_dump_json(indent=2))
+    main()

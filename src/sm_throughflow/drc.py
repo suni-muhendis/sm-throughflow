@@ -1,4 +1,4 @@
-"""Design-rule check for v2 designs: geometry the solver and Aungier's correlations can stand behind.
+"""Design-rule check: geometry the solver and Aungier's correlations can stand behind.
 
 Each rule names its reason; docs/throughflow_contract_v2.md lists them. The
 limits keep a design inside the data the correlations were fitted to (NASA
@@ -10,8 +10,7 @@ from typing import Optional, Tuple
 
 import numpy as np
 
-from .contracts import SPAN_FRACTIONS
-from .contracts_v2 import ThroughflowDesignV2
+from .contracts import SPAN_FRACTIONS, ThroughflowDesignV2
 from .correlations.aungier import camberline_angles
 
 MAX_METAL_ANGLE_DEG = 80.0
@@ -26,7 +25,7 @@ def _radius(stations, x, name):
     return float(np.interp(x, [s.axial_m for s in stations], [getattr(s, name) for s in stations]))
 
 
-def run_drc_v2(design: ThroughflowDesignV2) -> Tuple[bool, Optional[str]]:
+def run_drc(design: ThroughflowDesignV2) -> Tuple[bool, Optional[str]]:
     stations = design.passage.stations
     x_in, x_out = stations[0].axial_m, stations[-1].axial_m
     span = np.asarray(SPAN_FRACTIONS, dtype=float)

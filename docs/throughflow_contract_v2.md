@@ -3,10 +3,9 @@
 Version 2 of the design and task contracts runs axial compressors on the
 package's own streamline-curvature solver (`sm_throughflow.solver`) with
 Aungier's blade-row, leakage and end-wall models. The simulator is
-`slc_aungier_experimental_v5`. Version 1 contracts keep running on NASA
-turbo-design (`nasa_turbo_design_experimental_v4`); the environment hands each
-task to the simulator it names, so every result carries the version that
-produced it. Results of the two simulators are never pooled.
+`slc_aungier_experimental_v5`, the only simulator of the environment.
+Version 1 of the contracts ran on NASA turbo-design and was removed with that
+simulator; its results are never pooled with these.
 
 The score stays disabled (`throughflow_score_disabled_v1`): every design
 scores zero until the physics passes the validation gate in
@@ -48,7 +47,7 @@ of the eleven sections from its profile and camberline (Aungier chapter 4)
 and takes the throat opening, which sets the choke limit on incidence, from
 the constructed cascade.
 
-## Design rules (`drc_v2.py`)
+## Design rules (`drc.py`)
 
 | Rule | Why |
 |---|---|
@@ -110,6 +109,6 @@ span profiles.
 
 ## Reference case
 
-`scripts/run_throughflow_v2.py --stages N` builds a repeating-stage subsonic
+`scripts/run_throughflow.py --stages N` builds a repeating-stage subsonic
 compressor with free-vortex blading (optionally with an inlet guide vane); the
 tests pin simulator v5 to its one-stage version.

@@ -11,18 +11,21 @@ method. Turbines follow the same structure later.
 
 ## Where the physics lives
 
-Correlations are our own code and live in this package, not in the
-`turbo-design` fork. The fork takes solver fixes only.
+Correlations are our own code and live in this package.
 
 ```
-sm_throughflow/correlations/   pure functions, numpy only, no turbodesign import
+sm_throughflow/correlations/   pure functions, numpy/scipy only, no solver import
     inputs:  cascade geometry (profile family, camber, t/c, x_tmax/c, stagger,
              solidity, clearance) and flow state (inlet/exit angles, Mach, Re)
     outputs: reference incidence and deviation, incidence range, loss
-             coefficients by mechanism
-sm_throughflow/backend/        thin adapters to turbo-design's loss and
-                               deviation interfaces (per-streamline arrays)
+             coefficients by mechanism, blade sections and throats
+sm_throughflow/solver/         the streamline-curvature solver and the row
+                               model that applies the correlations per stream
+                               surface
 ```
+
+(The original plan put thin adapters to NASA turbo-design here; the package's
+own solver replaced turbo-design instead, and the NASA path was removed.)
 
 Keeping the correlations free of any solver API lets a future cascade solver
 reuse them unchanged. Every correlation carries its source and is tested

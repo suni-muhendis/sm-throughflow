@@ -1,107 +1,227 @@
-"""Versioned SI-unit contracts for the NASA throughflow adapter."""
-from enum import Enum
-import math
-from typing import Any, Dict, List, Literal, Optional
+"""Design and task contracts: axial compressors on the streamline-curvature solver with Aungier's models.
+
+The schema identifiers keep their version: ``throughflow_design_v2`` and
+``throughflow_task_v2`` (version 1 ran on NASA turbo-design and was removed).
+
+The design owns the geometry: the passage and, for every blade row, its axial
+extent, blade count, profile family and eleven span sections. The task owns
+the operating points, the numerics, the gas and the physics profile, so a
+design can never choose the referee that scores it. docs/throughflow_contract_v2.md
+describes every field.
+"""
+from typing import Dict, List, Literal, Optional
+
 from pydantic import BaseModel, ConfigDict, Field, model_validator
-from .profiles import get_physics_profile
 
-class StrictModel(BaseModel):
-    model_config = ConfigDict(extra="forbid", strict=True, allow_inf_nan=False)
-class MachineType(str, Enum): turbine="turbine"; compressor="compressor"
-class FlowPath(str, Enum): axial="axial"; radial="radial"; mixed="mixed"
-class RowType(str, Enum): inlet="inlet"; stator="stator"; rotor="rotor"; outlet="outlet"
-class LossModel(str, Enum):
-    fixed_pressure="fixed_pressure"; diffusion="diffusion"; td2="td2"; kacker_okapuu="kacker_okapuu"; ainley_mathieson="ainley_mathieson"
+SIMULATOR_VERSION = "slc_aungier_experimental_v5"
 
-class AnnulusStation(StrictModel):
-    axial_m: float = Field(ge=0); hub_radius_m: float = Field(gt=0); shroud_radius_m: float = Field(gt=0)
-    @model_validator(mode="after")
-    def ordered(self):
-        if self.shroud_radius_m <= self.hub_radius_m: raise ValueError("shroud radius must exceed hub radius")
-        return self
-class PassageGeometry(StrictModel):
-    stations: List[AnnulusStation] = Field(min_length=2)
-    @model_validator(mode="after")
-    def ordered(self):
-        x=[v.axial_m for v in self.stations]
-        if any(b<=a for a,b in zip(x,x[1:])): raise ValueError("stations must have increasing axial_m")
-        return self
+#: Span fractions of the eleven design sections, hub (0) to shroud (1).
 SPAN_FRACTIONS = tuple(index / 10 for index in range(11))
 DESIGN_STREAMLINES = len(SPAN_FRACTIONS)
 DESIGN_STREAMTUBES = DESIGN_STREAMLINES - 1
-class BladeRow(StrictModel):
-    row_id: str=Field(min_length=1); stage_id: Optional[str]=None; row_type: Literal["inlet","stator","rotor","outlet"]; axial_location_m: float=Field(ge=0)
-    blade_count: Optional[int]=Field(default=None,ge=1); axial_chord_m: Optional[float]=Field(default=None,gt=0)
-    tip_clearance_m: Optional[float]=Field(default=None,ge=0)
-    trailing_edge_thickness_m: Optional[float]=Field(default=None,gt=0)
-    stagger_angle_deg: Optional[List[float]]=Field(default=None,min_length=DESIGN_STREAMLINES,max_length=DESIGN_STREAMLINES)
-    metal_angle_in_deg: Optional[List[float]]=Field(default=None,min_length=DESIGN_STREAMLINES,max_length=DESIGN_STREAMLINES)
-    metal_angle_out_deg: Optional[List[float]]=Field(default=None,min_length=DESIGN_STREAMLINES,max_length=DESIGN_STREAMLINES)
+
+
+class StrictModel(BaseModel):
+    model_config = ConfigDict(extra="forbid", strict=True, allow_inf_nan=False)
+
+
+class AnnulusStation(StrictModel):
+    axial_m: float = Field(ge=0)
+    hub_radius_m: float = Field(gt=0)
+    shroud_radius_m: float = Field(gt=0)
+
+    @model_validator(mode="after")
+    def ordered(self):
+        if self.shroud_radius_m <= self.hub_radius_m:
+            raise ValueError("shroud radius must exceed hub radius")
+        return self
+
+
+class PassageGeometry(StrictModel):
+    stations: List[AnnulusStation] = Field(min_length=2)
+
+    @model_validator(mode="after")
+    def ordered(self):
+        x = [v.axial_m for v in self.stations]
+        if any(b <= a for a, b in zip(x, x[1:])):
+            raise ValueError("stations must have increasing axial_m")
+        return self
+
+
+def _span_values(**kwargs):
+    return Field(min_length=DESIGN_STREAMLINES, max_length=DESIGN_STREAMLINES, **kwargs)
+
+
+class ShroudSealV2(StrictModel):
+    """Labyrinth seal under a stator's inner shroud band (Aungier section 6.10)."""
+
+    clearance_m: float = Field(gt=0)
+    fin_count: int = Field(ge=1, le=12)
+    fin_pitch_m: float = Field(gt=0)
+    fin_thickness_m: float = Field(gt=0)
+
+
+class BladeRowV2(StrictModel):
+    """One blade row; angles in degrees from the axial direction, positive in the direction of rotation.
+
+    The eleven section values run from hub (0) to shroud (1) at tenth-span
+    intervals. ``metal_angle_in_deg`` applies at the leading-edge plane and
+    ``metal_angle_out_deg`` at the trailing-edge plane; chord and thickness
+    at the mid-chord plane. A rotor typically has negative angles (its
+    relative flow approaches against the rotation), a stator positive inlet
+    angles.
+    """
+
+    row_id: str = Field(min_length=1)
+    stage_id: Optional[str] = None
+    row_type: Literal["rotor", "stator"]
+    leading_edge_axial_m: float = Field(ge=0)
+    trailing_edge_axial_m: float = Field(gt=0)
+    blade_count: int = Field(ge=2, le=400)
+    profile: Literal["naca65", "c4", "dca"]
+    camberline: Literal["naca65", "circular_arc", "parabolic_arc"]
+    max_camber_location: float = Field(default=0.5, ge=0.3, le=0.7)
+    edge_radius_to_chord: Optional[float] = Field(default=None, gt=0, le=0.05)
+    metal_angle_in_deg: List[float] = _span_values()
+    metal_angle_out_deg: List[float] = _span_values()
+    chord_m: List[float] = _span_values()
+    thickness_to_chord: List[float] = _span_values()
+    tip_clearance_m: Optional[float] = Field(default=None, ge=0)
+    hub_clearance_m: Optional[float] = Field(default=None, ge=0)
+    shroud_seal: Optional[ShroudSealV2] = None
+
     @model_validator(mode="after")
     def valid(self):
-        blade=self.row_type in ("stator","rotor")
-        if blade and (self.stage_id is None or self.blade_count is None or self.axial_chord_m is None or self.metal_angle_in_deg is None or self.metal_angle_out_deg is None): raise ValueError("blade rows require stage_id, blade_count, axial_chord_m and both 11-point metal-angle arrays")
-        if not blade and (self.blade_count is not None or self.axial_chord_m is not None or self.metal_angle_in_deg is not None or self.metal_angle_out_deg is not None or self.trailing_edge_thickness_m is not None or self.stagger_angle_deg is not None): raise ValueError("boundary rows cannot define blade geometry")
-        if self.tip_clearance_m is not None and self.row_type!="rotor": raise ValueError("clearance is rotor-only")
+        if self.trailing_edge_axial_m <= self.leading_edge_axial_m:
+            raise ValueError("trailing_edge_axial_m must exceed leading_edge_axial_m")
+        if any(c <= 0.0 for c in self.chord_m):
+            raise ValueError("chord_m values must be positive")
+        if any(not 0.0 < t < 1.0 for t in self.thickness_to_chord):
+            raise ValueError("thickness_to_chord values must lie in (0, 1)")
+        if self.camberline == "naca65" and self.max_camber_location != 0.5:
+            raise ValueError("the naca65 camberline has its maximum camber at mid-chord")
+        if self.camberline != "parabolic_arc" and self.max_camber_location != 0.5:
+            raise ValueError("max_camber_location applies to the parabolic_arc camberline only")
+        if (self.profile == "dca") != (self.edge_radius_to_chord is not None):
+            raise ValueError("edge_radius_to_chord is required for, and only for, the dca profile")
+        if self.row_type == "rotor":
+            if self.tip_clearance_m is None:
+                raise ValueError("a rotor requires tip_clearance_m")
+            if self.hub_clearance_m is not None or self.shroud_seal is not None:
+                raise ValueError("hub_clearance_m and shroud_seal are for stators")
+        else:
+            if self.tip_clearance_m is not None:
+                raise ValueError("tip_clearance_m is for rotors; a stator has hub_clearance_m or a shroud_seal")
+            if (self.hub_clearance_m is None) == (self.shroud_seal is None):
+                raise ValueError("a stator has exactly one of hub_clearance_m (cantilevered) or shroud_seal (shrouded)")
+        turning = [a - b for a, b in zip(self.metal_angle_in_deg, self.metal_angle_out_deg)]
+        if not (all(t > 0.0 for t in turning) or all(t < 0.0 for t in turning)):
+            raise ValueError("every section must turn the flow the same way (metal_angle_in - metal_angle_out of one sign)")
         return self
-class ThroughflowDesignV1(StrictModel):
-    schema_version: Literal["throughflow_design_v1"]="throughflow_design_v1"; machine_type: Literal["turbine","compressor"]; flow_path: Literal["axial","radial","mixed"]
-    passage: PassageGeometry; rows: List[BladeRow]=Field(min_length=3)
+
+
+class ThroughflowDesignV2(StrictModel):
+    schema_version: Literal["throughflow_design_v2"] = "throughflow_design_v2"
+    machine_type: Literal["compressor"]
+    flow_path: Literal["axial"]
+    passage: PassageGeometry
+    rows: List[BladeRowV2] = Field(min_length=1, max_length=80)
+
     @model_validator(mode="after")
     def topology(self):
-        ids=[r.row_id for r in self.rows]; x=[r.axial_location_m for r in self.rows]
-        if len(ids)!=len(set(ids)): raise ValueError("row_id values must be unique")
-        if any(b<a for a,b in zip(x,x[1:])): raise ValueError("rows must be axially ordered")
-        if self.rows[0].row_type!="inlet" or self.rows[-1].row_type!="outlet": raise ValueError("inlet/outlet boundaries required")
-        stages=[r.stage_id for r in self.rows if r.row_type=="rotor"]
-        if not stages or len(stages)!=len(set(stages)): raise ValueError("each stage requires exactly one rotor")
+        ids = [r.row_id for r in self.rows]
+        if len(ids) != len(set(ids)):
+            raise ValueError("row_id values must be unique")
+        if not any(r.row_type == "rotor" for r in self.rows):
+            raise ValueError("a compressor needs at least one rotor")
+        for left, right in zip(self.rows, self.rows[1:]):
+            if right.leading_edge_axial_m <= left.trailing_edge_axial_m:
+                raise ValueError("rows must be axially ordered with a gap: {} starts before {} ends".format(right.row_id, left.row_id))
+        first_rotor = next(i for i, r in enumerate(self.rows) if r.row_type == "rotor")
+        for i, r in enumerate(self.rows):
+            needs_stage = i > first_rotor or r.row_type == "rotor"
+            if needs_stage and r.stage_id is None:
+                raise ValueError("row {} needs a stage_id (only inlet guide vanes may omit it)".format(r.row_id))
+        rotors = [r.stage_id for r in self.rows if r.row_type == "rotor"]
+        if len(rotors) != len(set(rotors)):
+            raise ValueError("each stage has exactly one rotor")
         return self
+
     @property
-    def stage_count(self): return sum(r.row_type=="rotor" for r in self.rows)
-class OperatingPoint(StrictModel):
-    mass_flow_kg_s: float=Field(gt=0); inlet_total_pressure_pa: float=Field(gt=0); inlet_total_temperature_k: float=Field(gt=0); shaft_speed_rpm: float=Field(gt=0); inlet_mach: float=Field(default=.2,gt=0,lt=2); inlet_flow_angle_deg: float=0.0; outlet_static_pressure_pa: Optional[float]=Field(default=None,gt=0); outlet_total_pressure_pa: Optional[float]=Field(default=None,gt=0)
-class SecondaryPoint(StrictModel):
-    name: str=Field(min_length=1); mass_flow_kg_s: Optional[float]=Field(default=None,gt=0); shaft_speed_rpm: Optional[float]=Field(default=None,gt=0); outlet_static_pressure_pa: Optional[float]=Field(default=None,gt=0)
-class Numerics(StrictModel):
-    streamlines: int=Field(default=DESIGN_STREAMLINES,ge=1,le=65); max_iterations: int=Field(default=100,ge=1,le=2000); convergence_tolerance: float=Field(default=1e-6,gt=0,le=1e-2); residual_tolerance: float=Field(default=1e-6,gt=0,le=1e-2); massflow_spread_tolerance: float=Field(default=.01,gt=0,le=.25)
-LossModelName = Literal["fixed_pressure","diffusion","td2","kacker_okapuu","ainley_mathieson"]
-DeviationModelName = Literal["zero","fixed","carter"]
-class Physics(StrictModel):
-    default_loss_model: LossModelName; row_loss_models: Dict[str,LossModelName]=Field(default_factory=dict); fixed_pressure_loss_fraction: Optional[float]=Field(default=None,ge=0,lt=1); row_fixed_pressure_loss_fractions: Dict[str,float]=Field(default_factory=dict)
-    default_deviation_model: DeviationModelName="zero"; row_deviation_models: Dict[str,DeviationModelName]=Field(default_factory=dict); row_fixed_deviation_deg: Dict[str,List[float]]=Field(default_factory=dict)
+    def stage_count(self) -> int:
+        return sum(r.row_type == "rotor" for r in self.rows)
+
+    def inlet_guide_vanes(self) -> List[str]:
+        """Stators ahead of the first rotor, which Aungier treats as inlet guide vanes."""
+        first_rotor = next(i for i, r in enumerate(self.rows) if r.row_type == "rotor")
+        return [r.row_id for r in self.rows[:first_rotor]]
+
+
+class OperatingPointV2(StrictModel):
+    name: str = Field(default="design", min_length=1)
+    mass_flow_kg_s: float = Field(gt=0)
+    shaft_speed_rpm: float = Field(gt=0)
+
+
+class InletV2(StrictModel):
+    total_pressure_pa: float = Field(gt=0)
+    total_temperature_k: float = Field(gt=0)
+    flow_angle_deg: float = Field(default=0.0, gt=-80.0, lt=80.0)
+
+
+class GasV2(StrictModel):
+    """A perfect gas; dry air by default."""
+
+    cp_j_kg_k: float = Field(default=1004.5, gt=0)
+    gas_constant_j_kg_k: float = Field(default=287.05, gt=0)
+
     @model_validator(mode="after")
-    def fixed(self):
-        if any(not math.isfinite(v) or v<0 or v>=1 for v in self.row_fixed_pressure_loss_fractions.values()): raise ValueError("row fixed pressure loss fractions must be finite in [0,1)")
-        selected={self.default_loss_model,*self.row_loss_models.values()}; has="fixed_pressure" in selected
-        if not has and (self.fixed_pressure_loss_fraction is not None or self.row_fixed_pressure_loss_fractions): raise ValueError("fixed pressure loss fractions are unused")
-        if any(len(values)!=DESIGN_STREAMLINES or any(not math.isfinite(value) for value in values) for values in self.row_fixed_deviation_deg.values()): raise ValueError("fixed deviation requires eleven finite span values")
-        selected_deviation={self.default_deviation_model,*self.row_deviation_models.values()}
-        if "fixed" not in selected_deviation and self.row_fixed_deviation_deg: raise ValueError("fixed deviation values are unused")
+    def physical(self):
+        if self.cp_j_kg_k <= self.gas_constant_j_kg_k:
+            raise ValueError("cp must exceed the gas constant")
         return self
-class ThroughflowTaskV1(StrictModel):
-    environment: Literal["turbomachinery_throughflow"]="turbomachinery_throughflow"; task_schema_version: Literal["throughflow_task_v1"]="throughflow_task_v1"
-    simulator_version: Literal["nasa_turbo_design_experimental_v4"]="nasa_turbo_design_experimental_v4"; operating_conditions: OperatingPoint
-    physics_profile: Literal["experimental_custom_v1","mattingly_compressor_regression_v1","optturb_turbine_regression_v1","axial_compressor_candidate_v1","axial_turbine_candidate_v1"]="experimental_custom_v1"
-    secondary_operating_points: List[SecondaryPoint]=Field(default_factory=list); physics: Physics; numerics: Numerics=Field(default_factory=Numerics); max_stages: int=Field(default=12,ge=1,le=30)
-    def validate_design_ownership(self, design):
-        if design.stage_count>self.max_stages: raise ValueError("design exceeds max_stages")
-        get_physics_profile(self.physics_profile).validate(design,self.physics)
-        row_ids={r.row_id for r in design.rows}; unknown=(set(self.physics.row_loss_models)|set(self.physics.row_fixed_pressure_loss_fractions)|set(self.physics.row_deviation_models)|set(self.physics.row_fixed_deviation_deg))-row_ids
-        if unknown: raise ValueError("physics models reference unknown rows: {}".format(sorted(unknown)))
-        for row in design.rows:
-            if row.row_type not in ("stator","rotor"): continue
-            model=self.physics.row_loss_models.get(row.row_id,self.physics.default_loss_model)
-            if model=="fixed_pressure" and row.row_id not in self.physics.row_fixed_pressure_loss_fractions and self.physics.fixed_pressure_loss_fraction is None: raise ValueError("fixed pressure loss requires a fraction for {}".format(row.row_id))
-            deviation=self.physics.row_deviation_models.get(row.row_id,self.physics.default_deviation_model)
-            if deviation=="fixed" and row.row_id not in self.physics.row_fixed_deviation_deg: raise ValueError("fixed deviation requires eleven values for {}".format(row.row_id))
-class Diagnostic(StrictModel):
-    category: Literal["design_violation","model_validity","numerical_failure","infrastructure_failure","configuration_error"]
-    code: str=Field(min_length=1); message: str=Field(min_length=1); location: Optional[str]=None
-class ThroughflowSimulationResultV1(StrictModel):
-    result_schema_version: Literal["throughflow_result_v1"]="throughflow_result_v1"; status: Literal["success","rejected","failed"]
-    reward_eligible: bool=False; metrics: Dict[str,float]=Field(default_factory=dict); row_data: List[Dict[str,Any]]=Field(default_factory=list); stage_data: List[Dict[str,Any]]=Field(default_factory=list); span_data: List[Dict[str,Any]]=Field(default_factory=list); diagnostics: List[Diagnostic]=Field(default_factory=list); provenance: Dict[str,str]=Field(default_factory=dict)
+
+
+class NumericsV2(StrictModel):
+    stream_surfaces: int = Field(default=DESIGN_STREAMLINES, ge=5, le=41)
+    curvature: Literal["full", "linear", "none"] = "full"
+    tolerance: float = Field(default=1e-7, gt=0, le=1e-4)
+    max_iterations: int = Field(default=400, ge=10, le=3000)
+
+
+class PhysicsV2(StrictModel):
+    physics_profile: Literal["axial_compressor_aungier_v1"] = "axial_compressor_aungier_v1"
+    inlet_blockage: float = Field(default=0.02, ge=0.0, le=0.2)
+
+
+class ThroughflowTaskV2(StrictModel):
+    environment: Literal["turbomachinery_throughflow"] = "turbomachinery_throughflow"
+    task_schema_version: Literal["throughflow_task_v2"] = "throughflow_task_v2"
+    simulator_version: Literal["slc_aungier_experimental_v5"] = SIMULATOR_VERSION
+    inlet: InletV2
+    operating_points: List[OperatingPointV2] = Field(min_length=1, max_length=12)
+    gas: GasV2 = Field(default_factory=GasV2)
+    physics: PhysicsV2 = Field(default_factory=PhysicsV2)
+    numerics: NumericsV2 = Field(default_factory=NumericsV2)
+    max_stages: int = Field(default=20, ge=1, le=40)
+
     @model_validator(mode="after")
-    def eligible(self):
-        blocked={"numerical_failure","infrastructure_failure","configuration_error"}
-        if self.reward_eligible and (self.status!="success" or any(d.category in blocked for d in self.diagnostics)): raise ValueError("reward eligibility requires clean success")
+    def unique_points(self):
+        names = [p.name for p in self.operating_points]
+        if len(names) != len(set(names)):
+            raise ValueError("operating point names must be unique")
         return self
+
+    def validate_design_ownership(self, design: ThroughflowDesignV2) -> None:
+        if design.stage_count > self.max_stages:
+            raise ValueError("design exceeds max_stages")
+
+
+#: Frozen physics of each profile (docs/compressor_row_model.md); a task picks one by name.
+AUNGIER_PROFILES: Dict[str, dict] = {
+    "axial_compressor_aungier_v1": dict(
+        K1=0.0073, max_loss=0.5, smoothing=True, shock_mean="arithmetic", endwall=True,
+        maturity="candidate", reward_enabled=False,
+        purpose="Aungier (2003) cascade, leakage and end-wall models on the SLC solver; pending validation.",
+    ),
+}
