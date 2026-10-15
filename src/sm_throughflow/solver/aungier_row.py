@@ -16,9 +16,9 @@ from .gas import PerfectGas
 from .quasi_normal import StationFlow
 from .rows import BladeRow, ExitGeometry, RowPerformance
 
-PROFILES = ("naca65", "c4", "dca")
-CAMBERLINES = ("naca65", "circular_arc", "parabolic_arc")
-_DEFAULT_CAMBERLINE = {"naca65": "naca65", "c4": "circular_arc", "dca": "circular_arc"}
+PROFILES = ("naca65", "c4", "dca", "mca")
+CAMBERLINES = ("naca65", "circular_arc", "parabolic_arc", "multiple_circular_arc")
+_DEFAULT_CAMBERLINE = {"naca65": "naca65", "c4": "circular_arc", "dca": "circular_arc", "mca": "multiple_circular_arc"}
 
 
 @dataclass(frozen=True)
@@ -123,6 +123,8 @@ class AungierCompressorRow:
         clearance: Optional[TipClearance] = None,
         seal: Optional[ShroudSeal] = None,
         throat_over_pitch: Optional[Sequence[float]] = None,
+        expansion_angle: Optional[Sequence[float]] = None,
+        section_shape: Optional[dict] = None,
         viscosity: Optional[float] = None,
         K1: float = 0.0073,
         max_loss: float = 0.5,
@@ -136,6 +138,8 @@ class AungierCompressorRow:
             raise ValueError("camberline must be one of {}".format(CAMBERLINES))
         if camberline == "naca65" and a_c != 0.5:
             raise ValueError("the NACA-65 camberline has a/c = 0.5")
+        if (camberline == "multiple_circular_arc") != (section_shape is not None):
+            raise ValueError("the multiple_circular_arc camberline needs its section_shape, and only it")
         if clearance is not None and seal is not None:
             raise ValueError("a row has a clearance gap or a shroud seal, not both")
         turning = np.mean(np.asarray(sections.kappa_in, dtype=float) - np.asarray(sections.kappa_out, dtype=float))
@@ -153,6 +157,8 @@ class AungierCompressorRow:
         self.clearance = clearance
         self.seal = seal
         self.throat_over_pitch = throat_over_pitch
+        self.expansion_angle = expansion_angle
+        self.section_shape = section_shape
         self.viscosity = viscosity
         self.K1 = float(K1)
         self.max_loss = float(max_loss)
@@ -183,10 +189,20 @@ class AungierCompressorRow:
         pitch = np.pi * (r1 + r2) / self.blade_count  # (9-6)
         k1, k2 = self.sign * k1, self.sign * k2
         theta = k1 - k2
-        chi1, _ = A.camberline_angles(theta, self.a_c)
+        if self.section_shape is None:
+            a_c = self.a_c
+            chi1, _ = A.camberline_angles(theta, a_c)
+        else:
+            # Multiple circular arc: chi1/theta and the position of maximum camber of the constructed
+            # meanline at the design sections, read at each stream surface's span fraction.
+            radius = np.asarray(sec.radius, dtype=float)
+            where = (at_mean - radius[0]) / (radius[-1] - radius[0])
+            grid = np.linspace(0.0, 1.0, len(self.section_shape["a_c"]))
+            a_c = np.interp(where, grid, np.asarray(self.section_shape["a_c"], dtype=float))
+            chi1 = theta * np.interp(where, grid, np.asarray(self.section_shape["chi1_over_camber"], dtype=float))
         stagger = k1 - chi1  # (4-32)
         height = 0.5 * (inlet.y[-1] + exit_geometry.y[-1])
-        return dict(k1=k1, k2=k2, theta=theta, stagger=stagger, chord=chord, t_c=t_c, pitch=pitch, sigma=chord / pitch, height=height)
+        return dict(k1=k1, k2=k2, theta=theta, stagger=stagger, chord=chord, t_c=t_c, pitch=pitch, sigma=chord / pitch, height=height, a_c=a_c)
 
     # ------------------------------------------------------- design condition
     def _zero_camber_deviation(self, beta1, sigma):
@@ -199,7 +215,7 @@ class AungierCompressorRow:
         delta0 = self._zero_camber_deviation(beta1_star, sigma)
         if self.inlet_guide_vane or self.camberline == "parabolic_arc":
             root = np.sqrt(sigma)
-            howell = (0.92 * self.a_c ** 2 + 0.002 * g["k2"]) / (1.0 - 0.002 * theta / root) * theta / root
+            howell = (0.92 * g["a_c"] ** 2 + 0.002 * g["k2"]) / (1.0 - 0.002 * theta / root) * theta / root
             return howell + (thickness - 1.0) * delta0  # (6-26)
         camberline = "naca65" if self.camberline == "naca65" else "circular_arc"
         return thickness * delta0 + A.lieblein_deviation_slope(np.abs(beta1_star), sigma, camberline) * theta  # (6-19)
@@ -223,7 +239,7 @@ class AungierCompressorRow:
         rho_w_sonic = gas.density(h_sonic, inlet.s) * w_sonic
 
         # Design incidence and deviation (6-8), (6-18), (6-19)/(6-26).
-        alpha_star = A.design_angle_of_attack(theta, sigma, t_c, self.a_c, self.k_sh)
+        alpha_star = A.design_angle_of_attack(theta, sigma, t_c, g["a_c"], self.k_sh)
         i_star = A.incidence_from_angle_of_attack(alpha_star, stagger, k1)
         delta_star = self._design_deviation(g, k1 + i_star)
 
@@ -233,15 +249,18 @@ class AungierCompressorRow:
         R_s = A.incidence_from_angle_of_attack(alpha_s, stagger, k1) - i_star  # (6-50)
         i_c, i_s = A.stall_incidence(i_star, R_c, R_s, mach1, self.k_sh)
         if self.throat_over_pitch is None:
-            o_s = A.throat_opening_ratio(stagger, A.lift_coefficient_from_camber(theta, self.a_c), t_c, sigma)  # (4-30), (4-31)
+            o_s = A.throat_opening_ratio(stagger, A.lift_coefficient_from_camber(theta, g["a_c"]), t_c, sigma)  # (4-30), (4-31)
         else:
             o_s = np.interp(exit_geometry.t, np.linspace(0.0, 1.0, len(self.throat_over_pitch)), np.asarray(self.throat_over_pitch, dtype=float))
         beta1_choke = A.choke_inlet_angle(o_s, rho_w_sonic, inlet.rho * w1)
         i_c = np.fmax(i_c, beta1_choke - k1 + 1.0)  # (6-54); NaN where the passage cannot choke
         i_m = A.minimum_loss_incidence(i_c, i_s, R_c, R_s)
 
-        # Shock loss (section 6.7).
-        expansion = A.suction_surface_expansion_angle(k1, theta, t_c, sigma)
+        # Shock loss (section 6.7), with the expansion angle of the constructed sections when given.
+        if self.expansion_angle is None:
+            expansion = A.suction_surface_expansion_angle(k1, theta, t_c, sigma)  # (6-65) to (6-69)
+        else:
+            expansion = np.interp(inlet.t, np.linspace(0.0, 1.0, len(self.expansion_angle)), np.asarray(self.expansion_angle, dtype=float))
         omega_shock = A.shock_loss(mach1, expansion, gas.gamma, self.shock_mean)
         return dict(g=g, wm1=wm1, beta1=beta1, w1=w1, mach1=mach1, pt1=pt1, w_sonic=w_sonic, i_star=i_star, delta_star=delta_star,
                     R_s=R_s, i_c=i_c, i_s=i_s, i_m=i_m, omega_shock=omega_shock)

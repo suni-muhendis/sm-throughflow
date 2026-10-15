@@ -78,10 +78,13 @@ class BladeRowV2(StrictModel):
     leading_edge_axial_m: float = Field(ge=0)
     trailing_edge_axial_m: float = Field(gt=0)
     blade_count: int = Field(ge=2, le=400)
-    profile: Literal["naca65", "c4", "dca"]
-    camberline: Literal["naca65", "circular_arc", "parabolic_arc"]
+    profile: Literal["naca65", "c4", "dca", "mca"]
+    camberline: Literal["naca65", "circular_arc", "parabolic_arc", "multiple_circular_arc"]
     max_camber_location: float = Field(default=0.5, ge=0.3, le=0.7)
     edge_radius_to_chord: Optional[float] = Field(default=None, gt=0, le=0.05)
+    transition_point: Optional[List[float]] = _span_values(default=None)
+    turning_rate_ratio: Optional[List[float]] = _span_values(default=None)
+    max_thickness_location: Optional[List[float]] = _span_values(default=None)
     metal_angle_in_deg: List[float] = _span_values()
     metal_angle_out_deg: List[float] = _span_values()
     chord_m: List[float] = _span_values()
@@ -102,8 +105,22 @@ class BladeRowV2(StrictModel):
             raise ValueError("the naca65 camberline has its maximum camber at mid-chord")
         if self.camberline != "parabolic_arc" and self.max_camber_location != 0.5:
             raise ValueError("max_camber_location applies to the parabolic_arc camberline only")
-        if (self.profile == "dca") != (self.edge_radius_to_chord is not None):
-            raise ValueError("edge_radius_to_chord is required for, and only for, the dca profile")
+        if (self.profile in ("dca", "mca")) != (self.edge_radius_to_chord is not None):
+            raise ValueError("edge_radius_to_chord is required for, and only for, the dca and mca profiles")
+        mca = (self.transition_point, self.turning_rate_ratio, self.max_thickness_location)
+        if (self.profile == "mca") != (self.camberline == "multiple_circular_arc"):
+            raise ValueError("the mca profile and the multiple_circular_arc camberline go together")
+        if self.camberline == "multiple_circular_arc":
+            if any(v is None for v in mca):
+                raise ValueError("a multiple-circular-arc row needs transition_point, turning_rate_ratio and max_thickness_location")
+            if any(not 0.1 <= v <= 0.9 for v in self.transition_point):
+                raise ValueError("transition_point values must lie in [0.1, 0.9]")
+            if any(not -0.5 <= v <= 3.0 for v in self.turning_rate_ratio):
+                raise ValueError("turning_rate_ratio values must lie in [-0.5, 3]")
+            if any(not 0.2 <= v <= 0.8 for v in self.max_thickness_location):
+                raise ValueError("max_thickness_location values must lie in [0.2, 0.8]")
+        elif any(v is not None for v in mca):
+            raise ValueError("transition_point, turning_rate_ratio and max_thickness_location are for the multiple_circular_arc camberline")
         if self.row_type == "rotor":
             if self.tip_clearance_m is None:
                 raise ValueError("a rotor requires tip_clearance_m")

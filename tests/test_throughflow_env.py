@@ -80,6 +80,29 @@ def test_double_circular_arc_rows_carry_their_edge_radius():
         ThroughflowDesignV2.model_validate(design)
 
 
+def _mca(row):
+    row.update(profile="mca", camberline="multiple_circular_arc", edge_radius_to_chord=0.004, thickness_to_chord=[0.05] * 11,
+               transition_point=[0.55] * 11, turning_rate_ratio=[0.4] * 11, max_thickness_location=[0.6] * 11)
+
+
+def test_multiple_circular_arc_rows_carry_their_shape():
+    design, _ = build_case(1)
+    rotor = _row(design, "R1")
+    _mca(rotor)
+    ThroughflowDesignV2.model_validate(design)
+    del rotor["turning_rate_ratio"]
+    with pytest.raises(ValidationError, match="turning_rate_ratio"):
+        ThroughflowDesignV2.model_validate(design)
+    _mca(rotor)
+    rotor["camberline"] = "circular_arc"
+    with pytest.raises(ValidationError, match="go together"):
+        ThroughflowDesignV2.model_validate(design)
+    design, _ = build_case(1)
+    _row(design, "R1")["transition_point"] = [0.5] * 11
+    with pytest.raises(ValidationError, match="multiple_circular_arc"):
+        ThroughflowDesignV2.model_validate(design)
+
+
 # ------------------------------------------------------------------ design rules
 def _drc(design):
     return run_drc(ThroughflowDesignV2.model_validate(design))
@@ -152,6 +175,13 @@ def test_double_circular_arc_rotor_runs():
     design, task = build_case(1)
     rotor = _row(design, "R1")
     rotor.update(profile="dca", camberline="circular_arc", edge_radius_to_chord=0.005, thickness_to_chord=[0.05] * 11)
+    result = make_env("turbomachinery_throughflow").evaluate("t", task, "d", design)
+    assert result.status == "success", result.error_message
+
+
+def test_multiple_circular_arc_rotor_runs():
+    design, task = build_case(1)
+    _mca(_row(design, "R1"))
     result = make_env("turbomachinery_throughflow").evaluate("t", task, "d", design)
     assert result.status == "success", result.error_message
 

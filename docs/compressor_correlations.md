@@ -45,7 +45,12 @@ Aungier prefers computed throats from the actual geometry, which
   proportional to it); camberlines: the NACA a = 1.0 mean line scaled by
   C_l0 from (4-6), the circular arc (4-7 to 4-10) and the parabolic arc
   (4-16 to 4-19, solved as a quadratic); the double circular arc
-  (4-22 to 4-26) with its edge radius.
+  (4-22 to 4-26) with its edge radius. On a parabolic-arc or NACA meanline
+  the double-circular-arc profile is its thickness (that of the uncambered
+  section, arcs tangent to the edge circles) laid normal to the camberline
+  like the other profiles, with the edge circles on the camberline r0 from
+  each end; on a circular-arc meanline it is the exact construction, and the
+  two agree to 2e-3 chord there (tested).
 - The section is staggered by gamma (4-32 to 4-36) and the throat is the
   minimum distance between the suction side of one blade and the pressure
   side and edge circles of the next, one pitch along.
@@ -201,6 +206,59 @@ Three points differ from the book as printed:
   meets the suction-surface circle behind the trailing edge; phi is then
   limited to the turning of the whole surface. The book does not state this
   bound.
+
+**Multiple-circular-arc sections.** NASA Lewis transonic blading (stages
+35 to 38, rotor 67 and others) uses Crouse's multiple circular arc: J. E.
+Crouse, D. C. Janetzke and R. E. Schwirian, NASA TN D-5437 (1969), and J. E.
+Crouse, NASA TN D-7345 (1974), the "reference 4" of NASA TP-1337. The
+meanline is two arcs whose angle falls at a constant rate along their path,
+C1 on the front and C2 on the rear, tangent at the transition point (TN
+D-7345 eqs. 1-4; its inputs c_t/c and C1/C2, printed pp. 4-9). Each surface
+is two such arcs too (TN D-5437 eqs. 16-25, fig. 6): at the
+maximum-thickness point the surfaces lie t/2 from the meanline along its
+normal and parallel to it (eq. 24); the surface arc through that point is
+fixed by it and by the edge on its side of the transition; the other arc
+continues, tangent, from the normal through the meanline's transition point
+to the other edge. The edges are circles centred on the meanline (TN
+D-7345); the code lays the section out in the cascade plane, where the
+reports use the developed blade-element cone. Checks: equal rates give the
+circular arc (to 1e-9); on all eight rows of stages 35 to 38 the meanline,
+with the transition point located from the printed ZTC, returns the printed
+transition angle KTC within 0.14 deg and the setting angle within 0.18 deg;
+the suction-surface angle at the leading edge exceeds the meanline's by 0.6
+to 2 deg more than the printed DELTA INC, and the expansion angle below
+exceeds the printed PHISS by 1 to 2 deg (the cone layout and the edge
+treatment are the likely difference).
+
+For incidence, deviation and loss the multiple circular arc is a
+circular-arc section: K_sh = 0.7 as for the double circular arc, Lieblein's
+circular-arc deviation (6-19), and a/c, where the correlations use it (the
+design angle of attack, 6-8), is the chordwise position of the maximum
+camber of the constructed meanline. The Lewis designers used Carter's rule
+with m fitted to Carter and Hughes's curves as a function of setting angle
+and a/c, on an equivalent-circulation camber (TN D-7345 eqs. 20-21; NASA TM
+X-2379; GE CR-54581 app. B); it is a candidate for a later comparison.
+
+**Expansion angle from the constructed section.** (6-65) to (6-69) take
+the suction surface as a circular arc that turns through the whole camber.
+That holds for a double circular arc and fails for the blades transonic rows
+actually use: multiple-circular-arc and other aft-loaded sections keep the
+surface ahead of the shock nearly straight, which is the point of their
+design. On NASA Stage 35 the book's relation gives 10 to 17 deg where the
+report prints a suction-surface camber ahead of the shock (PHISS) of 1.5 to
+11 deg, and the shock loss came out about 1.5 times the designers'. For
+double- and multiple-circular-arc profiles the simulator therefore reads phi
+off the constructed cascade (`suction_surface_expansion_geometric`): the turning of
+the suction surface from where it leaves the leading-edge circle to the foot
+of the normal from the adjacent blade's leading edge, the same construction
+on the actual surface. For a circular-arc meanline it reproduces (6-69) to
+0.3 deg with a sharp edge (tested); on Stage 35's sections, with the
+parabolic arc fitted to the printed setting angles, it is within 0.5 deg of
+PHISS at the hub and 4 to 6 deg above it at the tip, where one a/c per row
+cannot represent the nearly straight front of the MCA section. It is computed
+once per row at the eleven design sections, like the throat. NACA 65 and
+C.4 rows keep the book's relation: their rounded noses have no defined
+start of the suction-surface turning.
 
 Not modelled, as in Aungier: the bow-shock loss ahead of the leading edge
 (small at the near-zero incidence of transonic rows, NACA RM E57A30) and

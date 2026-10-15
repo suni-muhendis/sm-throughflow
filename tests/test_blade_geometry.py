@@ -4,9 +4,11 @@ from pathlib import Path
 
 import numpy as np
 import pytest
+from scipy.spatial import cKDTree
 
 from sm_throughflow.correlations import blade_geometry as G
-from sm_throughflow.correlations.aungier import camber_from_lift_coefficient, camberline_angles, throat_opening_ratio, lift_coefficient_from_camber
+from sm_throughflow.correlations.aungier import (camber_from_lift_coefficient, camberline_angles, lift_coefficient_from_camber, suction_surface_expansion_angle,
+                                                 throat_opening_ratio)
 
 THROAT_LINES = json.loads((Path(__file__).parent / "fixtures" / "aungier_2003_throat_lines.json").read_text())
 
@@ -102,3 +104,112 @@ def test_a_blunter_nose_cannot_open_the_throat():
             c4 = G.throat_opening_ratio_geometric("c4", "circular_arc", camber, stagger, 0.10, 1.0)
             naca = G.throat_opening_ratio_geometric("naca65", "naca65", camber, stagger, 0.10, 1.0)
             assert c4 < naca
+
+
+# ------------------------------------------------------------------ dca thickness on other camberlines
+@pytest.mark.parametrize("camber", [10.0, 30.0])
+def test_circular_arc_thickness_on_a_circular_camberline_matches_the_exact_dca(camber):
+    t_c, r0 = 0.06, 0.004
+    exact = G.section("dca", "circular_arc", camber, t_c, edge_radius=r0)
+    laid = G._circular_arc_thickness_on("circular_arc", camber, t_c, 0.5, r0, 401)
+    for a, b in zip(exact[:2], laid[:2]):
+        assert np.max(cKDTree(a).query(b)[0]) < 2e-3  # same surfaces to within the camberline-curvature term
+    assert G.throat_opening_ratio_geometric("dca", "parabolic_arc", camber, 30.0, t_c, 1.5, 0.5, r0) == pytest.approx(
+        G.throat_opening_ratio_geometric("dca", "circular_arc", camber, 30.0, t_c, 1.5, 0.5, r0), abs=2e-3)
+
+
+def test_dca_follows_a_parabolic_camberline():
+    camber, a_c = 20.0, 0.65
+    upper, lower, _ = G.section("dca", "parabolic_arc", camber, 0.05, a_c=a_c, edge_radius=0.003)
+    mean = 0.5 * (upper + lower)
+    x, y = G.camberline("parabolic_arc", camber, a_c)
+    assert np.max(cKDTree(np.column_stack([x, y])).query(mean)[0]) < 1e-3
+    assert np.hypot(*(upper - lower).T).max() == pytest.approx(0.05, rel=2e-3)
+
+
+# ------------------------------------------------------------------ shock expansion angle
+@pytest.mark.parametrize("camber, t_c, solidity, kappa1", [(10.0, 0.03, 1.3, 62.0), (26.0, 0.08, 1.8, 52.0), (40.0, 0.06, 1.2, 45.0)])
+def test_expansion_angle_of_a_double_circular_arc_reproduces_aungiers_construction(camber, t_c, solidity, kappa1):
+    stagger = kappa1 - camber / 2.0
+    analytic = float(suction_surface_expansion_angle(kappa1, camber, t_c, solidity))
+    geometric = G.suction_surface_expansion_geometric("dca", "circular_arc", camber, stagger, t_c, solidity, 0.5, 1e-4)
+    assert geometric == pytest.approx(analytic, abs=0.3)  # the edge circle moves the start of the arc slightly
+
+
+def test_an_aft_loaded_meanline_expands_less_ahead_of_the_shock():
+    camber, t_c, solidity, kappa1 = 12.0, 0.04, 1.4, 60.0
+    phi = {}
+    for a_c in (0.5, 0.6, 0.7):
+        stagger = kappa1 - float(camberline_angles(camber, a_c)[0])
+        phi[a_c] = G.suction_surface_expansion_geometric("dca", "parabolic_arc", camber, stagger, t_c, solidity, a_c, 0.002)
+    assert phi[0.5] > phi[0.6] > phi[0.7] > 0.0
+
+
+# ------------------------------------------------------------------ multiple circular arc
+def test_mca_meanline_with_equal_turning_rates_is_the_circular_arc():
+    x, y, kappa_t, chi1 = G.mca_meanline(30.0, 0.4, 1.0)
+    xc, yc = G.camberline("circular_arc", 30.0)
+    assert chi1 == pytest.approx(15.0, abs=1e-9)
+    assert np.max(np.abs(y - np.interp(x, xc, yc))) < 1e-9
+
+
+def test_mca_meanline_with_a_straight_front():
+    x, y, kappa_t, chi1 = G.mca_meanline(12.0, 0.6, 0.0)
+    assert kappa_t == pytest.approx(chi1, abs=1e-9)  # no turning ahead of the transition point
+    front = x <= 0.6
+    slope = np.degrees(np.arctan2(np.diff(y[front]), np.diff(x[front])))
+    assert np.ptp(slope) < 1e-6
+
+
+# NASA TP-1338 Table III(a), rotor 35 (validation/cases/nasa_stage35): KIC, KOC, TURN RATE, ZI, ZTC, ZO -> KTC, SETTING ANGLE.
+ROTOR35 = [
+    (62.55, 53.21, -0.022, 0.698, 2.379, 3.308, 62.99, 61.25),
+    (56.16, 44.26, 0.180, 0.280, 1.896, 3.701, 54.31, 52.30),
+    (51.69, 25.70, 0.376, 0.000, 1.520, 4.118, 46.24, 41.50),
+]
+
+
+@pytest.mark.parametrize("kic, koc, turn, zi, ztc, zo, ktc, setting", ROTOR35)
+def test_mca_meanline_reproduces_rotor_35_sections(kic, koc, turn, zi, ztc, zo, ktc, setting):
+    """With the transition point located from ZTC, the meanline returns the printed KTC and setting angle."""
+    from scipy.optimize import brentq
+
+    camber, fraction = kic - koc, (ztc - zi) / (zo - zi)
+
+    def axial(c):
+        x, y, _, chi1 = G.mca_meanline(camber, c, turn, 2001)
+        g = np.radians(kic - chi1)
+        a = x * np.cos(g) - y * np.sin(g)
+        return float(np.interp(fraction, a / a[-1], x)) - c
+
+    c_t = brentq(axial, 0.05, 0.95)
+    _, _, kappa_t, chi1 = G.mca_meanline(camber, c_t, turn)
+    assert kic - (chi1 - kappa_t) == pytest.approx(ktc, abs=0.15)  # the reports lay the elements on cones
+    assert kic - chi1 == pytest.approx(setting, abs=0.2)
+
+
+@pytest.mark.parametrize("max_thickness_at, transition", [(0.6, 0.4), (0.4, 0.6), (0.5, 0.5)])
+def test_mca_surfaces_meet_their_thickness_and_edge_circles(max_thickness_at, transition):
+    camber, t_c, r0 = 20.0, 0.06, 0.004
+    upper, lower, edges = G.section("mca", "multiple_circular_arc", camber, t_c, edge_radius=r0, transition=transition,
+                                    turning_ratio=0.4, max_thickness_at=max_thickness_at)
+    assert np.max(cKDTree(lower).query(upper)[0]) == pytest.approx(t_c, rel=2e-3)
+    x, y, _, _ = G.mca_meanline(camber, transition, 0.4, 2001)
+    k = int(np.argmin(np.abs(x - max_thickness_at)))
+    assert np.min(np.hypot(*(upper - [x[k], y[k]]).T)) == pytest.approx(0.5 * t_c, rel=5e-3)
+    for surface in (upper, lower):  # the surfaces end on the edge circles
+        for end, circle in ((surface[0], edges[:60]), (surface[-1], edges[60:])):
+            centre = circle.mean(axis=0)
+            assert np.hypot(*(end - centre)) == pytest.approx(r0, rel=1e-3)
+    angles = np.degrees(np.unwrap(np.arctan2(np.gradient(upper[:, 1]), np.gradient(upper[:, 0]))))
+    assert np.max(np.abs(np.diff(angles))) < 0.5  # tangent where the arcs meet
+
+
+def test_an_mca_with_a_straight_front_expands_less_ahead_of_the_shock():
+    camber, t_c, solidity, kappa1 = 12.0, 0.035, 1.3, 61.0
+    phi = {}
+    for turn in (1.0, 0.0):
+        chi1, _ = G.mca_shape(camber, 0.6, turn)
+        phi[turn] = G.suction_surface_expansion_geometric("mca", "multiple_circular_arc", camber, kappa1 - chi1, t_c, solidity,
+                                                          edge_radius=0.002, transition=0.6, turning_ratio=turn, max_thickness_at=0.6)
+    assert phi[0.0] < 0.6 * phi[1.0]

@@ -10,7 +10,9 @@ equation and the open points.
 import numpy as np
 
 #: Profile shape factor K_sh (section 6.2).
-PROFILE_SHAPE_FACTOR = {"naca65": 1.0, "c4": 1.1, "dca": 0.7}
+#: The multiple circular arc takes the double circular arc's value: it is the same family of
+#: circular-arc sections, with the turning split between two arcs.
+PROFILE_SHAPE_FACTOR = {"naca65": 1.0, "c4": 1.1, "dca": 0.7, "mca": 0.7}
 
 #: Coefficient of the incidence term in W_max/W1 (6-38, 6-39).
 MAX_VELOCITY_INCIDENCE_COEFFICIENT = {"naca65": 0.0117, "c4": 0.007}

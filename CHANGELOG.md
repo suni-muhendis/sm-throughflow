@@ -26,7 +26,14 @@ different simulator or score versions comparable.
   analysis. A task may list several operating points. The design rules keep
   designs inside the range of the cascade data. The score stays disabled. Blade throats, which set
   the choke limit on incidence, come from the constructed blade sections
-  (NACA 65, C.4 and double circular arc on their camberlines).
+  (NACA 65, C.4 and double circular arc on their camberlines). For
+  double-circular-arc rows, the expansion angle of the shock-loss model also
+  comes from the constructed sections, and on a parabolic-arc or NACA
+  meanline the double-circular-arc thickness is laid along that meanline
+  (before, the section was always built on a circular arc). Crouse's
+  multiple-circular-arc section (`mca` profile, `multiple_circular_arc`
+  camberline, with `transition_point`, `turning_rate_ratio` and
+  `max_thickness_location`) represents the NASA Lewis transonic blading.
 
 First release as a package of its own, extracted with its history from the
 research repository (`sunimuhendis.environments.turbomachinery_throughflow`).

@@ -31,9 +31,10 @@ Each row:
 | `row_type` | `rotor` or `stator`. |
 | `leading_edge_axial_m`, `trailing_edge_axial_m` | Axial planes of the row's edges; rows may not touch, and all lie strictly inside the passage. |
 | `blade_count` | Z. |
-| `profile` | Thickness distribution: `naca65`, `c4` or `dca` (double circular arc). |
-| `camberline` | `naca65` (a/c = 0.5), `circular_arc` or `parabolic_arc`; `max_camber_location` (a/c) applies to the parabolic arc only. |
-| `edge_radius_to_chord` | Leading- and trailing-edge radius over chord; required for, and only for, `dca`. |
+| `profile` | Thickness distribution: `naca65`, `c4`, `dca` (double circular arc) or `mca` (multiple circular arc). |
+| `camberline` | `naca65` (a/c = 0.5), `circular_arc`, `parabolic_arc` or `multiple_circular_arc` (with, and only with, the `mca` profile); `max_camber_location` (a/c) applies to the parabolic arc only. |
+| `edge_radius_to_chord` | Leading- and trailing-edge radius over chord; required for, and only for, `dca` and `mca`. |
+| `transition_point`, `turning_rate_ratio`, `max_thickness_location` | Multiple circular arc only, eleven values each: the chordwise fraction where the meanline's two arcs meet (0.1 to 0.9), the ratio C1/C2 of the front arc's turning rate to the rear arc's (-0.5 to 3; 1 is a circular arc, 0 a straight front), and the chordwise fraction of maximum thickness (0.2 to 0.8). Crouse, NASA TN D-7345. |
 | `metal_angle_in_deg`, `metal_angle_out_deg` | Eleven values hub to shroud (0, 0.1, ..., 1 of the span), degrees from the axial direction, **positive in the direction of rotation**: a rotor usually has negative angles, a stator positive inlet angles. Every section turns the flow the same way. |
 | `chord_m`, `thickness_to_chord` | Eleven values: true chord and maximum thickness ratio. |
 | `tip_clearance_m` | Rotors only, required. |
@@ -45,7 +46,8 @@ reads them at its own span fraction on those planes, and the solver projects
 them onto the stream surface (Aungier 9-1 to 9-6). The simulator builds each
 of the eleven sections from its profile and camberline (Aungier chapter 4)
 and takes the throat opening, which sets the choke limit on incidence, from
-the constructed cascade.
+the constructed cascade; for double- and multiple-circular-arc rows also the
+expansion angle of the shock-loss model.
 
 ## Design rules (`drc.py`)
 

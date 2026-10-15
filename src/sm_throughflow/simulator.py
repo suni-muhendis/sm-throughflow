@@ -49,14 +49,11 @@ class SlcAungierSimulator(BaseSimulator):
 
     # ------------------------------------------------------------ build
     @staticmethod
-    def throat_over_pitch(row, stations) -> List[float]:
-        """o/s of the constructed cascade at the row's eleven sections (Aungier section 4.9).
-
-        Each section sits at its span fraction on the row's mid-chord plane,
-        with pitch 2 pi r / Z; computed once per row, as Aungier does.
-        """
+    def _sections(row, stations):
+        """Camber, stagger, solidity, chi1/camber and a/c of the row's eleven design sections, and the shape
+        keywords of ``blade_geometry.section``; each section sits at its span fraction on the mid-chord plane."""
         from .correlations.aungier import camberline_angles
-        from .correlations.blade_geometry import throat_opening_ratio_geometric
+        from .correlations.blade_geometry import mca_shape
 
         x = 0.5 * (row.leading_edge_axial_m + row.trailing_edge_axial_m)
         z = [s.axial_m for s in stations]
@@ -64,15 +61,59 @@ class SlcAungierSimulator(BaseSimulator):
         shroud = float(np.interp(x, z, [s.shroud_radius_m for s in stations]))
         k_in, k_out = np.asarray(row.metal_angle_in_deg), np.asarray(row.metal_angle_out_deg)
         sign = 1.0 if np.mean(k_in - k_out) > 0.0 else -1.0  # the cascade frame of the correlations
-        ratios = []
+        out = []
         for k, span in enumerate(SPAN_FRACTIONS):
             camber = sign * (k_in[k] - k_out[k])
-            chi1, _ = camberline_angles(camber, row.max_camber_location)
-            stagger = sign * k_in[k] - float(chi1)
+            if row.camberline == "multiple_circular_arc":
+                shape = dict(transition=row.transition_point[k], turning_ratio=row.turning_rate_ratio[k],
+                             max_thickness_at=row.max_thickness_location[k])
+                chi1, a_c = mca_shape(camber, shape["transition"], shape["turning_ratio"])
+            else:
+                shape, a_c = {}, row.max_camber_location
+                chi1 = float(camberline_angles(camber, a_c)[0])
             solidity = row.chord_m[k] * row.blade_count / (2.0 * math.pi * (hub + span * (shroud - hub)))
-            ratios.append(throat_opening_ratio_geometric(row.profile, row.camberline, camber, stagger, row.thickness_to_chord[k], solidity,
-                                                         row.max_camber_location, row.edge_radius_to_chord))
-        return ratios
+            out.append(dict(camber=camber, stagger=sign * k_in[k] - chi1, solidity=solidity, chi1_over_camber=chi1 / camber,
+                            a_c=a_c, t_c=row.thickness_to_chord[k], shape=shape))
+        return out
+
+    @staticmethod
+    def section_shape(row, stations):
+        """chi1/camber and a/c at the eleven sections, for a multiple-circular-arc row; None otherwise."""
+        if row.camberline != "multiple_circular_arc":
+            return None
+        sections = SlcAungierSimulator._sections(row, stations)
+        return {"chi1_over_camber": [s["chi1_over_camber"] for s in sections], "a_c": [s["a_c"] for s in sections]}
+
+    @staticmethod
+    def throat_over_pitch(row, stations) -> List[float]:
+        """o/s of the constructed cascade at the row's eleven sections (Aungier section 4.9).
+
+        Each section sits at its span fraction on the row's mid-chord plane,
+        with pitch 2 pi r / Z; computed once per row, as Aungier does.
+        """
+        from .correlations.blade_geometry import throat_opening_ratio_geometric
+
+        return [throat_opening_ratio_geometric(row.profile, row.camberline, s["camber"], s["stagger"], s["t_c"], s["solidity"],
+                                               row.max_camber_location, row.edge_radius_to_chord, **s["shape"])
+                for s in SlcAungierSimulator._sections(row, stations)]
+
+    @staticmethod
+    def expansion_angles(row, stations):
+        """Suction-surface expansion angle of the shock model at the row's eleven sections, degrees.
+
+        Read off the constructed cascade for double-circular-arc blades, whose
+        meanline may be any of the contract's camberlines (Aungier's (6-65) to
+        (6-69) assume a circular arc); None for the NACA 65 and C.4 profiles,
+        which keep the book's relation. The sections are those of
+        ``throat_over_pitch``.
+        """
+        if row.profile not in ("dca", "mca"):
+            return None
+        from .correlations.blade_geometry import suction_surface_expansion_geometric
+
+        return [suction_surface_expansion_geometric(row.profile, row.camberline, s["camber"], s["stagger"], s["t_c"], s["solidity"],
+                                                    row.max_camber_location, row.edge_radius_to_chord, **s["shape"])
+                for s in SlcAungierSimulator._sections(row, stations)]
 
     @staticmethod
     def build(design: ThroughflowDesignV2, task: ThroughflowTaskV2, point):
@@ -111,6 +152,8 @@ class SlcAungierSimulator(BaseSimulator):
                 profile=row.profile, camberline=row.camberline, a_c=row.max_camber_location, row_number=k + 1,
                 inlet_guide_vane=row.row_id in guide_vanes, clearance=clearance, seal=seal,
                 throat_over_pitch=SlcAungierSimulator.throat_over_pitch(row, stations),
+                expansion_angle=SlcAungierSimulator.expansion_angles(row, stations),
+                section_shape=SlcAungierSimulator.section_shape(row, stations),
                 K1=profile["K1"], max_loss=profile["max_loss"], smoothing=profile["smoothing"], shock_mean=profile["shock_mean"],
             )
             models[row.row_id] = model
