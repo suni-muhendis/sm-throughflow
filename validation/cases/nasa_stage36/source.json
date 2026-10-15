@@ -120,5 +120,165 @@
     "title": "Figure 1. - Flow path and instrumentation stations. (Flow path coordinates box, outer wall)",
     "dpi": 500,
     "notes": "Same box as the inner file; read at 500 dpi. No survey-plane marks in this box. Second read from the image done, cell by cell (zoomed crops); pdftotext layer used only as a cross-check."
+  },
+  {
+    "file": "TP1974_tableIV_overall_100pct.csv",
+    "report": "NASA TP-1974",
+    "ntrs_id": "19820011348",
+    "pdf_page": 18,
+    "printed_page": "15",
+    "title": "TABLE IV. - OVERALL PERFORMANCE FOR STAGE 36 (a) 100 Percent of design speed",
+    "dpi": 600,
+    "notes": "Readings 4273, 4272, 4271, 4270, 4269. Reading 4273, FLOW COEFFICIENT and AIRFLOW PER UNIT FRONTAL AREA: the second digit is a smudged glyph (0 or 8); written 0.404 and 104.23 by check, see notes.md. Columns = readings as printed under the group heading 'Reading'; first column = parameter labels as printed (dot leaders dropped). The row 'Compressor performance' is the printed sub-heading separating the stage rows (no values). No units printed; Appendix B (pdf p9-11) defines the quantities, airflow in kg/sec, rotative speed in rpm (Appendix A). Rendered at 600 dpi; second read from the image done, cell by cell (600-dpi render, crops re-read at full zoom); pdftotext layer used only to locate pages."
+  },
+  {
+    "file": "TP1974_tableIV_overall_090pct.csv",
+    "report": "NASA TP-1974",
+    "ntrs_id": "19820011348",
+    "pdf_page": 18,
+    "printed_page": "15",
+    "title": "TABLE IV. - OVERALL PERFORMANCE FOR STAGE 36 (b) 90 Percent of design speed",
+    "dpi": 600,
+    "notes": "Readings 4281, 4280, 4279, 4282, 4284, 4277. Columns = readings as printed under the group heading 'Reading'; first column = parameter labels as printed (dot leaders dropped). The row 'Compressor performance' is the printed sub-heading separating the stage rows (no values). No units printed; Appendix B (pdf p9-11) defines the quantities, airflow in kg/sec, rotative speed in rpm (Appendix A). Rendered at 600 dpi; second read from the image done, cell by cell (600-dpi render, crops re-read at full zoom); pdftotext layer used only to locate pages."
+  },
+  {
+    "file": "TP1974_tableIV_overall_080pct.csv",
+    "report": "NASA TP-1974",
+    "ntrs_id": "19820011348",
+    "pdf_page": 19,
+    "printed_page": "16",
+    "title": "TABLE IV. - Continued. OVERALL PERFORMANCE FOR STAGE 36 (c) 80 Percent of design speed",
+    "dpi": 600,
+    "notes": "Reading 4294 only (near-stall point only at this speed). Columns = readings as printed under the group heading 'Reading'; first column = parameter labels as printed (dot leaders dropped). The row 'Compressor performance' is the printed sub-heading separating the stage rows (no values). No units printed; Appendix B (pdf p9-11) defines the quantities, airflow in kg/sec, rotative speed in rpm (Appendix A). Rendered at 600 dpi; second read from the image done, cell by cell (600-dpi render, crops re-read at full zoom); pdftotext layer used only to locate pages."
+  },
+  {
+    "file": "TP1974_tableIV_overall_070pct.csv",
+    "report": "NASA TP-1974",
+    "ntrs_id": "19820011348",
+    "pdf_page": 19,
+    "printed_page": "16",
+    "title": "TABLE IV. - Continued. OVERALL PERFORMANCE FOR STAGE 36 (d) 70 Percent of design speed",
+    "dpi": 600,
+    "notes": "Readings 4301, 4299, 4298, 4297, 4296. Columns = readings as printed under the group heading 'Reading'; first column = parameter labels as printed (dot leaders dropped). The row 'Compressor performance' is the printed sub-heading separating the stage rows (no values). No units printed; Appendix B (pdf p9-11) defines the quantities, airflow in kg/sec, rotative speed in rpm (Appendix A). Rendered at 600 dpi; second read from the image done, cell by cell (600-dpi render, crops re-read at full zoom); pdftotext layer used only to locate pages."
+  },
+  {
+    "file": "TP1974_tableIV_overall_060pct.csv",
+    "report": "NASA TP-1974",
+    "ntrs_id": "19820011348",
+    "pdf_page": 20,
+    "printed_page": "17",
+    "title": "TABLE IV. - Concluded. OVERALL PERFORMANCE FOR STAGE 36 (e) 60 Percent of design speed",
+    "dpi": 600,
+    "notes": "Reading 4304 only (near-stall point only at this speed). Columns = readings as printed under the group heading 'Reading'; first column = parameter labels as printed (dot leaders dropped). The row 'Compressor performance' is the printed sub-heading separating the stage rows (no values). No units printed; Appendix B (pdf p9-11) defines the quantities, airflow in kg/sec, rotative speed in rpm (Appendix A). Rendered at 600 dpi; second read from the image done, cell by cell (600-dpi render, crops re-read at full zoom); pdftotext layer used only to locate pages."
+  },
+  {
+    "file": "TP1974_tableIV_overall_050pct.csv",
+    "report": "NASA TP-1974",
+    "ntrs_id": "19820011348",
+    "pdf_page": 20,
+    "printed_page": "17",
+    "title": "TABLE IV. - Concluded. OVERALL PERFORMANCE FOR STAGE 36 (f) 50 Percent of design speed",
+    "dpi": 600,
+    "notes": "Reading 4309 only (near-stall point only at this speed). Columns = readings as printed under the group heading 'Reading'; first column = parameter labels as printed (dot leaders dropped). The row 'Compressor performance' is the printed sub-heading separating the stage rows (no values). No units printed; Appendix B (pdf p9-11) defines the quantities, airflow in kg/sec, rotative speed in rpm (Appendix A). Rendered at 600 dpi; second read from the image done, cell by cell (600-dpi render, crops re-read at full zoom); pdftotext layer used only to locate pages."
+  },
+  {
+    "file": "TP1974_tableV_rotor36_reading4269.csv",
+    "report": "NASA TP-1974",
+    "ntrs_id": "19820011348",
+    "pdf_page": 35,
+    "printed_page": "32",
+    "title": "TABLE V. - Continued. BLADE-ELEMENT DATA AT BLADE EDGES FOR ROTOR 36-SI UNITS (o) 100 Percent of design speed; reading 4269",
+    "dpi": 600,
+    "notes": "Same layout as TP1974_tableII_*: the four printed blocks joined side by side on RP; headings = printed group heading + sub-heading (as in the TP-1338 files of stage 35). Only RP 1-9 are printed (no TIP/HUB rows). No units row printed (row 2 blank); Appendix C gives radii cm, angles deg, temperature K, pressure N/cm2, velocities m/sec. Numbers kept as printed (signed zeros such as '-0.0' kept). Print defects: see notes.md. Rendered at 600 dpi; second read from the image done, cell by cell (600-dpi render, crops re-read at full zoom); pdftotext layer used only to locate pages."
+  },
+  {
+    "file": "TP1974_tableV_rotor36_reading4270.csv",
+    "report": "NASA TP-1974",
+    "ntrs_id": "19820011348",
+    "pdf_page": 36,
+    "printed_page": "33",
+    "title": "TABLE V. - Continued. BLADE-ELEMENT DATA AT BLADE EDGES FOR ROTOR 36-SI UNITS (p) 100 Percent of design speed; reading 4270",
+    "dpi": 600,
+    "notes": "Same layout as TP1974_tableII_*: the four printed blocks joined side by side on RP; headings = printed group heading + sub-heading (as in the TP-1338 files of stage 35). Only RP 1-9 are printed (no TIP/HUB rows). No units row printed (row 2 blank); Appendix C gives radii cm, angles deg, temperature K, pressure N/cm2, velocities m/sec. Numbers kept as printed (signed zeros such as '-0.0' kept). Print defects: see notes.md. Rendered at 600 dpi; second read from the image done, cell by cell (600-dpi render, crops re-read at full zoom); pdftotext layer used only to locate pages."
+  },
+  {
+    "file": "TP1974_tableV_rotor36_reading4271.csv",
+    "report": "NASA TP-1974",
+    "ntrs_id": "19820011348",
+    "pdf_page": 37,
+    "printed_page": "34",
+    "title": "TABLE V. - Continued. BLADE-ELEMENT DATA AT BLADE EDGES FOR ROTOR 36-SI UNITS (q) 100 Percent of design speed; reading 4271",
+    "dpi": 600,
+    "notes": "Same layout as TP1974_tableII_*: the four printed blocks joined side by side on RP; headings = printed group heading + sub-heading (as in the TP-1338 files of stage 35). Only RP 1-9 are printed (no TIP/HUB rows). No units row printed (row 2 blank); Appendix C gives radii cm, angles deg, temperature K, pressure N/cm2, velocities m/sec. Numbers kept as printed (signed zeros such as '-0.0' kept). Print defects: see notes.md. Rendered at 600 dpi; second read from the image done, cell by cell (600-dpi render, crops re-read at full zoom); pdftotext layer used only to locate pages."
+  },
+  {
+    "file": "TP1974_tableV_rotor36_reading4272.csv",
+    "report": "NASA TP-1974",
+    "ntrs_id": "19820011348",
+    "pdf_page": 38,
+    "printed_page": "35",
+    "title": "TABLE V. - Continued. BLADE-ELEMENT DATA AT BLADE EDGES FOR ROTOR 36-SI UNITS (r) 100 Percent of design speed; reading 4272",
+    "dpi": 600,
+    "notes": "Same layout as TP1974_tableII_*: the four printed blocks joined side by side on RP; headings = printed group heading + sub-heading (as in the TP-1338 files of stage 35). Only RP 1-9 are printed (no TIP/HUB rows). No units row printed (row 2 blank); Appendix C gives radii cm, angles deg, temperature K, pressure N/cm2, velocities m/sec. Numbers kept as printed (signed zeros such as '-0.0' kept). Print defects: see notes.md. Rendered at 600 dpi; second read from the image done, cell by cell (600-dpi render, crops re-read at full zoom); pdftotext layer used only to locate pages."
+  },
+  {
+    "file": "TP1974_tableV_rotor36_reading4273.csv",
+    "report": "NASA TP-1974",
+    "ntrs_id": "19820011348",
+    "pdf_page": 39,
+    "printed_page": "36",
+    "title": "TABLE V. - Concluded. BLADE-ELEMENT DATA AT BLADE EDGES FOR ROTOR 36-SI UNITS (s) 100 Percent of design speed; reading 4273",
+    "dpi": 600,
+    "notes": "Same layout as TP1974_tableII_*: the four printed blocks joined side by side on RP; headings = printed group heading + sub-heading (as in the TP-1338 files of stage 35). Only RP 1-9 are printed (no TIP/HUB rows). No units row printed (row 2 blank); Appendix C gives radii cm, angles deg, temperature K, pressure N/cm2, velocities m/sec. Numbers kept as printed (signed zeros such as '-0.0' kept). Print defects: see notes.md. Rendered at 600 dpi; second read from the image done, cell by cell (600-dpi render, crops re-read at full zoom); pdftotext layer used only to locate pages."
+  },
+  {
+    "file": "TP1974_tableVI_stator36_reading4269.csv",
+    "report": "NASA TP-1974",
+    "ntrs_id": "19820011348",
+    "pdf_page": 54,
+    "printed_page": "51",
+    "title": "TABLE VI. - Continued. BLADE-ELEMENT DATA AT BLADE EDGES FOR STATOR 36-SI UNITS (o) 100 Percent of design speed; reading 4269",
+    "dpi": 600,
+    "notes": "Same layout as TP1974_tableII_*: the four printed blocks joined side by side on RP; headings = printed group heading + sub-heading (as in the TP-1338 files of stage 35). Only RP 1-9 are printed (no TIP/HUB rows). No units row printed (row 2 blank); Appendix C gives radii cm, angles deg, temperature K, pressure N/cm2, velocities m/sec. Numbers kept as printed (signed zeros such as '-0.0' kept). Print defects: see notes.md. Rendered at 600 dpi; second read from the image done, cell by cell (600-dpi render, crops re-read at full zoom); pdftotext layer used only to locate pages."
+  },
+  {
+    "file": "TP1974_tableVI_stator36_reading4270.csv",
+    "report": "NASA TP-1974",
+    "ntrs_id": "19820011348",
+    "pdf_page": 55,
+    "printed_page": "52",
+    "title": "TABLE VI. - Continued. BLADE-ELEMENT DATA AT BLADE EDGES FOR STATOR 36-SI UNITS (p) 100 Percent of design speed; reading 4270",
+    "dpi": 600,
+    "notes": "Same layout as TP1974_tableII_*: the four printed blocks joined side by side on RP; headings = printed group heading + sub-heading (as in the TP-1338 files of stage 35). Only RP 1-9 are printed (no TIP/HUB rows). No units row printed (row 2 blank); Appendix C gives radii cm, angles deg, temperature K, pressure N/cm2, velocities m/sec. Numbers kept as printed (signed zeros such as '-0.0' kept). Print defects: see notes.md. Rendered at 600 dpi; second read from the image done, cell by cell (600-dpi render, crops re-read at full zoom); pdftotext layer used only to locate pages."
+  },
+  {
+    "file": "TP1974_tableVI_stator36_reading4271.csv",
+    "report": "NASA TP-1974",
+    "ntrs_id": "19820011348",
+    "pdf_page": 56,
+    "printed_page": "53",
+    "title": "TABLE VI. - Continued. BLADE-ELEMENT DATA AT BLADE EDGES FOR STATOR 36-SI UNITS (q) 100 Percent of design speed; reading 4271",
+    "dpi": 600,
+    "notes": "Same layout as TP1974_tableII_*: the four printed blocks joined side by side on RP; headings = printed group heading + sub-heading (as in the TP-1338 files of stage 35). Only RP 1-9 are printed (no TIP/HUB rows). No units row printed (row 2 blank); Appendix C gives radii cm, angles deg, temperature K, pressure N/cm2, velocities m/sec. Numbers kept as printed (signed zeros such as '-0.0' kept). Print defects: see notes.md. Rendered at 600 dpi; second read from the image done, cell by cell (600-dpi render, crops re-read at full zoom); pdftotext layer used only to locate pages."
+  },
+  {
+    "file": "TP1974_tableVI_stator36_reading4272.csv",
+    "report": "NASA TP-1974",
+    "ntrs_id": "19820011348",
+    "pdf_page": 57,
+    "printed_page": "54",
+    "title": "TABLE VI. - Continued. BLADE-ELEMENT DATA AT BLADE EDGES FOR STATOR 36-SI UNITS (r) 100 Percent of design speed; reading 4272",
+    "dpi": 600,
+    "notes": "Same layout as TP1974_tableII_*: the four printed blocks joined side by side on RP; headings = printed group heading + sub-heading (as in the TP-1338 files of stage 35). Only RP 1-9 are printed (no TIP/HUB rows). No units row printed (row 2 blank); Appendix C gives radii cm, angles deg, temperature K, pressure N/cm2, velocities m/sec. Numbers kept as printed (signed zeros such as '-0.0' kept). Print defects: see notes.md. Rendered at 600 dpi; second read from the image done, cell by cell (600-dpi render, crops re-read at full zoom); pdftotext layer used only to locate pages."
+  },
+  {
+    "file": "TP1974_tableVI_stator36_reading4273.csv",
+    "report": "NASA TP-1974",
+    "ntrs_id": "19820011348",
+    "pdf_page": 58,
+    "printed_page": "55",
+    "title": "TABLE VI. - Concluded. BLADE-ELEMENT DATA AT BLADE EDGES FOR STATOR 36-SI UNITS (s) 100 Percent of design speed; reading 4273",
+    "dpi": 600,
+    "notes": "Same layout as TP1974_tableII_*: the four printed blocks joined side by side on RP; headings = printed group heading + sub-heading (as in the TP-1338 files of stage 35). Only RP 1-9 are printed (no TIP/HUB rows). No units row printed (row 2 blank); Appendix C gives radii cm, angles deg, temperature K, pressure N/cm2, velocities m/sec. Numbers kept as printed (signed zeros such as '-0.0' kept). Print defects: see notes.md. Rendered at 600 dpi; second read from the image done, cell by cell (600-dpi render, crops re-read at full zoom); pdftotext layer used only to locate pages."
   }
 ]

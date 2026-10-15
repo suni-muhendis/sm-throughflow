@@ -120,5 +120,385 @@
     "title": "Figure 1. - Flow path and instrumentation stations. (Flow path coordinates box, outer wall)",
     "dpi": 500,
     "notes": "Same box as the inner file; read at 500 dpi. No survey-plane marks in this box. Second read from the image done, cell by cell (zoomed crops); pdftotext layer used only as a cross-check."
+  },
+  {
+    "file": "TP1338_tableIV_overall_100pct.csv",
+    "report": "NASA TP-1338",
+    "ntrs_id": "19790001889",
+    "pdf_page": 29,
+    "printed_page": "25",
+    "title": "TABLE IV. - OVERALL PERFORMANCE FOR STAGE 35 (a) 100 Percent of design speed",
+    "dpi": 300,
+    "notes": "Readings 4004, 3978, 3977, 3974, 3976, 3975. Columns = readings as printed under the group heading 'Reading'; first column = parameter labels as printed (dot leaders dropped; the label typo 'ROTCR' kept where printed). The row 'Compressor performance' is the printed sub-heading separating the stage rows (no values). No units printed; Appendix B (pdf p16-19) defines the quantities, airflow in kg/sec, rotative speed in rpm (Appendix A). Second read from the image done, cell by cell (400-dpi crops, suspect cells re-read at 600 dpi); pdftotext layer used only to locate pages."
+  },
+  {
+    "file": "TP1338_tableIV_overall_090pct.csv",
+    "report": "NASA TP-1338",
+    "ntrs_id": "19790001889",
+    "pdf_page": 29,
+    "printed_page": "25",
+    "title": "TABLE IV. - Concluded. OVERALL PERFORMANCE FOR STAGE 35 (b) 90 Percent of design speed",
+    "dpi": 300,
+    "notes": "Readings 3979, 3982, 3983, 3984, 3985. Columns = readings as printed under the group heading 'Reading'; first column = parameter labels as printed (dot leaders dropped; the label typo 'ROTCR' kept where printed). The row 'Compressor performance' is the printed sub-heading separating the stage rows (no values). No units printed; Appendix B (pdf p16-19) defines the quantities, airflow in kg/sec, rotative speed in rpm (Appendix A). Second read from the image done, cell by cell (400-dpi crops, suspect cells re-read at 600 dpi); pdftotext layer used only to locate pages."
+  },
+  {
+    "file": "TP1338_tableIV_overall_080pct.csv",
+    "report": "NASA TP-1338",
+    "ntrs_id": "19790001889",
+    "pdf_page": 30,
+    "printed_page": "26",
+    "title": "TABLE IV. - Continued. OVERALL PERFORMANCE FOR STAGE 35 (c) 80 Percent of design speed",
+    "dpi": 300,
+    "notes": "Reading 3987 only (near-stall point only at this speed). Columns = readings as printed under the group heading 'Reading'; first column = parameter labels as printed (dot leaders dropped; the label typo 'ROTCR' kept where printed). The row 'Compressor performance' is the printed sub-heading separating the stage rows (no values). No units printed; Appendix B (pdf p16-19) defines the quantities, airflow in kg/sec, rotative speed in rpm (Appendix A). Second read from the image done, cell by cell (400-dpi crops, suspect cells re-read at 600 dpi); pdftotext layer used only to locate pages."
+  },
+  {
+    "file": "TP1338_tableIV_overall_070pct.csv",
+    "report": "NASA TP-1338",
+    "ntrs_id": "19790001889",
+    "pdf_page": 30,
+    "printed_page": "26",
+    "title": "TABLE IV. - Continued. OVERALL PERFORMANCE FOR STAGE 35 (d) 70 Percent of design speed",
+    "dpi": 300,
+    "notes": "Readings 3995, 3994, 3993, 3990, 3989. Columns = readings as printed under the group heading 'Reading'; first column = parameter labels as printed (dot leaders dropped; the label typo 'ROTCR' kept where printed). The row 'Compressor performance' is the printed sub-heading separating the stage rows (no values). No units printed; Appendix B (pdf p16-19) defines the quantities, airflow in kg/sec, rotative speed in rpm (Appendix A). Second read from the image done, cell by cell (400-dpi crops, suspect cells re-read at 600 dpi); pdftotext layer used only to locate pages."
+  },
+  {
+    "file": "TP1338_tableIV_overall_060pct.csv",
+    "report": "NASA TP-1338",
+    "ntrs_id": "19790001889",
+    "pdf_page": 31,
+    "printed_page": "27",
+    "title": "TABLE IV. - Concluded. OVERALL PERFORMANCE FOR STAGE 35 (e) 60 Percent of design speed",
+    "dpi": 300,
+    "notes": "Reading 3997 only (near-stall point only at this speed). Columns = readings as printed under the group heading 'Reading'; first column = parameter labels as printed (dot leaders dropped; the label typo 'ROTCR' kept where printed). The row 'Compressor performance' is the printed sub-heading separating the stage rows (no values). No units printed; Appendix B (pdf p16-19) defines the quantities, airflow in kg/sec, rotative speed in rpm (Appendix A). Second read from the image done, cell by cell (400-dpi crops, suspect cells re-read at 600 dpi); pdftotext layer used only to locate pages."
+  },
+  {
+    "file": "TP1338_tableIV_overall_050pct.csv",
+    "report": "NASA TP-1338",
+    "ntrs_id": "19790001889",
+    "pdf_page": 31,
+    "printed_page": "27",
+    "title": "TABLE IV. - Concluded. OVERALL PERFORMANCE FOR STAGE 35 (f) 50 Percent of design speed",
+    "dpi": 300,
+    "notes": "Reading 4000 only (near-stall point only at this speed). Columns = readings as printed under the group heading 'Reading'; first column = parameter labels as printed (dot leaders dropped; the label typo 'ROTCR' kept where printed). The row 'Compressor performance' is the printed sub-heading separating the stage rows (no values). No units printed; Appendix B (pdf p16-19) defines the quantities, airflow in kg/sec, rotative speed in rpm (Appendix A). Second read from the image done, cell by cell (400-dpi crops, suspect cells re-read at 600 dpi); pdftotext layer used only to locate pages."
+  },
+  {
+    "file": "TP1338_tableV_rotor35_reading4004.csv",
+    "report": "NASA TP-1338",
+    "ntrs_id": "19790001889",
+    "pdf_page": 32,
+    "printed_page": "28",
+    "title": "TABLE V. - BLADE-ELEMENT DATA AT BLADE EDGES FOR ROTOR 35 (a) 100 Percent of design speed; reading 4004",
+    "dpi": 300,
+    "notes": "Same layout as TP1338_tableII_*: the four printed blocks joined side by side on RP; headings = printed group heading + sub-heading (e.g. 'D FACT', 'MERID VEL R' as printed here). Only RP 1-9 are printed (no TIP/HUB rows). No units row printed (row 2 blank); Appendix C gives radii cm, angles deg, temperature K, pressure N/cm2, velocities m/sec. Numbers kept as printed (leading '0.' and signed zeros such as '-0.0', '-.000'). Cells with '?' and print defects: see notes.md. Second read from the image done, cell by cell (400-dpi crops, suspect cells re-read at 600 dpi); pdftotext layer used only to locate pages."
+  },
+  {
+    "file": "TP1338_tableV_rotor35_reading3978.csv",
+    "report": "NASA TP-1338",
+    "ntrs_id": "19790001889",
+    "pdf_page": 33,
+    "printed_page": "29",
+    "title": "TABLE V. - Continued. BLADE-ELEMENT DATA AT BLADE EDGES FOR ROTOR 35 (b) 100 Percent of design speed; reading 3978",
+    "dpi": 300,
+    "notes": "Same layout as TP1338_tableII_*: the four printed blocks joined side by side on RP; headings = printed group heading + sub-heading (e.g. 'D FACT', 'MERID VEL R' as printed here). Only RP 1-9 are printed (no TIP/HUB rows). No units row printed (row 2 blank); Appendix C gives radii cm, angles deg, temperature K, pressure N/cm2, velocities m/sec. Numbers kept as printed (leading '0.' and signed zeros such as '-0.0', '-.000'). Cells with '?' and print defects: see notes.md. Second read from the image done, cell by cell (400-dpi crops, suspect cells re-read at 600 dpi); pdftotext layer used only to locate pages."
+  },
+  {
+    "file": "TP1338_tableV_rotor35_reading3977.csv",
+    "report": "NASA TP-1338",
+    "ntrs_id": "19790001889",
+    "pdf_page": 34,
+    "printed_page": "30",
+    "title": "TABLE V. - Continued. BLADE-ELEMENT DATA AT BLADE EDGES FOR ROTOR 35 (c) 100 Percent of design speed; reading 3977",
+    "dpi": 300,
+    "notes": "Same layout as TP1338_tableII_*: the four printed blocks joined side by side on RP; headings = printed group heading + sub-heading (e.g. 'D FACT', 'MERID VEL R' as printed here). Only RP 1-9 are printed (no TIP/HUB rows). No units row printed (row 2 blank); Appendix C gives radii cm, angles deg, temperature K, pressure N/cm2, velocities m/sec. Numbers kept as printed (leading '0.' and signed zeros such as '-0.0', '-.000'). Cells with '?' and print defects: see notes.md. Second read from the image done, cell by cell (400-dpi crops, suspect cells re-read at 600 dpi); pdftotext layer used only to locate pages."
+  },
+  {
+    "file": "TP1338_tableV_rotor35_reading3974.csv",
+    "report": "NASA TP-1338",
+    "ntrs_id": "19790001889",
+    "pdf_page": 35,
+    "printed_page": "31",
+    "title": "TABLE V. - Continued. BLADE-ELEMENT DATA AT BLADE EDGES FOR ROTOR 35 (d) 100 Percent of design speed; reading 3974",
+    "dpi": 300,
+    "notes": "Same layout as TP1338_tableII_*: the four printed blocks joined side by side on RP; headings = printed group heading + sub-heading (e.g. 'D FACT', 'MERID VEL R' as printed here). Only RP 1-9 are printed (no TIP/HUB rows). No units row printed (row 2 blank); Appendix C gives radii cm, angles deg, temperature K, pressure N/cm2, velocities m/sec. Numbers kept as printed (leading '0.' and signed zeros such as '-0.0', '-.000'). Cells with '?' and print defects: see notes.md. Second read from the image done, cell by cell (400-dpi crops, suspect cells re-read at 600 dpi); pdftotext layer used only to locate pages."
+  },
+  {
+    "file": "TP1338_tableV_rotor35_reading3976.csv",
+    "report": "NASA TP-1338",
+    "ntrs_id": "19790001889",
+    "pdf_page": 36,
+    "printed_page": "32",
+    "title": "TABLE V. - Continued. BLADE-ELEMENT DATA AT BLADE EDGES FOR ROTOR 35 (e) 100 Percent of design speed; reading 3976",
+    "dpi": 300,
+    "notes": "Same layout as TP1338_tableII_*: the four printed blocks joined side by side on RP; headings = printed group heading + sub-heading (e.g. 'D FACT', 'MERID VEL R' as printed here). Only RP 1-9 are printed (no TIP/HUB rows). No units row printed (row 2 blank); Appendix C gives radii cm, angles deg, temperature K, pressure N/cm2, velocities m/sec. Numbers kept as printed (leading '0.' and signed zeros such as '-0.0', '-.000'). Cells with '?' and print defects: see notes.md. Second read from the image done, cell by cell (400-dpi crops, suspect cells re-read at 600 dpi); pdftotext layer used only to locate pages."
+  },
+  {
+    "file": "TP1338_tableV_rotor35_reading3975.csv",
+    "report": "NASA TP-1338",
+    "ntrs_id": "19790001889",
+    "pdf_page": 37,
+    "printed_page": "33",
+    "title": "TABLE V. - Continued. BLADE-ELEMENT DATA AT BLADE EDGES FOR ROTOR 35 (f) 100 Percent of design speed; reading 3975",
+    "dpi": 300,
+    "notes": "Same layout as TP1338_tableII_*: the four printed blocks joined side by side on RP; headings = printed group heading + sub-heading (e.g. 'D FACT', 'MERID VEL R' as printed here). Only RP 1-9 are printed (no TIP/HUB rows). No units row printed (row 2 blank); Appendix C gives radii cm, angles deg, temperature K, pressure N/cm2, velocities m/sec. Numbers kept as printed (leading '0.' and signed zeros such as '-0.0', '-.000'). Cells with '?' and print defects: see notes.md. Second read from the image done, cell by cell (400-dpi crops, suspect cells re-read at 600 dpi); pdftotext layer used only to locate pages."
+  },
+  {
+    "file": "TP1338_tableVI_stator35_reading4004.csv",
+    "report": "NASA TP-1338",
+    "ntrs_id": "19790001889",
+    "pdf_page": 51,
+    "printed_page": "47",
+    "title": "TABLE VI. - BLADE-ELEMENT DATA AT BLADE EDGES FOR STATOR 35 (a) 100 Percent of design speed; reading 4004",
+    "dpi": 300,
+    "notes": "Same layout as TP1338_tableII_*: the four printed blocks joined side by side on RP; headings = printed group heading + sub-heading (e.g. 'D FACT', 'MERID VEL R' as printed here). Only RP 1-9 are printed (no TIP/HUB rows). No units row printed (row 2 blank); Appendix C gives radii cm, angles deg, temperature K, pressure N/cm2, velocities m/sec. Numbers kept as printed (leading '0.' and signed zeros such as '-0.0', '-.000'). Cells with '?' and print defects: see notes.md. Second read from the image done, cell by cell (400-dpi crops, suspect cells re-read at 600 dpi); pdftotext layer used only to locate pages."
+  },
+  {
+    "file": "TP1338_tableVI_stator35_reading3978.csv",
+    "report": "NASA TP-1338",
+    "ntrs_id": "19790001889",
+    "pdf_page": 52,
+    "printed_page": "48",
+    "title": "TABLE VI. - Continued. BLADE-ELEMENT DATA AT BLADE EDGES FOR STATOR 35 (b) 100 Percent of design speed; reading 3978",
+    "dpi": 300,
+    "notes": "Same layout as TP1338_tableII_*: the four printed blocks joined side by side on RP; headings = printed group heading + sub-heading (e.g. 'D FACT', 'MERID VEL R' as printed here). Only RP 1-9 are printed (no TIP/HUB rows). No units row printed (row 2 blank); Appendix C gives radii cm, angles deg, temperature K, pressure N/cm2, velocities m/sec. Numbers kept as printed (leading '0.' and signed zeros such as '-0.0', '-.000'). Cells with '?' and print defects: see notes.md. Second read from the image done, cell by cell (400-dpi crops, suspect cells re-read at 600 dpi); pdftotext layer used only to locate pages."
+  },
+  {
+    "file": "TP1338_tableVI_stator35_reading3977.csv",
+    "report": "NASA TP-1338",
+    "ntrs_id": "19790001889",
+    "pdf_page": 53,
+    "printed_page": "49",
+    "title": "TABLE VI. - Continued. BLADE-ELEMENT DATA AT BLADE EDGES FOR STATOR 35 (c) 100 Percent of design speed; reading 3977",
+    "dpi": 300,
+    "notes": "Same layout as TP1338_tableII_*: the four printed blocks joined side by side on RP; headings = printed group heading + sub-heading (e.g. 'D FACT', 'MERID VEL R' as printed here). Only RP 1-9 are printed (no TIP/HUB rows). No units row printed (row 2 blank); Appendix C gives radii cm, angles deg, temperature K, pressure N/cm2, velocities m/sec. Numbers kept as printed (leading '0.' and signed zeros such as '-0.0', '-.000'). Cells with '?' and print defects: see notes.md. Second read from the image done, cell by cell (400-dpi crops, suspect cells re-read at 600 dpi); pdftotext layer used only to locate pages."
+  },
+  {
+    "file": "TP1338_tableVI_stator35_reading3974.csv",
+    "report": "NASA TP-1338",
+    "ntrs_id": "19790001889",
+    "pdf_page": 54,
+    "printed_page": "50",
+    "title": "TABLE VI. - Continued. BLADE-ELEMENT DATA AT BLADE EDGES FOR STATOR 35 (d) 100 Percent of design speed; reading 3974",
+    "dpi": 300,
+    "notes": "Same layout as TP1338_tableII_*: the four printed blocks joined side by side on RP; headings = printed group heading + sub-heading (e.g. 'D FACT', 'MERID VEL R' as printed here). Only RP 1-9 are printed (no TIP/HUB rows). No units row printed (row 2 blank); Appendix C gives radii cm, angles deg, temperature K, pressure N/cm2, velocities m/sec. Numbers kept as printed (leading '0.' and signed zeros such as '-0.0', '-.000'). Cells with '?' and print defects: see notes.md. Second read from the image done, cell by cell (400-dpi crops, suspect cells re-read at 600 dpi); pdftotext layer used only to locate pages."
+  },
+  {
+    "file": "TP1338_tableVI_stator35_reading3976.csv",
+    "report": "NASA TP-1338",
+    "ntrs_id": "19790001889",
+    "pdf_page": 55,
+    "printed_page": "51",
+    "title": "TABLE VI. - Continued. BLADE-ELEMENT DATA AT BLADE EDGES FOR STATOR 35 (e) 100 Percent of design speed; reading 3976",
+    "dpi": 300,
+    "notes": "Same layout as TP1338_tableII_*: the four printed blocks joined side by side on RP; headings = printed group heading + sub-heading (e.g. 'D FACT', 'MERID VEL R' as printed here). Only RP 1-9 are printed (no TIP/HUB rows). No units row printed (row 2 blank); Appendix C gives radii cm, angles deg, temperature K, pressure N/cm2, velocities m/sec. Numbers kept as printed (leading '0.' and signed zeros such as '-0.0', '-.000'). Cells with '?' and print defects: see notes.md. Second read from the image done, cell by cell (400-dpi crops, suspect cells re-read at 600 dpi); pdftotext layer used only to locate pages."
+  },
+  {
+    "file": "TP1338_tableVI_stator35_reading3975.csv",
+    "report": "NASA TP-1338",
+    "ntrs_id": "19790001889",
+    "pdf_page": 56,
+    "printed_page": "52",
+    "title": "TABLE VI. - Continued. BLADE-ELEMENT DATA AT BLADE EDGES FOR STATOR 35 (f) 100 Percent of design speed; reading 3975",
+    "dpi": 300,
+    "notes": "Same layout as TP1338_tableII_*: the four printed blocks joined side by side on RP; headings = printed group heading + sub-heading (e.g. 'D FACT', 'MERID VEL R' as printed here). Only RP 1-9 are printed (no TIP/HUB rows). No units row printed (row 2 blank); Appendix C gives radii cm, angles deg, temperature K, pressure N/cm2, velocities m/sec. Numbers kept as printed (leading '0.' and signed zeros such as '-0.0', '-.000'). Cells with '?' and print defects: see notes.md. Second read from the image done, cell by cell (400-dpi crops, suspect cells re-read at 600 dpi); pdftotext layer used only to locate pages."
+  },
+  {
+    "file": "TP1338_tableV_rotor35_reading3979.csv",
+    "report": "NASA TP-1338",
+    "ntrs_id": "19790001889",
+    "pdf_page": 38,
+    "printed_page": "34",
+    "title": "TABLE V. - Continued. BLADE-ELEMENT DATA AT BLADE EDGES FOR ROTOR 35 (g) 90 Percent of design speed; reading 3979",
+    "dpi": 300,
+    "notes": "Same layout as TP1338_tableII_* and the 100-percent-speed parts: the four printed blocks joined side by side on RP; headings = printed group heading + sub-heading (e.g. 'D FACT', 'MERID VEL R' as printed here). Only RP 1-9 are printed (no TIP/HUB rows). No units row printed (row 2 blank); Appendix C gives radii cm, angles deg, temperature K, pressure N/cm2, velocities m/sec. Numbers kept as printed (leading '0.' and signed zeros such as '-0.0', '-.003'). Reading number confirmed on the page. Cells with '?' and print defects: see notes.md. Second read from the image done, cell by cell (400-dpi crops with the transcribed row printed under each image row; suspect cells re-read at 600 dpi); pdftotext layer not used for numbers."
+  },
+  {
+    "file": "TP1338_tableV_rotor35_reading3982.csv",
+    "report": "NASA TP-1338",
+    "ntrs_id": "19790001889",
+    "pdf_page": 39,
+    "printed_page": "35",
+    "title": "TABLE V. - Continued. BLADE-ELEMENT DATA AT BLADE EDGES FOR ROTOR 35 (h) 90 Percent of design speed; reading 3982",
+    "dpi": 300,
+    "notes": "Same layout as TP1338_tableII_* and the 100-percent-speed parts: the four printed blocks joined side by side on RP; headings = printed group heading + sub-heading (e.g. 'D FACT', 'MERID VEL R' as printed here). Only RP 1-9 are printed (no TIP/HUB rows). No units row printed (row 2 blank); Appendix C gives radii cm, angles deg, temperature K, pressure N/cm2, velocities m/sec. Numbers kept as printed (leading '0.' and signed zeros such as '-0.0', '-.003'). Reading number confirmed on the page. Cells with '?' and print defects: see notes.md. Second read from the image done, cell by cell (400-dpi crops with the transcribed row printed under each image row; suspect cells re-read at 600 dpi); pdftotext layer not used for numbers."
+  },
+  {
+    "file": "TP1338_tableV_rotor35_reading3983.csv",
+    "report": "NASA TP-1338",
+    "ntrs_id": "19790001889",
+    "pdf_page": 40,
+    "printed_page": "36",
+    "title": "TABLE V. - Continued. BLADE-ELEMENT DATA AT BLADE EDGES FOR ROTOR 35 (i) 90 Percent of design speed; reading 3983",
+    "dpi": 300,
+    "notes": "Same layout as TP1338_tableII_* and the 100-percent-speed parts: the four printed blocks joined side by side on RP; headings = printed group heading + sub-heading (e.g. 'D FACT', 'MERID VEL R' as printed here). Only RP 1-9 are printed (no TIP/HUB rows). No units row printed (row 2 blank); Appendix C gives radii cm, angles deg, temperature K, pressure N/cm2, velocities m/sec. Numbers kept as printed (leading '0.' and signed zeros such as '-0.0', '-.003'). Reading number confirmed on the page. Cells with '?' and print defects: see notes.md. Second read from the image done, cell by cell (400-dpi crops with the transcribed row printed under each image row; suspect cells re-read at 600 dpi); pdftotext layer not used for numbers."
+  },
+  {
+    "file": "TP1338_tableV_rotor35_reading3984.csv",
+    "report": "NASA TP-1338",
+    "ntrs_id": "19790001889",
+    "pdf_page": 41,
+    "printed_page": "37",
+    "title": "TABLE V. - Continued. BLADE-ELEMENT DATA AT BLADE EDGES FOR ROTOR 35 (j) 90 Percent of design speed; reading 3984",
+    "dpi": 300,
+    "notes": "Same layout as TP1338_tableII_* and the 100-percent-speed parts: the four printed blocks joined side by side on RP; headings = printed group heading + sub-heading (e.g. 'D FACT', 'MERID VEL R' as printed here). Only RP 1-9 are printed (no TIP/HUB rows). No units row printed (row 2 blank); Appendix C gives radii cm, angles deg, temperature K, pressure N/cm2, velocities m/sec. Numbers kept as printed (leading '0.' and signed zeros such as '-0.0', '-.003'). Reading number confirmed on the page. Cells with '?' and print defects: see notes.md. Second read from the image done, cell by cell (400-dpi crops with the transcribed row printed under each image row; suspect cells re-read at 600 dpi); pdftotext layer not used for numbers."
+  },
+  {
+    "file": "TP1338_tableV_rotor35_reading3985.csv",
+    "report": "NASA TP-1338",
+    "ntrs_id": "19790001889",
+    "pdf_page": 42,
+    "printed_page": "38",
+    "title": "TABLE V. - Continued. BLADE-ELEMENT DATA AT BLADE EDGES FOR ROTOR 35 (k) 90 Percent of design speed; reading 3985",
+    "dpi": 300,
+    "notes": "Same layout as TP1338_tableII_* and the 100-percent-speed parts: the four printed blocks joined side by side on RP; headings = printed group heading + sub-heading (e.g. 'D FACT', 'MERID VEL R' as printed here). Only RP 1-9 are printed (no TIP/HUB rows). No units row printed (row 2 blank); Appendix C gives radii cm, angles deg, temperature K, pressure N/cm2, velocities m/sec. Numbers kept as printed (leading '0.' and signed zeros such as '-0.0', '-.003'). Reading number confirmed on the page. Cells with '?' and print defects: see notes.md. Second read from the image done, cell by cell (400-dpi crops with the transcribed row printed under each image row; suspect cells re-read at 600 dpi); pdftotext layer not used for numbers."
+  },
+  {
+    "file": "TP1338_tableV_rotor35_reading3995.csv",
+    "report": "NASA TP-1338",
+    "ntrs_id": "19790001889",
+    "pdf_page": 44,
+    "printed_page": "40",
+    "title": "TABLE V. - Continued. BLADE-ELEMENT DATA AT BLADE EDGES FOR ROTOR 35 (m) 70 Percent of design speed; reading 3995",
+    "dpi": 300,
+    "notes": "Same layout as TP1338_tableII_* and the 100-percent-speed parts: the four printed blocks joined side by side on RP; headings = printed group heading + sub-heading (e.g. 'D FACT', 'MERID VEL R' as printed here). Only RP 1-9 are printed (no TIP/HUB rows). No units row printed (row 2 blank); Appendix C gives radii cm, angles deg, temperature K, pressure N/cm2, velocities m/sec. Numbers kept as printed (leading '0.' and signed zeros such as '-0.0', '-.003'). Reading number confirmed on the page. Cells with '?' and print defects: see notes.md. Second read from the image done, cell by cell (400-dpi crops with the transcribed row printed under each image row; suspect cells re-read at 600 dpi); pdftotext layer not used for numbers."
+  },
+  {
+    "file": "TP1338_tableV_rotor35_reading3994.csv",
+    "report": "NASA TP-1338",
+    "ntrs_id": "19790001889",
+    "pdf_page": 45,
+    "printed_page": "41",
+    "title": "TABLE V. - Continued. BLADE-ELEMENT DATA AT BLADE EDGES FOR ROTOR 35 (n) 70 Percent of design speed; reading 3994",
+    "dpi": 300,
+    "notes": "Same layout as TP1338_tableII_* and the 100-percent-speed parts: the four printed blocks joined side by side on RP; headings = printed group heading + sub-heading (e.g. 'D FACT', 'MERID VEL R' as printed here). Only RP 1-9 are printed (no TIP/HUB rows). No units row printed (row 2 blank); Appendix C gives radii cm, angles deg, temperature K, pressure N/cm2, velocities m/sec. Numbers kept as printed (leading '0.' and signed zeros such as '-0.0', '-.003'). Reading number confirmed on the page. Cells with '?' and print defects: see notes.md. Second read from the image done, cell by cell (400-dpi crops with the transcribed row printed under each image row; suspect cells re-read at 600 dpi); pdftotext layer not used for numbers."
+  },
+  {
+    "file": "TP1338_tableV_rotor35_reading3993.csv",
+    "report": "NASA TP-1338",
+    "ntrs_id": "19790001889",
+    "pdf_page": 46,
+    "printed_page": "42",
+    "title": "TABLE V. - Continued. BLADE-ELEMENT DATA AT BLADE EDGES FOR ROTOR 35 (o) 70 Percent of design speed; reading 3993",
+    "dpi": 300,
+    "notes": "Same layout as TP1338_tableII_* and the 100-percent-speed parts: the four printed blocks joined side by side on RP; headings = printed group heading + sub-heading (e.g. 'D FACT', 'MERID VEL R' as printed here). Only RP 1-9 are printed (no TIP/HUB rows). No units row printed (row 2 blank); Appendix C gives radii cm, angles deg, temperature K, pressure N/cm2, velocities m/sec. Numbers kept as printed (leading '0.' and signed zeros such as '-0.0', '-.003'). Reading number confirmed on the page. Cells with '?' and print defects: see notes.md. Second read from the image done, cell by cell (400-dpi crops with the transcribed row printed under each image row; suspect cells re-read at 600 dpi); pdftotext layer not used for numbers."
+  },
+  {
+    "file": "TP1338_tableV_rotor35_reading3990.csv",
+    "report": "NASA TP-1338",
+    "ntrs_id": "19790001889",
+    "pdf_page": 47,
+    "printed_page": "43",
+    "title": "TABLE V. - Continued. BLADE-ELEMENT DATA AT BLADE EDGES FOR ROTOR 35 (p) 70 Percent of design speed; reading 3990",
+    "dpi": 300,
+    "notes": "Same layout as TP1338_tableII_* and the 100-percent-speed parts: the four printed blocks joined side by side on RP; headings = printed group heading + sub-heading (e.g. 'D FACT', 'MERID VEL R' as printed here). Only RP 1-9 are printed (no TIP/HUB rows). No units row printed (row 2 blank); Appendix C gives radii cm, angles deg, temperature K, pressure N/cm2, velocities m/sec. Numbers kept as printed (leading '0.' and signed zeros such as '-0.0', '-.003'). Reading number confirmed on the page. Cells with '?' and print defects: see notes.md. Second read from the image done, cell by cell (400-dpi crops with the transcribed row printed under each image row; suspect cells re-read at 600 dpi); pdftotext layer not used for numbers."
+  },
+  {
+    "file": "TP1338_tableV_rotor35_reading3989.csv",
+    "report": "NASA TP-1338",
+    "ntrs_id": "19790001889",
+    "pdf_page": 48,
+    "printed_page": "44",
+    "title": "TABLE V. - Continued. BLADE-ELEMENT DATA AT BLADE EDGES FOR ROTOR 35 (q) 70 Percent of design speed; reading 3989",
+    "dpi": 300,
+    "notes": "Same layout as TP1338_tableII_* and the 100-percent-speed parts: the four printed blocks joined side by side on RP; headings = printed group heading + sub-heading (e.g. 'D FACT', 'MERID VEL R' as printed here). Only RP 1-9 are printed (no TIP/HUB rows). No units row printed (row 2 blank); Appendix C gives radii cm, angles deg, temperature K, pressure N/cm2, velocities m/sec. Numbers kept as printed (leading '0.' and signed zeros such as '-0.0', '-.003'). Reading number confirmed on the page. Cells with '?' and print defects: see notes.md. Second read from the image done, cell by cell (400-dpi crops with the transcribed row printed under each image row; suspect cells re-read at 600 dpi); pdftotext layer not used for numbers."
+  },
+  {
+    "file": "TP1338_tableVI_stator35_reading3979.csv",
+    "report": "NASA TP-1338",
+    "ntrs_id": "19790001889",
+    "pdf_page": 57,
+    "printed_page": "53",
+    "title": "TABLE VI. - Continued. BLADE-ELEMENT DATA AT BLADE EDGES FOR STATOR 35 (g) 90 Percent of design speed; reading 3979",
+    "dpi": 300,
+    "notes": "Same layout as TP1338_tableII_* and the 100-percent-speed parts: the four printed blocks joined side by side on RP; headings = printed group heading + sub-heading (e.g. 'D FACT', 'MERID VEL R' as printed here). Only RP 1-9 are printed (no TIP/HUB rows). No units row printed (row 2 blank); Appendix C gives radii cm, angles deg, temperature K, pressure N/cm2, velocities m/sec. Numbers kept as printed (leading '0.' and signed zeros such as '-0.0', '-.003'). Reading number confirmed on the page. Cells with '?' and print defects: see notes.md. Second read from the image done, cell by cell (400-dpi crops with the transcribed row printed under each image row; suspect cells re-read at 600 dpi); pdftotext layer not used for numbers."
+  },
+  {
+    "file": "TP1338_tableVI_stator35_reading3982.csv",
+    "report": "NASA TP-1338",
+    "ntrs_id": "19790001889",
+    "pdf_page": 58,
+    "printed_page": "54",
+    "title": "TABLE VI. - Continued. BLADE-ELEMENT DATA AT BLADE EDGES FOR STATOR 35 (h) 90 Percent of design speed; reading 3982",
+    "dpi": 300,
+    "notes": "Same layout as TP1338_tableII_* and the 100-percent-speed parts: the four printed blocks joined side by side on RP; headings = printed group heading + sub-heading (e.g. 'D FACT', 'MERID VEL R' as printed here). Only RP 1-9 are printed (no TIP/HUB rows). No units row printed (row 2 blank); Appendix C gives radii cm, angles deg, temperature K, pressure N/cm2, velocities m/sec. Numbers kept as printed (leading '0.' and signed zeros such as '-0.0', '-.003'). Reading number confirmed on the page. Cells with '?' and print defects: see notes.md. Second read from the image done, cell by cell (400-dpi crops with the transcribed row printed under each image row; suspect cells re-read at 600 dpi); pdftotext layer not used for numbers."
+  },
+  {
+    "file": "TP1338_tableVI_stator35_reading3983.csv",
+    "report": "NASA TP-1338",
+    "ntrs_id": "19790001889",
+    "pdf_page": 59,
+    "printed_page": "55",
+    "title": "TABLE VI. - Continued. BLADE-ELEMENT DATA AT BLADE EDGES FOR STATOR 35 (i) 90 Percent of design speed; reading 3983",
+    "dpi": 300,
+    "notes": "Same layout as TP1338_tableII_* and the 100-percent-speed parts: the four printed blocks joined side by side on RP; headings = printed group heading + sub-heading (e.g. 'D FACT', 'MERID VEL R' as printed here). Only RP 1-9 are printed (no TIP/HUB rows). No units row printed (row 2 blank); Appendix C gives radii cm, angles deg, temperature K, pressure N/cm2, velocities m/sec. Numbers kept as printed (leading '0.' and signed zeros such as '-0.0', '-.003'). Reading number confirmed on the page. Cells with '?' and print defects: see notes.md. Second read from the image done, cell by cell (400-dpi crops with the transcribed row printed under each image row; suspect cells re-read at 600 dpi); pdftotext layer not used for numbers."
+  },
+  {
+    "file": "TP1338_tableVI_stator35_reading3984.csv",
+    "report": "NASA TP-1338",
+    "ntrs_id": "19790001889",
+    "pdf_page": 60,
+    "printed_page": "56",
+    "title": "TABLE VI. - Continued. BLADE-ELEMENT DATA AT BLADE EDGES FOR STATOR 35 (j) 90 Percent of design speed; reading 3984",
+    "dpi": 300,
+    "notes": "Same layout as TP1338_tableII_* and the 100-percent-speed parts: the four printed blocks joined side by side on RP; headings = printed group heading + sub-heading (e.g. 'D FACT', 'MERID VEL R' as printed here). Only RP 1-9 are printed (no TIP/HUB rows). No units row printed (row 2 blank); Appendix C gives radii cm, angles deg, temperature K, pressure N/cm2, velocities m/sec. Numbers kept as printed (leading '0.' and signed zeros such as '-0.0', '-.003'). Reading number confirmed on the page. Cells with '?' and print defects: see notes.md. Second read from the image done, cell by cell (400-dpi crops with the transcribed row printed under each image row; suspect cells re-read at 600 dpi); pdftotext layer not used for numbers."
+  },
+  {
+    "file": "TP1338_tableVI_stator35_reading3985.csv",
+    "report": "NASA TP-1338",
+    "ntrs_id": "19790001889",
+    "pdf_page": 61,
+    "printed_page": "57",
+    "title": "TABLE VI. - Continued. BLADE-ELEMENT DATA AT BLADE EDGES FOR STATOR 35 (k) 90 Percent of design speed; reading 3985",
+    "dpi": 300,
+    "notes": "Same layout as TP1338_tableII_* and the 100-percent-speed parts: the four printed blocks joined side by side on RP; headings = printed group heading + sub-heading (e.g. 'D FACT', 'MERID VEL R' as printed here). Only RP 1-9 are printed (no TIP/HUB rows). No units row printed (row 2 blank); Appendix C gives radii cm, angles deg, temperature K, pressure N/cm2, velocities m/sec. Numbers kept as printed (leading '0.' and signed zeros such as '-0.0', '-.003'). Reading number confirmed on the page. Cells with '?' and print defects: see notes.md. Second read from the image done, cell by cell (400-dpi crops with the transcribed row printed under each image row; suspect cells re-read at 600 dpi); pdftotext layer not used for numbers."
+  },
+  {
+    "file": "TP1338_tableVI_stator35_reading3995.csv",
+    "report": "NASA TP-1338",
+    "ntrs_id": "19790001889",
+    "pdf_page": 63,
+    "printed_page": "59",
+    "title": "TABLE VI. - Continued. BLADE-ELEMENT DATA AT BLADE EDGES FOR STATOR 35 (m) 70 Percent of design speed; reading 3995",
+    "dpi": 300,
+    "notes": "Same layout as TP1338_tableII_* and the 100-percent-speed parts: the four printed blocks joined side by side on RP; headings = printed group heading + sub-heading (e.g. 'D FACT', 'MERID VEL R' as printed here). Only RP 1-9 are printed (no TIP/HUB rows). No units row printed (row 2 blank); Appendix C gives radii cm, angles deg, temperature K, pressure N/cm2, velocities m/sec. Numbers kept as printed (leading '0.' and signed zeros such as '-0.0', '-.003'). Reading number confirmed on the page. Cells with '?' and print defects: see notes.md. Second read from the image done, cell by cell (400-dpi crops with the transcribed row printed under each image row; suspect cells re-read at 600 dpi); pdftotext layer not used for numbers."
+  },
+  {
+    "file": "TP1338_tableVI_stator35_reading3994.csv",
+    "report": "NASA TP-1338",
+    "ntrs_id": "19790001889",
+    "pdf_page": 64,
+    "printed_page": "60",
+    "title": "TABLE VI. - Continued. BLADE-ELEMENT DATA AT BLADE EDGES FOR STATOR 35 (n) 70 Percent of design speed; reading 3994",
+    "dpi": 300,
+    "notes": "Same layout as TP1338_tableII_* and the 100-percent-speed parts: the four printed blocks joined side by side on RP; headings = printed group heading + sub-heading (e.g. 'D FACT', 'MERID VEL R' as printed here). Only RP 1-9 are printed (no TIP/HUB rows). No units row printed (row 2 blank); Appendix C gives radii cm, angles deg, temperature K, pressure N/cm2, velocities m/sec. Numbers kept as printed (leading '0.' and signed zeros such as '-0.0', '-.003'). Reading number confirmed on the page. Cells with '?' and print defects: see notes.md. Second read from the image done, cell by cell (400-dpi crops with the transcribed row printed under each image row; suspect cells re-read at 600 dpi); pdftotext layer not used for numbers."
+  },
+  {
+    "file": "TP1338_tableVI_stator35_reading3993.csv",
+    "report": "NASA TP-1338",
+    "ntrs_id": "19790001889",
+    "pdf_page": 65,
+    "printed_page": "61",
+    "title": "TABLE VI. - Continued. BLADE-ELEMENT DATA AT BLADE EDGES FOR STATOR 35 (o) 70 Percent of design speed; reading 3993",
+    "dpi": 300,
+    "notes": "Same layout as TP1338_tableII_* and the 100-percent-speed parts: the four printed blocks joined side by side on RP; headings = printed group heading + sub-heading (e.g. 'D FACT', 'MERID VEL R' as printed here). Only RP 1-9 are printed (no TIP/HUB rows). No units row printed (row 2 blank); Appendix C gives radii cm, angles deg, temperature K, pressure N/cm2, velocities m/sec. Numbers kept as printed (leading '0.' and signed zeros such as '-0.0', '-.003'). Reading number confirmed on the page. Cells with '?' and print defects: see notes.md. Second read from the image done, cell by cell (400-dpi crops with the transcribed row printed under each image row; suspect cells re-read at 600 dpi); pdftotext layer not used for numbers."
+  },
+  {
+    "file": "TP1338_tableVI_stator35_reading3990.csv",
+    "report": "NASA TP-1338",
+    "ntrs_id": "19790001889",
+    "pdf_page": 66,
+    "printed_page": "62",
+    "title": "TABLE VI. - Continued. BLADE-ELEMENT DATA AT BLADE EDGES FOR STATOR 35 (p) 70 Percent of design speed; reading 3990",
+    "dpi": 300,
+    "notes": "Same layout as TP1338_tableII_* and the 100-percent-speed parts: the four printed blocks joined side by side on RP; headings = printed group heading + sub-heading (e.g. 'D FACT', 'MERID VEL R' as printed here). Only RP 1-9 are printed (no TIP/HUB rows). No units row printed (row 2 blank); Appendix C gives radii cm, angles deg, temperature K, pressure N/cm2, velocities m/sec. Numbers kept as printed (leading '0.' and signed zeros such as '-0.0', '-.003'). Reading number confirmed on the page. Cells with '?' and print defects: see notes.md. Second read from the image done, cell by cell (400-dpi crops with the transcribed row printed under each image row; suspect cells re-read at 600 dpi); pdftotext layer not used for numbers."
+  },
+  {
+    "file": "TP1338_tableVI_stator35_reading3989.csv",
+    "report": "NASA TP-1338",
+    "ntrs_id": "19790001889",
+    "pdf_page": 67,
+    "printed_page": "63",
+    "title": "TABLE VI. - Continued. BLADE-ELEMENT DATA AT BLADE EDGES FOR STATOR 35 (q) 70 Percent of design speed; reading 3989",
+    "dpi": 300,
+    "notes": "Same layout as TP1338_tableII_* and the 100-percent-speed parts: the four printed blocks joined side by side on RP; headings = printed group heading + sub-heading (e.g. 'D FACT', 'MERID VEL R' as printed here). Only RP 1-9 are printed (no TIP/HUB rows). No units row printed (row 2 blank); Appendix C gives radii cm, angles deg, temperature K, pressure N/cm2, velocities m/sec. Numbers kept as printed (leading '0.' and signed zeros such as '-0.0', '-.003'). Reading number confirmed on the page. Cells with '?' and print defects: see notes.md. Second read from the image done, cell by cell (400-dpi crops with the transcribed row printed under each image row; suspect cells re-read at 600 dpi); pdftotext layer not used for numbers."
   }
 ]

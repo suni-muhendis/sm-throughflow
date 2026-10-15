@@ -74,8 +74,9 @@ Tables I-II, Fig. 1). See source.json.
 - TP-1337 Appendix C blade manufacturing coordinates (inches, plane sections at constant radius, R1/R2
   LE/TE radii). pdf pages: rotor 35 p35-38, stator 35 p39-42, rotor 36 p43-49, stator 36 p50-53,
   rotor 37 p54-57, stator 37 p58-61, rotor 38 p62-68, stator 38 p69-72 (section nomenclature p34).
-- Blade-element data at blade edges (Tables V and VI of each performance report) and overall
-  performance (Table IV).
+- Blade-element data at blade edges (TP-2001 Tables V and VI) for the 90, 80, 70, 60 and 50 percent
+  speed readings. Table IV (all speeds) and Tables V-VI at 100 percent speed are transcribed; see
+  "Measured performance (Tables IV-VI)" below.
 
 ## Inconsistencies noticed across the four reports
 
@@ -136,3 +137,180 @@ Resolved 1, still '?' 0, print errors 0.
 | File | Row | Column | Old | New | Check | Reason |
 |---|---|---|---|---|---|---|
 | TP2001_tableII_stator38.csv | 5 | ABS BETAM IN | `48.2?` | `48.2` | stator (U = 0): ABS BETAM IN = REL BETAM IN = 48.2 | 600-dpi read: second digit broken (4:.2); exact relation fixes 48.2 |
+
+## Measured performance (Tables IV-VI)
+
+Transcribed from NASA TP-2001: Table IV (overall performance, pdf p18-20, printed 16-18), all six
+speed parts; Table V (rotor 38, pdf p35-40, printed 33-38) and Table VI (stator 38, pdf p55-60,
+printed 53-58), the six 100-percent-speed parts only. Rendered at 300 dpi; Table IV second read at
+400 dpi, Tables V-VI second read from enlarged 300-dpi crops, suspect cells at 600 dpi. Files:
+`TP2001_tableIV_overall_<NNN>pct.csv` (readings as columns), `TP2001_tableV_rotor38_reading<N>.csv`,
+`TP2001_tableVI_stator38_reading<N>.csv`. Unlike Table II(b), the Table VI pages are complete (no
+column cut off).
+
+### Readings
+
+| Speed | Table IV part | Readings (printed order) |
+|---|---|---|
+| 100 % | (a) | 4129, 4128, 4123, 4121, 4120, 4119 |
+| 90 % | (b) | 4140, 4139, 4133, 4132, 4131 |
+| 80 % | (c) | 4093 |
+| 70 % | (d) | 4097, 4098, 4099, 4100, 4101, 4095 |
+| 60 % | (e) | 4104 |
+| 50 % | (f) | 4102 |
+
+Table IV prints each speed from maximum to minimum flow. Tables V and VI print one part per reading,
+(a)-(t), in a different order: by increasing speed and, within a speed, from minimum to maximum flow:
+50 % (a) 4102; 60 % (b) 4104; 70 % (c)-(h) 4095, 4101, 4100, 4099, 4098, 4097; 80 % (i) 4093; 90 %
+(j)-(n) 4131, 4132, 4133, 4139, 4140; 100 % (o)-(t) 4119, 4120, 4121, 4123, 4128, 4129. Only (o)-(t)
+are transcribed here; (a)-(n) are on pdf p21-34 (Table V) and p41-54 (Table VI), not transcribed.
+Table IV(e) is printed '(e) Percent of design speed' (the number is missing); it is the 60 % part
+(speed order, PERCENT OF DESIGN SPEED 61.8, and Tables V/VI part (b) '60 Percent of design speed;
+reading 4104').
+
+- Test procedure (pdf p4, printed 2): "For 70, 90, and 100 percent of design speed, data were
+  recorded at five or more flows from maximum to near-stall conditions. For 50, 60, and 80 percent of
+  design speed, data were recorded at the near-stall flow only. Data were taken at nine radial
+  positions for each flow point."
+- Peak efficiency at design speed. Abstract (pdf p3): "At design speed the rotor achieved a peak
+  efficiency of 0.849 at a pressure ratio of 1.969. The stage peak efficiency of 0.831 occurred at a
+  pressure ratio of 1.944. For both the rotor and the stage, peak efficiency occurred at the minimum
+  flow conditions, which were higher than the design flow." Results (pdf p5, printed 3): "At design
+  speed the rotor and the stage achieved peak efficiencies of 0.849 and 0.831, respectively. For both
+  the rotor and the stage the peak efficiency occurred near the minimum flow conditions. The rotor and
+  stage pressure ratios at the peak efficiency conditions were 1.969 and 1.944, respectively. The
+  design values of rotor and stage pressure ratio are 2.105 and 2.05. The stage stall point and peak
+  efficiency point occurred at a flow slightly higher than the design value. The peak rotor
+  efficiencies at 70 and 90 percent of design speed were 0.949 and 0.901, respectively." The pressure
+  ratios identify reading 4120 (orifice airflow 20.67, rotor PR 1.969, rotor TR 1.252, rotor eff
+  0.849; stage PR 1.944, stage TR 1.252, stage eff 0.831; 100.2 % speed). Reading 4119 (minimum flow)
+  prints the same stage efficiency 0.831 (and rotor 0.848) at stage PR 1.977. The 70 and 90 % values
+  are readings 4097 (0.949) and 4133 (0.901).
+- Summary (pdf p6, printed 4): "1. At design speed the peak stage efficiency of 0.831 occurred near
+  the stall flow of 20.4 kilograms per second. The pressure ratio was 1.944." This mixes the two
+  readings: 20.4 kg/sec is the flow of 4119 (orifice 20.44), PR 1.944 is 4120 (orifice 20.67). Not
+  resolved.
+- Near stall / maximum flow (pdf p5, printed 3): radial distributions are shown "for design speed at
+  three flow conditions: maximum, midflow, and near stall" and "For the near-stall flow of 20.4
+  kilograms per second". Near stall at design speed = 4119 (orifice 20.44, lowest flow, highest rotor
+  PR 2.004 and TR 1.259); the text gives the flow, not the reading number. Maximum flow = 4129
+  (orifice 20.97); the stator text's "flow of 21.0 kilograms per second" is probably also 4129. The
+  "midflow" reading is not identified. No near-design point is named: the design flow 20.2 kg/sec lies
+  below the whole measured range at 100 % speed (pdf p5: "The stage stalled at a flow higher than
+  design").
+- Stall margin: defined by eq. (B24), pdf p10 (printed 8): SM = [ (P3/P1)stall (W sqrt(theta)/delta)ref
+  / ((P3/P1)ref (W sqrt(theta)/delta)stall) - 1 ] x 100. TP-2001 states no stall-margin value. The
+  stall point is not a tabulated reading (pdf p5): "The airflow obtained just before stall occurred is
+  called the stall airflow. The pressure ratio at stall was obtained by extrapolating the total
+  pressure obtained from the survey data to the stall airflow." For orientation only, B24 with 4120 as
+  reference and 4119 as stall gives 2.8 % (orifice flow); this is not a printed value.
+
+### Measurement stations
+
+- Station 1 upstream of the rotor, station 3 downstream of the stator, no measurement between the
+  rows (pdf p4: "Because of the close spacing between the rotor and the stator (approx. 0.7 cm), no
+  measurements were made between them."). Station 2 (rotor exit) values are derived (pdf p5, printed
+  3): "At each radial position total pressure and total temperature were translated along design
+  streamlines from station 3. The mass-averaged total temperature was used as the total temperature
+  for station 2. The arithmetic mean of the three highest total-pressure values from the
+  circumferential distribution at station 3 was used as the total pressure at station 2. The radial
+  distributions of static pressure and flow angle were caculated [sic] on the basis of continuity of
+  mass flow and radial equilibrium. Measured airflow, rotative speed, design values of geometry, and
+  annulus wall blockages were specified." and "The data, at the three stations, were translated to the
+  blade leading and trailing edges by the method presented in reference 4."
+- Axial positions: the text gives none; the Fig. 1 coordinate box marks inner -2.568 and 8.890 cm as
+  "Instrumentation survey planes" (see "Flow path" above).
+- Tables V and VI are "at blade edges": RADII IN/OUT are the blade-edge radii of the nine streamlines,
+  printed identically in all six readings except two cells (see reading notes). Only RP 1-9 (5-95 %
+  span) are printed; there are no TIP/HUB rows.
+- No tip clearance and no stator configuration (shrouded/cantilevered, hub gap) is stated anywhere in
+  TP-2001 (text search and the rendered text pages p3-6 read); scalars.json is unchanged.
+
+### Averaging and efficiency definitions (Appendix B, pdf p8-10, printed 6-8)
+
+- Circumferential averaging at station 3 (pdf p4, printed 2): "The nine values of total temperature
+  were mass averaged to obtain the circumferentially averaged stator-outlet total temperature. The
+  nine values of total pressure were divided by the rotor-inlet total pressure and converted to
+  corresponding isentropic temperature ratios. These ratios were mass averaged, and the resulting
+  value converted (through the isentropic-temperature-ratio-pressure-ratio relation) to an average
+  total-pressure ratio." Radial averaging (pdf p4-5): "To obtain the overall performance, the radial
+  distributions of the circumferentially averaged total temperature and total pressure were averaged
+  by using a procedure similar to that used for averaging the circumferential distributions of these
+  parameters."
+- Rotor total-pressure ratio (B10) and stage total-pressure ratio (B11): mass-weighted average of
+  (P/P1)^((gamma-1)/gamma) (weights rho Vz r dr; discrete sum over NR radial elements of rho_i Vz_i
+  dA_i), raised to gamma/(gamma-1) (energy average). Rotor uses station 2, stage station 3.
+- Rotor total-temperature ratio (B12): mass-weighted T2/T1. Stage total-temperature ratio (B14):
+  mass-weighted T3/T1 (station 3).
+- Rotor adiabatic efficiency (B13): ((P2/P1)bar^((gamma-1)/gamma) - 1)/((T2/T1)bar - 1). Stage
+  adiabatic efficiency (B15): ((P3/P1)bar^((gamma-1)/gamma) - 1)/((T3/T1)bar - 1), i.e. with the
+  station-3 temperature ratio (TP-1338 for stage 35 uses the station-2 ratio and numbers its
+  equations differently).
+- Rotor-inlet mass-averaged temperature (B16); momentum-rise efficiency (B17):
+  ((P2/P1)bar^((gamma-1)/gamma) - 1) divided by the mass-weighted [(U V_theta)2 - (U V_theta)1]/(T1bar
+  cp); head-rise coefficient (B18): (cp T1bar/Ut^2)[(P2/P1)bar^((gamma-1)/gamma) - 1]; equivalent
+  airflow (B19) W sqrt(theta)/delta; airflow per unit annulus / frontal area (B21, B22); flow
+  coefficient (B23): (Vz/Ut) at the LE; stall margin (B24); polytropic efficiencies (B25, B26);
+  meridional velocity ratio (B27).
+- Blade-element EFF (B9): adiabatic (temperature-rise) efficiency from P_TE/P_LE and T_TE/T_LE.
+  Stator EFF is printed 0.000 in Table VI.
+- Pdf p4: "Orifice airflow, rotative speed, total pressures, static pressures, and temperatures were
+  all corrected to standard-day conditions based on the rotor inlet." The ratio 'Airflow per unit
+  frontal area' / 'per unit annulus area' is 0.5054-0.5055 for every reading (consistent).
+
+### Checks (a check never overrode a clear print)
+
+- Table IV, all 20 readings: stage PR = rotor PR x stator PR within 0.0015; stage TR = rotor TR x
+  stator TR within 0.0015; (PR^(0.4/1.4) - 1)/(TR - 1) matches the printed rotor and stage adiabatic
+  efficiencies within 0.006 (largest differences at 70 % speed, readings 4097 stage 0.862 vs 0.857 and
+  4099 stage 0.890 vs 0.895, where PR and TR are small and print rounding dominates); percent speed =
+  rpm/17188.7 within 0.05. No cell failed.
+- Table V (six readings, RP 1-9): W = sqrt(VM^2 + (U - Vtheta)^2) and V = sqrt(VM^2 + Vtheta^2)
+  within 0.15 m/s; ABS/REL BETAM = atan(Vtheta/VM), atan((U - Vtheta)/VM) within 0.1 deg; MERID MACH =
+  ABS MACH x VM/V and REL MACH = ABS MACH x W/V within 0.0015, except 4123 RP 2 REL MACH NO IN printed
+  1.483 vs 1.4849 (clear print; rounding of the inputs); ABS MACH IN/OUT from V and static temperature
+  (cp 1004.5, R 287.05) within 0.002; MERID VEL R = VM out/VM in within 0.0015; EFF = (PR^0.2857 -
+  1)/(TR - 1) within 0.006; U/r constant within 1 %; INCIDENCE MEAN - SS, REL BETAM IN - INCIDENCE
+  MEAN and REL BETAM OUT - DEV constant across the six readings at each RP within 0.1 deg (fixed blade
+  angles); PROF/TOT ratios of LOSS PARAM and LOSS COEFF agree. All passed.
+- Table VI (six readings): U = 0, REL = ABS for angles, velocities and Mach numbers, TOTAL TEMP RATIO
+  1.000 and EFF 0.000 everywhere; V, ABS BETAM = atan(Vtheta/VM) and Mach relations as above;
+  total-loss coefficient (1 - PR)/(1 - (1 + 0.2 M1^2)^-3.5) agrees with LOSS COEFF TOT within 0.006 in
+  every row; fixed-blade-angle checks as above. All passed.
+
+### Reading notes and print defects (Tables IV-VI)
+
+No cell carries '?'. Cells resolved without '?':
+
+- TP2001_tableIV_overall_100pct.csv, 4129 STATOR TOTAL PRESSURE RATIO: printed 'G.980' (leading 0
+  broken) -> 0.980 (1.799 x 0.980 = 1.763 = printed stage PR).
+- TP2001_tableIV_overall_070pct.csv: 4097 STATOR TOTAL TEMPERATURE RATIO last digit a slashed blob
+  -> 1.000 (rotor TR 1.090 = stage TR 1.090; every other stator TR prints 1.000); 4095 ROTOR TOTAL
+  PRESSURE RATIO last digit a slashed 0 -> 1.420 (1.420 x 0.993 = 1.410 = stage PR); 4101 ROTOR
+  HEAD-RISE COEFFICIENT printed 'C.329' -> 0.329; 4100 PERCENT OF DESIGN SPEED printed '69 8'
+  (decimal point missing) -> 69.8 (12002.6/17188.7 = 69.83 %).
+- TP2001_tableV_rotor38_reading4121.csv, RP 1, DEV: second digit broken -> 10.2 (REL BETAM OUT - DEV =
+  53.7 in all six readings at RP 1).
+- TP2001_tableV_rotor38_reading4129.csv, RP 9, INCIDENCE SS: last digit broken ('-2.?') -> -2.2
+  (INCIDENCE MEAN - SS = 7.2 in all six readings at RP 9).
+- TP2001_tableVI_stator38_reading4119.csv, RP 5, RADII OUT: middle digit broken ('21.6?6') -> 21.676
+  (printed clearly in the other five readings).
+- TP2001_tableVI_stator38_reading4123.csv, RP 1 LOSS PARAM TOT '0.?59' -> 0.059 and RP 2 LOSS PARAM
+  TOT '0.0?6' (the 4 looks like 1) -> 0.046: LOSS COEFF TOT = PROF in both rows, and the PROF loss
+  parameters print 0.059 and 0.046.
+- TP2001_tableVI_stator38_reading4128.csv, RP 7, REL MACH NO IN printed '^.809' -> 0.809 (= ABS MACH
+  NO IN, stator).
+- TP2001_tableVI_stator38_reading4129.csv, RP 9, MERID MACH NO IN printed 'C 619' -> 0.619 (0.845 x
+  219.4/299.3 = 0.6194).
+- Stray ticks and doubled dots (e.g. rotor 4121 RP 1 REL BETAM IN "69'.0", stator 4120 RP 4 TOTAL
+  PRESS IN "19'.71") are print noise; the digits are clear.
+
+Print discrepancies kept as printed (clear prints, not reading doubts):
+
+- TP2001_tableV_rotor38_reading4129.csv, RP 7, RADII OUT: printed 19.492 (600 dpi); the other five
+  readings print 19.482. U/r does not discriminate (351.1/19.492 = 18.013, 351.1/19.482 = 18.022;
+  other rows 18.02-18.06).
+- TP2001_tableVI_stator38_reading4121.csv, RP 8, RADII OUT: printed 19.538 clearly (600 dpi); the
+  other five readings print 19.588.
+- Table IV labels: dot leaders dropped; 'FLOW  COEFFICIENT' is printed with a double space (written
+  with one). The 'M' of the line-printer font looks like 'H' in all labels; written as M.
