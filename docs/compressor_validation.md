@@ -97,6 +97,9 @@ stays an audited future benchmark rather than a passing test fixture.
 
 ## Acceptance gate for physical validation
 
+The plan for meeting it, with consistency of the error across designs as the
+criterion, is in [validation_plan.md](validation_plan.md).
+
 A compressor physics profile can be scored only after it meets all of these
 conditions:
 

@@ -103,6 +103,12 @@ the backend changes, a new simulator version, with characterization goldens.
   high-pressure compressor (10 stages, NASA CR-165558).
 - Errors reported against the acceptance gate in
   [compressor_validation.md](compressor_validation.md).
+- Optional task-owned inlet profile (radial P0, T0 and swirl), with the
+  end-wall model's inlet state taken from it. Its two uses are validation
+  cases with strong inlet profiles, and design tasks posed behind an
+  upstream component (a core stage behind a fan, a middle section of a
+  multistage machine). Deferred until a case needs it; see
+  [validation_plan.md](validation_plan.md), section 5.
 
 ## Sources (to confirm against the originals before each implementation)
 
