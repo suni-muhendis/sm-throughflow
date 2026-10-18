@@ -49,12 +49,24 @@ class LewisStage:
     reports). Speed lines with fewer than three readings (near-stall points only) are skipped.
     """
 
+    #: Printed overall-table labels of each quantity; the stage efficiency is formed with the rotor
+    #: temperature ratio in TP-1338 (B14) and with the stage temperature ratio in the fan reports.
+    LABELS = dict(mass_flow="AIRFLOW AT ORIFICE", stage_eta="STAGE ADIABATIC EFFICIENCY", rotor_eta="ROTOR ADIABATIC EFFICIENCY")
+    STAGE_ETA_TR = "rotor_tr"
+    ASSUMPTIONS = L.ASSUMPTIONS
+
     def __init__(self, case_id):
         c = L.LEWIS_STAGES[case_id]
         folder = L.CASES / case_id
         self.case_id = case_id
         self.design = L.lewis_stage_design(case_id)
         self.design_speed_rpm = 17188.7  # every report of the rig (TP-1337 Table I prints 17185.7 once for stage 37)
+        geometry = L._read(folder / "{}_tableIII_{}.csv".format(c["report"], c["rotor"]))
+        self.notes = ["tip clearance {:.2f} mm ({})".format(1e3 * c["tip_clearance_m"], c["clearance_source"]), "stator hub gap 0 (not stated)",
+                      "station 3 at {:.3f} cm ({})".format(c["z_out_cm"], c["z_out_source"])]
+        self._load(c, folder, geometry)
+
+    def _load(self, c, folder, geometry):
         self.speeds = {}
         for path in sorted(folder.glob("{}_table*_overall_*pct.csv".format(c["report"]))):
             speed = int(path.stem.rsplit("_", 1)[1][:-3])
@@ -66,10 +78,7 @@ class LewisStage:
             return {p.stem.rsplit("reading", 1)[1]: L.read_elements(p) for p in folder.glob("{}_table*_{}_reading*.csv".format(c["report"], row))}
 
         self.rotor_elements, self.stator_elements = elements(c["rotor"]), elements(c["stator"])
-        geometry = L._read(folder / "{}_tableIII_{}.csv".format(c["report"], c["rotor"]))
         self.rotor_walls_in = (float(next(r for r in geometry if r["RP"] == "HUB")["RI"]), float(next(r for r in geometry if r["RP"] == "TIP")["RI"]))
-        self.notes = ["tip clearance {:.2f} mm ({})".format(1e3 * c["tip_clearance_m"], c["clearance_source"]), "stator hub gap 0 (not stated)",
-                      "station 3 at {:.3f} cm ({})".format(c["z_out_cm"], c["z_out_source"])]
 
     def inlet_blockage(self, speed):
         """The inlet-profile rule (lewis_stage.inlet_blockage), averaged over the speed line's readings
@@ -82,19 +91,47 @@ class LewisStage:
         points = []
         for reading, v in self.speeds[speed].items():
             points.append(dict(
-                reading=reading, mass_flow=v["AIRFLOW AT ORIFICE"], rpm=v["ROTATIVE SPEED"],
-                stage_pr=v["STAGE TOTAL PRESSURE RATIO"], stage_tr=v["STAGE TOTAL TEMPERATURE RATIO"], stage_eta=v["STAGE ADIABATIC EFFICIENCY"],
-                rotor_pr=v["ROTOR TOTAL PRESSURE RATIO"], rotor_tr=v["ROTOR TOTAL TEMPERATURE RATIO"], rotor_eta=v["ROTOR ADIABATIC EFFICIENCY"],
+                reading=reading, mass_flow=v[self.LABELS["mass_flow"]], rpm=v["ROTATIVE SPEED"],
+                stage_pr=v["STAGE TOTAL PRESSURE RATIO"], stage_tr=v["STAGE TOTAL TEMPERATURE RATIO"], stage_eta=v[self.LABELS["stage_eta"]],
+                rotor_pr=v["ROTOR TOTAL PRESSURE RATIO"], rotor_tr=v["ROTOR TOTAL TEMPERATURE RATIO"], rotor_eta=v[self.LABELS["rotor_eta"]],
             ))
         return points
 
 
+class FanStage(LewisStage):
+    """A NASA Lewis 50.8-cm fan stage (TM X-3083, TP-1299, TM X-3101): Table IV/V geometry, Table VI
+    overall performance, Tables VII/VIII blade elements; double-circular-arc rotors."""
+
+    LABELS = dict(mass_flow="WT FLOW AT ORIFICE", stage_eta="STAGE TEMP. RISE EFFICIENCY", rotor_eta="ROTOR TEMP. RISE EFFICIENCY")
+    STAGE_ETA_TR = "stage_tr"
+    ASSUMPTIONS = L.ASSUMPTIONS[1:]
+
+    def __init__(self, case_id):
+        c = L.FAN_STAGES[case_id]
+        folder = L.CASES / case_id
+        self.case_id = case_id
+        self.design, z_out = L.fan_stage_design(case_id)
+        self.design_speed_rpm = c["design_rpm"]
+        geometry = L.read_geometry(folder / "{}_{}_{}.csv".format(c["report"], c["geometry"][0], c["rotor"]))
+        stator = c.get("section_source", "double-circular-arc stator (dca)")
+        self.notes = ["double-circular-arc rotor (dca)", stator, "tip clearance {:.2f} mm ({})".format(1e3 * c["tip_clearance_m"], c["clearance_source"]),
+                      "stator hub gap 0 (not stated)", "stations 1 and 3 at {:.3f} and {:.3f} cm ({})".format(L.FAN_Z_IN_CM, z_out, c["stations_source"])]
+        if c.get("edge_radii"):
+            self.notes.append("flow path from Fig. 1 outside the blade rows, the tables' hub and tip edge radii over them")
+        if "spacing_source" in c:
+            self.notes.append(c["spacing_source"])
+        self._load(c, folder, geometry)
+
+
 CASES = {case_id: (lambda c=case_id: LewisStage(c)) for case_id in L.LEWIS_STAGES}
+CASES.update({case_id: (lambda c=case_id: FanStage(c)) for case_id in L.FAN_STAGES})
 
 
 # ------------------------------------------------------------------ model
 class Solution:
     """One converged operating point, with every quantity the comparison needs."""
+
+    STAGE_ETA_TR = "rotor_tr"  # set per case by run_case
 
     def __init__(self, design, mass_flow, rpm, blockage):
         task = ThroughflowTaskV2.model_validate(L.task([("p", mass_flow, rpm)], inlet_blockage=blockage))
@@ -115,7 +152,8 @@ class Solution:
             stage_pr=self._energy_ratio(self.exit), stage_tr=self._ratio(self.exit, "T0"),
         )
         self.overall["rotor_eta"] = (self.overall["rotor_pr"] ** self.k - 1.0) / (tr - 1.0)
-        self.overall["stage_eta"] = (self.overall["stage_pr"] ** self.k - 1.0) / (tr - 1.0)  # TP-1338 (B14)
+        # TP-1338 (B14) forms the stage efficiency with the rotor temperature ratio, the fan reports with the stage one
+        self.overall["stage_eta"] = (self.overall["stage_pr"] ** self.k - 1.0) / (self.overall[self.STAGE_ETA_TR] - 1.0)
         self.min_stall_margin = min(
             float(np.nanmin(d["equivalent_velocity_ratio"] / d["stall_velocity_ratio"] - 1.0))
             for d in (sol.performance[r.row_id].diagnostics for r in model.rows))
@@ -273,11 +311,12 @@ def compare_profiles(sol, rotor_rows, stator_rows):
 
 def run_case(case_id):
     case = CASES[case_id]()
+    Solution.STAGE_ETA_TR = case.STAGE_ETA_TR
     if not case.speeds:
         print("  no measured speed lines transcribed; skipped")
         return None
     result = dict(case=case_id, simulator=SlcAungierSimulator.VERSION, physics=AUNGIER_PROFILES["axial_compressor_aungier_v1"],
-                  assumptions=list(L.ASSUMPTIONS) + case.notes, speeds={})
+                  assumptions=list(case.ASSUMPTIONS) + case.notes, speeds={})
     for speed in case.speeds:
         blockage = case.inlet_blockage(speed)
         points = case.measured_points(speed)

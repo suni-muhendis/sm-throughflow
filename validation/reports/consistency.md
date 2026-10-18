@@ -9,20 +9,36 @@ Simulator: slc_aungier_experimental_v5
 
 | Case | Speed % | Inlet blockage | Choke flow | Peak-eff. flow | Peak PR rise | Peak eff. (pts) | Stall flow |
 |---|---|---|---|---|---|---|---|
-| nasa_stage35 | 70 | 0.018 | not choked (+7.04% vs max. flow) | -1.18% | +31.79% | +3.8 | none found |
-| nasa_stage35 | 90 | 0.018 | not choked (+3.32% vs max. flow) | -3.11% | +21.27% | -0.5 | none found |
-| nasa_stage35 | 100 | 0.018 | +3.06% | -1.53% | +2.75% | -3.6 | none found |
-| nasa_stage36 | 70 | 0.019 | not choked (+6.40% vs max. flow) | -4.77% | +36.28% | +3.7 | none found |
-| nasa_stage36 | 90 | 0.019 | not choked (+3.06% vs max. flow) | -6.16% | +21.42% | +0.0 | none found |
-| nasa_stage36 | 100 | 0.019 | +3.70% | -3.91% | +6.58% | -0.3 | none found |
-| nasa_stage37 | 70 | 0.019 | +5.81% | -3.08% | +29.40% | +2.5 | none found |
-| nasa_stage37 | 90 | 0.019 | +3.86% | -4.97% | +14.29% | -2.4 | none found |
-| nasa_stage37 | 100 | 0.019 | +4.75% | -2.17% | +5.80% | -2.0 | none found |
-| nasa_stage38 | 70 | 0.018 | not choked (+2.36% vs max. flow) | -3.86% | +29.14% | +2.3 | none found |
-| nasa_stage38 | 90 | 0.018 | +4.25% | -5.95% | +18.98% | -0.4 | none found |
-| nasa_stage38 | 100 | 0.018 | +0.23% | -3.00% | +10.19% | -0.1 | none found |
+| nasa_stage35 | 70 | 0.018 | not choked (+6.58% vs max. flow) | -1.47% | +29.04% | +3.6 | none found |
+| nasa_stage35 | 90 | 0.018 | not choked (+2.88% vs max. flow) | -3.26% | +18.45% | -0.6 | none found |
+| nasa_stage35 | 100 | 0.018 | +2.55% | -1.81% | +0.67% | -3.6 | none found |
+| nasa_stage36 | 70 | 0.019 | not choked (+6.27% vs max. flow) | -4.84% | +34.99% | +3.7 | none found |
+| nasa_stage36 | 90 | 0.019 | not choked (+2.87% vs max. flow) | -6.21% | +20.40% | +0.0 | none found |
+| nasa_stage36 | 100 | 0.019 | +3.38% | -3.93% | +7.18% | -0.2 | -14.3% |
+| nasa_stage37 | 70 | 0.019 | +5.16% | -3.19% | +24.99% | +2.5 | none found |
+| nasa_stage37 | 90 | 0.019 | +3.28% | -5.17% | +11.14% | -2.3 | none found |
+| nasa_stage37 | 100 | 0.019 | +4.17% | -2.48% | +3.25% | -1.8 | -14.2% |
+| nasa_stage38 | 70 | 0.018 | not choked (+2.24% vs max. flow) | -4.04% | +26.52% | +2.2 | none found |
+| nasa_stage38 | 90 | 0.018 | +3.93% | -6.02% | +16.68% | -0.3 | none found |
+| nasa_stage38 | 100 | 0.018 | -2.04% | -3.12% | +8.09% | +0.0 | -10.9% |
+| nasa_stage52 | 70 | 0.017 | not choked (+18.38% vs max. flow) | -7.53% | +20.02% | -2.5 | none found |
+| nasa_stage52 | 80 | 0.017 | not choked (+4.76% vs max. flow) | -3.59% | +12.01% | -2.2 | none found |
+| nasa_stage52 | 90 | 0.017 | not choked (+2.72% vs max. flow) | -0.39% | +2.56% | +0.7 | none found |
+| nasa_stage52 | 100 | 0.017 | not choked (-1.70% vs max. flow) | -5.55% | +5.13% | +0.1 | none found |
+| nasa_stage52 | 110 | 0.017 | -10.16% | -8.47% | +0.81% | -4.1 | none found |
+| nasa_stage52 | 120 | 0.017 | -10.83% | -9.95% | +0.06% | -4.2 | none found |
+| nasa_stage53 | 70 | 0.017 | not choked (+8.26% vs max. flow) | -2.20% | +7.49% | -6.5 | none found |
+| nasa_stage53 | 80 | 0.017 | not choked (-13.56% vs max. flow) | -2.04% | +3.09% | -5.7 | +3.6% |
+| nasa_stage53 | 90 | 0.017 | not choked (+4.44% vs max. flow) | +1.78% | -3.90% | -4.3 | none found |
+| nasa_stage53 | 100 | 0.017 | not choked (-9.52% vs max. flow) | -3.80% | -3.72% | -5.4 | none found |
+| nasa_stage53 | 120 | 0.017 | no converged point down to half the measured flow | | | | |
+| nasa_stage55 | 80 | 0.018 | not choked (+8.95% vs max. flow) | +4.49% | +9.10% | +0.1 | none found |
+| nasa_stage55 | 90 | 0.018 | not choked (+5.73% vs max. flow) | +3.26% | +11.16% | +0.1 | none found |
+| nasa_stage55 | 100 | 0.018 | not choked (+5.79% vs max. flow) | +11.33% | +6.68% | +1.6 | none found |
+| nasa_stage55 | 110 | 0.018 | not choked (+6.40% vs max. flow) | +1.94% | +9.19% | -2.0 | none found |
+| nasa_stage55 | 120 | 0.018 | not choked (-0.78% vs max. flow) | -0.26% | +9.84% | -1.5 | +5.7% |
 
-Measured points the model cannot reach (it chokes or fails below their flow): nasa_stage36 100% 4270, nasa_stage36 100% 4269
+Measured points the model cannot reach (it chokes or fails below their flow): nasa_stage36 100% 4270, nasa_stage36 100% 4269, nasa_stage38 100% 4129, nasa_stage38 100% 4128, nasa_stage38 100% 4123, nasa_stage38 100% 4121, nasa_stage38 100% 4120, nasa_stage52 100% 2185, nasa_stage52 110% 2205, nasa_stage52 110% 2204, nasa_stage52 110% 2203, nasa_stage52 110% 2202, nasa_stage52 110% 2201, nasa_stage52 120% 2216, nasa_stage52 120% 2215, nasa_stage52 120% 2211, nasa_stage52 120% 2208, nasa_stage52 120% 2207, nasa_stage53 70% 3031, nasa_stage53 80% 3006, nasa_stage53 90% 3001, nasa_stage53 100% 2993, nasa_stage53 100% 2995, nasa_stage53 100% 3026
 
 ## Overall errors at every measured point
 
@@ -30,12 +46,12 @@ Bias / spread (n). Rises are relative errors of PR - 1 and TR - 1; efficiencies 
 
 | Error | At measured flow | At matched flow (m/m_choke) |
 |---|---|---|
-| rotor_eta_points | +0.138 / 3.102 (n=63) | -3.738 / 4.739 (n=37) |
-| rotor_pr_rise | +0.111 / 0.111 (n=63) | -0.048 / 0.113 (n=37) |
-| rotor_tr_rise | +0.094 / 0.091 (n=63) | +0.002 / 0.078 (n=37) |
-| stage_eta_points | +0.988 / 2.634 (n=63) | -4.135 / 6.455 (n=37) |
-| stage_pr_rise | +0.124 / 0.118 (n=63) | -0.055 / 0.118 (n=37) |
-| stage_tr_rise | +0.094 / 0.090 (n=63) | +0.002 / 0.077 (n=37) |
+| rotor_eta_points | +0.042 / 3.732 (n=113) | -3.003 / 4.378 (n=43) |
+| rotor_pr_rise | +0.059 / 0.093 (n=113) | -0.047 / 0.114 (n=43) |
+| rotor_tr_rise | +0.052 / 0.077 (n=113) | -0.006 / 0.074 (n=43) |
+| stage_eta_points | -0.252 / 3.979 (n=113) | -3.757 / 5.906 (n=43) |
+| stage_pr_rise | +0.073 / 0.098 (n=113) | -0.048 / 0.124 (n=43) |
+| stage_tr_rise | +0.068 / 0.068 (n=113) | +0.004 / 0.082 (n=43) |
 
 ## Profile errors (model - measured)
 
@@ -44,30 +60,30 @@ Vm as Vm/Vm_avg - 1; angles, incidence and deviation in degrees.
 
 | Where | Quantity | Zone | At measured flow | At matched flow |
 |---|---|---|---|---|
-| R1 | d_factor | core | +0.034 / 0.050 (n=150) | -0.022 / 0.042 (n=105) |
-| R1 | d_factor | end-wall | +0.034 / 0.061 (n=120) | -0.018 / 0.050 (n=84) |
-| R1 | deviation | core | -1.250 / 1.769 (n=150) | -1.320 / 1.701 (n=105) |
-| R1 | deviation | end-wall | -2.524 / 2.049 (n=120) | -2.661 / 1.950 (n=84) |
-| R1 | incidence | core | +1.587 / 0.626 (n=150) | +0.494 / 0.946 (n=105) |
-| R1 | incidence | end-wall | +0.179 / 1.470 (n=120) | -1.062 / 1.652 (n=84) |
-| R1 | loss | core | +0.017 / 0.042 (n=150) | +0.031 / 0.035 (n=105) |
-| R1 | loss | end-wall | -0.007 / 0.059 (n=120) | +0.015 / 0.049 (n=84) |
-| S1 | d_factor | core | +0.064 / 0.075 (n=150) | -0.033 / 0.083 (n=105) |
-| S1 | d_factor | end-wall | +0.024 / 0.094 (n=119) | -0.073 / 0.092 (n=83) |
-| S1 | deviation | core | -1.412 / 1.815 (n=150) | -1.683 / 1.584 (n=105) |
-| S1 | deviation | end-wall | -2.224 / 2.177 (n=119) | -2.368 / 2.093 (n=83) |
-| S1 | incidence | core | +3.731 / 3.428 (n=150) | -1.446 / 3.656 (n=105) |
-| S1 | incidence | end-wall | +1.900 / 4.317 (n=119) | -2.896 / 4.081 (n=83) |
-| S1 | loss | core | -0.008 / 0.024 (n=150) | -0.014 / 0.041 (n=105) |
-| S1 | loss | end-wall | -0.044 / 0.039 (n=119) | -0.049 / 0.049 (n=83) |
-| exit | angle | core | -2.145 / 1.578 (n=150) | -2.749 / 1.520 (n=105) |
-| exit | angle | end-wall | -2.930 / 1.934 (n=120) | -3.401 / 1.953 (n=84) |
-| exit | p0_shape | core | -0.028 / 0.049 (n=150) | -0.029 / 0.042 (n=105) |
-| exit | p0_shape | end-wall | +0.041 / 0.080 (n=120) | +0.042 / 0.061 (n=84) |
-| exit | t0_shape | core | +0.004 / 0.038 (n=150) | -0.001 / 0.038 (n=105) |
-| exit | t0_shape | end-wall | -0.005 / 0.053 (n=120) | +0.002 / 0.060 (n=84) |
-| exit | vm_shape | core | -0.026 / 0.047 (n=150) | -0.027 / 0.034 (n=105) |
-| exit | vm_shape | end-wall | +0.038 / 0.083 (n=120) | +0.040 / 0.066 (n=84) |
+| R1 | d_factor | core | +0.014 / 0.048 (n=185) | -0.023 / 0.047 (n=105) |
+| R1 | d_factor | end-wall | +0.006 / 0.064 (n=148) | -0.021 / 0.053 (n=84) |
+| R1 | deviation | core | -0.405 / 1.621 (n=185) | -0.907 / 1.624 (n=105) |
+| R1 | deviation | end-wall | -1.186 / 2.160 (n=148) | -2.180 / 1.871 (n=84) |
+| R1 | incidence | core | +1.178 / 0.776 (n=185) | +0.840 / 1.162 (n=105) |
+| R1 | incidence | end-wall | +0.115 / 1.294 (n=148) | -0.725 / 1.763 (n=84) |
+| R1 | loss | core | +0.011 / 0.042 (n=185) | +0.028 / 0.033 (n=105) |
+| R1 | loss | end-wall | -0.015 / 0.063 (n=148) | +0.009 / 0.047 (n=84) |
+| S1 | d_factor | core | +0.032 / 0.064 (n=185) | -0.033 / 0.095 (n=105) |
+| S1 | d_factor | end-wall | +0.002 / 0.087 (n=147) | -0.073 / 0.099 (n=83) |
+| S1 | deviation | core | -2.202 / 2.121 (n=185) | -1.721 / 1.627 (n=105) |
+| S1 | deviation | end-wall | -2.530 / 2.706 (n=147) | -2.362 / 2.289 (n=83) |
+| S1 | incidence | core | +2.113 / 3.245 (n=185) | -1.262 / 4.254 (n=105) |
+| S1 | incidence | end-wall | +0.242 / 4.132 (n=147) | -2.832 / 4.477 (n=83) |
+| S1 | loss | core | -0.003 / 0.040 (n=185) | -0.012 / 0.043 (n=105) |
+| S1 | loss | end-wall | -0.044 / 0.058 (n=147) | -0.047 / 0.052 (n=83) |
+| exit | angle | core | -2.748 / 2.055 (n=185) | -2.765 / 1.585 (n=105) |
+| exit | angle | end-wall | -3.061 / 2.610 (n=148) | -3.374 / 2.143 (n=84) |
+| exit | p0_shape | core | -0.039 / 0.071 (n=185) | -0.028 / 0.045 (n=105) |
+| exit | p0_shape | end-wall | +0.045 / 0.100 (n=148) | +0.041 / 0.068 (n=84) |
+| exit | t0_shape | core | +0.012 / 0.044 (n=185) | +0.001 / 0.042 (n=105) |
+| exit | t0_shape | end-wall | -0.010 / 0.061 (n=148) | -0.000 / 0.069 (n=84) |
+| exit | vm_shape | core | -0.024 / 0.048 (n=185) | -0.027 / 0.032 (n=105) |
+| exit | vm_shape | end-wall | +0.028 / 0.077 (n=148) | +0.039 / 0.061 (n=84) |
 
 ## Assumptions per case
 
@@ -75,3 +91,6 @@ Vm as Vm/Vm_avg - 1; angles, incidence and deviation in degrees.
 - **nasa_stage36**: MCA sections from the printed turn rate, ZTC and ZMC (multiple_circular_arc); angles, chord and t/c mapped from the element cones to the axial-tangential plane with the printed cone angles; edge planes at the mid-span element's ZI and ZO; uniform inlet total state; inlet end-wall blockage from the measured inlet profile (inlet_blockage); tip clearance 0.18 mm (TP-1974 estimated running clearance 0.018 cm); stator hub gap 0 (not stated); station 3 at 8.890 cm (TP-1974 survey plane)
 - **nasa_stage37**: MCA sections from the printed turn rate, ZTC and ZMC (multiple_circular_arc); angles, chord and t/c mapped from the element cones to the axial-tangential plane with the printed cone angles; edge planes at the mid-span element's ZI and ZO; uniform inlet total state; inlet end-wall blockage from the measured inlet profile (inlet_blockage); tip clearance 0.40 mm (not stated; rule value (Rotor 37 alone in the same rig, TM-107310)); stator hub gap 0 (not stated); station 3 at 10.640 cm (TP-1659 survey plane)
 - **nasa_stage38**: MCA sections from the printed turn rate, ZTC and ZMC (multiple_circular_arc); angles, chord and t/c mapped from the element cones to the axial-tangential plane with the printed cone angles; edge planes at the mid-span element's ZI and ZO; uniform inlet total state; inlet end-wall blockage from the measured inlet profile (inlet_blockage); tip clearance 0.40 mm (not stated; rule value (Rotor 37, TM-107310)); stator hub gap 0 (not stated); station 3 at 8.890 cm (TP-2001 survey plane)
+- **nasa_stage52**: angles, chord and t/c mapped from the element cones to the axial-tangential plane with the printed cone angles; edge planes at the mid-span element's ZI and ZO; uniform inlet total state; inlet end-wall blockage from the measured inlet profile (inlet_blockage); double-circular-arc rotor and stator (dca); tip clearance 0.50 mm (TM X-3083 nominal cold clearance 0.05 cm); stator hub gap 0 (not stated); stations 1 and 3 at -2.408 and 22.235 cm (not given; the stage 53 survey planes (TP-1299) relative to the stator); data at the 2-chord stator position: the printed 4-chord stator moved upstream by half its mid-span gap to the rotor (the 2-chord position is not tabulated)
+- **nasa_stage53**: angles, chord and t/c mapped from the element cones to the axial-tangential plane with the printed cone angles; edge planes at the mid-span element's ZI and ZO; uniform inlet total state; inlet end-wall blockage from the measured inlet profile (inlet_blockage); double-circular-arc rotor and stator (dca); tip clearance 0.50 mm (TP-1299 nominal cold clearance 0.050 cm); stator hub gap 0 (not stated); stations 1 and 3 at -2.408 and 32.492 cm (TP-1299 Fig. 1 survey planes)
+- **nasa_stage55**: angles, chord and t/c mapped from the element cones to the axial-tangential plane with the printed cone angles; edge planes at the mid-span element's ZI and ZO; uniform inlet total state; inlet end-wall blockage from the measured inlet profile (inlet_blockage); double-circular-arc rotor (dca); stator 'NACA 400 Series airfoils' (not defined further): C.4 thickness on a parabolic arc with maximum camber at 0.37 chord, the Table V (ZMC - ZI)/(ZO - ZI); max. t/c 0.09; tip clearance 0.60 mm (TM X-3101 nominal clearance 0.06 cm at the blade centerline (about 0.08 cm at the edges)); stator hub gap 0 (not stated); stations 1 and 3 at -2.408 and 33.910 cm (drawn only in Fig. 1; the stage 53 survey planes (TP-1299) relative to the rotor and stator); flow path from Fig. 1 outside the blade rows, the tables' hub and tip edge radii over them

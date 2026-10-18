@@ -87,3 +87,120 @@ Resolved 7, still '?' 4, print errors 0.
 | TMX3083_tableV_stator52.csv | 11 | CONE ANGLE | `3.735?` | `1.735?` | atan((RO-RI)/(ZO-ZI)) = atan(0.150/4.952) = 1.74 deg, so the integer digit is 1, not 3 | 600-dpi zoom: '.735' visible, leading digit lost; best reading changed to 1.735 by the relation, '?' kept |
 | TMX3083_tableV_stator52.csv | 12 | CONE ANGLE | `3.580?` | `0.580?` | atan((RO-RI)/(ZO-ZI)) = atan(0.059/4.948) = 0.68 deg (relation good to about 0.1 deg near the end walls: TIP and HUB print 0.057 with RI = RO), so the integer digit is 0 | 600-dpi zoom: '580' visible, leading digit lost; best reading changed to 0.580, '?' kept |
 | TMX3083_tableV_stator52.csv | 13 | CONE ANGLE | `0.057?` | `0.057?` | RI = RO = 10.160 (flat hub), same as TIP (RI = RO, printed 0.057) and the rotor hub (0.057) | 600-dpi zoom: only '57' and a fragment visible; consistent with 0.057 but leading digits lost, '?' kept |
+
+## Measured performance (Table VI)
+
+Table VI (overall performance, pdf p27-28, printed 25-26), all six speed
+parts, from a 300-dpi render; every '?' cell and every cell failing a check
+re-read at 600-1200 dpi. Files: `TMX3083_tableVI_overall_<NNN>pct.csv`
+(readings as columns). Tables VII (rotor 52, pdf p29-57) and VIII (stator 52,
+pdf p58-86) print one part per reading in the same order as Table VI; the
+five 100-percent-speed parts (o)-(s) of each are transcribed (see "Blade-element
+data at 100 percent speed" below).
+
+**All measured data are for the stators at the 2-chord position** (pdf p8),
+while Tables II-V and Fig. 1 give the 4-chord layout; the 2-chord stator
+axial position is not tabulated.
+
+### Readings
+
+| Speed | Table VI part | Readings (printed order, high to low flow) | Table VII / VIII pages |
+|---|---|---|---|
+| 70 % | (a) | 2221, 2222, 2224, 2225 | p29-32 / p58-61 |
+| 80 % | (b) | 2219, 2220, 2196, 2195, 2193 | p33-37 / p62-66 |
+| 90 % | (c) | 2218, 2190, 2189, 2188, 2187 | p38-42 / p67-71 |
+| 100 % | (d) | 2217, 2185, 2184, 2200, 2182 | p43-47 / p72-76 |
+| 110 % | (e) | 2205, 2204, 2203, 2202, 2201 | p48-52 / p77-81 |
+| 120 % | (f) | 2216, 2215, 2211, 2208, 2207 | p53-57 / p82-86 |
+
+- Test procedure (pdf p7): surveys "over a range of weight flows from maximum
+  flow to the near-stall conditions at speeds from 70 to 120 percent"; with
+  the stator at the 2-chord position, five weight flows at every speed (Table
+  VI prints four at 70 percent); nine
+  radial positions. Stations, averaging (stator-exit total temperature
+  mass-averaged and total pressure energy-averaged over nine circumferential
+  positions; overall values mass- and energy-averaged radially) and the
+  translation to the blade edges (reference 4 of the report, pdf p8) are the
+  same as in the other Lewis fan reports. Flows and conditions corrected to
+  standard day on the rotor-inlet conditions.
+- Peak efficiency (pdf p9): rotor 0.911 and stage 0.872 at design speed, both
+  at 34.92 kg/sec (reading 2185). Near-design flow 32.33 kg/sec (reading 2200):
+  rotor pressure ratio 1.269, stage pressure ratio 1.242 against design 1.251,
+  stage efficiency 0.866. Design: pressure ratio 1.25, efficiency 0.894,
+  32.7 kg/sec (194.4 kg/sec/m2 of annulus area), tip speed 257.7 m/sec (pdf p5).
+- Stall margin (pdf p9): "about 20 percent based on the weight flow and
+  pressure ratio at stall and the peak efficiency point". The stall point is
+  not tabulated: with 2185 as reference and the lowest-flow reading 2182 the
+  margin is only 13.6 %, so stall lies at a lower flow than any tabulated
+  reading. Stall weight flow was the last flow before stall while closing the
+  valve in small increments (pdf p8).
+- Design speed is about 9741 rpm (ROTATIVE SPEED / PERCENT OF DESIGN SPEED
+  97.35-97.46 on every reading).
+
+### Checks (a check never overrode a clear print)
+
+Efficiencies from the pressure and temperature ratios (within the rounding of
+the 3-decimal temperature ratio); annulus/frontal flow ratio 1.1929-1.1930 and
+orifice/frontal flow ratio 0.2004-0.2005 on every reading; rotative speed over
+percent speed; head-rise coefficient over (PR^(0.4/1.4) - 1), times
+(percent speed/100)^2, 4.34-4.38 on every reading.
+
+### Cells marked '?' and print errors (Table VI)
+
+| File | Reading | Row | Value | Note |
+|---|---|---|---|---|
+| 070pct | 2221 | WT FLOW AT STATOR OUTLET | `27.88?` | middle digit hidden by a blot; no check |
+| 070pct | 2221 | ROTATIVE SPEED | `6827.1?` | fourth glyph a slanted stroke (7?); 6824.1 would also pass the speed check |
+| 070pct | 2224 | STAGE HEAD RISE COEFFICIENT | `0.265` | middle digit damaged, 6-like; head-rise check excludes 0.255 and 0.285 |
+| 070pct | 2225 | WT FLOW PER UNIT ANNULUS AREA | `121.32` | last digit damaged; 101.70 x 1.19295 = 121.32 |
+| 080pct | 2196 | FLOW COEFFICIENT | `0.744?` | last digit damaged; the flow trend gives about 0.744-0.745 |
+| 090pct | 2189 | WT FLOW AT ROTOR OUTLET | `31.21?` | last digit damaged; no check |
+| 090pct | 2187 | FLOW COEFFICIENT | `0.631?` | first decimal damaged; the flow trend gives about 0.629-0.631 |
+| 090pct | 2187 | WT FLOW AT ROTOR OUTLET | `27.32?` | printed as "27 3?", point and last digit damaged; no check |
+| 100pct | 2217 | WT FLOW PER UNIT ANNULUS AREA | `211.53` | leading digits damaged; 177.32 x 1.19295 = 211.53 |
+| 100pct | 2200 | FLOW COEFFICIENT | `0.713?` | middle digit illegible even at 1200 dpi |
+| 100pct | 2200 | WT FLOW PER UNIT FRONTAL AREA | `161.30` | middle digits damaged; annulus ratio gives 161.31, orifice ratio 161.29 |
+| 120pct | 2207 | ROTOR HEAD RISE COEFFICIENT | `0.514` | **print error**: clearly printed 0.514, but the head-rise check gives 0.313 (the other 29 readings agree within 0.5 %); kept as printed |
+
+## Blade-element data at 100 percent speed (Tables VII-VIII)
+
+Parts (o)-(s), readings 2217, 2185, 2184, 2200, 2182 (Table VII pdf p43-47,
+Table VIII pdf p72-76, printed 41-45 and 70-74). Files:
+`TMX3083_tableVII_rotor52_reading<N>.csv`,
+`TMX3083_tableVIII_stator52_reading<N>.csv`. Read cell by cell from
+native-resolution crops of each block. Format as in TM X-3101: four blocks
+joined on RP, RP 1-9 only, INCIDENCE MEAN and SS, PEAK SS MACH NO, no units
+row; stator WHEEL SPEED and EFF printed '0.'.
+
+### Checks (a check never overrode a clear print)
+
+- Every row: |V| and |W| from the components, absolute and relative angles,
+  relative and meridional Mach numbers from the absolute Mach number, MERID
+  VEL R; rotor EFF from the pressure and temperature ratios; stator LOSS COEFF
+  TOT from the pressure ratio and inlet Mach number; stator absolute and
+  relative columns identical. All ten tables pass.
+- Rotor U/r gives the Table VI rotative speed of each reading (e.g. 2182:
+  9789.3 rpm, U/r 10.251 per second x 100).
+- Blade angles implied by REL BETAM IN - INCIDENCE MEAN and REL BETAM OUT -
+  DEV agree across the five readings within 0.1 deg at every RP and with KIC
+  and KOC of Tables IV and V (e.g. rotor RP5 36.0-36.1 / 11.5 against 36.05 /
+  11.51; stator RP5 25.7-25.8 / -5.7 to -5.8 against 25.78 / -5.75). Solidity
+  implied by D-FACT is constant across readings at every RP.
+- Rotor outlet total pressure and temperature (inlet value times ratio)
+  equal the stator inlet values within 0.01 N/cm2 and 0.2 K.
+- Stator TOTAL TEMP RATIO is printed 0.993-1.000 (not 1); as printed, as in
+  TM X-3101.
+
+### Reading notes
+
+- Rotor 2182 RP9 RADII OUT: the glyphs read "10.376" with the left half of
+  the 8 lost; every other reading prints 10.876 and U/r requires 10.876
+  (111.6 / 10.376 would give 10.76 against 10.25), so 10.876 is written.
+- Rotor 2182 RP1 REL BETAM OUT: the 6 of 36.1 is broken ("3C.1"); the
+  triangle gives 36.08.
+- Stator 2217 RP5 TANG VEL IN: 118.8 (the third glyph is an 8 like the one
+  after the point; 119.8 would contradict |V| = 260.0 and ABS BETAM IN 27.2).
+- Stator 2217 RP4 REL VEL IN: the 8 of 258.2 is broken; stator relative and
+  absolute values are equal.
+- The rotor readings 2217, 2185 and 2184 were first read by an earlier pass;
+  they pass every check above and were not re-read cell by cell.

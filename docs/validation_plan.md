@@ -286,6 +286,10 @@ effects:
 
 With the MCA sections (Lieblein's circular-arc deviation, the true
 meanline), all four stages run and the design-speed errors share their sign.
+The MCA rows have since taken the Lewis design code's Carter rule for their
+design deviation (`docs/compressor_correlations.md`): lower pressure-rise
+error and spread, but Stage 38's design-speed choke moves from +0.2 to -2.0
+percent. The consistency report reflects the current model.
 
 **Open, in order of the spread they cause:**
 1. **Work rises as speed falls.** At the measured flow, the stage
@@ -300,3 +304,87 @@ meanline), all four stages run and the design-speed errors share their sign.
 3. **No model stall point** is found above 75 percent of choke flow on any
    speed line. The stall criterion (9-16 to 9-19) is not yet tested.
 4. Stage 36 fails to converge at its two lowest design-speed flows.
+
+## Results so far: stages 52 and 53 (fans)
+
+Two 1.6-pressure-ratio fan stages from TM X-3083 and TP-1299, double-circular-
+arc rotors and stators, measured on one rig (overall performance at all
+speeds, blade-element data at 100 percent). The adapter and its assumptions
+for what the reports leave out (clearance, station planes, Stage 52's 2-chord
+stator position) are listed per case in the consistency report.
+
+**Start-up failures were numerical.** From the cold start, Stage 53 gave no
+point at 100 percent speed and Stage 52 lost its high-flow points: on the
+first outer iterations a stator hub stream tube with low exit velocity drove
+its D_eq-based loss up until the quasi-normal had no solution. The same points
+converge from a neighbouring solution. The solver's start-up homotopy
+(`docs/throughflow_solver.md`) recovers 17 measured points without moving any
+point that converged cold.
+
+**Spanwise mixing does not change this.** Gallimore's model at the level of
+his eq. (9) moves the stage values by a few parts in a thousand on these single
+stages; it stays off (`docs/throughflow_solver.md`).
+
+**Near-wall blade elements are outside the model.** Aungier applies the
+free-stream conditions inside the end-wall boundary layers and corrects only
+the mass balance through the displacement blockage (p. 53 and chapter 8), so
+the stream surfaces next to the walls carry core-flow velocities and
+incidences. The measurements at 5 and 10 percent span from either wall lie
+inside the boundary layers. At the Stage 53 stator inlet (behind a 20 cm
+duct) the measured hub meridional velocity at 5 percent span is about 25
+percent below the model's (160 against 207 m/s at reading 2996), so the
+model's stator hub incidence is 5 to 7 deg more negative than measured and
+Aungier's negative-stall loss raises the hub entropy until, at the lowest
+flows, the stator exit has no solution. The model's own end-wall analysis puts
+the hub boundary layer at 14 mm there (10 percent of span), and its power-law
+profile accounts for only about 10 percent of the velocity defect at 5
+percent span. Rule: blade-element comparisons are judged in the core zone
+(15 to 85 percent span from the tip); the end-wall zone is reported but
+explains rather than gates, and Stage 53's remaining failures at 100 and 120
+percent speed are recorded as this limit, not tuned away.
+
+**Open, from the 100 percent speed blade elements:**
+1. **Stator 53 turns less than designed.** Its measured deviation is 2.5 to
+   4.5 deg above the model's in the core (8.5 to 9.5 deg against 4.7 to 6
+   deg at reading 2996), but the model is within 0.5 to 1 deg of the
+   designer's own design deviation (5.2 to 6.7 deg, TP-1299 Table III), and
+   the report states that "at all span locations, the measured deviation
+   angles were significantly greater than design values", with a missing
+   hub wake that indicates separation and a radial shift through the stator
+   (TP-1299, "Radial Distributions" and "Variations with Incidence Angle"). Stator 52, of the same family, is within 1 deg in
+   the core. This is a stator that missed its design, which no cascade
+   correlation predicts; it is recorded, not corrected.
+2. **The stage-exit total-temperature profile is too flat** on all six
+   cases (stages 35-38, 52, 53): the shape error is -0.04 to -0.08 near the
+   tip and +0.02 to +0.07 near the hub, with the same sign on every case.
+3. **Part-speed work: the off-design deviation is linear by choice.** At 70
+   percent speed the rotors run 4 to 6 deg above their reference incidence.
+   Measured rotor deviation there is as high as at design speed or higher
+   (Stage 35, 5 percent span: 6.2 against 5.6 deg); the model's falls (4.7 to
+   2.6 deg), because (6-77) adds only 0.03 to 0.08 deg per degree of incidence
+   (6-76) while its axial-velocity-ratio term removes about 1.5 deg. Lieblein
+   (NASA SP-36, ch. VI, "Variation with incidence angle") gives the slope
+   only at reference incidence, for "the region of minimum loss", which "is
+   generally small". Aungier (pp. 143-144) notes that in cascades the slope
+   approaches unity at positive stall, tried Novak's (1973) incidence-
+   dependent form "in several unsuccessful attempts", and kept the linear
+   model as "somewhat arbitrary" but better in practice. Wilson, Mani and
+   Acosta's contraction effect in place of the 10 (1 - W_m2/W_m1) term
+   lowered the pressure-rise spread (0.104 to 0.089 over 92 points) only by
+   worsening the design-speed MCA stages (+2 to +11 percent), so the book's
+   term stays. Open: whether an incidence-dependent slope is worth testing
+   against Aungier's advice.
+
+## Results so far: stage 55 (low-pressure-ratio fan)
+
+TM X-3101, a 1.20-pressure-ratio Hamilton Standard fan on the same rig:
+double-circular-arc rotor, stator of "NACA 400 Series airfoils" that the
+report does not define further. The adapter represents the stator by the
+contract's nearest family, C.4 thickness on a parabolic arc with maximum
+camber at 0.37 chord (Table V's (ZMC - ZI)/(ZO - ZI)), and takes the flow
+path from Fig. 1 outside the blade rows but the tables' three-decimal edge
+radii over them (the figure's two-decimal hub differs by up to 0.4 cm at the
+stator). All 20 measured points converge from the cold start. The stage
+pressure-rise error is +10 to +13 percent at every speed from 80 to 120
+percent and the stage efficiency within -2.3 to +3.0 points: the most
+uniform case so far, though its stator section is an assumption.
