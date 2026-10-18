@@ -61,10 +61,15 @@ def _read(path):
     return [{h: v.rstrip("?") for h, v in zip(heads, r)} for r in data]
 
 
+#: Edge columns named after the meanline intercepts in some reports (TP-2049: ZIC, ZOC).
+COLUMN_ALIASES = {"ZIC": "ZI", "ZOC": "ZO"}
+
+
 def read_geometry(path):
     """A blade-geometry table with the group headings stripped from its column names."""
     def name(h):
-        return next((h[len(p):] for p in GROUP_PREFIXES if h.startswith(p)), h)
+        h = next((h[len(p):] for p in GROUP_PREFIXES if h.startswith(p)), h)
+        return COLUMN_ALIASES.get(h, h)
     return [{name(h): v for h, v in r.items()} for r in _read(path)]
 
 
@@ -80,13 +85,36 @@ def _chordwise(camber, transition, turning_ratio, kappa_in, axial_fraction):
     return float(np.interp(axial_fraction, a / a[-1], x))
 
 
+def _turn_for_front_camber(camber, transition, front):
+    """Turning-rate ratio C1/C2 whose meanline turns through ``front`` degrees ahead of the transition."""
+    def excess(t):
+        _, _, kappa_t, chi1 = mca_meanline(camber, transition, t, 401)
+        return (chi1 - kappa_t) - front
+    return brentq(excess, 1e-4, 100.0)
+
+
 def mca_element(row):
-    """Transition point and maximum-thickness point (chordwise fractions) of a Table III element."""
+    """Transition point, turning-rate ratio and maximum-thickness point (chordwise) of an MCA element.
+
+    Where the table prints TURN RATE (C1/C2; TP-1338 and its family) the transition point follows from
+    ZTC. Where it prints X FACTOR instead (TP-2049, TM X-2926), C1/C2 follows from the blade angle at
+    the transition point: the front segment turns through KIC - KTC, and both conditions (that front
+    camber and the axial position ZTC) fix the transition point and C1/C2 together.
+    """
     kic, koc = _num(row["KIC"]), _num(row["KOC"])
-    camber, turn = abs(kic - koc), _num(row["TURN RATE"])
+    camber = abs(kic - koc)
     zi, zo = _num(row["ZI"]), _num(row["ZO"])
     zt = (_num(row["ZTC"]) - zi) / (zo - zi)
-    transition = brentq(lambda c: _chordwise(camber, c, turn, abs(kic), zt) - c, 0.05, 0.95)
+    if "TURN RATE" in row:
+        turn = _num(row["TURN RATE"])
+        transition = brentq(lambda c: _chordwise(camber, c, turn, abs(kic), zt) - c, 0.05, 0.95)
+    else:
+        front = abs(kic - _num(row["KTC"]))
+
+        def residual(c):
+            return _chordwise(camber, c, _turn_for_front_camber(camber, c, front), abs(kic), zt) - c
+        transition = brentq(residual, 0.05, 0.95)
+        turn = _turn_for_front_camber(camber, transition, front)
     thickest = _chordwise(camber, transition, turn, abs(kic), (_num(row["ZMC"]) - zi) / (zo - zi))
     return transition, turn, thickest
 
@@ -189,10 +217,14 @@ def edge_points(table):
             [(_num(tip["ZI"]), _num(tip["RI"])), (_num(tip["ZO"]), _num(tip["RO"]))])
 
 
+#: Flow-path points this close to a blade edge (cm) give way to the table's edge radius.
+EDGE_MARGIN_CM = 0.1
+
+
 def passage_with_edges(path, tables, z_in_cm, z_out_cm):
     """Passage stations from a one-table flow path, with the blade tables' edge radii over the blade rows.
 
-    Within a blade row (between its edge planes on that wall) the printed flow-path points are replaced
+    Within a blade row (between its edge planes on that wall, widened by EDGE_MARGIN_CM) the printed flow-path points are replaced
     by the row table's hub and tip edge radii, which are printed to three decimals; elsewhere the flow
     path is used as in ``passage_table``.
     """
@@ -203,7 +235,7 @@ def passage_with_edges(path, tables, z_in_cm, z_out_cm):
     for col, wall in ((1, 0), (2, 1)):
         spans = [(e[wall][0][0], e[wall][1][0]) for e in edges]
         pts = [(_num(r[0]), _num(r[col])) for r in rows if r[col].strip()]
-        pts = [p for p in pts if not any(a <= p[0] <= b for a, b in spans)]
+        pts = [p for p in pts if not any(a - EDGE_MARGIN_CM <= p[0] <= b + EDGE_MARGIN_CM for a, b in spans)]
         pts += [p for e in edges for p in e[wall]]
         pts.sort()
         walls.append(tuple(map(np.array, zip(*pts))))
@@ -376,6 +408,32 @@ def fan_stage_design(case_id, tip_clearance_m=None, stator_hub_clearance_m=0.0):
         stations = passage_table(flowpath, FAN_Z_IN_CM, z_out_cm)
     return {"schema_version": "throughflow_design_v2", "machine_type": "compressor", "flow_path": "axial",
             "passage": {"stations": stations}, "rows": [rotor, stator]}, z_out_cm
+
+
+#: Stage 8E-8 (TP-2049): one stage at four tip clearances. The report gives nominal nonrotating
+#: clearances and a calculated wheel and blade growth plus eccentricity of about 0.040 cm at design
+#: speed (pdf p5), so the running clearance is taken as nominal minus 0.040 cm; the larger clearances
+#: were cut into the casing over the rotor (Fig. 5), a recess of at most 0.12 cm that is not modelled.
+STAGE_8E = dict(folder="nasa_stage8e_tipclearance", report="TP2049", rotor="tableIV_rotor8E", stator="tableV_stator8",
+                flowpath="fig2_flowpath", blades=(49, 54), design_rpm=16100.0, z_in_cm=-2.540, z_out_cm=13.462, growth_cm=0.040)
+TIP_CLEARANCE_CASES = {"nasa_stage8e_c{:03d}".format(int(round(1000 * c))): c for c in (0.061, 0.102, 0.140, 0.178)}
+
+
+def stage8e_design(case_id, stator_hub_clearance_m=0.0):
+    """Stage 8E-8 at one of its four clearances (TIP_CLEARANCE_CASES); multiple-circular-arc rows."""
+    c = STAGE_8E
+    folder = CASES / c["folder"]
+    running_cm = TIP_CLEARANCE_CASES[case_id] - c["growth_cm"]
+    tables = [folder / "{}_{}.csv".format(c["report"], c[k]) for k in ("rotor", "stator")]
+    rotor = blade_row(tables[0], "R1", "1", "rotor", c["blades"][0], running_cm / 100.0)
+    stator = blade_row(tables[1], "S1", "1", "stator", c["blades"][1], stator_hub_clearance_m)
+    shift = c["z_in_cm"] / 100.0
+    for row in (rotor, stator):
+        row["leading_edge_axial_m"] = round(row["leading_edge_axial_m"] - shift, 7)
+        row["trailing_edge_axial_m"] = round(row["trailing_edge_axial_m"] - shift, 7)
+    stations = passage_with_edges(folder / "{}_{}.csv".format(c["report"], c["flowpath"]), tables, c["z_in_cm"], c["z_out_cm"])
+    return {"schema_version": "throughflow_design_v2", "machine_type": "compressor", "flow_path": "axial",
+            "passage": {"stations": stations}, "rows": [rotor, stator]}
 
 
 def stage35(tip_clearance_m=4.0e-4, stator_hub_clearance_m=0.0):

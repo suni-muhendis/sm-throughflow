@@ -123,8 +123,39 @@ class FanStage(LewisStage):
         self._load(c, folder, geometry)
 
 
+class TipClearanceStage(FanStage):
+    """Stage 8E-8 (TP-2049) at one of its four tip clearances: Tables IV/V geometry (multiple circular
+    arcs), Table VI(a)-(d) overall performance, one table per clearance with every speed in it."""
+
+    ASSUMPTIONS = L.ASSUMPTIONS
+    MIN_READINGS = 2  # the largest clearance has two design-speed readings
+
+    def __init__(self, case_id):
+        c = L.STAGE_8E
+        folder = L.CASES / c["folder"]
+        nominal = L.TIP_CLEARANCE_CASES[case_id]
+        self.case_id = case_id
+        self.design = L.stage8e_design(case_id)
+        self.design_speed_rpm = c["design_rpm"]
+        self.notes = ["tip clearance {:.2f} mm: nominal nonrotating {:.3f} cm less the {:.3f} cm growth TP-2049 calculates".format(
+                          10.0 * (nominal - c["growth_cm"]), nominal, c["growth_cm"]),
+                      "casing recess over the rotor at the larger clearances not modelled", "stator hub gap 0 (not stated)",
+                      "stations 1 and 3 at {:.3f} and {:.3f} cm (TP-2049 Fig. 2)".format(c["z_in_cm"], c["z_out_cm"]),
+                      "MCA C1/C2 from the printed KTC and ZTC (the tables print X FACTOR, not the turning-rate ratio)",
+                      "inlet blockage 0.02 (no blade-element data transcribed for this case)"]
+        table = L.read_overall(folder / "{}_tableVI_overall_clearance{:03d}.csv".format(c["report"], int(round(1000 * nominal))))
+        self.speeds = {}
+        for reading, v in table.items():
+            self.speeds.setdefault(int(10 * round(v["PERCENT OF DESIGN SPEED"] / 10.0)), {})[reading] = v
+        self.speeds = {k: v for k, v in sorted(self.speeds.items()) if len(v) >= self.MIN_READINGS}
+        self.rotor_elements, self.stator_elements = {}, {}
+        rows = L.read_geometry(folder / "{}_{}.csv".format(c["report"], c["rotor"]))
+        self.rotor_walls_in = (float(next(r for r in rows if r["RP"] == "HUB")["RI"]), float(next(r for r in rows if r["RP"] == "TIP")["RI"]))
+
+
 CASES = {case_id: (lambda c=case_id: LewisStage(c)) for case_id in L.LEWIS_STAGES}
 CASES.update({case_id: (lambda c=case_id: FanStage(c)) for case_id in L.FAN_STAGES})
+CASES.update({case_id: (lambda c=case_id: TipClearanceStage(c)) for case_id in L.TIP_CLEARANCE_CASES})
 
 
 # ------------------------------------------------------------------ model

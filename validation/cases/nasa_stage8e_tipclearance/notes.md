@@ -79,3 +79,28 @@ Resolved 3, still '?' 0, print errors 1.
 Print errors / print disagreements found in this pass:
 
 - TP2049_tableV_stator8.csv row 5 DELTA INC: printed `5.13`; TM X-2926 Table V prints 6.13 for the same cell; every other row is 5.86-6.14 (neighbours 6.12, 6.14).
+
+## Measured overall performance (Table VI)
+
+Table VI(a)-(d), pdf p18-19 (printed 16-17), one part per clearance, read from
+a 300-dpi render (the text layer is unusable). Files
+`TP2049_tableVI_overall_clearance<061|102|140|178>.csv`, readings as columns in
+printed order, every speed of a clearance in one file.
+
+| Clearance (nominal, cm) | 100 % | 70 % | Other speeds |
+|---|---|---|---|
+| 0.061 | 3364, 3365, 3366 | 3362, 3361, 3363 | 3367 (90 %), 3368 (80 %), 3369 (60 %), 3370 (50 %) |
+| 0.102 | 3381, 3383, 3382 | 3386, 3385, 3384 | |
+| 0.140 | 3404, 3403, 3402 | 3399, 3400, 3401 | |
+| 0.178 | 3424, 3423 | 3422, 3421, 3420 | |
+
+- Design speed 16100 rpm (Table I); ROTATIVE SPEED / PERCENT OF DESIGN SPEED
+  gives 16090-16108 on every reading.
+- The stage temperature-rise efficiency is formed with the stage temperature
+  ratio (it reproduces the print; with the rotor ratio it does not).
+- Checks, all pass: efficiencies from the pressure and temperature ratios
+  (within the rounding of the 3-decimal temperature ratio; 3362 rotor 0.928
+  against 0.921 from the rounded ratios); annulus/frontal flow 1.3447-1.3449
+  and orifice/frontal flow 0.1976-0.1977; head-rise coefficient over
+  (PR^k - 1) times (N/N_design)^2 constant at 1.613-1.625.
+- Tables VII-X (blade elements) are not transcribed.

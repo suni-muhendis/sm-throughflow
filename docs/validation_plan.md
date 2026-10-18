@@ -388,3 +388,34 @@ stator). All 20 measured points converge from the cold start. The stage
 pressure-rise error is +10 to +13 percent at every speed from 80 to 120
 percent and the stage efficiency within -2.3 to +3.0 points: the most
 uniform case so far, though its stator section is an assumption.
+
+## Results so far: stage 8E at four tip clearances
+
+TP-2049 tested one stage (rotor 8E, stator 8, multiple circular arcs) with
+the casing cut back to four nominal nonrotating tip clearances, 0.061, 0.102,
+0.140 and 0.178 cm; the report's calculated growth of 0.040 cm gives running
+clearances of 0.021 to 0.138 cm (0.2 to 1.1 percent of the leading-edge
+blade height). Table VI was transcribed for all four (100 and 70 percent
+speed); the tables print X FACTOR instead of the turning-rate ratio, so C1/C2
+and the transition point follow from the printed KTC and ZTC.
+
+**The model barely feels the clearance.** At equal flow (28.9 kg/s, design
+speed), going from the smallest to the largest clearance:
+
+| | Measured | Model |
+|---|---|---|
+| Stage efficiency | -6.7 points | -0.6 points |
+| Stage pressure rise (PR - 1) | -20 percent | -1 percent |
+| Rotor temperature rise (work) | -10 percent | none |
+
+Aungier's clearance model (6-85 to 6-89) adds a loss and spreads it
+linearly over the span; it has no effect on the turning, so the rotor's
+work does not change. The measurements show the clearance removing work as
+well as adding loss. At the measured points the stage pressure-rise error
+therefore grows with clearance (peak efficiency: +5, +17, +20, +24 percent
+at design speed), the largest single source of spread found so far. Open:
+a source-based clearance effect on work (underturning near the tip).
+
+Solver fix found on the way: the end-wall boundary layer's (8-23) divided by
+zero when a very thin profile rounded H1 to 1; the outer thickness is now
+taken as given there (no change elsewhere beyond round-off, 7e-11).

@@ -1,0 +1,585 @@
+{
+ "case": "nasa_stage8e_c178",
+ "simulator": "slc_aungier_experimental_v5",
+ "physics": {
+  "K1": 0.0073,
+  "max_loss": 0.5,
+  "smoothing": true,
+  "shock_mean": "arithmetic",
+  "endwall": true,
+  "maturity": "candidate",
+  "reward_enabled": false,
+  "purpose": "Aungier (2003) cascade, leakage and end-wall models on the SLC solver; pending validation."
+ },
+ "assumptions": [
+  "MCA sections from the printed turn rate, ZTC and ZMC (multiple_circular_arc)",
+  "angles, chord and t/c mapped from the element cones to the axial-tangential plane with the printed cone angles",
+  "edge planes at the mid-span element's ZI and ZO",
+  "uniform inlet total state; inlet end-wall blockage from the measured inlet profile (inlet_blockage)",
+  "tip clearance 1.38 mm: nominal nonrotating 0.178 cm less the 0.040 cm growth TP-2049 calculates",
+  "casing recess over the rotor at the larger clearances not modelled",
+  "stator hub gap 0 (not stated)",
+  "stations 1 and 3 at -2.540 and 13.462 cm (TP-2049 Fig. 2)",
+  "MCA C1/C2 from the printed KTC and ZTC (the tables print X FACTOR, not the turning-rate ratio)",
+  "inlet blockage 0.02 (no blade-element data transcribed for this case)"
+ ],
+ "speeds": {
+  "70": {
+   "rpm": 11270.0,
+   "inlet_blockage": 0.02,
+   "anchors": {
+    "choke": {
+     "measured": 22.84,
+     "model": 24.811375172103823,
+     "measured_is_choke": false,
+     "measured_slope": 5.171076835998286,
+     "error": null
+    },
+    "peak": {
+     "measured": {
+      "mass_flow": 20.99,
+      "stage_pr": 1.271,
+      "stage_eta": 0.836
+     },
+     "model": {
+      "mass_flow": 20.704114238551142,
+      "stage_pr": 1.3324551981149457,
+      "stage_eta": 0.8961714021023566
+     },
+     "error": {
+      "mass_flow": -0.013620093446825021,
+      "stage_pr_rise": 0.2267719487636377,
+      "stage_eta_points": 6.017140210235661
+     }
+    },
+    "stall": {
+     "measured": {
+      "mass_flow": 19.18,
+      "stage_pr": 1.287,
+      "stage_eta": 0.819
+     },
+     "model": null,
+     "error": null
+    }
+   },
+   "speed_line": [
+    {
+     "mass_flow": 24.78656379693172,
+     "converged": true,
+     "min_stall_margin": 0.5043277861504174,
+     "rotor_pr": 1.1903705473528992,
+     "rotor_tr": 1.067517445597755,
+     "stage_pr": 1.0721659731391309,
+     "stage_tr": 1.067517445645295,
+     "rotor_eta": 0.7562395469545252,
+     "stage_eta": 0.29787652887942556
+    },
+    {
+     "mass_flow": 24.374694969074795,
+     "converged": true,
+     "min_stall_margin": 0.46631648969054673,
+     "rotor_pr": 1.2163338337364153,
+     "rotor_tr": 1.0714289108247912,
+     "stage_pr": 1.1400795071816223,
+     "stage_tr": 1.0714289103613786,
+     "rotor_eta": 0.8058366412963746,
+     "stage_eta": 0.5344290616372421
+    },
+    {
+     "mass_flow": 23.962826141217874,
+     "converged": true,
+     "min_stall_margin": 0.432508689965756,
+     "rotor_pr": 1.2389043130261834,
+     "rotor_tr": 1.0749532908903672,
+     "stage_pr": 1.1896074153956282,
+     "stage_tr": 1.0749532903491519,
+     "rotor_eta": 0.8422734305737418,
+     "stage_eta": 0.678646183930623
+    },
+    {
+     "mass_flow": 23.55095731336095,
+     "converged": true,
+     "min_stall_margin": 0.39922566153902084,
+     "rotor_pr": 1.2583969777237412,
+     "rotor_tr": 1.0781141492116468,
+     "stage_pr": 1.2233693245660875,
+     "stage_tr": 1.0781141490312194,
+     "rotor_eta": 0.8690428969407336,
+     "stage_eta": 0.7592028717300595
+    },
+    {
+     "mass_flow": 23.139088485504026,
+     "converged": true,
+     "min_stall_margin": 0.3661533262784553,
+     "rotor_pr": 1.2755247258304554,
+     "rotor_tr": 1.0810291871482691,
+     "stage_pr": 1.2488176243126468,
+     "stage_tr": 1.0810291870118065,
+     "rotor_eta": 0.8887910488046459,
+     "stage_eta": 0.8090319011521977
+    },
+    {
+     "mass_flow": 22.7272196576471,
+     "converged": true,
+     "min_stall_margin": 0.3340896086575216,
+     "rotor_pr": 1.2906946041720981,
+     "rotor_tr": 1.0837629767810708,
+     "stage_pr": 1.2693621403791313,
+     "stage_tr": 1.0837629766557604,
+     "rotor_eta": 0.9030960477361534,
+     "stage_eta": 0.8420830195490173
+    },
+    {
+     "mass_flow": 22.31535082979018,
+     "converged": true,
+     "min_stall_margin": 0.30290973871914995,
+     "rotor_pr": 1.3041802403695535,
+     "rotor_tr": 1.0863573203233319,
+     "stage_pr": 1.2867071155288603,
+     "stage_tr": 1.086357320216289,
+     "rotor_eta": 0.9130172893099316,
+     "stage_eta": 0.8649566332416554
+    },
+    {
+     "mass_flow": 21.903482001933256,
+     "converged": true,
+     "min_stall_margin": 0.2723866326080844,
+     "rotor_pr": 1.3161994410102242,
+     "rotor_tr": 1.0888391117362768,
+     "stage_pr": 1.3014808265361466,
+     "stage_tr": 1.0888391116562028,
+     "rotor_eta": 0.9193883564643022,
+     "stage_eta": 0.8803232949443891
+    },
+    {
+     "mass_flow": 21.49161317407633,
+     "converged": true,
+     "min_stall_margin": 0.2423056375797994,
+     "rotor_pr": 1.3269191579373427,
+     "rotor_tr": 1.0912288086657334,
+     "stage_pr": 1.3141290556608578,
+     "stage_tr": 1.0912288086245703,
+     "rotor_eta": 0.9228208058273877,
+     "stage_eta": 0.8899727003931026
+    },
+    {
+     "mass_flow": 21.079744346219407,
+     "converged": true,
+     "min_stall_margin": 0.21258361887903288,
+     "rotor_pr": 1.3364619851452442,
+     "rotor_tr": 1.0935411482759148,
+     "stage_pr": 1.3248966159627307,
+     "stage_tr": 1.0935411482795445,
+     "rotor_eta": 0.9237677406535755,
+     "stage_eta": 0.8949573991720529
+    },
+    {
+     "mass_flow": 20.667875518362486,
+     "converged": true,
+     "min_stall_margin": 0.18911277864998888,
+     "rotor_pr": 1.3441326016474002,
+     "rotor_tr": 1.0955724915951097,
+     "stage_pr": 1.333184408415306,
+     "stage_tr": 1.095572491671833,
+     "rotor_eta": 0.9227395857190304,
+     "stage_eta": 0.8961601029816294
+    },
+    {
+     "mass_flow": 20.25600669050556,
+     "converged": true,
+     "min_stall_margin": 0.17097510104951708,
+     "rotor_pr": 1.3500687933579054,
+     "rotor_tr": 1.0973400916493885,
+     "stage_pr": 1.339283504030764,
+     "stage_tr": 1.0973400917681937,
+     "rotor_eta": 0.9200700104003849,
+     "stage_eta": 0.8944437214721124
+    },
+    {
+     "mass_flow": 19.844137862648637,
+     "converged": true,
+     "min_stall_margin": 0.15662418477082896,
+     "rotor_pr": 1.3547834022722036,
+     "rotor_tr": 1.0989548870782897,
+     "stage_pr": 1.3438044239182239,
+     "stage_tr": 1.0989548872203305,
+     "rotor_eta": 0.9160299820224107,
+     "stage_eta": 0.890431925234933
+    },
+    {
+     "mass_flow": 19.432269034791716,
+     "converged": true,
+     "min_stall_margin": 0.14273466237168697,
+     "rotor_pr": 1.3588125179566009,
+     "rotor_tr": 1.1005496925186706,
+     "stage_pr": 1.3473127057296819,
+     "stage_tr": 1.1005496924235132,
+     "rotor_eta": 0.9107094679491491,
+     "stage_eta": 0.8843748367943604
+    },
+    {
+     "mass_flow": 19.02040020693479,
+     "converged": true,
+     "min_stall_margin": 0.14010662628155668,
+     "rotor_pr": 1.3621668016551531,
+     "rotor_tr": 1.102090133082791,
+     "stage_pr": 1.3498657628362716,
+     "stage_tr": 1.102090132914419,
+     "rotor_eta": 0.9045036273543365,
+     "stage_eta": 0.87680239553498
+    },
+    {
+     "mass_flow": 18.608531379077867,
+     "converged": true,
+     "min_stall_margin": 0.1425861828085666,
+     "rotor_pr": 1.3651771601358145,
+     "rotor_tr": 1.1036300148881446,
+     "stage_pr": 1.3518431211222544,
+     "stage_tr": 1.1036300146844003,
+     "rotor_eta": 0.8977148226609443,
+     "stage_eta": 0.8681722993964811
+    }
+   ],
+   "readings": [
+    {
+     "reading": "3422",
+     "measured": {
+      "reading": "3422",
+      "mass_flow": 22.84,
+      "rpm": 11333.9,
+      "stage_pr": 1.191,
+      "stage_tr": 1.071,
+      "stage_eta": 0.719,
+      "rotor_pr": 1.245,
+      "rotor_tr": 1.072,
+      "rotor_eta": 0.9
+     },
+     "at_measured_flow": {
+      "mass_flow": 22.84,
+      "converged": true,
+      "overall": {
+       "rotor_pr": 1.2941773920331892,
+       "rotor_tr": 1.0847696132183775,
+       "stage_pr": 1.2726342235168926,
+       "stage_tr": 1.0847696130963165,
+       "rotor_eta": 0.9021469345099107,
+       "stage_eta": 0.8413774212227036
+      },
+      "errors": {
+       "stage_pr_rise": 0.4274043116067672,
+       "rotor_pr_rise": 0.20072404911505726,
+       "stage_tr_rise": 0.19393821262417643,
+       "rotor_tr_rise": 0.17735573914413094,
+       "stage_eta_points": 12.237742122270367,
+       "rotor_eta_points": 0.21469345099106585
+      },
+      "min_stall_margin": 0.33304482509472555
+     }
+    },
+    {
+     "reading": "3421",
+     "measured": {
+      "reading": "3421",
+      "mass_flow": 20.99,
+      "rpm": 11328.6,
+      "stage_pr": 1.271,
+      "stage_tr": 1.085,
+      "stage_eta": 0.836,
+      "rotor_pr": 1.292,
+      "rotor_tr": 1.085,
+      "rotor_eta": 0.891
+     },
+     "at_measured_flow": {
+      "mass_flow": 20.99,
+      "converged": true,
+      "overall": {
+       "rotor_pr": 1.34451317978317,
+       "rotor_tr": 1.0955849393850416,
+       "stage_pr": 1.3331986358195862,
+       "stage_tr": 1.0955849394091535,
+       "rotor_eta": 0.9235404630228593,
+       "stage_eta": 0.8960780358280012
+      },
+      "errors": {
+       "stage_pr_rise": 0.2295152613268867,
+       "rotor_pr_rise": 0.1798396567916778,
+       "stage_tr_rise": 0.12452869893121776,
+       "rotor_tr_rise": 0.12452869864754934,
+       "stage_eta_points": 6.00780358280012,
+       "rotor_eta_points": 3.254046302285929
+      },
+      "min_stall_margin": 0.19924601884700377
+     }
+    },
+    {
+     "reading": "3420",
+     "measured": {
+      "reading": "3420",
+      "mass_flow": 19.18,
+      "rpm": 11321.0,
+      "stage_pr": 1.287,
+      "stage_tr": 1.091,
+      "stage_eta": 0.819,
+      "rotor_pr": 1.306,
+      "rotor_tr": 1.092,
+      "rotor_eta": 0.859
+     },
+     "at_measured_flow": {
+      "mass_flow": 19.18,
+      "converged": true,
+      "overall": {
+       "rotor_pr": 1.3652907194812405,
+       "rotor_tr": 1.1027530698236003,
+       "stage_pr": 1.3530027676945298,
+       "stage_tr": 1.1027530696775398,
+       "rotor_eta": 0.9056292127237366,
+       "stage_eta": 0.8781812270315866
+      },
+      "errors": {
+       "stage_pr_rise": 0.22997480032937223,
+       "rotor_pr_rise": 0.19376052118052423,
+       "stage_tr_rise": 0.12915461184109733,
+       "rotor_tr_rise": 0.11688119373478512,
+       "stage_eta_points": 5.918122703158668,
+       "rotor_eta_points": 4.662921272373666
+      },
+      "min_stall_margin": 0.1395414562094508
+     }
+    }
+   ]
+  },
+  "100": {
+   "rpm": 16100.0,
+   "inlet_blockage": 0.02,
+   "anchors": {
+    "choke": {
+     "measured": 28.96,
+     "model": 29.96635834125,
+     "measured_is_choke": false,
+     "measured_slope": 1.9691889250122119,
+     "error": null
+    },
+    "peak": {
+     "measured": {
+      "mass_flow": 28.15,
+      "stage_pr": 1.613,
+      "stage_eta": 0.778
+     },
+     "model": {
+      "mass_flow": 27.42019651883001,
+      "stage_pr": 1.7580979262888157,
+      "stage_eta": 0.8339839897740244
+     },
+     "error": {
+      "mass_flow": -0.025925523309768717,
+      "stage_pr_rise": 0.236701347942603,
+      "stage_eta_points": 5.598398977402441
+     }
+    },
+    "stall": {
+     "measured": {
+      "mass_flow": 28.15,
+      "stage_pr": 1.613,
+      "stage_eta": 0.778
+     },
+     "model": null,
+     "error": null
+    }
+   },
+   "speed_line": [
+    {
+     "mass_flow": 29.93639198290875,
+     "converged": true,
+     "min_stall_margin": 0.010848721736325118,
+     "rotor_pr": 1.548748483757475,
+     "rotor_tr": 1.1718575222534986,
+     "stage_pr": 1.3692749265323796,
+     "stage_tr": 1.1718575220334173,
+     "rotor_eta": 0.7748047480293421,
+     "stage_eta": 0.5467712651363138
+    },
+    {
+     "mass_flow": 29.438950434444,
+     "converged": true,
+     "min_stall_margin": 0.030396780270190105,
+     "rotor_pr": 1.6211090517925768,
+     "rotor_tr": 1.1827204022065265,
+     "stage_pr": 1.5632181650114427,
+     "stage_tr": 1.1827204017927888,
+     "rotor_eta": 0.8101963661402883,
+     "stage_eta": 0.7452442681512184
+    },
+    {
+     "mass_flow": 28.94150888597925,
+     "converged": true,
+     "min_stall_margin": 0.04812933915253104,
+     "rotor_pr": 1.679002543415866,
+     "rotor_tr": 1.191564941515983,
+     "stage_pr": 1.648798131919272,
+     "stage_tr": 1.1915649412382465,
+     "rotor_eta": 0.8331849757062104,
+     "stage_eta": 0.8018642244544416
+    },
+    {
+     "mass_flow": 28.4440673375145,
+     "converged": true,
+     "min_stall_margin": 0.06309887064092035,
+     "rotor_pr": 1.723936165615767,
+     "rotor_tr": 1.1988038218422254,
+     "stage_pr": 1.6992225349671661,
+     "stage_tr": 1.1988038218429424,
+     "rotor_eta": 0.8470351525356229,
+     "stage_eta": 0.8228346993098753
+    },
+    {
+     "mass_flow": 27.946625789049747,
+     "converged": true,
+     "min_stall_margin": 0.07814857901840977,
+     "rotor_pr": 1.7540998185231997,
+     "rotor_tr": 1.20409263574942,
+     "stage_pr": 1.7281870789977773,
+     "stage_tr": 1.2040926359657582,
+     "rotor_eta": 0.8535322997213969,
+     "stage_eta": 0.8291156633587288
+    },
+    {
+     "mass_flow": 27.449184240584998,
+     "converged": true,
+     "min_stall_margin": 0.13591893258082166,
+     "rotor_pr": 1.787258147301161,
+     "rotor_tr": 1.2096120006357034,
+     "stage_pr": 1.7572923200991992,
+     "stage_tr": 1.2096120001935173,
+     "rotor_eta": 0.861115747589826,
+     "stage_eta": 0.8339692283654722
+    },
+    {
+     "mass_flow": 26.95174269212025,
+     "converged": true,
+     "min_stall_margin": 0.13185332019697493,
+     "rotor_pr": 1.8060559532710145,
+     "rotor_tr": 1.213754335064457,
+     "stage_pr": 1.7711168625659313,
+     "stage_tr": 1.2137543355839275,
+     "rotor_eta": 0.8609651286034739,
+     "stage_eta": 0.8301289113793628
+    },
+    {
+     "mass_flow": 26.4543011436555,
+     "converged": true,
+     "min_stall_margin": 0.12750482274408736,
+     "rotor_pr": 1.8133355400108238,
+     "rotor_tr": 1.216645106140786,
+     "stage_pr": 1.77432048545769,
+     "stage_tr": 1.2166451070737236,
+     "rotor_eta": 0.8557629752171347,
+     "stage_eta": 0.8218596650390505
+    },
+    {
+     "mass_flow": 25.95685959519075,
+     "converged": false
+    },
+    {
+     "mass_flow": 25.459418046726,
+     "converged": false
+    },
+    {
+     "mass_flow": 24.96197649826125,
+     "converged": false
+    },
+    {
+     "mass_flow": 24.4645349497965,
+     "converged": false
+    },
+    {
+     "mass_flow": 23.96709340133175,
+     "converged": false
+    },
+    {
+     "mass_flow": 23.469651852867,
+     "converged": false
+    },
+    {
+     "mass_flow": 22.97221030440225,
+     "converged": false
+    },
+    {
+     "mass_flow": 22.4747687559375,
+     "converged": false
+    }
+   ],
+   "readings": [
+    {
+     "reading": "3424",
+     "measured": {
+      "reading": "3424",
+      "mass_flow": 28.96,
+      "rpm": 16165.6,
+      "stage_pr": 1.581,
+      "stage_tr": 1.183,
+      "stage_eta": 0.765,
+      "rotor_pr": 1.655,
+      "rotor_tr": 1.189,
+      "rotor_eta": 0.818
+     },
+     "at_measured_flow": {
+      "mass_flow": 28.96,
+      "converged": true,
+      "overall": {
+       "rotor_pr": 1.6910360465973202,
+       "rotor_tr": 1.1942852710073133,
+       "stage_pr": 1.6617603025805125,
+       "stage_tr": 1.194285270640478,
+       "rotor_eta": 0.8337119750037255,
+       "stage_eta": 0.8039388676392822
+      },
+      "errors": {
+       "stage_pr_rise": 0.13900224196301658,
+       "rotor_pr_rise": 0.055016865034076545,
+       "stage_tr_rise": 0.06166814557638256,
+       "rotor_tr_rise": 0.027964396864091245,
+       "stage_eta_points": 3.8938867639282226,
+       "rotor_eta_points": 1.5711975003725565
+      },
+      "min_stall_margin": 0.048750600314968695
+     }
+    },
+    {
+     "reading": "3423",
+     "measured": {
+      "reading": "3423",
+      "mass_flow": 28.15,
+      "rpm": 16157.0,
+      "stage_pr": 1.613,
+      "stage_tr": 1.188,
+      "stage_eta": 0.778,
+      "rotor_pr": 1.674,
+      "rotor_tr": 1.195,
+      "rotor_eta": 0.815
+     },
+     "at_measured_flow": {
+      "mass_flow": 28.15,
+      "converged": true,
+      "overall": {
+       "rotor_pr": 1.7532919609816697,
+       "rotor_tr": 1.2044858053874845,
+       "stage_pr": 1.727685747807779,
+       "stage_tr": 1.204485805799929,
+       "rotor_eta": 0.8511353385216149,
+       "stage_eta": 0.82704745887578
+      },
+      "errors": {
+       "stage_pr_rise": 0.18708931126880746,
+       "rotor_pr_rise": 0.11764385902324892,
+       "stage_tr_rise": 0.08769045638260153,
+       "rotor_tr_rise": 0.04864515583325346,
+       "stage_eta_points": 4.904745887577999,
+       "rotor_eta_points": 3.613533852161499
+      },
+      "min_stall_margin": 0.07401808324458625
+     }
+    }
+   ]
+  }
+ }
+}
