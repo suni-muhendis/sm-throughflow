@@ -34,7 +34,11 @@ def meridional_profile(delta_minus_delta1, theta11):
     # at the separation limit the outer thickness follows from H1 = 2.4 instead.
     H1 = SEPARATION_SHAPE_FACTOR
     if ratio > 2.0 * H1 / (H1 - 1.0):
+        # Below the limit (8-23) returns the given outer thickness; it is used as such, since
+        # H1 = ratio / (ratio - 2) rounds to 1 for a very thin profile and 2 H1 theta / (H1 - 1) would divide by zero.
         H1 = ratio / (ratio - 2.0)
+        delta1 = H1 * theta
+        return 0.5 * (H1 - 1.0), H1, delta1, float(delta_minus_delta1) + delta1
     n = 0.5 * (H1 - 1.0)  # (8-22)
     delta1 = H1 * theta
     return n, H1, delta1, 2.0 * H1 * theta / (H1 - 1.0) + delta1
