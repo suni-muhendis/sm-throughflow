@@ -21,6 +21,9 @@ class SlcAungierSimulator(BaseSimulator):
     """
 
     VERSION = SIMULATOR_VERSION
+    #: Experimental switch, off in every released profile: None, or "gallimore" for spanwise mixing
+    #: (sm_throughflow.solver.mixing) at the level of Gallimore and Cumpsty's eq. (9).
+    mixing_model = None
 
     def simulate(self, inputs: Dict[str, Any]) -> Tuple[bool, Dict[str, float], Dict[str, Any], str]:
         try:
@@ -160,9 +163,33 @@ class SlcAungierSimulator(BaseSimulator):
             rows.append(model.blade_row(row.row_id, 1 + 2 * k))
         endwall = EndwallBoundaryLayers(inlet_blockage=task.physics.inlet_blockage) if profile["endwall"] else None
         inlet = InletCondition(P0=task.inlet.total_pressure_pa, T0=task.inlet.total_temperature_k, alpha_deg=task.inlet.flow_angle_deg)
+        mixing = SlcAungierSimulator.spanwise_mixing(design, annulus, omega) if SlcAungierSimulator.mixing_model == "gallimore" else None
         flow = Throughflow(annulus, qn, inlet, point.mass_flow_kg_s, rows=rows, gas=gas, stream_surfaces=task.numerics.stream_surfaces,
-                           curvature=task.numerics.curvature, endwall=endwall)
+                           curvature=task.numerics.curvature, endwall=endwall, mixing=mixing)
         return flow, models
+
+    @staticmethod
+    def spanwise_mixing(design, annulus, omega):
+        """Gallimore's uniform mixing over the bladed region (sm_throughflow.solver.mixing).
+
+        The paper defines its inputs for a repeating stage; here L_s is the
+        bladed axial length per rotor, t the mean midspan maximum thickness of
+        all rows and U_m the mean midspan blade speed of the rotors.
+        """
+        from .solver.mixing import SpanwiseMixing
+
+        rows = design.rows
+        mid = len(SPAN_FRACTIONS) // 2
+        rotors = [row for row in rows if row.row_type == "rotor"]
+        stages = max(1, len(rotors))
+        length = (rows[-1].trailing_edge_axial_m - rows[0].leading_edge_axial_m) / stages
+        thickness = float(np.mean([row.chord_m[mid] * row.thickness_to_chord[mid] for row in rows]))
+        speeds = []
+        for row in rotors:
+            x = 0.5 * (row.leading_edge_axial_m + row.trailing_edge_axial_m)
+            speeds.append(omega * 0.5 * (float(annulus.hub_radius(x)) + float(annulus.shroud_radius(x))))
+        return SpanwiseMixing(stage_length=length, thickness=thickness, blade_speed=float(np.mean(speeds)) if speeds else 1.0,
+                              start=1, stage_in=1, stage_out=2 * len(rows), stages=stages)
 
     # ------------------------------------------------------------ solve
     def _solve_point(self, design, task, point):

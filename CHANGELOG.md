@@ -17,10 +17,18 @@ different simulator or score versions comparable.
 
 ### Added
 
+- **Start-up homotopy in the throughflow solver.** When a point fails or does
+  not converge from the cold start, it is solved again with the row losses
+  ramped from 0 to 1, each step starting from the last one's stream surfaces
+  (`docs/throughflow_solver.md`). Points that converge cold give identical
+  numbers; on the validation cases 17 more measured points converge.
 - **Carter's rule for multiple-circular-arc rows.** Their design deviation
   is now the NASA Lewis design code's Carter rule
   (`correlations.nasa_lewis`) instead of Lieblein's circular-arc rule; this
   moves the numbers of every MCA design (`docs/compressor_correlations.md`).
+- **Spanwise mixing (Gallimore, 1986), off by default**:
+  `sm_throughflow.solver.mixing` and `correlations.spanwise_mixing`, enabled
+  only through the experimental `SlcAungierSimulator.mixing_model` switch.
 - **Simulator `slc_aungier_experimental_v5`** with the v2 contracts
   (`throughflow_design_v2`, `throughflow_task_v2`) for axial compressors. It
   runs on the package's own streamline-curvature solver with Aungier's (2003)

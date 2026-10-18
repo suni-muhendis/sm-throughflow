@@ -8,9 +8,13 @@ from .gas import PerfectGas
 from .geometry import Annulus, QuasiNormals, SurfaceGeometry, surface_geometry, uniform_flow_fractions
 from .quasi_normal import StationFlow, solve_quasi_normal
 from .endwall import EndwallBoundaryLayers, EndwallResult
+from .mixing import SpanwiseMixing, mixing_increments
 from .rows import BladeRow, ExitGeometry, RowPerformance
 
 Profile = Union[float, Sequence[float]]
+
+#: Loss scales of the start-up homotopy (Throughflow.solve); the last must be 1.
+LOSS_HOMOTOPY = (0.0, 0.25, 0.5, 0.75, 1.0)
 
 
 def _on_span(values, t):
@@ -56,6 +60,7 @@ class ThroughflowSolution:
     convergence: Convergence
     blockage: Optional[np.ndarray] = None
     endwall: Optional[EndwallResult] = None
+    mixing_coefficient: float = 0.0
 
 
 class Throughflow:
@@ -81,6 +86,7 @@ class Throughflow:
         endwall: Optional[EndwallBoundaryLayers] = None,
         endwall_relaxation: float = 0.5,
         max_blockage: float = 0.5,
+        mixing: Optional[SpanwiseMixing] = None,
     ):
         self.annulus = annulus
         self.qn = quasi_normals
@@ -94,7 +100,9 @@ class Throughflow:
         self.endwall = endwall
         self.endwall_relaxation = float(endwall_relaxation)
         self.max_blockage = float(max_blockage)
+        self.mixing = mixing
         self._kb = self.blockage.copy()  # the blockage factor in use during a solution
+        self._loss_scale = 1.0  # below 1 only during the start-up homotopy
         self.row_at = {}
         for row in self.rows:
             if not 0 <= row.inlet < self.qn.count - 1:
@@ -137,20 +145,45 @@ class Throughflow:
         alpha = np.radians(_on_span(0.0 if self.inlet.alpha_deg is None else self.inlet.alpha_deg, t))
         return self._solve_station(geo, 0, 0.0, H, s, previous, beta=alpha)
 
-    def _duct_station(self, geo, q, upstream: StationFlow, previous):
-        # (7-40) to (7-42): r C_theta, H and s carried along each stream surface.
-        return self._solve_station(geo, q, 0.0, upstream.H, upstream.s, previous, swirl=upstream.r * upstream.C_theta)
+    def _duct_station(self, geo, q, upstream: StationFlow, previous, mix=None):
+        # (7-40) to (7-42): r C_theta, H and s carried along each stream surface, plus any mixing change.
+        dH, ds, drct = (0.0, 0.0, 0.0) if mix is None else mix
+        return self._solve_station(geo, q, 0.0, upstream.H + dH, upstream.s + ds, previous, swirl=upstream.r * upstream.C_theta + drct)
 
-    def _row_station(self, geo, q, row: BladeRow, upstream: StationFlow, previous, tol=1e-12, max_passes=200, relaxation=0.5):
+    def _mixing(self, geo, q, upstream: StationFlow, downstream: Optional[StationFlow]):
+        """Mixing changes (dH, ds, d rC_theta) over the gap ending at quasi-normal q, or None.
+
+        Trapezoidal along the gap: the rates on the upstream station of this
+        pass and on the downstream station of the previous overall iteration
+        (Gallimore evaluates the radial derivatives on the previous iteration,
+        Part II p. 12), so a row's own loss is mixed across the row.
+        """
+        mix = self.mixing
+        if mix is None or mix.epsilon <= 0.0 or q - 1 < mix.start:
+            return None
+        dm = geo.m[q] - geo.m[q - 1]
+        a = mixing_increments(self.gas, upstream, geo.phi[q - 1], dm, mix.epsilon)
+        if downstream is None:
+            return a
+        b = mixing_increments(self.gas, downstream, geo.phi[q], dm, mix.epsilon)
+        return tuple(0.5 * (x + y) for x, y in zip(a, b))
+
+    def _row_station(self, geo, q, row: BladeRow, upstream: StationFlow, previous, tol=1e-12, max_passes=200, relaxation=0.5, mix=None):
         """Exit station of a row, iterating the row model with the exit flow it sets.
 
         A model whose angle and loss depend on the exit flow (deviation on
         W_m2/W_m1, for example) can overshoot from pass to pass, so after the
         first pass its output is under-relaxed; a model that ignores the exit
         flow converges in two passes as before.
+
+        Mixing across the row (``mix``) adds its heat and shear work to the
+        rothalpy, dI = dH - omega d(rC_theta), and its entropy to the exit;
+        the exit angle stays the one the row sets, so the blade carries the
+        mixing torque (Gallimore lets the angle drift instead, Part II p. 12).
         """
         gas, omega = self.gas, row.omega
-        I = upstream.H - omega * upstream.r * upstream.C_theta  # (7-43)
+        dH, ds_mix, drct = (0.0, 0.0, 0.0) if mix is None else mix
+        I = upstream.H - omega * upstream.r * upstream.C_theta + dH - omega * drct  # (7-43)
         H_rel_in = I + 0.5 * (omega * upstream.r) ** 2
         P_rel_in = gas.pressure(H_rel_in, upstream.s)
         H_rel_out = I + 0.5 * (omega * geo.r[q]) ** 2  # (7-47), (7-48)
@@ -161,7 +194,7 @@ class Throughflow:
         for _ in range(max_passes):
             perf: RowPerformance = row.model(upstream, station, exit_geometry)
             angle = np.asarray(perf.exit_angle, dtype=float)
-            loss = np.asarray(perf.loss, dtype=float)
+            loss = self._loss_scale * np.asarray(perf.loss, dtype=float)
             blocked = None if perf.wake_blockage is None else np.asarray(perf.wake_blockage, dtype=float)
             if applied is not None:
                 angle = applied[0] + relaxation * (angle - applied[0])
@@ -176,7 +209,7 @@ class Throughflow:
                 P_rel_out = (P_rel_ideal + loss * P_exit) / (1.0 + loss)
             else:
                 raise ValueError("unknown loss basis {}".format(perf.basis))
-            s_out = gas.entropy(H_rel_out, P_rel_out)
+            s_out = gas.entropy(H_rel_out, P_rel_out) + ds_mix
             wake = None if blocked is None else 1.0 - blocked  # (7-6)
             new = self._solve_station(geo, q, omega, I, s_out, station, beta=angle, wake=wake)
             if station is not None and np.max(np.abs(new.Wm - station.Wm)) <= tol * np.max(new.Wm):
@@ -225,8 +258,46 @@ class Throughflow:
 
     # ------------------------------------------------------------------- solve
     def solve(self, tol: float = 1e-9, max_iterations: int = 500, b_star: float = 8.0) -> ThroughflowSolution:
+        """Solve from uniform-flow stream surfaces; if that fails, through a loss homotopy.
+
+        A cold start can fail where a solution exists: on the first outer
+        iterations the stream surfaces are far from their final positions, a
+        row whose loss rises with its exit diffusion then sees a low exit
+        velocity, its loss grows, the velocity falls further and the
+        quasi-normal has no solution. The fallback solves again with the row
+        losses scaled by each factor of LOSS_HOMOTOPY in turn, starting every
+        step from the stream surfaces of the step before; the last step is the
+        full model, so its solution is the model's solution at this point. A
+        point that converges from the cold start never reaches the fallback,
+        and when the fallback fails too the cold-start outcome is returned.
+        """
+        try:
+            cold = self._solve(tol, max_iterations, b_star)
+        except (RuntimeError, ValueError, FloatingPointError) as exc:  # ChokedError is a RuntimeError
+            cold, error = None, exc
+        if cold is not None and cold.convergence.converged:
+            return cold
+        t_start = None
+        try:
+            for scale in LOSS_HOMOTOPY:
+                self._loss_scale = scale
+                sol = self._solve(tol, max_iterations, b_star, t_start)
+                if not sol.convergence.converged:
+                    break
+                t_start = sol.geometry.y / sol.geometry.y[:, -1:]
+            else:
+                return sol
+        except (RuntimeError, ValueError, FloatingPointError):
+            pass
+        finally:
+            self._loss_scale = 1.0
+        if cold is None:
+            raise error
+        return cold
+
+    def _solve(self, tol, max_iterations, b_star, t_start=None) -> ThroughflowSolution:
         psi = np.linspace(0.0, 1.0, self.n)
-        t = uniform_flow_fractions(self.qn, psi)
+        t = uniform_flow_fractions(self.qn, psi) if t_start is None else np.array(t_start, dtype=float)
         stations: List[Optional[StationFlow]] = [None] * self.qn.count
         performance = {}
         conv = Convergence()
@@ -236,17 +307,24 @@ class Throughflow:
         endwall_result = None
         if self.endwall is not None:
             self.endwall.reset()
+        if self.mixing is not None:
+            self.mixing.epsilon = 0.0
         for iteration in range(1, max_iterations + 1):
             geo = surface_geometry(self.qn, t, self.curvature)
             previous = list(stations)
+            if self.mixing is not None and previous[0] is not None:
+                eps_old = self.mixing.epsilon
+                eps_new = self.mixing.update(self.gas, previous)
             for q in range(self.qn.count):
                 if q == 0:
                     stations[q] = self._inlet_station(geo, previous[q])
-                elif (q - 1) in self.row_at:
+                    continue
+                mix = self._mixing(geo, q, stations[q - 1], previous[q])
+                if (q - 1) in self.row_at:
                     row = self.row_at[q - 1]
-                    stations[q], performance[row.name] = self._row_station(geo, q, row, stations[q - 1], previous[q], tol=row_tol)
+                    stations[q], performance[row.name] = self._row_station(geo, q, row, stations[q - 1], previous[q], tol=row_tol, mix=mix)
                 else:
-                    stations[q] = self._duct_station(geo, q, stations[q - 1], previous[q])
+                    stations[q] = self._duct_station(geo, q, stations[q - 1], previous[q], mix=mix)
             t_target = self._mass_fraction_positions(geo, stations, psi)
             move = float(np.max(np.abs(t_target - t)))
             if move > last_move:
@@ -260,6 +338,8 @@ class Throughflow:
                 target = 1.0 - np.clip(endwall_result.blockage, 0.0, self.max_blockage)
                 dv = max(dv, float(np.max(np.abs(target - self._kb))))
                 self._kb = self._kb + self.endwall_relaxation * (target - self._kb)
+            if self.mixing is not None and previous[0] is not None:
+                dv = max(dv, abs(eps_new - eps_old) / max(eps_new, 1e-30))
             conv.iterations = iteration
             conv.position_change.append(move)
             conv.velocity_change.append(dv)
@@ -270,4 +350,5 @@ class Throughflow:
             row_tol = float(np.clip(0.01 * min(move, dv), 1e-12, 1e-6))
             t = t + self._damping(geo, stations, b_star) * (t_target - t)
         return ThroughflowSolution(geometry=geo, stations=stations, rows=self.rows, performance=performance, convergence=conv,
-                                   blockage=self._kb.copy(), endwall=endwall_result)
+                                   blockage=self._kb.copy(), endwall=endwall_result,
+                                   mixing_coefficient=0.0 if self.mixing is None else self.mixing.epsilon)

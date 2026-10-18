@@ -137,6 +137,45 @@ The first row model takes prescribed angles and losses; correlation-based
 models (Aungier ch. 6 for compressors; turbine sets later) plug into the same
 interface and use `sm_throughflow.correlations`.
 
+## Start-up homotopy
+
+A cold start (uniform-flow stream surfaces) can fail where a solution exists.
+On the first outer iterations the stream surfaces are far from their final
+positions; a row whose loss rises with its exit diffusion (Aungier's
+off-design loss through `D_eq`) then sees a low exit velocity near a wall, its
+loss grows, the velocity falls further, and the quasi-normal has no solution.
+Stage 52 at 34.24 kg/s shows it: the stator hub loss climbs from 0.06 to 0.29
+within the first outer iteration while the converged solution, reached from a
+neighbouring point, has a hub loss of 0.13.
+
+`Throughflow.solve` therefore solves from the cold start first and, only if
+that fails or does not converge, again with the row losses scaled by each
+factor of `LOSS_HOMOTOPY` (0, 0.25, 0.5, 0.75, 1), every step starting from
+the stream surfaces of the step before. The last step is the full model, so
+its solution is the model's solution at that point; a point that converges
+cold never reaches the fallback, and when the fallback fails the cold-start
+outcome (error or unconverged solution) is returned unchanged. On the
+validation cases (stages 35-38, 52, 53) every one of the 100 measured-flow
+points that converged cold gives identical numbers, 17 more converge, and
+none is lost.
+
+## Spanwise mixing (optional, off)
+
+`sm_throughflow.solver.mixing` adds Gallimore's (1986) turbulent-diffusion
+model of spanwise mixing: between quasi-normals each stream surface receives
+the entropy, total-enthalpy and angular-momentum changes of his equations
+(2)-(4) with the shear stresses and dissipation of his appendices, turbulent
+Prandtl and Schmidt numbers of one, zero shear and heat flux at the walls, and
+a uniform mixing coefficient from Gallimore and Cumpsty's eq. (9)
+(`correlations.spanwise_mixing`). Energy and angular momentum are conserved
+to round-off. Aungier's method has no mixing (he smooths the loss instead,
+section 9.2), so the model is off in every profile; the simulator switch
+`SlcAungierSimulator.mixing_model = "gallimore"` enables it for experiments.
+Within one stage its effect is small (the diffusion length over a stage is a
+few millimetres at the level of eq. (9)); it did not change the convergence
+of stages 52 and 53. Its place is the multistage cases, where Gallimore shows
+the effect accumulating from stage to stage.
+
 ## Verification, in order
 
 Each step is a test before the next is built.
