@@ -17,6 +17,10 @@ different simulator or score versions comparable.
 
 ### Added
 
+- **Carter's rule for multiple-circular-arc rows.** Their design deviation
+  is now the NASA Lewis design code's Carter rule
+  (`correlations.nasa_lewis`) instead of Lieblein's circular-arc rule; this
+  moves the numbers of every MCA design (`docs/compressor_correlations.md`).
 - **Simulator `slc_aungier_experimental_v5`** with the v2 contracts
   (`throughflow_design_v2`, `throughflow_task_v2`) for axial compressors. It
   runs on the package's own streamline-curvature solver with Aungier's (2003)

@@ -230,14 +230,19 @@ to 2 deg more than the printed DELTA INC, and the expansion angle below
 exceeds the printed PHISS by 1 to 2 deg (the cone layout and the edge
 treatment are the likely difference).
 
-For incidence, deviation and loss the multiple circular arc is a
-circular-arc section: K_sh = 0.7 as for the double circular arc, Lieblein's
-circular-arc deviation (6-19), and a/c, where the correlations use it (the
-design angle of attack, 6-8), is the chordwise position of the maximum
-camber of the constructed meanline. The Lewis designers used Carter's rule
-with m fitted to Carter and Hughes's curves as a function of setting angle
-and a/c, on an equivalent-circulation camber (TN D-7345 eqs. 20-21; NASA TM
-X-2379; GE CR-54581 app. B); it is a candidate for a later comparison.
+For incidence and loss the multiple circular arc is a circular-arc section:
+K_sh = 0.7 as for the double circular arc, and a/c, where the correlations use
+it (the design angle of attack, 6-8), is the chordwise position of the maximum
+camber of the constructed meanline. Its design deviation is the rule of the
+NASA Lewis design code that produced these sections, Carter's rule with m
+fitted to Carter and Hughes's curves as a function of setting angle and a/c
+(TN D-7345 eqs. 20-21; NASA TM X-2379; GE CR-54581 app. B;
+`correlations.nasa_lewis`), in place of Lieblein's circular-arc deviation
+(6-19), which was used first. On stages 35-38 it lowers the stage
+pressure-rise error at the 58 points both converge from +12.2 to +9.3 percent
+(spread 12.1 to 11.2 percent), but moves Stage 38's design-speed choke flow
+from +0.2 to -2.0 percent, leaving five of its six measured points beyond the
+model's choke.
 
 **Expansion angle from the constructed section.** (6-65) to (6-69) take
 the suction surface as a circular arc that turns through the whole camber.

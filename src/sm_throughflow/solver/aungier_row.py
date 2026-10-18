@@ -12,6 +12,7 @@ from typing import Optional, Sequence
 import numpy as np
 
 from ..correlations import aungier as A
+from ..correlations import nasa_lewis as L
 from .gas import PerfectGas
 from .quasi_normal import StationFlow
 from .rows import BladeRow, ExitGeometry, RowPerformance
@@ -217,6 +218,9 @@ class AungierCompressorRow:
             root = np.sqrt(sigma)
             howell = (0.92 * g["a_c"] ** 2 + 0.002 * g["k2"]) / (1.0 - 0.002 * theta / root) * theta / root
             return howell + (thickness - 1.0) * delta0  # (6-26)
+        if self.camberline == "multiple_circular_arc":
+            # The NASA Lewis design code's rule for the sections it designed (correlations.nasa_lewis).
+            return L.carter_deviation(theta, g["stagger"], g["a_c"], sigma)
         camberline = "naca65" if self.camberline == "naca65" else "circular_arc"
         return thickness * delta0 + A.lieblein_deviation_slope(np.abs(beta1_star), sigma, camberline) * theta  # (6-19)
 
