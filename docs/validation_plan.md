@@ -36,7 +36,7 @@ machine:
 
 | Anchor | Quantities |
 |---|---|
-| Choke | Maximum mass flow at the speed, where the measured characteristic is vertical (the relative fall of PR - 1 between the two highest-flow points is at least 10 times their relative flow difference). Elsewhere the highest measured flow is a rig limit, not a choke point, and is not compared. |
+| Choke | Maximum mass flow at the speed, where the measured characteristic is vertical (the relative change of PR - 1 between the two highest-flow points, in either direction, is at least 10 times their relative flow difference). Elsewhere the highest measured flow is a rig limit, not a choke point, and is not compared. |
 | Peak efficiency | Peak efficiency, and mass flow and pressure ratio at that point. |
 | Near stall | Mass flow, pressure ratio and efficiency at the last stable point; stall margin. |
 | Every measured point | PR, TR and efficiency at the measured mass flow (secondary). |
@@ -504,6 +504,79 @@ high. One stage 66 point (28.81 kg/s) does not converge, while 28.6 and
 
 Over the 227 points the stage pressure-rise error is +7.6 percent (spread
 12.8) and the stage efficiency error +1.9 points (spread 5.6).
+
+## Results so far: the two-stage fans (TP-1314, TP-1493)
+
+The first multistage cases are the 427-m/s two-stage fan of TP-1314 and
+the same fan with a low-aspect-ratio first rotor, later called Rotor 67
+(TP-1493). Only the first rotor differs; the other rows and the flow path
+are the same. Their overall tables give each speed in three parts: the
+whole fan, stage one and stage two. The harness compares the whole fan as
+its "stage" quantities and rotor one as its "rotor" quantities; no blade
+elements are transcribed yet. Rules:
+
+- rotor 1 of both is multiple circular arc. Rotor 2 is multiple circular
+  arc from the tip to 44 percent span and double circular arc below, where
+  its turning ratio is 1, so the MCA construction gives the circular arc.
+  Both stators are double circular arc.
+- TP-1314 gives static tip clearances (0.114 and 0.127 cm); the running
+  clearance takes off the TP-2049 growth. TP-1493 states calculated running
+  clearances of 0.04 cm.
+- stations 1 and 3 are TP-1314's Fig. 1 survey planes. TP-1493 measures Z
+  from its new rotor's hub leading edge, 2.144 cm ahead of TP-1314's, and
+  prints the same planes shifted by that amount.
+- rotor 1 of TP-1314 has a part-span damper at 42 percent span, which the
+  model does not have. Rotor 67 has none. TP-1493 reports that its tip
+  leading edge uncambers about 1.2 deg more than the design allowed; this is
+  not modelled.
+
+Mean errors at the measured flow (whole-fan PR - 1 / efficiency points;
+the number of converged points in brackets):
+
+| Fan | 100 % | 90 % | 80 % | 70 % | 60 % | 50 % |
+|---|---|---|---|---|---|---|
+| TP-1314 | -10 % / +0.0 (1 of 5) | | +17 % / +4.5 (3) | | +30 % / +5.4 (3 of 4) | |
+| TP-1493 | no solution | +5 % / +1.0 (2 of 3) | +17 % / +3.2 (3 of 5) | +14 % / +2.2 (2 of 3) | | +19 % / +0.4 (2 of 3) |
+
+TP-1314's design-speed line is vertical (all five readings within 32.85 to
+33.17 kg/s). The model chokes 0.6 percent below the highest of them; at the
+matched flows the whole-fan error is +12.6 percent / +3.9 points. The
+part-speed excess work of the single stages appears in both fans and grows
+through the second stage. Rotor 1's own errors stay small: TP-1314 +1.0 to
++3.6 points, Rotor 67 -1.6 to +1.9 points. The largest whole-fan errors are
+at the highest flows of each line, where the second stage runs at low
+incidence.
+
+TP-1493 has no solution at design speed at any flow down to half the
+measured flow. At every other speed its lowest-flow point fails too.
+Rotor 67 puts much more work into the tip than the hub: in the zero-loss
+start at 33 kg/s the total enthalpy behind stage one rises by about 14
+kJ/kg from hub to tip. At the rotor-2
+exit, integrating the meridional velocity from the hub then reaches
+negative static enthalpy at the tip for every hub velocity the bracket
+tries. Below that range the inner fixed-point iteration does not converge.
+Treating that case as an impossible state instead of stopping does not
+recover the solution, so it is recorded as a limit of the method on this
+machine, not a numerical slip.
+
+### Choke search corrected
+
+Two harness rules were changed, and every case was run again:
+
+- a measured line counts as vertical whatever the sign of the pressure-ratio
+  change between its two highest-flow points. On a vertical line the scatter
+  sets that sign: TP-1314 at 100 percent, stage 6-1 at 100 percent.
+- the model's choke flow is searched in 2-percent steps from a converged
+  point, and one failed step no longer ends the search: the next three steps
+  are tried, and the search continues from any that converges. Seven speed
+  lines had stopped at a single non-converging point 7 to 23 percent below
+  the true choke flow. Their design-speed choke errors become: stage 12-5
+  +2.0 percent (was -5.1), 14-10 +0.8 (was -7.7), 6-1 +0.5 (was -7.7). Errors
+  at the measured flows are unchanged to the last digit.
+
+Over the 243 measured points the stage (whole-fan) pressure-rise error is
++8.1 percent (spread 12.9) and the efficiency error +2.0 points (spread
+5.4).
 
 ## Off-design deviation: Creveling and Carmody's increment, tried and not adopted
 

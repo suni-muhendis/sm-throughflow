@@ -138,3 +138,26 @@ Resolved 14, still '?' 0, print errors 0.
 | TP1314_tableII_stator2.csv | 4 | ABS VEL OUT | `170.3?` | `170.3` | stator: ABS VEL OUT = REL VEL OUT = MERID VEL OUT = 170.3 (TANG VEL OUT .0) | 600-dpi read: middle digit broken (17?.3); relation fixes 170.3 |
 | TP1314_tableII_stator2.csv | 5 | REL VEL OUT | `170.3?` | `170.3` | stator: REL VEL OUT = ABS VEL OUT = MERID VEL OUT = 170.3 | 600-dpi read: 17?.3 broken; relation fixes 170.3 |
 | TP1314_tableII_stator2.csv | 6 | MERID VEL IN | `174.5?` | `174.5` | VM = sqrt(222.1^2 - 137.4^2) = 174.50 | 600-dpi read: 174. clear, tenths broken; relation fixes 174.5 |
+
+## Measured overall performance (Tables V-VII) - added 2026-10-19
+
+Tables V, VI and VII, pdf p33-35 (printed 29-31), overall performance at 100, 80 and 60 percent of
+design speed, read from 300-dpi renders. Each table has three parts, each written to its own file:
+`TP1314_table<V|VI|VII>_overall_<fan|stage1|stage2>_<100|080|060>pct.csv`, readings as columns in
+printed order, printed labels as rows (the heading "**EQUIVALENT VALUES BASED ON STAGE INLET**" kept
+as a row without values).
+
+| Speed | Readings |
+|---|---|
+| 100 % | 190, 201, 212, 223, 234 |
+| 80 % | 245, 279, 290 |
+| 60 % | 374, 396, 407, 421 |
+
+Appendix C: WEIGHT FLOW is the equivalent weight flow and RPM the equivalent rotative speed; the
+fan part also prints DELTA and THETA. Checks, all pass: every adiabatic and polytropic efficiency
+from the printed pressure and temperature ratios; fan pressure and temperature ratios equal the
+products of the stage ratios; stage-one equivalent flow equals the fan flow, and stage-two flow
+equals stage one's times sqrt(TR1)/PR1; constant annulus/flow and frontal/flow ratios; wheel
+speed / percent speed 16032-16054 rpm. One uncertain cell: Table VII(a) reading 407 WEIGHT FLOW,
+second glyph broken, written `19.27?` (Table VII(b) prints 19.27). At design speed the five
+readings lie within 32.85-33.17 kg/s: the speed line is nearly vertical (choked).

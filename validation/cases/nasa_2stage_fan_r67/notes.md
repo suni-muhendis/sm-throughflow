@@ -122,3 +122,41 @@ Resolved 16, still '?' 0, print errors 0.
 | TP1493_tableII_stator1.csv | 15 | WHEEL SPEED OUT | `.0?` | `.0` | stator: wheel speed 0 (every other row .0) | 600-dpi read: open 0 glyph (dropout); stator wheel speed is 0 |
 | TP1493_tableII_stator2.csv | 3 | STREAMLINE SLOPE OUT | `-.03?` | `-.03` | casing is cylindrical at the stator-2 exit (Fig. 1 outer radius 23.622 from Z = 30.084 to beyond 36.754; Table III RI = RO = 23.622 at TIP), so the tip slope must be near 0, which excludes -.83 | 600-dpi zoom: -.03 with a blotted 0; flowpath check confirms |
 | TP1493_tableII_stator2.csv | 7 | EFF | `.000?` | `.000` | stator EFF is printed .000 on every other row of both stators | 600-dpi read: first 0 partly dropped out; value .000 |
+
+## Measured overall performance (Tables IV-VIII) - added 2026-10-19
+
+Tables IV to VIII, pdf p32-36 (printed 30-34), overall performance at 100, 90, 80, 70 and 50
+percent of design speed with the design stator settings (the stator-reset and casing-treatment
+tests appear only in figures), read from 300-dpi renders, doubtful cells at 600 dpi. Each table has
+three parts, each written to its own file:
+`TP1493_table<IV..VIII>_overall_<fan|stage1|stage2>_<NNN>pct.csv`, readings as columns in printed
+order, printed labels as rows (the headings "**EQUIVALENT VALUES BASED ON STAGE INLET**" and
+"**CUMULATIVE VALUES**" kept as rows without values), values as printed (no leading zero).
+
+| Speed | Readings |
+|---|---|
+| 100 % | 1283, 1382, 1393, 1415, 1426, 1437, 1461 |
+| 90 % | 1310, 1321, 1332 |
+| 80 % | 1347, 1358, 1369, 1544, 1555 |
+| 70 % | 1475, 1486, 1497 |
+| 50 % | 1510, 1521, 1533 |
+
+Reading 1283 is the peak-efficiency point the text quotes (34.03 kg/s, pressure ratio 2.471, pdf
+p8). Checks, all pass: every adiabatic and polytropic efficiency from the printed ratios; rotor
+head-rise = temperature-rise coefficient x rotor efficiency; fan ratios equal the products of the
+stage ratios and the cumulative values of part (c); stage-one flow and speed equal the fan's;
+stage-two equivalent flow and speed follow from stage one's; tip speed / wheel speed and
+annulus/flow constant per stage; wheel speed / percent speed 16030-16054 rpm.
+
+Uncertain cells ('?', broken glyphs; the value the checks give is written):
+
+| File | Reading | Row | Written | Check |
+|---|---|---|---|---|
+| tableIV stage2 | 1283 | ROTOR POLYTROPIC EFFICIENCY | .884? | ratios give 0.887; the glyph is 6 or 8 |
+| tableIV stage2 | 1283 | MASS FLOW PER UNIT ANNULUS AREA | 175.19? | 22.32 x 7.849 = 175.19 |
+| tableVI fan | 1555 | WHEEL SPEED, RPM | 12899.0? | part (b) prints 12899.0 |
+| tableVI stage1 | 1347 | STAGE TOTAL PRESSURE RATIO | 1.349? | 1.508 / 1.118 = 1.349 |
+| tableVI stage1 | 1544 | MASS FLOW PER UNIT ANNULUS AREA | 150.70? | 26.51 x 5.6846 = 150.70 |
+| tableVII stage1 | 1486 | MASS FLOW PER UNIT ANNULUS AREA | 121.49? | 21.37 x 5.685 = 121.49 |
+| tableVII stage2 | 1475 | STAGE TOTAL PRESSURE RATIO | 1.116? | 1.395 / 1.250 = 1.116 |
+| tableVIII stage2 | 1533 | COMPRESSOR ADIABATIC EFFICIENCY | .836? | part (a) prints .836 |

@@ -570,6 +570,56 @@ def stage66_design(stator_hub_clearance_m=0.0):
     return design, z_out, running_cm
 
 
+#: The 427-m/s two-stage fan (TP-1314). Rotor 1 multiple circular arcs over the whole span; rotor 2
+#: multiple circular arcs from the tip to 44 percent span and double circular arcs below (its TURNING
+#: RATIO is 1.000 there, so the MCA construction gives the circular arc); both stators double circular
+#: arcs (pdf p6). TURNING RATIO is the front-to-rear curvature ratio, TP-1338's TURN RATE. Static tip
+#: clearances 0.114 and 0.127 cm; the running ones take off the 0.040 cm growth TP-2049 calculates for
+#: the single-stage rig of the same tip radius and tip speed (not stated for this rig). Stations 1 and
+#: 3 are the Fig. 1 survey planes. Fig. 1 prints the outer radius before the inner one.
+#: TP-1493 is the same fan with a low-aspect-ratio first rotor (later called Rotor 67); every other row
+#: and the flow path are unchanged (pdf p4). Its Z origin, the new rotor's hub leading edge, lies
+#: 2.144 cm ahead of TP-1314's (its Fig. 1 rows equal TP-1314's shifted by 2.144), so the TP-1314
+#: survey planes are its printed rows -0.203 and 38.850 (its stations are drawn only). It states
+#: calculated running tip clearances of 0.04 cm for both rotors (pdf p6).
+TWO_STAGE_FANS = {
+    "nasa_2stage_fan_tp1314": dict(report="TP1314", blades=(43, 34, 38, 42), static_clearance_cm=(0.114, 0.127),
+                                   design_rpm=16042.8, z_in_cm=-2.347, z_out_cm=36.706),
+    "nasa_2stage_fan_r67": dict(report="TP1493", blades=(22, 34, 38, 42), running_clearance_cm=(0.04, 0.04),
+                                design_rpm=16042.8, z_in_cm=-0.203, z_out_cm=38.850),
+}
+TWO_STAGE_ROWS = ("rotor1", "stator1", "rotor2", "stator2")
+
+
+def two_stage_fan_design(case_id, stator_hub_clearance_m=0.0):
+    """One of TWO_STAGE_FANS; returns (design, running tip clearances in cm)."""
+    c = TWO_STAGE_FANS[case_id]
+    folder = CASES / case_id
+    tables = [[{("TURN RATE" if k == "TURNING RATIO" else k): v for k, v in r.items()}
+               for r in read_geometry(folder / "{}_tableIII_{}.csv".format(c["report"], name))] for name in TWO_STAGE_ROWS]
+    running = list(c.get("running_clearance_cm") or [cl - STAGE_8E["growth_cm"] for cl in c["static_clearance_cm"]])
+    rows = []
+    for k, (name, table) in enumerate(zip(TWO_STAGE_ROWS, tables)):
+        stage = str(k // 2 + 1)
+        if name.startswith("rotor"):
+            rows.append(blade_row(table, "R" + stage, stage, "rotor", c["blades"][k], running[k // 2] / 100.0))
+        else:
+            rows.append(blade_row(table, "S" + stage, stage, "stator", c["blades"][k], stator_hub_clearance_m, profile="dca"))
+    z_in, z_out = c["z_in_cm"], c["z_out_cm"]
+    for row in rows:
+        row["leading_edge_axial_m"] = round(row["leading_edge_axial_m"] - z_in / 100.0, 7)
+        row["trailing_edge_axial_m"] = round(row["trailing_edge_axial_m"] - z_in / 100.0, 7)
+    outer, inner = flowpath_points(folder / "{}_fig1_flowpath.csv".format(c["report"]))
+    (zi, ri), (zo, ro) = [tuple(map(np.array, zip(*sorted(w)))) for w in walls_with_edges([inner, outer], tables)]
+    z = np.unique(np.concatenate([zi, zo, [z_in, z_out]]))
+    z = z[(z >= z_in) & (z <= z_out)]
+    stations = [{"axial_m": round((float(x) - z_in) / 100.0, 7), "hub_radius_m": round(float(np.interp(x, zi, ri)) / 100.0, 7),
+                 "shroud_radius_m": round(float(np.interp(x, zo, ro)) / 100.0, 7)} for x in z]
+    design = {"schema_version": "throughflow_design_v2", "machine_type": "compressor", "flow_path": "axial",
+              "passage": {"stations": stations}, "rows": rows}
+    return design, running
+
+
 def stage35(tip_clearance_m=4.0e-4, stator_hub_clearance_m=0.0):
     """NASA Stage 35 (TP-1338)."""
     return lewis_stage_design("nasa_stage35", tip_clearance_m, stator_hub_clearance_m)

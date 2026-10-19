@@ -9,12 +9,20 @@ Simulator: slc_aungier_experimental_v5
 
 | Case | Speed % | Inlet blockage | Choke flow | Peak-eff. flow | Peak PR rise | Peak eff. (pts) | Stall flow |
 |---|---|---|---|---|---|---|---|
+| nasa_2stage_fan_r67 | 100 | 0.020 | no converged point down to half the measured flow | | | | |
+| nasa_2stage_fan_r67 | 90 | 0.020 | not choked (+2.30% vs max. flow) | -1.03% | -0.14% | +0.9 | none found |
+| nasa_2stage_fan_r67 | 80 | 0.020 | +5.73% | +1.28% | +4.32% | +0.6 | none found |
+| nasa_2stage_fan_r67 | 70 | 0.020 | not choked (+4.73% vs max. flow) | +3.20% | +5.42% | +1.5 | none found |
+| nasa_2stage_fan_r67 | 50 | 0.020 | not choked (+19.57% vs max. flow) | +2.99% | +9.04% | -0.6 | none found |
+| nasa_2stage_fan_tp1314 | 100 | 0.020 | -0.59% | -3.06% | +13.01% | +3.2 | none found |
+| nasa_2stage_fan_tp1314 | 80 | 0.020 | not choked (+6.52% vs max. flow) | -3.91% | +22.16% | +4.5 | none found |
+| nasa_2stage_fan_tp1314 | 60 | 0.020 | not choked (+7.03% vs max. flow) | -1.98% | +24.17% | +4.6 | none found |
 | nasa_stage12_5 | 70 | 0.020 | not choked (+10.60% vs max. flow) | +0.99% | +21.08% | +10.7 | none found |
 | nasa_stage12_5 | 90 | 0.020 | +3.87% | -2.35% | +10.75% | +7.2 | none found |
-| nasa_stage12_5 | 100 | 0.020 | -5.07% | -4.56% | +5.99% | +4.5 | none found |
+| nasa_stage12_5 | 100 | 0.020 | +2.00% | -3.84% | +4.47% | +4.6 | none found |
 | nasa_stage14_10 | 70 | 0.020 | not choked (+8.75% vs max. flow) | +1.37% | +20.39% | +10.6 | none found |
 | nasa_stage14_10 | 90 | 0.020 | +2.05% | -4.31% | +10.87% | +6.4 | none found |
-| nasa_stage14_10 | 100 | 0.020 | -7.68% | -6.93% | +7.39% | +3.1 | none found |
+| nasa_stage14_10 | 100 | 0.020 | +0.80% | -7.33% | +7.84% | +3.1 | none found |
 | nasa_stage16_11 | 70 | 0.020 | not choked (+9.34% vs max. flow) | -2.19% | +17.92% | +3.6 | none found |
 | nasa_stage16_11 | 90 | 0.020 | +3.93% | -6.26% | +12.90% | +2.1 | none found |
 | nasa_stage16_11 | 100 | 0.020 | +2.22% | -5.36% | +0.77% | +2.0 | none found |
@@ -40,21 +48,21 @@ Simulator: slc_aungier_experimental_v5
 | nasa_stage52 | 110 | 0.017 | -10.16% | -8.47% | +0.81% | -4.1 | none found |
 | nasa_stage52 | 120 | 0.017 | -10.83% | -9.95% | +0.06% | -4.2 | none found |
 | nasa_stage53 | 70 | 0.017 | not choked (+8.26% vs max. flow) | -2.20% | +7.49% | -6.5 | none found |
-| nasa_stage53 | 80 | 0.017 | not choked (-13.56% vs max. flow) | -2.04% | +3.09% | -5.7 | +3.6% |
+| nasa_stage53 | 80 | 0.017 | not choked (+6.02% vs max. flow) | +1.04% | +0.04% | -5.4 | none found |
 | nasa_stage53 | 90 | 0.017 | not choked (+4.44% vs max. flow) | +1.78% | -3.90% | -4.3 | none found |
-| nasa_stage53 | 100 | 0.017 | not choked (-9.52% vs max. flow) | -3.80% | -3.72% | -5.4 | none found |
+| nasa_stage53 | 100 | 0.017 | not choked (+3.87% vs max. flow) | -0.05% | -6.20% | -4.6 | none found |
 | nasa_stage53 | 120 | 0.017 | no converged point down to half the measured flow | | | | |
 | nasa_stage55 | 80 | 0.018 | not choked (+8.95% vs max. flow) | +4.49% | +9.10% | +0.1 | none found |
 | nasa_stage55 | 90 | 0.018 | not choked (+5.73% vs max. flow) | +3.26% | +11.16% | +0.1 | none found |
 | nasa_stage55 | 100 | 0.018 | not choked (+5.79% vs max. flow) | +11.33% | +6.68% | +1.6 | none found |
 | nasa_stage55 | 110 | 0.018 | not choked (+6.40% vs max. flow) | +1.94% | +9.19% | -2.0 | none found |
-| nasa_stage55 | 120 | 0.018 | not choked (-0.78% vs max. flow) | -0.26% | +9.84% | -1.5 | +5.7% |
+| nasa_stage55 | 120 | 0.018 | not choked (+7.67% vs max. flow) | +0.32% | +9.55% | -1.4 | +17.8% |
 | nasa_stage66_igv | 100 | 0.020 | +3.88% | -1.80% | +17.43% | +1.8 | none found |
 | nasa_stage6_1 | 70 | 0.020 | not choked (+3.80% vs max. flow) | -2.92% | +27.22% | +6.6 | none found |
 | nasa_stage6_1 | 90 | 0.020 | +0.92% | +4.98% | +0.18% | +4.9 | none found |
-| nasa_stage6_1 | 100 | 0.020 | not choked (-7.66% vs max. flow) | -5.21% | +5.20% | +0.5 | none found |
+| nasa_stage6_1 | 100 | 0.020 | +0.45% | -2.19% | +4.16% | +2.2 | none found |
 | nasa_stage8_8 | 70 | 0.020 | +6.83% | -3.01% | +25.03% | +8.1 | none found |
-| nasa_stage8_8 | 90 | 0.020 | not choked (-5.98% vs max. flow) | -6.94% | +13.19% | +3.7 | none found |
+| nasa_stage8_8 | 90 | 0.020 | not choked (+1.65% vs max. flow) | -6.80% | +13.18% | +3.7 | none found |
 | nasa_stage8_8 | 100 | 0.020 | +0.41% | -6.89% | +7.51% | +2.1 | none found |
 | nasa_stage8e_c061 | 70 | 0.020 | not choked (+9.01% vs max. flow) | +2.67% | +14.29% | +4.4 | none found |
 | nasa_stage8e_c061 | 100 | 0.020 | not choked (+1.53% vs max. flow) | -5.14% | +5.02% | +0.7 | none found |
@@ -65,7 +73,7 @@ Simulator: slc_aungier_experimental_v5
 | nasa_stage8e_c178 | 70 | 0.020 | not choked (+8.63% vs max. flow) | -1.36% | +22.68% | +6.0 | none found |
 | nasa_stage8e_c178 | 100 | 0.020 | not choked (+3.47% vs max. flow) | -2.59% | +23.67% | +5.6 | none found |
 
-Measured points the model cannot reach (it chokes or fails below their flow): nasa_stage12_5 100% 314, nasa_stage18_13 100% 927, nasa_stage18_13 100% 926, nasa_stage36 100% 4270, nasa_stage36 100% 4269, nasa_stage38 100% 4129, nasa_stage38 100% 4128, nasa_stage38 100% 4123, nasa_stage38 100% 4121, nasa_stage38 100% 4120, nasa_stage52 100% 2185, nasa_stage52 110% 2205, nasa_stage52 110% 2204, nasa_stage52 110% 2203, nasa_stage52 110% 2202, nasa_stage52 110% 2201, nasa_stage52 120% 2216, nasa_stage52 120% 2215, nasa_stage52 120% 2211, nasa_stage52 120% 2208, nasa_stage52 120% 2207, nasa_stage53 70% 3031, nasa_stage53 80% 3006, nasa_stage53 90% 3001, nasa_stage53 100% 2993, nasa_stage53 100% 2995, nasa_stage53 100% 3026, nasa_stage66_igv 100% 867, nasa_stage8_8 100% 58
+Measured points the model cannot reach (it chokes or fails below their flow): nasa_2stage_fan_r67 90% 1332, nasa_2stage_fan_r67 80% 1369, nasa_2stage_fan_r67 80% 1555, nasa_2stage_fan_r67 70% 1497, nasa_2stage_fan_r67 50% 1533, nasa_2stage_fan_tp1314 100% 190, nasa_2stage_fan_tp1314 100% 201, nasa_2stage_fan_tp1314 100% 212, nasa_2stage_fan_tp1314 100% 223, nasa_2stage_fan_tp1314 60% 374, nasa_stage12_5 100% 314, nasa_stage18_13 100% 927, nasa_stage18_13 100% 926, nasa_stage36 100% 4270, nasa_stage36 100% 4269, nasa_stage38 100% 4129, nasa_stage38 100% 4128, nasa_stage38 100% 4123, nasa_stage38 100% 4121, nasa_stage38 100% 4120, nasa_stage52 100% 2185, nasa_stage52 110% 2205, nasa_stage52 110% 2204, nasa_stage52 110% 2203, nasa_stage52 110% 2202, nasa_stage52 110% 2201, nasa_stage52 120% 2216, nasa_stage52 120% 2215, nasa_stage52 120% 2211, nasa_stage52 120% 2208, nasa_stage52 120% 2207, nasa_stage53 70% 3031, nasa_stage53 80% 3006, nasa_stage53 90% 3001, nasa_stage53 100% 2993, nasa_stage53 100% 2995, nasa_stage53 100% 3026, nasa_stage66_igv 100% 867, nasa_stage8_8 100% 58
 
 ## Overall errors at every measured point
 
@@ -73,12 +81,12 @@ Bias / spread (n). Rises are relative errors of PR - 1 and TR - 1; efficiencies 
 
 | Error | At measured flow | At matched flow (m/m_choke) |
 |---|---|---|
-| rotor_eta_points | +0.624 / 3.738 (n=227) | -2.570 / 6.017 (n=101) |
-| rotor_pr_rise | +0.036 / 0.104 (n=227) | -0.084 / 0.130 (n=101) |
-| rotor_tr_rise | +0.025 / 0.081 (n=227) | -0.047 / 0.079 (n=101) |
-| stage_eta_points | +1.894 / 5.575 (n=227) | -4.121 / 11.770 (n=101) |
-| stage_pr_rise | +0.076 / 0.128 (n=227) | -0.085 / 0.191 (n=101) |
-| stage_tr_rise | +0.041 / 0.078 (n=227) | -0.034 / 0.082 (n=101) |
+| rotor_eta_points | +0.655 / 3.631 (n=243) | -2.449 / 5.768 (n=116) |
+| rotor_pr_rise | +0.037 / 0.101 (n=243) | -0.090 / 0.122 (n=116) |
+| rotor_tr_rise | +0.026 / 0.080 (n=243) | -0.053 / 0.075 (n=116) |
+| stage_eta_points | +1.961 / 5.436 (n=243) | -4.218 / 11.551 (n=116) |
+| stage_pr_rise | +0.081 / 0.129 (n=243) | -0.094 / 0.188 (n=116) |
+| stage_tr_rise | +0.045 / 0.079 (n=243) | -0.040 / 0.079 (n=116) |
 
 ## Profile errors (model - measured)
 
@@ -114,6 +122,8 @@ Vm as Vm/Vm_avg - 1; angles, incidence and deviation in degrees.
 
 ## Assumptions per case
 
+- **nasa_2stage_fan_r67**: MCA sections from the printed turn rate, ZTC and ZMC (multiple_circular_arc); angles, chord and t/c mapped from the element cones to the axial-tangential plane with the printed cone angles; edge planes at the mid-span element's ZI and ZO; uniform inlet total state; inlet end-wall blockage from the measured inlet profile (inlet_blockage); two stages: 'stage' errors compare the whole fan (part (a) of the overall tables), 'rotor' errors rotor one (part (b)); rotor 1 (the low-aspect-ratio rotor later called Rotor 67) mca, without part-span dampers; TP-1493 reports its tip leading edge uncambering about 1.2 deg more than the design allowed (not modelled); rotor 2 mca (its double-circular-arc hub elements have turning ratio 1); stators dca; tip clearances 0.40 and 0.40 mm: the running clearances TP-1493 calculates; stator hub gaps 0 (not stated); stations 1 and 3 at the TP-1314 Fig. 1 survey planes (-0.203 and 38.850 cm in TP1493); flow path from Fig. 1 outside the blade rows, the tables' edge radii over them; inlet blockage 0.02 (no blade-element data transcribed for this case)
+- **nasa_2stage_fan_tp1314**: MCA sections from the printed turn rate, ZTC and ZMC (multiple_circular_arc); angles, chord and t/c mapped from the element cones to the axial-tangential plane with the printed cone angles; edge planes at the mid-span element's ZI and ZO; uniform inlet total state; inlet end-wall blockage from the measured inlet profile (inlet_blockage); two stages: 'stage' errors compare the whole fan (part (a) of the overall tables), 'rotor' errors rotor one (part (b)); rotor 1 mca; rotor 2 mca (its double-circular-arc hub elements have turning ratio 1); stators dca; tip clearances 0.74 and 0.87 mm: static 0.114 and 0.127 cm less the 0.040 cm growth TP-2049 calculates for the single-stage rig of the same tip radius and speed; stator hub gaps 0 (not stated); stations 1 and 3 at the TP-1314 Fig. 1 survey planes (-2.347 and 36.706 cm in TP1314); flow path from Fig. 1 outside the blade rows, the tables' edge radii over them; rotor 1 part-span damper at 42 percent span, not modelled; inlet blockage 0.02 (no blade-element data transcribed for this case)
 - **nasa_stage12_5**: MCA sections from the printed turn rate, ZTC and ZMC (multiple_circular_arc); angles, chord and t/c mapped from the element cones to the axial-tangential plane with the printed cone angles; edge planes at the mid-span element's ZI and ZO; uniform inlet total state; inlet end-wall blockage from the measured inlet profile (inlet_blockage); tip clearance 0.10 mm: 0.050 cm cold clearance (not stated; the family's value) less the 0.040 cm growth TP-2049 calculates for this rig; design speed 16100.8 rpm from the design tip speed and the rotor leading-edge tip radius; stator hub gap 0 (not stated); stations 1 and 3 at -2.540 and 13.462 cm (TMX2658); MCA C1/C2 from the printed KTC and ZTC; flow path from Fig. 1 outside the blade rows, the tables' edge radii over them; inlet blockage 0.02 (no blade-element data transcribed for this case)
 - **nasa_stage14_10**: MCA sections from the printed turn rate, ZTC and ZMC (multiple_circular_arc); angles, chord and t/c mapped from the element cones to the axial-tangential plane with the printed cone angles; edge planes at the mid-span element's ZI and ZO; uniform inlet total state; inlet end-wall blockage from the measured inlet profile (inlet_blockage); tip clearance 0.10 mm: 0.050 cm cold clearance (stated) less the 0.040 cm growth TP-2049 calculates for this rig; design speed 16104.6 rpm from the design tip speed and the rotor leading-edge tip radius; stator hub gap 0 (not stated); stations 1 and 3 at -2.540 and 13.462 cm (TMX2645); MCA C1/C2 from the printed KTC and ZTC; flow path from Fig. 1 outside the blade rows, the tables' edge radii over them; inlet blockage 0.02 (no blade-element data transcribed for this case)
 - **nasa_stage16_11**: MCA sections from the printed turn rate, ZTC and ZMC (multiple_circular_arc); angles, chord and t/c mapped from the element cones to the axial-tangential plane with the printed cone angles; edge planes at the mid-span element's ZI and ZO; uniform inlet total state; inlet end-wall blockage from the measured inlet profile (inlet_blockage); tip clearance 0.10 mm: 0.050 cm cold clearance (stated) less the 0.040 cm growth TP-2049 calculates for this rig; design speed 16102.4 rpm from the design tip speed and the rotor leading-edge tip radius; stator hub gap 0 (not stated); stations 1 and 3 at -2.540 and 12.700 cm (TMX2904); MCA C1/C2 from the printed KTC and ZTC; flow path from Fig. 1 outside the blade rows, the tables' edge radii over them; inlet blockage 0.02 (no blade-element data transcribed for this case)

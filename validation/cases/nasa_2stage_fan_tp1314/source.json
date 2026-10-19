@@ -111,5 +111,95 @@
     "title": "Figure 1. - Flow path for two-stage fan. (Flow path coordinates box)",
     "dpi": 200,
     "notes": "Read from the native 300-dpi scan zoomed 3x. Column 'footnote' holds the printed superscript a = 'Instrumentation survey plane'. Outer-radius cells printed only as a downward arrow (value continues from the row above) are written as the arrow character; no value filled in. Second read done."
+  },
+  {
+    "file": "TP1314_tableV_overall_fan_100pct.csv",
+    "report": "NASA TP-1314",
+    "ntrs_id": "19780025166",
+    "pdf_page": 33,
+    "printed_page": "29",
+    "title": "TABLE V. - OVERALL PERFORMANCE AT 100 PERCENT OF DESIGN SPEED (a) Two-stage fan",
+    "dpi": 300,
+    "notes": "Readings 190, 201, 212, 223, 234 in printed order; parameters as rows with the printed labels, the heading **EQUIVALENT VALUES BASED ON STAGE INLET** kept as a row without values (stage parts). No units printed (row 2 blank). Read from a 300-dpi render. Checks, all pass: every adiabatic and polytropic efficiency from the printed pressure and temperature ratios; fan pressure and temperature ratios equal the products of the two stage ratios; stage-one equivalent flow equals the fan flow, and stage-two equivalent flow equals stage one's times sqrt(TR1)/PR1; constant annulus/flow and frontal/flow ratios in each stage; wheel speed / percent speed 16032-16054 rpm."
+  },
+  {
+    "file": "TP1314_tableV_overall_stage1_100pct.csv",
+    "report": "NASA TP-1314",
+    "ntrs_id": "19780025166",
+    "pdf_page": 33,
+    "printed_page": "29",
+    "title": "TABLE V. - OVERALL PERFORMANCE AT 100 PERCENT OF DESIGN SPEED (b) Stage one",
+    "dpi": 300,
+    "notes": "Readings 190, 201, 212, 223, 234 in printed order; parameters as rows with the printed labels, the heading **EQUIVALENT VALUES BASED ON STAGE INLET** kept as a row without values (stage parts). No units printed (row 2 blank). Read from a 300-dpi render. Checks, all pass: every adiabatic and polytropic efficiency from the printed pressure and temperature ratios; fan pressure and temperature ratios equal the products of the two stage ratios; stage-one equivalent flow equals the fan flow, and stage-two equivalent flow equals stage one's times sqrt(TR1)/PR1; constant annulus/flow and frontal/flow ratios in each stage; wheel speed / percent speed 16032-16054 rpm."
+  },
+  {
+    "file": "TP1314_tableV_overall_stage2_100pct.csv",
+    "report": "NASA TP-1314",
+    "ntrs_id": "19780025166",
+    "pdf_page": 33,
+    "printed_page": "29",
+    "title": "TABLE V. - OVERALL PERFORMANCE AT 100 PERCENT OF DESIGN SPEED (c) Stage two",
+    "dpi": 300,
+    "notes": "Readings 190, 201, 212, 223, 234 in printed order; parameters as rows with the printed labels, the heading **EQUIVALENT VALUES BASED ON STAGE INLET** kept as a row without values (stage parts). No units printed (row 2 blank). Read from a 300-dpi render. Checks, all pass: every adiabatic and polytropic efficiency from the printed pressure and temperature ratios; fan pressure and temperature ratios equal the products of the two stage ratios; stage-one equivalent flow equals the fan flow, and stage-two equivalent flow equals stage one's times sqrt(TR1)/PR1; constant annulus/flow and frontal/flow ratios in each stage; wheel speed / percent speed 16032-16054 rpm."
+  },
+  {
+    "file": "TP1314_tableVI_overall_fan_080pct.csv",
+    "report": "NASA TP-1314",
+    "ntrs_id": "19780025166",
+    "pdf_page": 34,
+    "printed_page": "30",
+    "title": "TABLE VI. - OVERALL PERFORMANCE AT 80 PERCENT OF DESIGN SPEED (a) Two-stage fan",
+    "dpi": 300,
+    "notes": "Readings 245, 279, 290 in printed order; parameters as rows with the printed labels, the heading **EQUIVALENT VALUES BASED ON STAGE INLET** kept as a row without values (stage parts). No units printed (row 2 blank). Read from a 300-dpi render. Checks, all pass: every adiabatic and polytropic efficiency from the printed pressure and temperature ratios; fan pressure and temperature ratios equal the products of the two stage ratios; stage-one equivalent flow equals the fan flow, and stage-two equivalent flow equals stage one's times sqrt(TR1)/PR1; constant annulus/flow and frontal/flow ratios in each stage; wheel speed / percent speed 16032-16054 rpm."
+  },
+  {
+    "file": "TP1314_tableVI_overall_stage1_080pct.csv",
+    "report": "NASA TP-1314",
+    "ntrs_id": "19780025166",
+    "pdf_page": 34,
+    "printed_page": "30",
+    "title": "TABLE VI. - OVERALL PERFORMANCE AT 80 PERCENT OF DESIGN SPEED (b) Stage one",
+    "dpi": 300,
+    "notes": "Readings 245, 279, 290 in printed order; parameters as rows with the printed labels, the heading **EQUIVALENT VALUES BASED ON STAGE INLET** kept as a row without values (stage parts). No units printed (row 2 blank). Read from a 300-dpi render. Checks, all pass: every adiabatic and polytropic efficiency from the printed pressure and temperature ratios; fan pressure and temperature ratios equal the products of the two stage ratios; stage-one equivalent flow equals the fan flow, and stage-two equivalent flow equals stage one's times sqrt(TR1)/PR1; constant annulus/flow and frontal/flow ratios in each stage; wheel speed / percent speed 16032-16054 rpm."
+  },
+  {
+    "file": "TP1314_tableVI_overall_stage2_080pct.csv",
+    "report": "NASA TP-1314",
+    "ntrs_id": "19780025166",
+    "pdf_page": 34,
+    "printed_page": "30",
+    "title": "TABLE VI. - OVERALL PERFORMANCE AT 80 PERCENT OF DESIGN SPEED (c) Stage two",
+    "dpi": 300,
+    "notes": "Readings 245, 279, 290 in printed order; parameters as rows with the printed labels, the heading **EQUIVALENT VALUES BASED ON STAGE INLET** kept as a row without values (stage parts). No units printed (row 2 blank). Read from a 300-dpi render. Checks, all pass: every adiabatic and polytropic efficiency from the printed pressure and temperature ratios; fan pressure and temperature ratios equal the products of the two stage ratios; stage-one equivalent flow equals the fan flow, and stage-two equivalent flow equals stage one's times sqrt(TR1)/PR1; constant annulus/flow and frontal/flow ratios in each stage; wheel speed / percent speed 16032-16054 rpm."
+  },
+  {
+    "file": "TP1314_tableVII_overall_fan_060pct.csv",
+    "report": "NASA TP-1314",
+    "ntrs_id": "19780025166",
+    "pdf_page": 35,
+    "printed_page": "31",
+    "title": "TABLE VII. - OVERALL PERFORMANCE AT 60 PERCENT OF DESIGN SPEED (a) Two-stage fan",
+    "dpi": 300,
+    "notes": "Readings 374, 396, 407, 421 in printed order; parameters as rows with the printed labels, the heading **EQUIVALENT VALUES BASED ON STAGE INLET** kept as a row without values (stage parts). No units printed (row 2 blank). Read from a 300-dpi render. Checks, all pass: every adiabatic and polytropic efficiency from the printed pressure and temperature ratios; fan pressure and temperature ratios equal the products of the two stage ratios; stage-one equivalent flow equals the fan flow, and stage-two equivalent flow equals stage one's times sqrt(TR1)/PR1; constant annulus/flow and frontal/flow ratios in each stage; wheel speed / percent speed 16032-16054 rpm. Reading 407 WEIGHT FLOW printed with a broken second glyph: written 19.27? (stage one prints 19.27)."
+  },
+  {
+    "file": "TP1314_tableVII_overall_stage1_060pct.csv",
+    "report": "NASA TP-1314",
+    "ntrs_id": "19780025166",
+    "pdf_page": 35,
+    "printed_page": "31",
+    "title": "TABLE VII. - OVERALL PERFORMANCE AT 60 PERCENT OF DESIGN SPEED (b) Stage one",
+    "dpi": 300,
+    "notes": "Readings 374, 396, 407, 421 in printed order; parameters as rows with the printed labels, the heading **EQUIVALENT VALUES BASED ON STAGE INLET** kept as a row without values (stage parts). No units printed (row 2 blank). Read from a 300-dpi render. Checks, all pass: every adiabatic and polytropic efficiency from the printed pressure and temperature ratios; fan pressure and temperature ratios equal the products of the two stage ratios; stage-one equivalent flow equals the fan flow, and stage-two equivalent flow equals stage one's times sqrt(TR1)/PR1; constant annulus/flow and frontal/flow ratios in each stage; wheel speed / percent speed 16032-16054 rpm."
+  },
+  {
+    "file": "TP1314_tableVII_overall_stage2_060pct.csv",
+    "report": "NASA TP-1314",
+    "ntrs_id": "19780025166",
+    "pdf_page": 35,
+    "printed_page": "31",
+    "title": "TABLE VII. - OVERALL PERFORMANCE AT 60 PERCENT OF DESIGN SPEED (c) Stage two",
+    "dpi": 300,
+    "notes": "Readings 374, 396, 407, 421 in printed order; parameters as rows with the printed labels, the heading **EQUIVALENT VALUES BASED ON STAGE INLET** kept as a row without values (stage parts). No units printed (row 2 blank). Read from a 300-dpi render. Checks, all pass: every adiabatic and polytropic efficiency from the printed pressure and temperature ratios; fan pressure and temperature ratios equal the products of the two stage ratios; stage-one equivalent flow equals the fan flow, and stage-two equivalent flow equals stage one's times sqrt(TR1)/PR1; constant annulus/flow and frontal/flow ratios in each stage; wheel speed / percent speed 16032-16054 rpm."
   }
 ]

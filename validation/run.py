@@ -36,7 +36,8 @@ RESULTS = HERE / "results"
 REPORT = HERE / "reports" / "consistency.md"
 CORE = (15.0, 85.0)  # percent span from the tip; the rest of the measured span is the end-wall zone
 #: The highest measured flow is a choke point only where the characteristic is nearly vertical there:
-#: the relative fall of PR - 1 between the two highest-flow points over their relative flow difference.
+#: the relative change of PR - 1 between the two highest-flow points over their relative flow difference, in
+#: either direction (on a vertical line the scatter of the readings sets its sign).
 CHOKE_SLOPE = 10.0
 
 
@@ -244,12 +245,68 @@ class Stage66(FanStage):
         return super().measured_points(speed)
 
 
+class TwoStageFan(FanStage):
+    """A NASA Lewis two-stage fan (L.TWO_STAGE_FANS; TP-1314 Tables V-VII, TP-1493 Tables IV-VIII). Its
+    "stage" quantities are the whole fan's (inlet to the exit survey plane, part (a) of each table) and
+    its "rotor" quantities are rotor one's (part (b))."""
+
+    STAGE_ETA_TR = "stage_tr"
+    ASSUMPTIONS = L.ASSUMPTIONS
+    #: Per report: rotor 1 (profile notes), the clearance source, rotor 1 damper.
+    NOTES = {
+        "TP1314": ("rotor 1 mca", "static {:.3f} and {:.3f} cm less the {:.3f} cm growth TP-2049 calculates for the single-stage rig of the "
+                   "same tip radius and speed", "rotor 1 part-span damper at 42 percent span, not modelled"),
+        "TP1493": ("rotor 1 (the low-aspect-ratio rotor later called Rotor 67) mca, without part-span dampers; TP-1493 reports its "
+                   "tip leading edge uncambering about 1.2 deg more than the design allowed (not modelled)",
+                   "the running clearances TP-1493 calculates", None),
+    }
+
+    def __init__(self, case_id):
+        c = L.TWO_STAGE_FANS[case_id]
+        folder = L.CASES / case_id
+        self.case_id = case_id
+        self.design, running = L.two_stage_fan_design(case_id)
+        self.design_speed_rpm = c["design_rpm"]
+        rotor1, clearance, damper = self.NOTES[c["report"]]
+        if "static_clearance_cm" in c:
+            clearance = clearance.format(*c["static_clearance_cm"], L.STAGE_8E["growth_cm"])
+        self.notes = ["two stages: 'stage' errors compare the whole fan (part (a) of the overall tables), 'rotor' errors rotor one (part (b))",
+                      rotor1, "rotor 2 mca (its double-circular-arc hub elements have turning ratio 1); stators dca",
+                      "tip clearances {:.2f} and {:.2f} mm: {}".format(10.0 * running[0], 10.0 * running[1], clearance),
+                      "stator hub gaps 0 (not stated)", "stations 1 and 3 at the TP-1314 Fig. 1 survey planes ({:.3f} and {:.3f} cm in {})".format(
+                          c["z_in_cm"], c["z_out_cm"], c["report"]),
+                      "flow path from Fig. 1 outside the blade rows, the tables' edge radii over them",
+                      "inlet blockage 0.02 (no blade-element data transcribed for this case)"]
+        if damper:
+            self.notes.insert(-1, damper)
+        self.speeds, self.rotor_one = {}, {}
+        for path in sorted(folder.glob("{}_table*_overall_fan_*pct.csv".format(c["report"]))):
+            speed = int(path.stem.rsplit("_", 1)[1][:-3])
+            self.speeds[speed] = L.read_overall(path)
+            self.rotor_one[speed] = L.read_overall(path.with_name(path.name.replace("_fan_", "_stage1_")))
+        self.rotor_elements, self.stator_elements = {}, {}
+        rows = L.read_geometry(folder / "{}_tableIII_rotor1.csv".format(c["report"]))
+        self.rotor_walls_in = (float(next(r for r in rows if r["RP"] == "HUB")["RI"]), float(next(r for r in rows if r["RP"] == "TIP")["RI"]))
+
+    def measured_points(self, speed):
+        points = []
+        for reading, v in self.speeds[speed].items():
+            r = self.rotor_one[speed][reading]
+            points.append(dict(
+                reading=reading, mass_flow=v.get("WEIGHT FLOW", v.get("MASS FLOW")), rpm=v["WHEEL SPEED, RPM"],
+                stage_pr=v["TOTAL PRESSURE RATIO"], stage_tr=v["TOTAL TEMPERATURE RATIO"], stage_eta=v["ADIABATIC EFFICIENCY"],
+                rotor_pr=r["ROTOR TOTAL PRESSURE RATIO"], rotor_tr=r["ROTOR TOTAL TEMPERATURE RATIO"], rotor_eta=r["ROTOR ADIABATIC EFFICIENCY"],
+            ))
+        return points
+
+
 CASES = {case_id: (lambda c=case_id: LewisStage(c)) for case_id in L.LEWIS_STAGES}
 CASES.update({case_id: (lambda c=case_id: McaStage(c)) for case_id in L.LEWIS_MCA_STAGES})
 CASES["nasa_stage8_8"] = lambda: Stage88("nasa_stage8_8")
 CASES.update({case_id: (lambda c=case_id: FanStage(c)) for case_id in L.FAN_STAGES})
 CASES.update({case_id: (lambda c=case_id: TipClearanceStage(c)) for case_id in L.TIP_CLEARANCE_CASES})
 CASES["nasa_stage66_igv"] = lambda: Stage66("nasa_stage66_igv")
+CASES.update({case_id: (lambda c=case_id: TwoStageFan(c)) for case_id in L.TWO_STAGE_FANS})
 
 
 # ------------------------------------------------------------------ model
@@ -319,11 +376,17 @@ def solve(design, mass_flow, rpm, blockage):
         return None
 
 
-def choke_flow(design, rpm, blockage, start, tol=1e-3):
-    """Largest mass flow the model passes at a speed, by bisection from a converged ``start``."""
-    lo, hi = start, start * 1.02
-    while solve(design, hi, rpm, blockage) is not None:
-        lo, hi = hi, hi * 1.02
+def choke_flow(design, rpm, blockage, start, tol=1e-3, look_ahead=3):
+    """Largest mass flow the model passes at a speed, from a converged ``start``: steps of 2 percent, where
+    a failed step ends the scan only if the next ``look_ahead`` steps fail too (a single point that does
+    not converge is not choke), then bisection between the last converged and the next failed step."""
+    lo = start
+    while True:
+        up = next((lo * 1.02 ** k for k in range(1, look_ahead + 2) if solve(design, lo * 1.02 ** k, rpm, blockage) is not None), None)
+        if up is None:
+            break
+        lo = up
+    hi = lo * 1.02
     while (hi - lo) / lo > tol:
         mid = 0.5 * (lo + hi)
         lo, hi = (mid, hi) if solve(design, mid, rpm, blockage) is not None else (lo, mid)
@@ -450,7 +513,7 @@ def run_case(case_id):
         meas_choke = by_flow[0]
         fall = (by_flow[1]["stage_pr"] - meas_choke["stage_pr"]) / (meas_choke["stage_pr"] - 1.0)
         spread = 1.0 - by_flow[1]["mass_flow"] / meas_choke["mass_flow"]
-        slope = fall / spread if spread > 0.0 else (math.inf if fall > 0.0 else 0.0)  # equal flows, PR falling: vertical
+        slope = abs(fall) / spread if spread > 0.0 else (math.inf if fall != 0.0 else 0.0)  # equal flows, PR changing: vertical
         choked = slope >= CHOKE_SLOPE
         meas_peak = max(points, key=lambda p: p["stage_eta"])
         meas_stall = min(points, key=lambda p: p["mass_flow"])
