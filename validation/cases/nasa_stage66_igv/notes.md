@@ -89,3 +89,19 @@ Resolved 3, still '?' 0, print errors 0.
 | TMX3345_tableII_rotor66.csv | 15 | INCIDENCE MEAN | `6.8?` | `6.8` | INCIDENCE MEAN = INCIDENCE SS + DELTA INC = 0.1 + 6.68 = 6.73-6.83 over rounding (relation holds on rows 8-11); REL BETAM IN - KIC is not exact in this table (row 11: 6.70 vs printed 6.6) | 600-dpi zoom: second glyph has a closed upper loop with a broken lower-left (8, not 7); relation admits 6.8 |
 | TMX3345_tableIV_rotor66.csv | 11 | DELTA INC | `6.08?` | `6.08` | DELTA INC = INCIDENCE MEAN - INCIDENCE SS = 6.1 - 0.0 (6.05-6.15) from Table II row 8 | 600-dpi read: 6.08 legible; relation agrees |
 | TMX3345_tableV_stator66.csv | 10 | TOTAL CAMBER | `43.39?` | `43.39` | TOTAL CAMBER = KIC - KOC = 35.86 + 7.53 = 43.39 | 600-dpi read: 43.3 clear, last glyph a damaged 9; relation fixes 43.39 |
+
+## Measured overall performance (Table VI) - added 2026-10-19
+
+Table VI, pdf p25 (printed 23), read from a 300-dpi render: `TMX3345_tableVI_overall_100pct.csv`,
+readings 845, 856, 867, 884, 895 at design speed (the only speed tabulated), with the printed labels;
+the section headings "**EQUIVALENT VALUES BASED ON STAGE INLET**" and "**CUMULATIVE VALUES**" are
+kept as rows without values. Stage values run from station 1 (between the IGV and the rotor) to
+station 3; the cumulative ("compressor") values include the IGV, from station 0. The weight flows
+are equivalent values at the stage inlet.
+
+Checks, all pass: every adiabatic and polytropic efficiency from the printed pressure and temperature
+ratios (the stage efficiency uses the stage temperature ratio); constant annulus/flow and
+frontal/flow ratios; wheel speed / percent speed 16035-16043 rpm; tip speed / wheel speed gives a
+tip radius of 25.32 cm (rotor TIP RI 25.324) for every reading. One uncertain cell: reading 845
+WHEEL SPEED, first glyph broken (`6008.6`), written `16008.6?` (the percent speed and tip speed
+give 16008-16009). Tables VII-IX (blade elements) are not transcribed.

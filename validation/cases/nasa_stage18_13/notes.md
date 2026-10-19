@@ -195,3 +195,26 @@ Resolved 4, still '?' 2, print errors 1.
 Print errors / print disagreements found in this pass:
 
 - TMX3472_tableII_rotor18_part2.csv row 8 ABS VEL OUT: printed `257.4`; velocity triangle sqrt(VM^2 + VTH^2) = sqrt(170.2^2 + 206.2^2) = 267.4 (neighbours 265.5 / 269.3); TM X-3100 prints 257.4 too.
+
+## Measured overall performance (TM X-3100 Table VI) - added 2026-10-19
+
+NASA TM X-3100 Table VI, pdf p26-27 (printed 24-25), read from a 300-dpi render. One file per
+speed, `TMX3100_tableVI_overall_<NNN>pct.csv`, readings as columns in printed order; every part
+(100 to 50 percent) is transcribed. These are the baseline stage 18-13 (TM X-3472's mod 1 and
+mod 2 are not transcribed).
+
+| Speed | Readings |
+|---|---|
+| 50 % | 942 |
+| 60 % | 934 |
+| 70 % | 905, 906, 907, 947, 904 |
+| 80 % | 915 |
+| 90 % | 918, 919, 920, 921, 922 |
+| 100 % | 927, 926, 925, 924, 923 |
+
+Checks, all pass: temperature-rise efficiencies from the pressure and temperature ratios (the
+stage efficiency uses the stage temperature ratio); constant annulus/frontal and orifice/frontal
+flow ratios; ROTATIVE SPEED / PERCENT OF DESIGN SPEED 16090-16109 rpm; head-rise coefficient over
+(PR^k - 1) times (N/N_design)^2 constant. One uncertain cell: 50 % PERCENT OF DESIGN SPEED, last
+glyph broken, written `50.1?` (8062.7 rpm / 16100 rpm = 50.08). Reading 922 stage pressure ratio
+is printed `1..664` (stray dot), written 1.664. Table VII (blade elements) is not transcribed.

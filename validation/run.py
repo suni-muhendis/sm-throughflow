@@ -194,6 +194,8 @@ class McaStage(Stage88):
                       "stator hub gap 0 (not stated)", "stations 1 and 3 at {:.3f} and {:.3f} cm ({})".format(c["z_in_cm"], c["z_out_cm"], c["report"]),
                       "MCA C1/C2 from the printed KTC and ZTC", "flow path from Fig. 1 outside the blade rows, the tables' edge radii over them",
                       "inlet blockage 0.02 (no blade-element data transcribed for this case)"]
+        if "note" in c:
+            self.notes.append(c["note"])
         folder = L.CASES / case_id
         self.speeds = {}
         for path in sorted(folder.glob("{}_tableVI_overall_*pct.csv".format(c["report"]))):
@@ -205,11 +207,49 @@ class McaStage(Stage88):
         self.rotor_walls_in = (float(next(r for r in rows if r["RP"] == "HUB")["RI"]), float(next(r for r in rows if r["RP"] == "TIP")["RI"]))
 
 
+class Stage66(FanStage):
+    """Stage 66 (TM X-3345) without its axial inlet guide vanes: Tables IV/V geometry, Table VI at design
+    speed only. Flows are the printed equivalent flows at the stage inlet, between the IGV and the rotor."""
+
+    LABELS = dict(mass_flow="WEIGHT FLOW", stage_eta="STAGE ADIABATIC EFFICIENCY", rotor_eta="ROTOR ADIABATIC EFFICIENCY")
+    STAGE_ETA_TR = "stage_tr"  # the printed stage efficiencies follow from the stage pressure and temperature ratios
+    ASSUMPTIONS = L.ASSUMPTIONS
+
+    def __init__(self, case_id):
+        c = L.STAGE_66
+        folder = L.CASES / c["folder"]
+        self.case_id = case_id
+        self.design, z_out, running = L.stage66_design()
+        self.design_speed_rpm = c["design_rpm"]
+        self.notes = ["inlet guide vanes (set axial in every test) not modelled; the domain starts at their trailing-edge plane, "
+                      "{:.2f} cm ahead of the rotor hub leading edge".format(-c["z_in_cm"]),
+                      "multiple-circular-arc rotor (mca), double-circular-arc stator (dca)",
+                      "tip clearance {:.2f} mm: TM X-3345 cold clearance {:.3f} cm less the {:.3f} cm growth TP-2049 calculates for this rig".format(
+                          10.0 * running, c["clearance_cm"], L.STAGE_8E["growth_cm"]),
+                      "stator hub gap 0 (not stated)", "station 3 at {:.3f} cm (stations drawn only in Fig. 1; the fan stages' rule)".format(z_out),
+                      "Fig. 1 flow path with the rotor hub leading edge at its Z = {:.3f} (the hub radius there is the rotor hub RI); "
+                      "the rotor table's edge radii over the rotor, Fig. 1 over the stator (its TIP row lies 0.3 cm outside the casing)".format(
+                          c["flowpath_rotor_le_cm"]),
+                      "rotor part-span damper at about 40 percent span, not modelled",
+                      "inlet blockage 0.02 (no blade-element data transcribed for this case)"]
+        self.speeds = {100: L.read_overall(folder / "{}_tableVI_overall_100pct.csv".format(c["report"]))}
+        self.rotor_elements, self.stator_elements = {}, {}
+        rows = L.read_geometry(folder / "{}_{}.csv".format(c["report"], c["rotor"]))
+        self.rotor_walls_in = (float(next(r for r in rows if r["RP"] == "HUB")["RI"]), float(next(r for r in rows if r["RP"] == "TIP")["RI"]))
+
+    def measured_points(self, speed):
+        rpm = {r: v["WHEEL SPEED, RPM"] for r, v in self.speeds[speed].items()}
+        for r, v in self.speeds[speed].items():
+            v.setdefault("ROTATIVE SPEED", rpm[r])
+        return super().measured_points(speed)
+
+
 CASES = {case_id: (lambda c=case_id: LewisStage(c)) for case_id in L.LEWIS_STAGES}
 CASES.update({case_id: (lambda c=case_id: McaStage(c)) for case_id in L.LEWIS_MCA_STAGES})
 CASES["nasa_stage8_8"] = lambda: Stage88("nasa_stage8_8")
 CASES.update({case_id: (lambda c=case_id: FanStage(c)) for case_id in L.FAN_STAGES})
 CASES.update({case_id: (lambda c=case_id: TipClearanceStage(c)) for case_id in L.TIP_CLEARANCE_CASES})
+CASES["nasa_stage66_igv"] = lambda: Stage66("nasa_stage66_igv")
 
 
 # ------------------------------------------------------------------ model

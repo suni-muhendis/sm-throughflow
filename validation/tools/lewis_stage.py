@@ -454,6 +454,9 @@ LEWIS_MCA_STAGES = {
                             tip_speed=425.0, z_in_cm=-2.540, z_out_cm=12.700),
     "nasa_stage6_1": dict(report="TMX2731", rotor="rotor6", stator="stator1", blades=(47, 60), clearance_cm=0.05,
                           tip_speed=419.3, z_in_cm=-1.910, z_out_cm=12.950),
+    "nasa_stage18_13": dict(report="TMX3100", rotor="rotor18", stator="stator13", blades=(56, 62), clearance_cm=0.05,
+                            tip_speed=421.817, z_in_cm=-2.540, z_out_cm=13.462,
+                            note="rotor part-span damper at about 52 percent span (TM X-3100), not modelled"),
 }
 FAMILY_CLEARANCE_CM = 0.05
 
@@ -523,6 +526,48 @@ def walls_with_edges(walls, tables):
         kept = [p for p in pts if not any(lo - EDGE_MARGIN_CM <= p[0] <= hi + EDGE_MARGIN_CM for lo, hi in spans)]
         out.append(kept + [p for e in edges for p in e])
     return out
+
+
+#: Stage 66 (TM X-3345): the first stage of a five-stage core compressor, tested alone with its inlet
+#: guide vanes set axial. Rotor 66 multiple circular arcs, stator 66 double circular arcs (pdf p5). The
+#: Fig. 1 flow path has its own origin: its inner radius 12.700 at Z = 30.480 is the rotor hub RI, so
+#: the rotor hub leading edge (the tables' origin) is taken at that Z (not stated). Station 1 lies
+#: between the IGV trailing edge (2.50 cm ahead of the rotor hub leading edge) and the rotor; the IGV
+#: is not modelled and the domain starts at its trailing-edge plane; station 3 follows the fan
+#: stages' rule (FAN_EXIT_GAP_CM behind the stator mid-span ZO). Both are drawn only in Fig. 1.
+#: Running tip clearance: the nominal cold 0.05 cm less the TP-2049 growth, as for the other stages
+#: of this rig.
+STAGE_66 = dict(folder="nasa_stage66_igv", report="TMX3345", rotor="tableIV_rotor66", stator="tableV_stator66",
+                flowpath="fig1_flowpath", blades=(57, 64), clearance_cm=0.05, design_rpm=16042.3,
+                flowpath_rotor_le_cm=30.480, z_in_cm=-2.50)
+
+
+def stage66_design(stator_hub_clearance_m=0.0):
+    """Stage 66 without its axial inlet guide vanes; returns (design, z_out_cm, running clearance cm)."""
+    c = STAGE_66
+    folder = CASES / c["folder"]
+    running_cm = c["clearance_cm"] - STAGE_8E["growth_cm"]
+    rotor_rows = read_geometry(folder / "{}_{}.csv".format(c["report"], c["rotor"]))
+    stator_rows = read_geometry(folder / "{}_{}.csv".format(c["report"], c["stator"]))
+    rotor = blade_row(rotor_rows, "R1", "1", "rotor", c["blades"][0], running_cm / 100.0)
+    stator = blade_row(stator_rows, "S1", "1", "stator", c["blades"][1], stator_hub_clearance_m, profile="dca")
+    mid = next(r for r in stator_rows if _num(r["PERCENT SPAN"]) == 50.0)
+    z_in, z_out = c["z_in_cm"], _num(mid["ZO"]) + FAN_EXIT_GAP_CM
+    for row in (rotor, stator):
+        row["leading_edge_axial_m"] = round(row["leading_edge_axial_m"] - z_in / 100.0, 7)
+        row["trailing_edge_axial_m"] = round(row["trailing_edge_axial_m"] - z_in / 100.0, 7)
+    walls = [[(z - c["flowpath_rotor_le_cm"], r) for z, r in wall]
+             for wall in flowpath_points(folder / "{}_{}.csv".format(c["report"], c["flowpath"]))]
+    # Over the rotor the table edges lie on Fig. 1 within 0.02 cm; the stator TIP row (RO 25.121) lies
+    # 0.3 cm outside the casing, so the stator keeps the Fig. 1 walls.
+    (zi, ri), (zo, ro) = [tuple(map(np.array, zip(*sorted(w)))) for w in walls_with_edges(walls, [rotor_rows])]
+    z = np.unique(np.concatenate([zi, zo, [z_in, z_out]]))
+    z = z[(z >= z_in) & (z <= z_out)]
+    stations = [{"axial_m": round((float(x) - z_in) / 100.0, 7), "hub_radius_m": round(float(np.interp(x, zi, ri)) / 100.0, 7),
+                 "shroud_radius_m": round(float(np.interp(x, zo, ro)) / 100.0, 7)} for x in z]
+    design = {"schema_version": "throughflow_design_v2", "machine_type": "compressor", "flow_path": "axial",
+              "passage": {"stations": stations}, "rows": [rotor, stator]}
+    return design, z_out, running_cm
 
 
 def stage35(tip_clearance_m=4.0e-4, stator_hub_clearance_m=0.0):

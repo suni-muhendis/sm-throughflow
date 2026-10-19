@@ -465,6 +465,46 @@ Aungier's off-design loss gives. Over all 210 points the stage
 pressure-rise error is +7.2 percent (spread 12.8) and the stage efficiency
 error +1.6 points (spread 5.5).
 
+## Results so far: stages 18-13 and 66
+
+Two more single stages of the same rig:
+
+- **Stage 18-13** (TM X-3100): the 1.92-pressure-ratio stage, multiple
+  circular arcs in both rows (56 and 62 blades), with a rotor part-span
+  damper at 52 percent span that the model does not have. It runs through
+  the column-part adapter of the earlier stages. The design speed computed
+  from the design tip speed, 16100.0 rpm, equals Table I. Table VI was
+  transcribed at every speed (100 to 50 percent).
+- **Stage 66** (TM X-3345): the first stage of a five-stage core
+  compressor, tested with its inlet guide vanes set axial. The rotor has
+  multiple circular arcs and the stator double circular arcs. Table VI
+  covers design speed only and gives equivalent flows at the stage inlet,
+  between the IGV and the rotor. The IGV is not modelled, and the domain
+  starts at its trailing-edge plane. Fig. 1 has its own origin; the rotor
+  hub leading edge is placed where its hub radius equals the rotor hub RI.
+  The stator TIP row of Table V lies 0.3 cm outside the Fig. 1 casing, so
+  the stator keeps the Fig. 1 walls.
+
+Mean errors at the measured flow (stage PR - 1 / stage efficiency points):
+
+| Stage | 100 % | 90 % | 70 % |
+|---|---|---|---|
+| 18-13 | -3 % / +1.9 (3 of 5 points) | +10 % / +6.7 | +21 % / +11.3 |
+| 66 | +16 % / +1.4 (4 of 5 points) | | |
+
+Stage 18-13 repeats the part-speed pattern. Its 70-percent efficiency
+error reaches +19 points at the highest flow, where the highly loaded
+stator hub (design D = 0.66, inlet Mach number 0.96) meets the most
+negative incidence. At design speed the model's choke flow is within 0.2
+percent of the data, but the two points nearest choke do not converge.
+Stage 66 overpredicts its design-speed pressure rise by +10 percent at its
+lowest flow and +28 percent at its highest; its choke flow is 3.9 percent
+high. One stage 66 point (28.81 kg/s) does not converge, while 28.6 and
+29.0 kg/s do.
+
+Over the 227 points the stage pressure-rise error is +7.6 percent (spread
+12.8) and the stage efficiency error +1.9 points (spread 5.6).
+
 ## Off-design deviation: Creveling and Carmody's increment, tried and not adopted
 
 The part-speed excess work comes mainly from the rotor deviation. Stage 35 is

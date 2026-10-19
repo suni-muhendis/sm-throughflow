@@ -330,5 +330,65 @@
   "title": "Figure 1. - Flow path for stage 18-13, showing axial location of instrumentation. (inset 'Flow path coordinates')",
   "dpi": 200,
   "notes": "Down-arrows written as ↓; FOOTNOTE a = Instrumentation survey plane. Identical to the TM X-3472 Figure 2 inset; the rotor/stator tip radii of Tables II-V still do not lie on this casing (see notes.md). Read at 200 dpi, then 300/600-dpi zoomed crops; second cell-by-cell read from the image done. Print is the same computer output as in TM X-3472 but a cleaner scan; every cell compared with the TM X-3472 transcription."
+ },
+ {
+  "file": "TMX3100_tableVI_overall_100pct.csv",
+  "report": "NASA TM X-3100",
+  "ntrs_id": "19740025108",
+  "pdf_page": 26,
+  "printed_page": "24",
+  "title": "TABLE VI. - OVERALL PERFORMANCE FOR STAGE 18-13 (a) 100 Percent design speed",
+  "dpi": 300,
+  "notes": "Readings 927, 926, 925, 924, 923 at 100 percent of design speed, in printed order. Parameters as rows, reading numbers in the header row. No units printed (row 2 blank). Read from a 300-dpi render. Checks, all pass: temperature-rise efficiencies from the pressure and temperature ratios (stage efficiency with the stage temperature ratio); constant annulus/frontal (1.3470-1.3472) and orifice/frontal (0.19661-0.19668) flow ratios; rotative speed/percent speed 16090-16109 rpm; head-rise coefficient over (PR^k - 1) times (N/N_design)^2 constant."
+ },
+ {
+  "file": "TMX3100_tableVI_overall_090pct.csv",
+  "report": "NASA TM X-3100",
+  "ntrs_id": "19740025108",
+  "pdf_page": 26,
+  "printed_page": "24",
+  "title": "TABLE VI. - OVERALL PERFORMANCE FOR STAGE 18-13 (b) 90 Percent design speed",
+  "dpi": 300,
+  "notes": "Readings 918, 919, 920, 921, 922 at 90 percent of design speed, in printed order. Parameters as rows, reading numbers in the header row. No units printed (row 2 blank). Read from a 300-dpi render. Checks, all pass: temperature-rise efficiencies from the pressure and temperature ratios (stage efficiency with the stage temperature ratio); constant annulus/frontal (1.3470-1.3472) and orifice/frontal (0.19661-0.19668) flow ratios; rotative speed/percent speed 16090-16109 rpm; head-rise coefficient over (PR^k - 1) times (N/N_design)^2 constant. Reading 922 STAGE TOTAL PRESSURE RATIO is printed with a stray dot ('1..664'); written 1.664."
+ },
+ {
+  "file": "TMX3100_tableVI_overall_080pct.csv",
+  "report": "NASA TM X-3100",
+  "ntrs_id": "19740025108",
+  "pdf_page": 26,
+  "printed_page": "24",
+  "title": "TABLE VI. - OVERALL PERFORMANCE FOR STAGE 18-13 (c) 80 Percent design speed",
+  "dpi": 300,
+  "notes": "Readings 915 at 80 percent of design speed, in printed order. Parameters as rows, reading numbers in the header row. No units printed (row 2 blank). Read from a 300-dpi render. Checks, all pass: temperature-rise efficiencies from the pressure and temperature ratios (stage efficiency with the stage temperature ratio); constant annulus/frontal (1.3470-1.3472) and orifice/frontal (0.19661-0.19668) flow ratios; rotative speed/percent speed 16090-16109 rpm; head-rise coefficient over (PR^k - 1) times (N/N_design)^2 constant."
+ },
+ {
+  "file": "TMX3100_tableVI_overall_070pct.csv",
+  "report": "NASA TM X-3100",
+  "ntrs_id": "19740025108",
+  "pdf_page": 27,
+  "printed_page": "25",
+  "title": "TABLE VI. - OVERALL PERFORMANCE FOR STAGE 18-13 (d) 70 Percent design speed",
+  "dpi": 300,
+  "notes": "Readings 905, 906, 907, 947, 904 at 70 percent of design speed, in printed order. Parameters as rows, reading numbers in the header row. No units printed (row 2 blank). Read from a 300-dpi render. Checks, all pass: temperature-rise efficiencies from the pressure and temperature ratios (stage efficiency with the stage temperature ratio); constant annulus/frontal (1.3470-1.3472) and orifice/frontal (0.19661-0.19668) flow ratios; rotative speed/percent speed 16090-16109 rpm; head-rise coefficient over (PR^k - 1) times (N/N_design)^2 constant."
+ },
+ {
+  "file": "TMX3100_tableVI_overall_060pct.csv",
+  "report": "NASA TM X-3100",
+  "ntrs_id": "19740025108",
+  "pdf_page": 27,
+  "printed_page": "25",
+  "title": "TABLE VI. - OVERALL PERFORMANCE FOR STAGE 18-13 (e) 60 Percent design speed",
+  "dpi": 300,
+  "notes": "Readings 934 at 60 percent of design speed, in printed order. Parameters as rows, reading numbers in the header row. No units printed (row 2 blank). Read from a 300-dpi render. Checks, all pass: temperature-rise efficiencies from the pressure and temperature ratios (stage efficiency with the stage temperature ratio); constant annulus/frontal (1.3470-1.3472) and orifice/frontal (0.19661-0.19668) flow ratios; rotative speed/percent speed 16090-16109 rpm; head-rise coefficient over (PR^k - 1) times (N/N_design)^2 constant."
+ },
+ {
+  "file": "TMX3100_tableVI_overall_050pct.csv",
+  "report": "NASA TM X-3100",
+  "ntrs_id": "19740025108",
+  "pdf_page": 27,
+  "printed_page": "25",
+  "title": "TABLE VI. - OVERALL PERFORMANCE FOR STAGE 18-13 (f) 50 Percent design speed",
+  "dpi": 300,
+  "notes": "Readings 942 at 50 percent of design speed, in printed order. Parameters as rows, reading numbers in the header row. No units printed (row 2 blank). Read from a 300-dpi render. Checks, all pass: temperature-rise efficiencies from the pressure and temperature ratios (stage efficiency with the stage temperature ratio); constant annulus/frontal (1.3470-1.3472) and orifice/frontal (0.19661-0.19668) flow ratios; rotative speed/percent speed 16090-16109 rpm; head-rise coefficient over (PR^k - 1) times (N/N_design)^2 constant. PERCENT OF DESIGN SPEED printed '50.' with a broken last glyph: written 50.1? (8062.7 rpm / 16100 = 50.08)."
  }
 ]
