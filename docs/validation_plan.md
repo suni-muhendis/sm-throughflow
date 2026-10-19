@@ -413,8 +413,23 @@ linearly over the span; it has no effect on the turning, so the rotor's
 work does not change. The measurements show the clearance removing work as
 well as adding loss. At the measured points the stage pressure-rise error
 therefore grows with clearance (peak efficiency: +5, +17, +20, +24 percent
-at design speed), the largest single source of spread found so far. Open:
-a source-based clearance effect on work (underturning near the tip).
+at design speed), the largest single source of spread found so far.
+
+Two published clearance models were read and neither reaches this size:
+- Roberts, Serovy and Sandercock (J. Eng. Gas Turbines Power 108, 1986,
+  131-137) add a rotor deviation of 2.7e4 (delta*_t/h)(TC/h) deg at 5
+  percent span from the tip (eq. 4), with fixed shapes towards midspan and
+  the hub (eqs. 5-8); fitted to subsonic middle stages at design point. For
+  8E (delta*/h about 0.004) it gives roughly 0.2 to 1.2 deg over the outer
+  tenth of the span, about 1 percent of the rotor work.
+- Gallimore (J. Turbomach. 120, 1998, 662-670) limits the tangential blade
+  pressure force near the walls, zero in the gap and constant over ten
+  clearances; on his low-speed rotor, clearance from 1.2 to 3.0 percent of
+  chord cost 0.5 points of efficiency (0.7 measured).
+Stage 8E is transonic (tip speed 423 m/s), where the clearance flow's
+blockage, not its turning alone, is the likely mechanism; no model of it is
+in hand. Recorded as a limit; the Rotor 37 clearance data are the place to
+return to it.
 
 Solver fix found on the way: the end-wall boundary layer's (8-23) divided by
 zero when a very thin profile rounded H1 to 1; the outer thickness is now
