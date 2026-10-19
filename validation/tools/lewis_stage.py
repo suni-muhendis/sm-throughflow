@@ -125,7 +125,7 @@ def blade_row(table, row_id, stage_id, row_type, blade_count, clearance_m, profi
     ``profile`` "mca", "dca" or "c4"; ``camberline`` defaults to the profile's own (multiple or single
     circular arc), and ``max_camber_location`` is for a parabolic-arc camberline.
     """
-    rows = read_geometry(table)
+    rows = read_geometry(table) if isinstance(table, (str, Path)) else list(table)
     tip = next(r for r in rows if r["RP"] == "TIP")
     hub = next(r for r in rows if r["RP"] == "HUB")
     mid = next(r for r in rows if _num(r["PERCENT SPAN"]) == 50.0)
@@ -417,13 +417,17 @@ def fan_stage_design(case_id, tip_clearance_m=None, stator_hub_clearance_m=0.0):
 STAGE_8E = dict(folder="nasa_stage8e_tipclearance", report="TP2049", rotor="tableIV_rotor8E", stator="tableV_stator8",
                 flowpath="fig2_flowpath", blades=(49, 54), design_rpm=16100.0, z_in_cm=-2.540, z_out_cm=13.462, growth_cm=0.040)
 TIP_CLEARANCE_CASES = {"nasa_stage8e_c{:03d}".format(int(round(1000 * c))): c for c in (0.061, 0.102, 0.140, 0.178)}
+#: Stage 8-8 (TM X-2926) is the same blading and rig (TP-2049 compares every cell of the tables), with a
+#: nominal cold tip clearance of 0.05 cm; the TP-2049 growth estimate gives its running clearance.
+STAGE_8_8_CLEARANCE_CM = 0.05
 
 
 def stage8e_design(case_id, stator_hub_clearance_m=0.0):
-    """Stage 8E-8 at one of its four clearances (TIP_CLEARANCE_CASES); multiple-circular-arc rows."""
+    """Stage 8E-8 at one of its four clearances (TIP_CLEARANCE_CASES), or stage 8-8; multiple-circular-arc rows."""
     c = STAGE_8E
     folder = CASES / c["folder"]
-    running_cm = TIP_CLEARANCE_CASES[case_id] - c["growth_cm"]
+    nominal_cm = STAGE_8_8_CLEARANCE_CM if case_id == "nasa_stage8_8" else TIP_CLEARANCE_CASES[case_id]
+    running_cm = nominal_cm - c["growth_cm"]
     tables = [folder / "{}_{}.csv".format(c["report"], c[k]) for k in ("rotor", "stator")]
     rotor = blade_row(tables[0], "R1", "1", "rotor", c["blades"][0], running_cm / 100.0)
     stator = blade_row(tables[1], "S1", "1", "stator", c["blades"][1], stator_hub_clearance_m)
@@ -434,6 +438,91 @@ def stage8e_design(case_id, stator_hub_clearance_m=0.0):
     stations = passage_with_edges(folder / "{}_{}.csv".format(c["report"], c["flowpath"]), tables, c["z_in_cm"], c["z_out_cm"])
     return {"schema_version": "throughflow_design_v2", "machine_type": "compressor", "flow_path": "axial",
             "passage": {"stations": stations}, "rows": [rotor, stator]}
+
+
+#: Earlier NASA Lewis transonic single stages on the 50.8-cm rig of stage 8E-8 (multiple circular arcs), whose
+#: blade tables are printed in column parts (Table IV/V parts 1-3, joined on RP). Rules where a report is silent:
+#: running clearance = nominal cold clearance less the 0.040-cm growth TP-2049 calculates for this rig; a
+#: report without a stated clearance takes the family's 0.05 cm; design speed from the design tip speed and
+#: the rotor's leading-edge tip radius.
+LEWIS_MCA_STAGES = {
+    "nasa_stage12_5": dict(report="TMX2658", rotor="rotor12", stator="stator5", blades=(56, 62), clearance_cm=None,
+                           tip_speed=422.9, z_in_cm=-2.540, z_out_cm=13.462),
+    "nasa_stage14_10": dict(report="TMX2645", rotor="rotor14", stator="stator10", blades=(43, 48), clearance_cm=0.05,
+                            tip_speed=423.0, z_in_cm=-2.540, z_out_cm=13.462),
+    "nasa_stage16_11": dict(report="TMX2904", rotor="rotor16", stator="stator11", blades=(44, 48), clearance_cm=0.05,
+                            tip_speed=425.0, z_in_cm=-2.540, z_out_cm=12.700),
+    "nasa_stage6_1": dict(report="TMX2731", rotor="rotor6", stator="stator1", blades=(47, 60), clearance_cm=0.05,
+                          tip_speed=419.3, z_in_cm=-1.910, z_out_cm=12.950),
+}
+FAMILY_CLEARANCE_CM = 0.05
+
+
+def read_geometry_parts(folder, prefix):
+    """A blade table printed in column parts (``<prefix>_part<N>.csv``), joined on RP."""
+    rows = {}
+    for path in sorted(folder.glob(prefix + "_part*.csv")):
+        for r in read_geometry(path):
+            rows.setdefault(r["RP"], {}).update(r)
+    return list(rows.values())
+
+
+def flowpath_points(path):
+    """(z, r_inner, r_outer) points of a Fig. 1 flow-path table; '↓' (value continues) and blanks are skipped."""
+    with open(path, newline="", encoding="utf-8") as f:
+        rows = list(csv.reader(f))
+    units = rows[1]
+    skip = 1 if units and not units[0].strip() and len(units) > 3 else 0
+    walls = ([], [])
+    for r in rows[2:]:
+        r = r[skip:]
+        if not r or not r[0].strip():
+            continue
+        for k in (0, 1):
+            v = r[1 + k].strip() if len(r) > 1 + k else ""
+            if v and v != "↓":
+                walls[k].append((_num(r[0]), _num(v.rstrip("?"))))
+    return walls
+
+
+def mca_stage_design(case_id, stator_hub_clearance_m=0.0):
+    """One of LEWIS_MCA_STAGES; returns (design, design_rpm, running clearance cm)."""
+    c = LEWIS_MCA_STAGES[case_id]
+    folder = CASES / case_id
+    rotor_rows = read_geometry_parts(folder, "{}_tableIV_{}".format(c["report"], c["rotor"]))
+    stator_rows = read_geometry_parts(folder, "{}_tableV_{}".format(c["report"], c["stator"]))
+    running_cm = (c["clearance_cm"] or FAMILY_CLEARANCE_CM) - STAGE_8E["growth_cm"]
+    rotor = blade_row(rotor_rows, "R1", "1", "rotor", c["blades"][0], running_cm / 100.0)
+    stator = blade_row(stator_rows, "S1", "1", "stator", c["blades"][1], stator_hub_clearance_m)
+    shift = c["z_in_cm"] / 100.0
+    for row in (rotor, stator):
+        row["leading_edge_axial_m"] = round(row["leading_edge_axial_m"] - shift, 7)
+        row["trailing_edge_axial_m"] = round(row["trailing_edge_axial_m"] - shift, 7)
+    (zi, ri), (zo, ro) = [tuple(map(np.array, zip(*sorted(w)))) for w in walls_with_edges(
+        flowpath_points(next(folder.glob("{}_fig1_flowpath*.csv".format(c["report"])))), [rotor_rows, stator_rows])]
+    z = np.unique(np.concatenate([zi, zo, [c["z_in_cm"], c["z_out_cm"]]]))
+    z = z[(z >= c["z_in_cm"]) & (z <= c["z_out_cm"])]
+    stations = [{"axial_m": round((float(x) - c["z_in_cm"]) / 100.0, 7), "hub_radius_m": round(float(np.interp(x, zi, ri)) / 100.0, 7),
+                 "shroud_radius_m": round(float(np.interp(x, zo, ro)) / 100.0, 7)} for x in z]
+    tip_in = float(next(r for r in rotor_rows if r["RP"] == "TIP")["RI"]) / 100.0
+    rpm = c["tip_speed"] / tip_in * 60.0 / (2.0 * math.pi)
+    design = {"schema_version": "throughflow_design_v2", "machine_type": "compressor", "flow_path": "axial",
+              "passage": {"stations": stations}, "rows": [rotor, stator]}
+    return design, rpm, running_cm
+
+
+def walls_with_edges(walls, tables):
+    """Flow-path wall points with the blade tables' edge radii over the blade rows (see passage_with_edges)."""
+    out = []
+    for wall, pts in enumerate(walls):
+        edges = []
+        for rows in tables:
+            e = next(r for r in rows if r["RP"] == ("HUB" if wall == 0 else "TIP"))
+            edges.append([(_num(e["ZI"]), _num(e["RI"])), (_num(e["ZO"]), _num(e["RO"]))])
+        spans = [(a[0], b[0]) for a, b in edges]
+        kept = [p for p in pts if not any(lo - EDGE_MARGIN_CM <= p[0] <= hi + EDGE_MARGIN_CM for lo, hi in spans)]
+        out.append(kept + [p for e in edges for p in e])
+    return out
 
 
 def stage35(tip_clearance_m=4.0e-4, stator_hub_clearance_m=0.0):

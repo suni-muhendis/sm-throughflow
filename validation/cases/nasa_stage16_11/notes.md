@@ -56,3 +56,21 @@ rotor-hub-LE origin; interpretation).
 ## Figure only
 
 Figure 1 drawing (inset transcribed), Figure 2 facility, Figures 3-6.
+
+## Measured overall performance (Table VI)
+
+NASA TM X-2904 Table VI, pdf p27-28 (printed 25-26), read from a 220-dpi render. One file per
+speed, `TMX2904_tableVI_overall_<NNN>pct.csv`, readings as columns in printed order. The 60 and 50
+percent parts (one reading each), where printed, are not transcribed.
+
+| Speed | Readings |
+|---|---|
+| 70 % | 1068, 1069, 1070, 1071, 1072 |
+| 80 % | 1067 |
+| 90 % | 1062, 1063, 1064, 1065, 1066 |
+| 100 % | 1057, 1058, 1059, 1060, 1061 |
+
+Checks, all pass: temperature-rise efficiencies from the pressure and temperature ratios (the
+stage efficiency uses the stage temperature ratio); constant annulus/frontal and orifice/frontal
+flow ratios; ROTATIVE SPEED / PERCENT OF DESIGN SPEED 16089-16107 rpm; head-rise coefficient over
+(PR^k - 1) times (N/N_design)^2 constant. Tables VII and VIII (blade elements) are not transcribed.

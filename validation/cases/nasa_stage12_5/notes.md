@@ -61,3 +61,21 @@ several RPs, and the blade-edge axial positions differ (e.g. stator hub ZIC
 ## Figure only
 
 Figure 1 drawing, Figure 2 facility, Figures 3-6 photographs and probe layout.
+
+## Measured overall performance (Table VI)
+
+NASA TM X-2658 Table VI, pdf p27-28 (printed 25-26), read from a 220-dpi render. One file per
+speed, `TMX2658_tableVI_overall_<NNN>pct.csv`, readings as columns in printed order. The 60 and 50
+percent parts (one reading each), where printed, are not transcribed.
+
+| Speed | Readings |
+|---|---|
+| 70 % | 323, 324, 325, 326, 327 |
+| 80 % | 322 |
+| 90 % | 315, 316, 319, 320, 321 |
+| 100 % | 310, 311, 305, 313, 314 |
+
+Checks, all pass: temperature-rise efficiencies from the pressure and temperature ratios (the
+stage efficiency uses the stage temperature ratio); constant annulus/frontal and orifice/frontal
+flow ratios; ROTATIVE SPEED / PERCENT OF DESIGN SPEED 16092-16110 rpm; head-rise coefficient over
+(PR^k - 1) times (N/N_design)^2 constant. Tables VII and VIII (blade elements) are not transcribed.

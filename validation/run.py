@@ -153,7 +153,61 @@ class TipClearanceStage(FanStage):
         self.rotor_walls_in = (float(next(r for r in rows if r["RP"] == "HUB")["RI"]), float(next(r for r in rows if r["RP"] == "TIP")["RI"]))
 
 
+class Stage88(TipClearanceStage):
+    """Stage 8-8 (TM X-2926): the blading of stage 8E-8 at a 0.05-cm cold clearance, Table VI per speed."""
+
+    MIN_READINGS = 3
+
+    def __init__(self, case_id):
+        c = L.STAGE_8E
+        self.case_id = case_id
+        self.design = L.stage8e_design(case_id)
+        self.design_speed_rpm = c["design_rpm"]
+        running = L.STAGE_8_8_CLEARANCE_CM - c["growth_cm"]
+        self.notes = ["geometry from the TP-2049 tables of the same blading (identical to TM X-2926 Tables II-V cell for cell)",
+                      "tip clearance {:.2f} mm: TM X-2926 cold clearance {:.3f} cm less the {:.3f} cm growth TP-2049 calculates for this rig".format(
+                          10.0 * running, L.STAGE_8_8_CLEARANCE_CM, c["growth_cm"]),
+                      "stator hub gap 0 (not stated)", "stations 1 and 3 at {:.3f} and {:.3f} cm (TM X-2926)".format(c["z_in_cm"], c["z_out_cm"]),
+                      "MCA C1/C2 from the printed KTC and ZTC", "inlet blockage 0.02 (no blade-element data transcribed for this case)"]
+        folder = L.CASES / case_id
+        self.speeds = {}
+        for path in sorted(folder.glob("TMX2926_tableVI_overall_*pct.csv")):
+            table = L.read_overall(path)
+            if len(table) >= self.MIN_READINGS:
+                self.speeds[int(path.stem.rsplit("_", 1)[1][:-3])] = table
+        self.rotor_elements, self.stator_elements = {}, {}
+        rows = L.read_geometry(L.CASES / c["folder"] / "{}_{}.csv".format(c["report"], c["rotor"]))
+        self.rotor_walls_in = (float(next(r for r in rows if r["RP"] == "HUB")["RI"]), float(next(r for r in rows if r["RP"] == "TIP")["RI"]))
+
+
+class McaStage(Stage88):
+    """An earlier NASA Lewis transonic single stage (L.LEWIS_MCA_STAGES): Table IV/V geometry in column parts,
+    Table VI overall performance per speed."""
+
+    def __init__(self, case_id):
+        c = L.LEWIS_MCA_STAGES[case_id]
+        self.case_id = case_id
+        self.design, self.design_speed_rpm, running = L.mca_stage_design(case_id)
+        cold = "{:.3f} cm cold clearance ({})".format(c["clearance_cm"] or L.FAMILY_CLEARANCE_CM, "stated" if c["clearance_cm"] else "not stated; the family's value")
+        self.notes = ["tip clearance {:.2f} mm: {} less the {:.3f} cm growth TP-2049 calculates for this rig".format(10.0 * running, cold, L.STAGE_8E["growth_cm"]),
+                      "design speed {:.1f} rpm from the design tip speed and the rotor leading-edge tip radius".format(self.design_speed_rpm),
+                      "stator hub gap 0 (not stated)", "stations 1 and 3 at {:.3f} and {:.3f} cm ({})".format(c["z_in_cm"], c["z_out_cm"], c["report"]),
+                      "MCA C1/C2 from the printed KTC and ZTC", "flow path from Fig. 1 outside the blade rows, the tables' edge radii over them",
+                      "inlet blockage 0.02 (no blade-element data transcribed for this case)"]
+        folder = L.CASES / case_id
+        self.speeds = {}
+        for path in sorted(folder.glob("{}_tableVI_overall_*pct.csv".format(c["report"]))):
+            table = L.read_overall(path)
+            if len(table) >= self.MIN_READINGS:
+                self.speeds[int(path.stem.rsplit("_", 1)[1][:-3])] = table
+        self.rotor_elements, self.stator_elements = {}, {}
+        rows = L.read_geometry_parts(folder, "{}_tableIV_{}".format(c["report"], c["rotor"]))
+        self.rotor_walls_in = (float(next(r for r in rows if r["RP"] == "HUB")["RI"]), float(next(r for r in rows if r["RP"] == "TIP")["RI"]))
+
+
 CASES = {case_id: (lambda c=case_id: LewisStage(c)) for case_id in L.LEWIS_STAGES}
+CASES.update({case_id: (lambda c=case_id: McaStage(c)) for case_id in L.LEWIS_MCA_STAGES})
+CASES["nasa_stage8_8"] = lambda: Stage88("nasa_stage8_8")
 CASES.update({case_id: (lambda c=case_id: FanStage(c)) for case_id in L.FAN_STAGES})
 CASES.update({case_id: (lambda c=case_id: TipClearanceStage(c)) for case_id in L.TIP_CLEARANCE_CASES})
 

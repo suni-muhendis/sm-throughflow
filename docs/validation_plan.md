@@ -434,3 +434,33 @@ set (none is in the case list yet).
 Solver fix found on the way: the end-wall boundary layer's (8-23) divided by
 zero when a very thin profile rounded H1 to 1; the outer thickness is now
 taken as given there (no change elsewhere beyond round-off, 7e-11).
+
+## Results so far: the earlier Lewis transonic stages (8-8, 12-5, 14-10, 16-11, 6-1)
+
+Five more single stages of the rig of stage 8E-8, multiple-circular-arc
+blading designed in 1970-1973 (TM X-2926, X-2658, X-2645, X-2904, X-2731):
+Table VI transcribed at 100, 90, 80 and 70 percent speed (8-8 also 60 and
+50); the geometry tables are printed in column parts and joined on RP.
+Stages 12-5, 8-8 and 14-10 form a solidity series (rotor tip solidity 1.7,
+1.5 and 1.3). Rules: running clearance = cold clearance less the TP-2049
+growth of 0.040 cm (12-5 states none and takes the family's 0.05 cm); design
+speed from the design tip speed; inlet blockage 0.02 (no blade elements).
+
+Mean errors at the measured flow (stage PR - 1 / stage efficiency points):
+
+| Stage | 100 % | 90 % | 70 % |
+|---|---|---|---|
+| 8-8 | -18 % / -4.5 | -6 % / +0.8 | +22 % / +10.1 |
+| 12-5 | -2 % / +2.6 | +8 % / +7.5 | +22 % / +10.3 |
+| 14-10 | -9 % / +0.7 | +2 % / +4.5 | +22 % / +11.1 |
+| 16-11 | -16 % / -4.8 | -2 % / -1.3 | +12 % / +2.9 |
+| 6-1 | +1 % / +1.2 | +8 % / +3.9 | +23 % / +7.1 |
+
+The part-speed pattern of stages 35-38 repeats with the same size (+22
+percent pressure rise at 70 percent speed on four of five stages), and here
+the stage efficiency is also 7 to 11 points too high at 70 percent: the
+measured stage efficiencies there (0.72 to 0.82) fall well below the rotor's,
+so the stators lose far more at the high incidence of part speed than
+Aungier's off-design loss gives. Over all 210 points the stage
+pressure-rise error is +7.2 percent (spread 12.8) and the stage efficiency
+error +1.6 points (spread 5.5).

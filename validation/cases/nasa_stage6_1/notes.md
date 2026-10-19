@@ -75,3 +75,21 @@ Resolved 1, still '?' 0, print errors 0.
 | File | Row | Column | Old | New | Check | Reason |
 |---|---|---|---|---|---|---|
 | TMX2731_tableII_rotor6_part4.csv | 12 | LOSS COEFF PROF | `0.075?` | `0.075` | column printed as 0.xxx throughout; LOSS PARAM PROF/TOT = .016/.023 gives PROF coefficient 0.071-0.079 from TOT 0.108 | 600-dpi read: digits 075 clear, only the leading 0 is smudged (prints as '..075'); value 0.075 |
+
+## Measured overall performance (Table VI)
+
+NASA TM X-2731 Table VI, pdf p28-29 (printed 25-26), read from a 220-dpi render. One file per
+speed, `TMX2731_tableVI_overall_<NNN>pct.csv`, readings as columns in printed order. The 60 and 50
+percent parts (one reading each), where printed, are not transcribed.
+
+| Speed | Readings |
+|---|---|
+| 70 % | 39, 40, 41, 42, 43 |
+| 80 % | 38 |
+| 90 % | 29, 30, 31, 36, 37 |
+| 100 % | 21, 22, 23, 24, 25 |
+
+Checks, all pass: temperature-rise efficiencies from the pressure and temperature ratios (the
+stage efficiency uses the stage temperature ratio); constant annulus/frontal and orifice/frontal
+flow ratios; ROTATIVE SPEED / PERCENT OF DESIGN SPEED 15991-16006 rpm; head-rise coefficient over
+(PR^k - 1) times (N/N_design)^2 constant. Tables VII and VIII (blade elements) are not transcribed.

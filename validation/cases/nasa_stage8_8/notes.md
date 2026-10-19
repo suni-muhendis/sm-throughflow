@@ -54,3 +54,22 @@ gravity; Z referenced from the rotor-blade-hub leading edge; ZIC.. defined as
 ## Figure only
 
 Figure 1 drawing, Figure 2 facility, Figures 3-6 photographs/probe layout.
+
+## Measured overall performance (Table VI)
+
+NASA TM X-2926 Table VI, pdf p27-28 (printed 25-26), read from a 220-dpi render. One file per
+speed, `TMX2926_tableVI_overall_<NNN>pct.csv`, readings as columns in printed order; every part (100 to 50 percent) is transcribed.
+
+| Speed | Readings |
+|---|---|
+| 50 % | 83 |
+| 60 % | 82 |
+| 70 % | 74, 75, 76, 77, 78 |
+| 80 % | 81 |
+| 90 % | 69, 70, 71, 72, 73 |
+| 100 % | 58, 66, 59, 60, 61, 62 |
+
+Checks, all pass: temperature-rise efficiencies from the pressure and temperature ratios (the
+stage efficiency uses the stage temperature ratio); constant annulus/frontal and orifice/frontal
+flow ratios; ROTATIVE SPEED / PERCENT OF DESIGN SPEED 16090-16112 rpm; head-rise coefficient over
+(PR^k - 1) times (N/N_design)^2 constant. Tables VII and VIII (blade elements) are not transcribed.

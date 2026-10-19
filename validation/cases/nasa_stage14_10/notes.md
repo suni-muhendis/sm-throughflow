@@ -100,3 +100,21 @@ Resolved 2, still '?' 0, print errors 0.
 |---|---|---|---|---|---|---|
 | TMX2645_tableII_rotor14_part4.csv | 7 | LOSS COEFF TOT | `0.083?` | `0.083` | LOSS PARAM TOT = omega cos(REL BETAM OUT)/(2 sigma): 0.018 -> omega 0.081-0.085 (beta' 46.7, sigma 1.583); 0.063 would give 0.014 (relation reproduces rows 3 and 5) | 600-dpi zoom: middle glyph is a 6/8 with a broken upper loop; relation excludes 6, so 8 |
 | TMX2645_tableIV_rotor14_part3.csv | 4 | TOTAL CAMBER | `11.52?` | `11.32` | TOTAL CAMBER = KIC - KOC = 61.63 - 50.30 = 11.33 (11.32-11.34 over rounding) | 600-dpi zoom: prints 11.32 clearly (the earlier 11.52 was a misread of the 3); relation agrees |
+
+## Measured overall performance (Table VI)
+
+NASA TM X-2645 Table VI, pdf p24-25 (printed 22-23), read from a 220-dpi render. One file per
+speed, `TMX2645_tableVI_overall_<NNN>pct.csv`, readings as columns in printed order. The 60 and 50
+percent parts (one reading each), where printed, are not transcribed.
+
+| Speed | Readings |
+|---|---|
+| 70 % | 366, 367, 368, 369, 370 |
+| 80 % | 364 |
+| 90 % | 355, 356, 357, 358, 359 |
+| 100 % | 350, 341, 342, 337, 343 |
+
+Checks, all pass: temperature-rise efficiencies from the pressure and temperature ratios (the
+stage efficiency uses the stage temperature ratio); constant annulus/frontal and orifice/frontal
+flow ratios; ROTATIVE SPEED / PERCENT OF DESIGN SPEED 16089-16107 rpm; head-rise coefficient over
+(PR^k - 1) times (N/N_design)^2 constant. Tables VII and VIII (blade elements) are not transcribed.
