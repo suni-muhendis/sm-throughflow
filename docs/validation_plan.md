@@ -464,3 +464,73 @@ so the stators lose far more at the high incidence of part speed than
 Aungier's off-design loss gives. Over all 210 points the stage
 pressure-rise error is +7.2 percent (spread 12.8) and the stage efficiency
 error +1.6 points (spread 5.5).
+
+## Off-design deviation: Creveling and Carmody's increment, tried and not adopted
+
+The part-speed excess work comes mainly from the rotor deviation. Stage 35 is
+the only case with blade elements at 70 percent speed. On its core span (15
+to 85 percent), the model's rotor deviation there is 0.7 to 4 deg low, while
+the core rotor incidence is 1.2 deg high at every speed. A uniform extra 1
+deg of rotor deviation lowers the rotor work by about 9 percent at 70
+percent speed and 7 percent at design speed, so a small speed-dependent
+deviation error is enough to explain the trend. At 70 percent speed the
+rotor runs 4 to 6 deg above Aungier's design incidence. His linear slope
+(6-76) adds only 0.3 deg there; it is the reference slope of Lieblein's
+low-speed cascade data.
+
+Sources on off-design deviation of transonic rows, all read:
+
+- H. F. Creveling and R. H. Carmody, *Axial Flow Compressor Computer
+  Program for Calculating Off-Design Performance (Program IV)*, NASA
+  CR-72427, Allison EDR-5898, August 1968. Later citations often print the
+  number as CR-72472; the cover reads CR-72427. The program adds an increment
+  to the reference deviation, correlated from NASA rotor and stator data at
+  inlet Mach numbers 0.5 to 1.1:
+  `delta - delta_ref = eps_ref f((i - i_ref)/eps_ref)`, where `eps_ref` is
+  the reference air turning (eq. 2, 3; figs. 5 to 7). The table `f` is in
+  function DEVI of the source deck (p. B-14), and its call is on p. B-58.
+  Near the reference incidence, `f` has a slope of about 0.5, not Aungier's
+  0.03 to 0.08.
+- J. E. Cahill, *Identification and Evaluation of Loss and Deviation Models
+  for use in Transonic Compressor Stage Performance Prediction*, M.S. thesis,
+  Virginia Polytechnic Institute and State University, 1997. He compared the
+  shapes of the off-design deviation curves, each shifted onto the measured
+  minimum-loss point, with rotor 35 data at 70, 90 and 100 percent speed.
+  RMS errors: Hearsey 0.5 to 1.4 deg; Creveling 1.6 to 2.7 deg; Lieblein
+  with the Jansen and Moffatt conversion 6.7 to 18.5 deg; Howell 2.5 to
+  9.8 deg (Table 4.8).
+- K. M. Boyer, *An Improved Streamline Curvature Approach for Off-Design
+  Analysis of Transonic Compression Systems*, Ph.D. dissertation, Virginia
+  Polytechnic Institute and State University, 2001 (section 3.2). His SLC
+  code uses Hearsey's four-piece curve for deviation against incidence, and
+  still needed a user-set extra deviation at every operating point. He
+  calls a detailed assessment of off-design deviation for highly transonic
+  blading "needed".
+- Hearsey's method, the best in Cahill's test, is documented only in Boeing
+  reports that Boyer and Cahill cite: *Program HT0300 NASA 1994 Version*,
+  D6-81569TN, and an HT0300 report of 1970. Neither is openly available.
+  AGARD-R-745 (Çetin, Üçer, Hirsch and Serovy, 1987), the review that
+  recommends Creveling's correlation, could not be downloaded from DTIC.
+
+The trial replaced the linear incidence term of (6-77) with Creveling's
+increment, about Aungier's design incidence and deviation. The term in
+`W_m2/W_m1` was kept. Results at the measured flow, on the 202 points where
+both models converge (mean / spread):
+
+| Error | Aungier (6-77) | Creveling |
+|---|---|---|
+| Stage PR - 1 | +7.7 % / 12.3 % | -0.3 % / 12.4 % |
+| Stage efficiency | +1.7 / 5.2 points | +1.0 / 5.6 points |
+| Rotor TR - 1 | +3.0 % / 8.1 % | -3.0 % / 8.2 % |
+| Stage PR - 1 at 100 / 90 / 80 / 70 % speed | -0.8 / +2.2 / +7.0 / +20.1 % | -8.6 / -4.9 / -1.1 / +10.9 % |
+
+Creveling's increment moves the level at every speed. It narrows the gap
+between 100 and 70 percent speed only slightly, from 21 to 20 points, and
+leaves the spread unchanged. On stage 35 it brings the stator deviation
+within 1 deg of the data. The core rotor deviation becomes 2 deg too high at
+90 and 100 percent speed and 0.5 to 1.3 deg too high at 70 percent, partly
+because the 1.2 deg excess incidence is now multiplied by a slope of 0.5.
+Since the aim is a consistent error, not a small one, the model keeps
+Aungier's (6-77), and Creveling's increment is not in the code. The speed
+dependence of transonic rotor deviation stays open; the sources above
+expect it.
