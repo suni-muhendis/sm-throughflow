@@ -428,8 +428,8 @@ Two published clearance models were read and neither reaches this size:
   chord cost 0.5 points of efficiency (0.7 measured).
 Stage 8E is transonic (tip speed 423 m/s), where the clearance flow's
 blockage, not its turning alone, is the likely mechanism; no model of it is
-in hand. Recorded as a limit; the Rotor 37 clearance data are the place to
-return to it.
+in hand. Recorded as a limit, to return to with a transonic clearance data
+set (none is in the case list yet).
 
 Solver fix found on the way: the end-wall boundary layer's (8-23) divided by
 zero when a very thin profile rounded H1 to 1; the outer thickness is now
