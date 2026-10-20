@@ -10,37 +10,37 @@ Simulator: slc_aungier_experimental_v5
 | Case | Speed % | Inlet blockage | Choke flow | Peak-eff. flow | Peak PR rise | Peak eff. (pts) | Stall flow |
 |---|---|---|---|---|---|---|---|
 | nasa_2stage_fan_r67 | 100 | 0.020 | no converged point down to half the measured flow | | | | |
-| nasa_2stage_fan_r67 | 90 | 0.020 | not choked (+2.30% vs max. flow) | -1.03% | -0.14% | +0.9 | none found |
-| nasa_2stage_fan_r67 | 80 | 0.020 | +5.73% | +1.28% | +4.32% | +0.6 | none found |
-| nasa_2stage_fan_r67 | 70 | 0.020 | not choked (+4.73% vs max. flow) | +3.20% | +5.42% | +1.5 | none found |
-| nasa_2stage_fan_r67 | 50 | 0.020 | not choked (+19.57% vs max. flow) | +2.99% | +9.04% | -0.6 | none found |
-| nasa_2stage_fan_tp1314 | 100 | 0.020 | -0.59% | -3.06% | +13.01% | +3.2 | none found |
-| nasa_2stage_fan_tp1314 | 80 | 0.020 | not choked (+6.52% vs max. flow) | -3.91% | +22.16% | +4.5 | none found |
-| nasa_2stage_fan_tp1314 | 60 | 0.020 | not choked (+7.03% vs max. flow) | -1.98% | +24.17% | +4.6 | none found |
-| nasa_stage12_5 | 70 | 0.020 | not choked (+10.60% vs max. flow) | +0.99% | +21.08% | +10.7 | none found |
-| nasa_stage12_5 | 90 | 0.020 | +3.87% | -2.35% | +10.75% | +7.2 | none found |
-| nasa_stage12_5 | 100 | 0.020 | +2.00% | -3.84% | +4.47% | +4.6 | none found |
-| nasa_stage14_10 | 70 | 0.020 | not choked (+8.75% vs max. flow) | +1.37% | +20.39% | +10.6 | none found |
-| nasa_stage14_10 | 90 | 0.020 | +2.05% | -4.31% | +10.87% | +6.4 | none found |
-| nasa_stage14_10 | 100 | 0.020 | +0.80% | -7.33% | +7.84% | +3.1 | none found |
-| nasa_stage16_11 | 70 | 0.020 | not choked (+9.34% vs max. flow) | -2.19% | +17.92% | +3.6 | none found |
-| nasa_stage16_11 | 90 | 0.020 | +3.93% | -6.26% | +12.90% | +2.1 | none found |
-| nasa_stage16_11 | 100 | 0.020 | +2.22% | -5.36% | +0.77% | +2.0 | none found |
-| nasa_stage18_13 | 70 | 0.020 | not choked (+9.98% vs max. flow) | +8.75% | +11.91% | +9.6 | none found |
-| nasa_stage18_13 | 90 | 0.020 | +4.49% | -4.55% | +9.06% | +3.7 | none found |
-| nasa_stage18_13 | 100 | 0.020 | -0.24% | -3.12% | +5.41% | +4.2 | none found |
-| nasa_stage35 | 70 | 0.018 | not choked (+6.58% vs max. flow) | -1.47% | +29.04% | +3.6 | none found |
-| nasa_stage35 | 90 | 0.018 | not choked (+2.88% vs max. flow) | -3.26% | +18.45% | -0.6 | none found |
-| nasa_stage35 | 100 | 0.018 | +2.55% | -1.81% | +0.67% | -3.6 | none found |
-| nasa_stage36 | 70 | 0.019 | not choked (+6.27% vs max. flow) | -4.84% | +34.99% | +3.7 | none found |
-| nasa_stage36 | 90 | 0.019 | not choked (+2.87% vs max. flow) | -6.21% | +20.40% | +0.0 | none found |
-| nasa_stage36 | 100 | 0.019 | +3.38% | -3.93% | +7.18% | -0.2 | -14.3% |
-| nasa_stage37 | 70 | 0.019 | +5.16% | -3.19% | +24.99% | +2.5 | none found |
-| nasa_stage37 | 90 | 0.019 | +3.28% | -5.17% | +11.14% | -2.3 | none found |
-| nasa_stage37 | 100 | 0.019 | +4.17% | -2.48% | +3.25% | -1.8 | -14.2% |
-| nasa_stage38 | 70 | 0.018 | not choked (+2.24% vs max. flow) | -4.04% | +26.52% | +2.2 | none found |
-| nasa_stage38 | 90 | 0.018 | +3.93% | -6.02% | +16.68% | -0.3 | none found |
-| nasa_stage38 | 100 | 0.018 | -2.04% | -3.12% | +8.09% | +0.0 | -10.9% |
+| nasa_2stage_fan_r67 | 90 | 0.020 | not choked (+2.36% vs max. flow) | -0.97% | +0.86% | +1.8 | none found |
+| nasa_2stage_fan_r67 | 80 | 0.020 | +5.73% | +1.35% | +4.64% | +0.9 | none found |
+| nasa_2stage_fan_r67 | 70 | 0.020 | not choked (+4.54% vs max. flow) | +3.15% | +5.42% | +1.4 | none found |
+| nasa_2stage_fan_r67 | 50 | 0.020 | not choked (+19.20% vs max. flow) | +2.97% | +9.04% | -0.6 | none found |
+| nasa_2stage_fan_tp1314 | 100 | 0.020 | +2.07% | -3.58% | +18.80% | +6.7 | none found |
+| nasa_2stage_fan_tp1314 | 80 | 0.020 | not choked (+6.59% vs max. flow) | -3.08% | +21.08% | +4.9 | none found |
+| nasa_2stage_fan_tp1314 | 60 | 0.020 | not choked (+6.76% vs max. flow) | -2.04% | +24.25% | +4.6 | none found |
+| nasa_stage12_5 | 70 | 0.020 | not choked (+10.53% vs max. flow) | +1.00% | +21.04% | +10.7 | none found |
+| nasa_stage12_5 | 90 | 0.020 | +3.94% | -2.11% | +11.29% | +7.9 | none found |
+| nasa_stage12_5 | 100 | 0.020 | +2.19% | -3.95% | +6.51% | +5.6 | none found |
+| nasa_stage14_10 | 70 | 0.020 | not choked (+8.68% vs max. flow) | +1.32% | +20.44% | +10.6 | none found |
+| nasa_stage14_10 | 90 | 0.020 | +2.24% | -3.92% | +11.59% | +7.3 | none found |
+| nasa_stage14_10 | 100 | 0.020 | +1.05% | -6.95% | +9.13% | +4.2 | none found |
+| nasa_stage16_11 | 70 | 0.020 | not choked (+9.34% vs max. flow) | -2.28% | +18.01% | +3.6 | none found |
+| nasa_stage16_11 | 90 | 0.020 | +4.06% | -6.00% | +13.44% | +2.9 | none found |
+| nasa_stage16_11 | 100 | 0.020 | +2.51% | -4.85% | +1.72% | +3.5 | none found |
+| nasa_stage18_13 | 70 | 0.020 | not choked (+9.91% vs max. flow) | +8.70% | +11.92% | +9.6 | none found |
+| nasa_stage18_13 | 90 | 0.020 | +4.43% | -4.22% | +9.64% | +4.3 | none found |
+| nasa_stage18_13 | 100 | 0.020 | -1.90% | -2.67% | +7.02% | +5.5 | none found |
+| nasa_stage35 | 70 | 0.018 | not choked (+6.58% vs max. flow) | -1.46% | +29.10% | +3.7 | none found |
+| nasa_stage35 | 90 | 0.018 | not choked (+3.13% vs max. flow) | -3.01% | +19.63% | +0.2 | none found |
+| nasa_stage35 | 100 | 0.018 | +2.93% | -1.47% | +2.07% | -2.7 | none found |
+| nasa_stage36 | 70 | 0.019 | not choked (+6.20% vs max. flow) | -4.76% | +34.82% | +3.7 | none found |
+| nasa_stage36 | 90 | 0.019 | not choked (+3.06% vs max. flow) | -6.03% | +21.57% | +0.7 | none found |
+| nasa_stage36 | 100 | 0.019 | +3.70% | -3.27% | +8.32% | +0.8 | -12.8% |
+| nasa_stage37 | 70 | 0.019 | +5.23% | -3.18% | +25.04% | +2.5 | none found |
+| nasa_stage37 | 90 | 0.019 | +3.48% | -5.00% | +12.10% | -1.7 | none found |
+| nasa_stage37 | 100 | 0.019 | +4.43% | -2.25% | +4.45% | -1.1 | -13.5% |
+| nasa_stage38 | 70 | 0.018 | not choked (+2.24% vs max. flow) | -3.93% | +26.40% | +2.2 | none found |
+| nasa_stage38 | 90 | 0.018 | +4.13% | -5.86% | +17.62% | +0.3 | -15.4% |
+| nasa_stage38 | 100 | 0.018 | -1.80% | -2.88% | +9.31% | +0.8 | none found |
 | nasa_stage52 | 70 | 0.017 | not choked (+18.38% vs max. flow) | -7.53% | +20.02% | -2.5 | none found |
 | nasa_stage52 | 80 | 0.017 | not choked (+4.76% vs max. flow) | -3.59% | +12.01% | -2.2 | none found |
 | nasa_stage52 | 90 | 0.017 | not choked (+2.72% vs max. flow) | -0.39% | +2.56% | +0.7 | none found |
@@ -57,23 +57,23 @@ Simulator: slc_aungier_experimental_v5
 | nasa_stage55 | 100 | 0.018 | not choked (+5.79% vs max. flow) | +11.33% | +6.68% | +1.6 | none found |
 | nasa_stage55 | 110 | 0.018 | not choked (+6.40% vs max. flow) | +1.94% | +9.19% | -2.0 | none found |
 | nasa_stage55 | 120 | 0.018 | not choked (+7.67% vs max. flow) | +0.32% | +9.55% | -1.4 | +17.8% |
-| nasa_stage66_igv | 100 | 0.020 | +3.88% | -1.80% | +17.43% | +1.8 | none found |
-| nasa_stage6_1 | 70 | 0.020 | not choked (+3.80% vs max. flow) | -2.92% | +27.22% | +6.6 | none found |
-| nasa_stage6_1 | 90 | 0.020 | +0.92% | +4.98% | +0.18% | +4.9 | none found |
-| nasa_stage6_1 | 100 | 0.020 | +0.45% | -2.19% | +4.16% | +2.2 | none found |
-| nasa_stage8_8 | 70 | 0.020 | +6.83% | -3.01% | +25.03% | +8.1 | none found |
-| nasa_stage8_8 | 90 | 0.020 | not choked (+1.65% vs max. flow) | -6.80% | +13.18% | +3.7 | none found |
-| nasa_stage8_8 | 100 | 0.020 | +0.41% | -6.89% | +7.51% | +2.1 | none found |
-| nasa_stage8e_c061 | 70 | 0.020 | not choked (+9.01% vs max. flow) | +2.67% | +14.29% | +4.4 | none found |
-| nasa_stage8e_c061 | 100 | 0.020 | not choked (+1.53% vs max. flow) | -5.14% | +5.02% | +0.7 | none found |
-| nasa_stage8e_c102 | 70 | 0.020 | not choked (+9.49% vs max. flow) | -0.24% | +19.30% | +5.1 | none found |
-| nasa_stage8e_c102 | 100 | 0.020 | not choked (+1.94% vs max. flow) | -5.34% | +17.30% | +4.0 | none found |
-| nasa_stage8e_c140 | 70 | 0.020 | not choked (+8.92% vs max. flow) | -0.81% | +22.97% | +5.6 | none found |
-| nasa_stage8e_c140 | 100 | 0.020 | +2.77% | -3.10% | +20.22% | +4.8 | none found |
-| nasa_stage8e_c178 | 70 | 0.020 | not choked (+8.63% vs max. flow) | -1.36% | +22.68% | +6.0 | none found |
-| nasa_stage8e_c178 | 100 | 0.020 | not choked (+3.47% vs max. flow) | -2.59% | +23.67% | +5.6 | none found |
+| nasa_stage66_igv | 100 | 0.020 | +4.20% | -1.27% | +18.96% | +3.2 | none found |
+| nasa_stage6_1 | 70 | 0.020 | not choked (+3.74% vs max. flow) | -2.98% | +27.28% | +6.6 | none found |
+| nasa_stage6_1 | 90 | 0.020 | +1.17% | +5.32% | +0.93% | +5.7 | none found |
+| nasa_stage6_1 | 100 | 0.020 | -0.48% | -1.64% | +5.11% | +3.5 | none found |
+| nasa_stage8_8 | 70 | 0.020 | +6.76% | -3.03% | +25.04% | +8.1 | none found |
+| nasa_stage8_8 | 90 | 0.020 | not choked (+1.77% vs max. flow) | -6.40% | +13.30% | +4.4 | none found |
+| nasa_stage8_8 | 100 | 0.020 | +0.60% | -6.45% | +8.35% | +3.1 | none found |
+| nasa_stage8e_c061 | 70 | 0.020 | not choked (+8.94% vs max. flow) | +2.65% | +14.30% | +4.4 | none found |
+| nasa_stage8e_c061 | 100 | 0.020 | not choked (+1.72% vs max. flow) | -4.70% | +5.85% | +1.7 | none found |
+| nasa_stage8e_c102 | 70 | 0.020 | not choked (+9.42% vs max. flow) | -0.26% | +19.31% | +5.1 | none found |
+| nasa_stage8e_c102 | 100 | 0.020 | not choked (+2.13% vs max. flow) | -4.79% | +18.27% | +5.1 | none found |
+| nasa_stage8e_c140 | 70 | 0.020 | not choked (+8.86% vs max. flow) | -0.82% | +22.98% | +5.6 | none found |
+| nasa_stage8e_c140 | 100 | 0.020 | +2.96% | -2.70% | +20.47% | +5.7 | none found |
+| nasa_stage8e_c178 | 70 | 0.020 | not choked (+8.56% vs max. flow) | -1.38% | +22.69% | +6.0 | none found |
+| nasa_stage8e_c178 | 100 | 0.020 | not choked (+3.73% vs max. flow) | -2.17% | +23.90% | +6.6 | none found |
 
-Measured points the model cannot reach (it chokes or fails below their flow): nasa_2stage_fan_r67 90% 1332, nasa_2stage_fan_r67 80% 1369, nasa_2stage_fan_r67 80% 1555, nasa_2stage_fan_r67 70% 1497, nasa_2stage_fan_r67 50% 1533, nasa_2stage_fan_tp1314 100% 190, nasa_2stage_fan_tp1314 100% 201, nasa_2stage_fan_tp1314 100% 212, nasa_2stage_fan_tp1314 100% 223, nasa_2stage_fan_tp1314 60% 374, nasa_stage12_5 100% 314, nasa_stage18_13 100% 927, nasa_stage18_13 100% 926, nasa_stage36 100% 4270, nasa_stage36 100% 4269, nasa_stage38 100% 4129, nasa_stage38 100% 4128, nasa_stage38 100% 4123, nasa_stage38 100% 4121, nasa_stage38 100% 4120, nasa_stage52 100% 2185, nasa_stage52 110% 2205, nasa_stage52 110% 2204, nasa_stage52 110% 2203, nasa_stage52 110% 2202, nasa_stage52 110% 2201, nasa_stage52 120% 2216, nasa_stage52 120% 2215, nasa_stage52 120% 2211, nasa_stage52 120% 2208, nasa_stage52 120% 2207, nasa_stage53 70% 3031, nasa_stage53 80% 3006, nasa_stage53 90% 3001, nasa_stage53 100% 2993, nasa_stage53 100% 2995, nasa_stage53 100% 3026, nasa_stage66_igv 100% 867, nasa_stage8_8 100% 58
+Measured points the model cannot reach (it chokes or fails below their flow): nasa_2stage_fan_r67 90% 1332, nasa_2stage_fan_r67 80% 1369, nasa_2stage_fan_r67 80% 1555, nasa_2stage_fan_r67 70% 1497, nasa_2stage_fan_r67 50% 1533, nasa_2stage_fan_tp1314 100% 201, nasa_2stage_fan_tp1314 100% 212, nasa_2stage_fan_tp1314 100% 223, nasa_2stage_fan_tp1314 100% 234, nasa_2stage_fan_tp1314 60% 374, nasa_stage16_11 100% 1061, nasa_stage18_13 100% 927, nasa_stage18_13 100% 926, nasa_stage18_13 100% 925, nasa_stage36 100% 4272, nasa_stage36 100% 4271, nasa_stage36 100% 4270, nasa_stage38 100% 4129, nasa_stage38 100% 4128, nasa_stage38 100% 4123, nasa_stage38 100% 4121, nasa_stage38 100% 4120, nasa_stage52 100% 2185, nasa_stage52 110% 2205, nasa_stage52 110% 2204, nasa_stage52 110% 2203, nasa_stage52 110% 2202, nasa_stage52 110% 2201, nasa_stage52 120% 2216, nasa_stage52 120% 2215, nasa_stage52 120% 2211, nasa_stage52 120% 2208, nasa_stage52 120% 2207, nasa_stage53 70% 3031, nasa_stage53 80% 3006, nasa_stage53 90% 3001, nasa_stage53 100% 2993, nasa_stage53 100% 2995, nasa_stage53 100% 3026, nasa_stage6_1 100% 21
 
 ## Overall errors at every measured point
 
@@ -81,12 +81,12 @@ Bias / spread (n). Rises are relative errors of PR - 1 and TR - 1; efficiencies 
 
 | Error | At measured flow | At matched flow (m/m_choke) |
 |---|---|---|
-| rotor_eta_points | +0.655 / 3.631 (n=243) | -2.449 / 5.768 (n=116) |
-| rotor_pr_rise | +0.037 / 0.101 (n=243) | -0.090 / 0.122 (n=116) |
-| rotor_tr_rise | +0.026 / 0.080 (n=243) | -0.053 / 0.075 (n=116) |
-| stage_eta_points | +1.961 / 5.436 (n=243) | -4.218 / 11.551 (n=116) |
-| stage_pr_rise | +0.081 / 0.129 (n=243) | -0.094 / 0.188 (n=116) |
-| stage_tr_rise | +0.045 / 0.079 (n=243) | -0.040 / 0.079 (n=116) |
+| rotor_eta_points | +1.175 / 3.463 (n=242) | -1.560 / 5.722 (n=110) |
+| rotor_pr_rise | +0.045 / 0.097 (n=242) | -0.080 / 0.123 (n=110) |
+| rotor_tr_rise | +0.026 / 0.080 (n=242) | -0.055 / 0.077 (n=110) |
+| stage_eta_points | +2.486 / 5.287 (n=242) | -3.276 / 11.465 (n=110) |
+| stage_pr_rise | +0.090 / 0.125 (n=242) | -0.087 / 0.185 (n=110) |
+| stage_tr_rise | +0.046 / 0.079 (n=242) | -0.044 / 0.080 (n=110) |
 
 ## Profile errors (model - measured)
 
@@ -95,30 +95,30 @@ Vm as Vm/Vm_avg - 1; angles, incidence and deviation in degrees.
 
 | Where | Quantity | Zone | At measured flow | At matched flow |
 |---|---|---|---|---|
-| R1 | d_factor | core | +0.014 / 0.048 (n=185) | -0.023 / 0.047 (n=105) |
-| R1 | d_factor | end-wall | +0.006 / 0.064 (n=148) | -0.021 / 0.053 (n=84) |
-| R1 | deviation | core | -0.405 / 1.621 (n=185) | -0.907 / 1.624 (n=105) |
-| R1 | deviation | end-wall | -1.186 / 2.160 (n=148) | -2.180 / 1.871 (n=84) |
-| R1 | incidence | core | +1.178 / 0.776 (n=185) | +0.840 / 1.162 (n=105) |
-| R1 | incidence | end-wall | +0.115 / 1.294 (n=148) | -0.725 / 1.763 (n=84) |
-| R1 | loss | core | +0.011 / 0.042 (n=185) | +0.028 / 0.033 (n=105) |
-| R1 | loss | end-wall | -0.015 / 0.063 (n=148) | +0.009 / 0.047 (n=84) |
-| S1 | d_factor | core | +0.032 / 0.064 (n=185) | -0.033 / 0.095 (n=105) |
-| S1 | d_factor | end-wall | +0.002 / 0.087 (n=147) | -0.073 / 0.099 (n=83) |
-| S1 | deviation | core | -2.202 / 2.121 (n=185) | -1.721 / 1.627 (n=105) |
-| S1 | deviation | end-wall | -2.530 / 2.706 (n=147) | -2.362 / 2.289 (n=83) |
-| S1 | incidence | core | +2.113 / 3.245 (n=185) | -1.262 / 4.254 (n=105) |
-| S1 | incidence | end-wall | +0.242 / 4.132 (n=147) | -2.832 / 4.477 (n=83) |
-| S1 | loss | core | -0.003 / 0.040 (n=185) | -0.012 / 0.043 (n=105) |
-| S1 | loss | end-wall | -0.044 / 0.058 (n=147) | -0.047 / 0.052 (n=83) |
-| exit | angle | core | -2.748 / 2.055 (n=185) | -2.765 / 1.585 (n=105) |
-| exit | angle | end-wall | -3.061 / 2.610 (n=148) | -3.374 / 2.143 (n=84) |
-| exit | p0_shape | core | -0.039 / 0.071 (n=185) | -0.028 / 0.045 (n=105) |
-| exit | p0_shape | end-wall | +0.045 / 0.100 (n=148) | +0.041 / 0.068 (n=84) |
-| exit | t0_shape | core | +0.012 / 0.044 (n=185) | +0.001 / 0.042 (n=105) |
-| exit | t0_shape | end-wall | -0.010 / 0.061 (n=148) | -0.000 / 0.069 (n=84) |
-| exit | vm_shape | core | -0.024 / 0.048 (n=185) | -0.027 / 0.032 (n=105) |
-| exit | vm_shape | end-wall | +0.028 / 0.077 (n=148) | +0.039 / 0.061 (n=84) |
+| R1 | d_factor | core | +0.016 / 0.049 (n=180) | -0.022 / 0.047 (n=105) |
+| R1 | d_factor | end-wall | +0.008 / 0.066 (n=144) | -0.020 / 0.054 (n=84) |
+| R1 | deviation | core | -0.381 / 1.642 (n=180) | -0.853 / 1.624 (n=105) |
+| R1 | deviation | end-wall | -1.155 / 2.182 (n=144) | -2.117 / 1.873 (n=84) |
+| R1 | incidence | core | +1.169 / 0.782 (n=180) | +0.720 / 1.172 (n=105) |
+| R1 | incidence | end-wall | +0.131 / 1.280 (n=144) | -0.842 / 1.760 (n=84) |
+| R1 | loss | core | +0.006 / 0.042 (n=180) | +0.020 / 0.034 (n=105) |
+| R1 | loss | end-wall | -0.021 / 0.063 (n=144) | +0.001 / 0.049 (n=84) |
+| S1 | d_factor | core | +0.035 / 0.066 (n=180) | -0.032 / 0.095 (n=105) |
+| S1 | d_factor | end-wall | +0.005 / 0.089 (n=143) | -0.072 / 0.099 (n=83) |
+| S1 | deviation | core | -2.223 / 2.151 (n=180) | -1.721 / 1.629 (n=105) |
+| S1 | deviation | end-wall | -2.533 / 2.719 (n=143) | -2.361 / 2.292 (n=83) |
+| S1 | incidence | core | +2.336 / 3.297 (n=180) | -1.200 / 4.272 (n=105) |
+| S1 | incidence | end-wall | +0.441 / 4.231 (n=143) | -2.765 / 4.527 (n=83) |
+| S1 | loss | core | -0.001 / 0.039 (n=180) | -0.012 / 0.043 (n=105) |
+| S1 | loss | end-wall | -0.042 / 0.058 (n=143) | -0.047 / 0.051 (n=83) |
+| exit | angle | core | -2.741 / 2.080 (n=180) | -2.747 / 1.584 (n=105) |
+| exit | angle | end-wall | -3.034 / 2.613 (n=144) | -3.357 / 2.140 (n=84) |
+| exit | p0_shape | core | -0.039 / 0.072 (n=180) | -0.028 / 0.045 (n=105) |
+| exit | p0_shape | end-wall | +0.045 / 0.102 (n=144) | +0.040 / 0.068 (n=84) |
+| exit | t0_shape | core | +0.013 / 0.045 (n=180) | +0.001 / 0.042 (n=105) |
+| exit | t0_shape | end-wall | -0.011 / 0.062 (n=144) | -0.000 / 0.070 (n=84) |
+| exit | vm_shape | core | -0.024 / 0.049 (n=180) | -0.027 / 0.033 (n=105) |
+| exit | vm_shape | end-wall | +0.028 / 0.078 (n=144) | +0.039 / 0.062 (n=84) |
 
 ## Assumptions per case
 

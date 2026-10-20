@@ -144,14 +144,18 @@ def _left(direction):
     return np.array([-direction[1], direction[0]])
 
 
-def _arc_radius_touching(point, direction, centre, radius):
-    """Signed radius rho of the arc through ``point`` with tangent ``direction`` that touches a circle internally.
+def _arc_radius_touching(point, direction, centre, radius, circle_side=1.0):
+    """Signed radius rho of the arc through ``point`` with tangent ``direction`` that touches a circle.
 
-    The arc's centre is point + rho * (left normal of ``direction``), and
-    |O - C| = |rho - r| solves to rho = (r^2 - |P - C|^2) / (2 (N . (P - C) + r)).
+    The arc's centre is point + rho * N (N the left normal of ``direction``).
+    ``circle_side`` is +1 when the circle lies on the arc's left at the touch
+    point, -1 when on its right. At the touch point T the circle's centre is
+    T + side * r * N_T and the arc's centre T + rho * N_T, so
+    |O - C| = |rho - side * r|, which solves to
+    rho = (r^2 - |P - C|^2) / (2 (N . (P - C) + side * r)).
     """
     d = point - centre
-    return (radius ** 2 - d @ d) / (2.0 * (_left(direction) @ d + radius))
+    return (radius ** 2 - d @ d) / (2.0 * (_left(direction) @ d + circle_side * radius))
 
 
 def _arc_centre(point, direction, rho):
@@ -229,10 +233,12 @@ def _multiple_circular_arc(camber, t_c, edge_radius, transition, turning_ratio, 
         d_m = tangent[k_m]
         m = centre[k_m] + side * 0.5 * t_c * _left(d_m)
         near, far = (le_c, te_c) if front_first else (te_c, le_c)
-        rho1 = _arc_radius_touching(m, d_m, near, r0)
+        # The edge circles lie inside the section: right of the suction
+        # surface (oriented LE to TE), left of the pressure surface.
+        rho1 = _arc_radius_touching(m, d_m, near, r0, -side)
         s_t = _arc_meets_line(m, d_m, rho1, centre[k_t], _left(tangent[k_t]))
         d_t = _arc_tangent_at(m, d_m, rho1, s_t)
-        rho2 = _arc_radius_touching(s_t, d_t, far, r0)
+        rho2 = _arc_radius_touching(s_t, d_t, far, r0, -side)
         end1 = _arc_touch_point(m, d_m, rho1, near, r0)
         end2 = _arc_touch_point(s_t, d_t, rho2, far, r0)
         half = max(points // 3, 20)

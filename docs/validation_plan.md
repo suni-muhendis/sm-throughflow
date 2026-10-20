@@ -647,3 +647,94 @@ Since the aim is a consistent error, not a small one, the model keeps
 Aungier's (6-77), and Creveling's increment is not in the code. The speed
 dependence of transonic rotor deviation stays open; the sources above
 expect it.
+
+## MCA section corrected: the suction surface met its edge circles from outside
+
+The multiple-circular-arc construction (`blade_geometry._multiple_circular_arc`)
+fitted each surface arc tangent to the leading- and trailing-edge circles
+with one formula, |O - C| = |rho - r|, which holds when the circle lies left of
+the arc. That is true of the pressure surface (oriented leading to trailing
+edge) but not of the suction surface, whose edge circles lie on its right.
+The suction surface therefore touched both circles from outside the section:
+on rotor 35 at 50 percent span it dropped below the meanline over the first
+3 percent of chord. Each arc now takes the side of its circle, and a test
+checks that both surfaces stay on their side of the meanline and touch the
+circles there.
+
+The throat (o/s) does not change (to 1e-4). The suction-surface expansion
+angle of the shock model, read off the constructed section, falls by 0.7 to
+1.5 deg and comes close to the PHISS the reports print where the front is
+cambered (rotor 35 hub 11.28 deg against 11.19 printed, rotor 37 hub 11.69
+against 11.73; tip 1.91 against 1.45). The shock loss falls with it. Every
+case was run again (mean / spread):
+
+| Error | Before | After |
+|---|---|---|
+| Stage PR - 1, all points | +8.1 % / 12.9 % (243) | +9.0 % / 12.5 % (242) |
+| Stage efficiency, all points | +2.0 / 5.4 points | +2.5 / 5.3 points |
+| Stage PR - 1 at design speed | -1.2 % / 12.2 % | +0.8 % / 12.4 % |
+| Choke flow | +1.6 % / 4.2 % (25) | +1.7 % / 4.2 % (25) |
+
+## Blade-element test: Aungier's row model and a RANS strip at the measured inlet state
+
+To separate the row model from the throughflow, both were run on rotor 35's
+measured blade elements (TP-1338 Table V; 16 readings at 100, 90 and 70
+percent speed), with the measured inlet state imposed:
+
+- Aungier's row model exactly as the simulator builds it, called with the
+  measured inlet and exit states at the measured spans;
+- a quasi-3D blade-to-blade strip of the 50 percent span element, solved with
+  ember (J. Brind, Whittle Laboratory; PyPI `ember-cfd` 0.4.5, GPL-3.0;
+  compressible RANS with a mixing-length model), on the element's cone, with
+  a streamtube thickness giving the measured axial velocity density ratio and
+  the measured exit static pressure. ember stays outside the package; the
+  scripts are not in the repository.
+
+Rotor-exit angles in these reports are not measured: station 2 is translated
+from station 3, with static pressure and flow angle from continuity and
+radial equilibrium (TP-1659, p. 5). The swirl follows the measured
+temperature rise, so the "measured" deviation reflects the measured work.
+
+Model minus measurement at 50 percent span (12 of 16 strips converged; the
+four near stall or at high incidence diverged):
+
+| Speed | Deviation, RANS strip | Deviation, Aungier | Loss, RANS strip | Loss, Aungier |
+|---|---|---|---|---|
+| 100 % | -0.2 to +1.0 deg | +1.3 to +2.5 deg | -0.03 to +0.04 | -0.01 to +0.07 |
+| 90 % | -0.9 to +0.9 deg | +1.2 to +2.0 deg | -0.02 to +0.03 | -0.05 to +0.03 |
+| 70 % | -1.0 to -2.8 deg | -0.9 to -2.3 deg | +0.02 to +0.05 | -0.02 to +0.03 |
+
+Over the core span (15 to 85 percent), Aungier's deviation error is -1.7 deg
+at 70 percent speed and +0.7 deg at 90 and 100 percent. The strip is better
+at design speed but shows the same shortfall at 70 percent, so the part-speed
+deviation is not a two-dimensional section effect that a cascade solver
+would add. At design speed the strip's inlet angle locks at 61.7 deg (unique
+incidence) while the data run from 59.2 to 62.2 deg; not investigated.
+
+## Off-design deviation: the axial-velocity term for rotors, tried and not adopted
+
+At the measured states, Aungier's term 10 (1 - W_m2/W_m1) of (6-77) swings by
+about 2.7 deg between design speed (W_m2/W_m1 about 0.87) and 70 percent
+(about 1.14), close to the 2.4 deg swing of his deviation error. Aungier
+(p. 144) takes the term from Pollard and Gostelow (1967), "based on rather
+limited evidence". NASA SP-36 (ch. VII, pp. 231 and 242-243) reports that
+corrections for axial velocity ratio "have not been universally successful",
+and that without any such correction the two-dimensional rules predict rotor
+mean-radius deviation within about 0.5 deg over axial velocity ratios of 0.9
+to 1.1; at the rotor hub (1.0 to 1.3) the deviation is about 1 deg above the
+cascade value, and at the stator tip (1.1 to 1.5) about 4 deg below it.
+
+The trial dropped the term for rotors only, every case run again (mean /
+spread):
+
+| Error | Aungier (6-77) | No rotor term |
+|---|---|---|
+| Stage PR - 1, all points | +9.0 % / 12.5 % (242) | +11.1 % / 11.3 % (235) |
+| below design speed | +12.4 % / 11.1 % | +12.4 % / 9.8 % |
+| at design speed | +0.8 % / 12.4 % | +7.5 % / 14.5 % |
+| Stage efficiency | +2.5 / 5.3 points | +2.7 / 5.1 points |
+
+The part-speed excess work is unchanged, the design-speed error grows and
+spreads, and seven more points fail to converge. In the throughflow the
+model's own W_m2/W_m1 at part speed differs from the measured one, so the
+blade-element diagnosis does not carry over. The term stays.

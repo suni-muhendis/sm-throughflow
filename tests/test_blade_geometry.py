@@ -205,6 +205,23 @@ def test_mca_surfaces_meet_their_thickness_and_edge_circles(max_thickness_at, tr
     assert np.max(np.abs(np.diff(angles))) < 0.5  # tangent where the arcs meet
 
 
+@pytest.mark.parametrize("max_thickness_at, transition", [(0.6, 0.4), (0.577, 0.506), (0.4, 0.6)])
+def test_mca_surfaces_wrap_their_edge_circles_from_outside_the_section(max_thickness_at, transition):
+    """Each surface stays on its own side of the meanline and touches the edge circles on that side
+    (the circles lie inside the section: right of the suction surface, left of the pressure surface)."""
+    camber, t_c, r0 = 11.9, 0.0547, 0.00336  # rotor 35 at 50 percent span (TP-1338 Table III)
+    upper, lower, edges = G.section("mca", "multiple_circular_arc", camber, t_c, edge_radius=r0, transition=transition,
+                                    turning_ratio=0.18, max_thickness_at=max_thickness_at)
+    x, y, _, _ = G.mca_meanline(camber, transition, 0.18, 4001)
+    inside = (x > 0.02) & (x < 0.98)
+    assert np.all(np.interp(x[inside], upper[:, 0], upper[:, 1]) > y[inside])
+    assert np.all(np.interp(x[inside], lower[:, 0], lower[:, 1]) < y[inside])
+    for surface, side in ((upper, 1.0), (lower, -1.0)):
+        for end, circle in ((surface[0], edges[:60]), (surface[-1], edges[60:])):
+            centre = circle.mean(axis=0)
+            assert side * (end - centre)[1] > 0.5 * r0  # touches the circle on its own side
+
+
 def test_an_mca_with_a_straight_front_expands_less_ahead_of_the_shock():
     camber, t_c, solidity, kappa1 = 12.0, 0.035, 1.3, 61.0
     phi = {}
