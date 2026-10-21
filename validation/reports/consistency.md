@@ -88,6 +88,20 @@ Bias / spread (n). Rises are relative errors of PR - 1 and TR - 1; efficiencies 
 | stage_pr_rise | +0.090 / 0.125 (n=242) | -0.087 / 0.185 (n=110) |
 | stage_tr_rise | +0.046 / 0.079 (n=242) | -0.044 / 0.080 (n=110) |
 
+## Overall errors by rotor group, at the measured flow
+
+Rotors with a part-span damper (nasa_2stage_fan_tp1314, nasa_stage12_5, nasa_stage14_10, nasa_stage16_11, nasa_stage18_13, nasa_stage66_igv, nasa_stage6_1, nasa_stage8_8, nasa_stage8e_c061, nasa_stage8e_c102, nasa_stage8e_c140, nasa_stage8e_c178) against the rest; the model has no damper loss.
+
+| Group | Speeds | stage_pr_rise | stage_eta_points | rotor_tr_rise | rotor_eta_points |
+|---|---|---|---|---|---|
+| with damper | below design | +0.151 / 0.120 (n=78) | +6.577 / 4.379 (n=78) | +0.026 / 0.071 (n=78) | +2.808 / 2.930 (n=78) |
+| with damper | design | -0.003 / 0.138 (n=43) | +1.554 / 5.767 (n=43) | -0.042 / 0.067 (n=43) | +0.567 / 3.188 (n=43) |
+| with damper | all speeds | +0.096 / 0.146 (n=121) | +4.792 / 5.457 (n=121) | +0.002 / 0.077 (n=121) | +2.011 / 3.197 (n=121) |
+| without damper | below design | +0.101 / 0.097 (n=89) | +0.600 / 4.089 (n=89) | +0.061 / 0.074 (n=89) | +0.296 / 3.680 (n=89) |
+| without damper | design | +0.025 / 0.097 (n=26) | -0.854 / 3.688 (n=26) | +0.014 / 0.076 (n=26) | -0.361 / 2.769 (n=26) |
+| without damper | above design | +0.100 / 0.018 (n=6) | -1.574 / 0.878 (n=6) | +0.059 / 0.012 (n=6) | +4.018 / 1.834 (n=6) |
+| without damper | all speeds | +0.084 / 0.099 (n=121) | +0.180 / 3.955 (n=121) | +0.051 / 0.075 (n=121) | +0.339 / 3.529 (n=121) |
+
 ## Profile errors (model - measured)
 
 Bias / spread (n) over every measured span and point. Shapes: P0 and T0 as (X - X_avg)/(X_avg - X_in),

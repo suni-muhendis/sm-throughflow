@@ -738,3 +738,69 @@ The part-speed excess work is unchanged, the design-speed error grows and
 spreads, and seven more points fail to converge. In the throughflow the
 model's own W_m2/W_m1 at part speed differs from the measured one, so the
 blade-element diagnosis does not carry over. The term stays.
+
+## Open limits: rotor deviation against speed, and part-span dampers
+
+**Rotor deviation against speed.** Over the development set, the model's rotor
+deviation is too low below design speed and too high at and above it.
+
+- Below design speed, the rotor does too much work. On stage 35 at 70 percent
+  speed, the rotor work is 11 to 28 percent high. About half comes from the
+  deviation (core error about -1 deg). The other half comes from the exit
+  meridional velocity, about 4 percent low, which the excess work itself
+  feeds through the exit density.
+- Above design speed, the rotor does too little work. On stage 52 at 110 and
+  120 percent speed, the rotor work is short, so the stator sees too little
+  swirl and chokes at its hub. The model's choke flow is 10 percent low
+  (32.7 against 36.4 kg/s at 110 percent).
+- The stator throat is not the cause. The constructed o/s of stator 52 agrees
+  within 2 percent with the o/s implied by the choke margins TM X-3083
+  prints (Table V) and the design inlet Mach number and angle (Table III).
+
+Three source-based changes did not remove the trend:
+
+- Creveling and Carmody's increment (above);
+- dropping the axial-velocity term of (6-77) for rotors (above);
+- a RANS blade-to-blade strip at the measured inlet state (above).
+
+Hearsey's model, the best in Cahill's comparison, is not openly available.
+The trend stays open. Elsewhere the model's choke flow is consistent: over
+the other 23 speed lines with a vertical measured characteristic, its error
+is about +3 percent with a spread of about 2 percent.
+
+**Part-span dampers.** Twelve cases have a part-span damper on the (first)
+rotor (`PART_SPAN_DAMPER` in `validation/run.py`; each case's notes.md
+cites its report). The model has no damper loss.
+
+W. B. Roberts, *Correlation of Part-Span Damper Losses Through Transonic
+Rotors Operating Near Design Point*, NASA TM X-3542, June 1977, correlates the
+peak extra loss from 21 transonic rotors, among them NASA rotors 12, 14, 16,
+18 and 66 and both dampers of the two-stage fan:
+
+- the peak extra loss (eq. 3, constants in eq. 4):
+  `omega_PSD,M = K1 (r_le/h) omega_s + K2 (r_te/c_d) phi/sigma`, with
+  K1 = 500 and K2 = 8;
+- the region of influence (eq. 5): `x/h = 12.5 t/h`;
+- a spanwise shape (eq. 6).
+
+The report calibrates the correlation at design speed and peak efficiency
+only. It warns that away from the design point the loss is predicted much
+too low at higher flows, and the region of influence greatly underestimated
+(p. 7). At design speed the correlation would lower these rotors' efficiency
+by roughly one point, but it would not touch the part-speed error. Adding it
+would also need the damper in the design contract.
+
+Not adopted for now. The report groups the errors instead (mean / spread, at
+the measured flow):
+
+| Group | Speeds | Stage efficiency | Rotor efficiency | Stage PR - 1 |
+|---|---|---|---|---|
+| with damper | below design | +6.6 / 4.4 points | +2.8 / 2.9 | +15.1 % / 12.0 % |
+| with damper | design | +1.6 / 5.8 | +0.6 / 3.2 | -0.3 % / 13.8 % |
+| without damper | all speeds | +0.2 / 4.0 | +0.3 / 3.5 | +8.4 % / 9.9 % |
+
+Without dampers the efficiency error has no bias. With dampers the stage
+error is about twice the rotor error, so most of the excess lies in the
+stator behind the damper's disturbed flow, as Roberts describes (p. 2).
+Designs the contract admits have no dampers, so the scored region is the
+group without them.
