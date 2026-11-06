@@ -14,7 +14,7 @@ entry-point group.
 It solves axial compressors with its own streamline-curvature solver
 (`sm_throughflow.solver`, Aungier 2003 ch. 7) and Aungier's cascade, leakage,
 end-wall and blade-throat models (`sm_throughflow.correlations`). The
-simulator is `slc_aungier_experimental_v5`; the contracts are
+simulator is `slc_aungier_experimental_v16`; the contracts are
 `throughflow_design_v2` / `throughflow_task_v2`
 (`docs/throughflow_contract_v2.md`). Turbines are not supported yet; they will
 use the same solver core.
@@ -30,7 +30,7 @@ environment. It is not yet part of SM-Bench.
 ## Commands
 
 - Setup: `python3.12 -m venv .venv`, activate it,
-  `python -m pip install -e ".[dev]"`.
+  `python -m pip install -c constraints-validation.txt -e ".[dev]"`.
 - Tests: `python -m pytest tests -q`.
 - Demo: `python scripts/run_throughflow.py --stages 3`.
 - Wheel check: `python -m build` then `python scripts/check_wheel.py dist`.
@@ -43,9 +43,9 @@ environment. It is not yet part of SM-Bench.
   `SlcAungierSimulator.VERSION`. Any change that can move a number (a solver
   or correlation change) needs a new simulator version and new reference
   values; results from different versions are never pooled.
-  `tests/test_throughflow_env.py` holds the goldens. v5 has never been tagged
-  or recorded, which is why its goldens could still be updated in place; once
-  it is tagged, a moved number means v6.
+  `tests/test_throughflow_env.py` holds separate v5 through v16 goldens. The v5
+  working-copy baseline is archived under `validation/campaigns/`; do not
+  overwrite it or pool historical versions with v16 results.
 - **Correlations are transcribed from their sources and tested against them.**
   Every function in `correlations/` cites its equation; the docs record each
   source, each misprint found and each choice the source leaves open.

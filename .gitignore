@@ -7,3 +7,6 @@ dist/
 venv/
 .pytest_cache/
 .env
+/tmp/
+/validation/campaigns/
+/validation/studies/results/

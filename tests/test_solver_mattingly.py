@@ -57,12 +57,35 @@ def test_the_lossless_stage_has_a_polytropic_efficiency_of_exactly_one(curvature
 
 GOLDEN_PRESSURE_RATIO = {"full": 1.294938240, "linear": 1.296278576, "none": 1.309476453}
 
+# Preserve the pre-v9 values above; squared-velocity quadrature moves numbers.
+GOLDEN_PRESSURE_RATIO_V9 = {"full": 1.2949383312123564, "linear": 1.296278469496908,
+                           "none": 1.309476458856002}
+
+
+GOLDEN_PRESSURE_RATIO_V10 = {'full': 1.2949383312123564, 'linear': 1.296278469496908, 'none': 1.309476458856002}
+
+
+GOLDEN_PRESSURE_RATIO_V11 = {'full': 1.289180558415612, 'linear': 1.289713090335307, 'none': 1.309476458856002}
+
+
+GOLDEN_PRESSURE_RATIO_V12 = {'full': 1.2891805584502547, 'linear': 1.289713090335307, 'none': 1.309476458856002}
+
+
+# v13 changes only constructed-profile shock loss.
+GOLDEN_PRESSURE_RATIO_V13 = dict(GOLDEN_PRESSURE_RATIO_V12)
+
+# v14's passage-shock changes do not alter this prescribed row model.
+GOLDEN_PRESSURE_RATIO_V14 = dict(GOLDEN_PRESSURE_RATIO_V13)
+
+# v15 MCA closure does not affect this prescribed row model.
+GOLDEN_PRESSURE_RATIO_V15 = dict(GOLDEN_PRESSURE_RATIO_V14)
+
 
 @pytest.mark.parametrize("curvature", CURVATURE_MODELS)
 def test_pressure_ratio_characterization(curvature):
     inlet, _, exit = mattingly_9_1(curvature).stations
     ratio = averaged_total_state(GAS, exit)[1] / averaged_total_state(GAS, inlet)[1]
-    assert ratio == pytest.approx(GOLDEN_PRESSURE_RATIO[curvature], abs=1e-8)
+    assert ratio == pytest.approx(GOLDEN_PRESSURE_RATIO_V15[curvature], abs=1e-8)
 
 
 def test_the_solution_is_deterministic():

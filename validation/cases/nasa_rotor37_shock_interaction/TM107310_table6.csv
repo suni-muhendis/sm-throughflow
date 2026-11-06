@@ -1,0 +1,6 @@
+% Design Speed,Flow Rate,Endwall Defect Region (% span),Khalid’s Blockage Parameter,Khalid’s Loading Parameter,Endwall Blockage (% area),Core Flow Blockage (% area)
+,,,,,,
+100,High,84 - 98,2.01,0.63,17,9
+100,Low,84 - 98,2.11,0.69,18,10
+80,High,86 - 98,1.32,0.55,14,4
+60,High,86 - 98,0.86,0.40,10,4

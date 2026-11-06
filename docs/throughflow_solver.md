@@ -26,12 +26,17 @@ The method is Aungier's (*Axial-Flow Compressors*, 2003, ch. 7), after Novak
 - **Stations.** Straight quasi-normals (QN) between hub and shroud, all outside
   the blade rows (before, between and after them). A blade row lies between
   two consecutive QNs. `y` is the distance along a QN from the hub; `lambda`
-  its angle to the radial direction (7-1).
+  its angle to the radial direction (7-1). In v9, interior row wall vertices
+  remain geometric controls without additional flow states. Stream-surface
+  annulus fraction is interpolated between solved stations; wall-constrained
+  paths determine arc length, slope and curvature. Interior annulus throats
+  below both edge areas remain unsupported.
 - **Stream surfaces.** N surfaces (N = 11 by default: 10 stream tubes),
   including hub and shroud, each enclosing a fixed fraction of the mass flow
   (equal tubes by default). Their slope `phi` (7-2) and curvature
-  `kappa_m = -dphi/dm` (7-9) come from their (z, r) coordinates with the
-  three-point differences of section 7.8.
+  `kappa_m = -dphi/dm` (7-9) come from local parametric quadratic fits to
+  their (z, r) coordinates in v11, including one-sided endpoint fits. Direct
+  second differences replace the old composition of centered first differences.
 - **Transport along stream surfaces.** Between QNs without a blade row, `rC_theta`,
   rothalpy `I` (so `H`) and entropy `s` are unchanged on each stream surface
   (7-40 to 7-42). Across a blade row, rothalpy is conserved (7-47) and the row
@@ -41,18 +46,21 @@ The method is Aungier's (*Axial-Flow Compressors*, 2003, ch. 7), after Novak
   `f3` from (7-16 to 7-18) when the swirl is known (duct QNs) or (7-19 to 7-21)
   when the relative flow angle is known (blade-row exits), and the meridional
   gradient of `Wm` from (7-29) with `1 - Mm^2 >= 0.1` (7-30). It is
-  integrated in closed form (7-35, 7-36), trapezoidally between stream
-  surfaces; the hub value `Wm(0)` is found by bracketing and Brent's method
-  until the mass flow (7-5) is matched. Choke is flagged with (7-39). The
-  term `f3 / Wm` is evaluated with the previous inner iterate of `Wm`
-  instead of Aungier's stream-tube form (7-31 to 7-33); the two agree
-  wherever `Wm > 0`, and a profile that needs reversed flow at the hub is
-  reported as having no solution.
+  integrated in v9 using `u = Wm^2`: `u' = 2 f1 u + 2 f2 sqrt(u) + 2 f3`,
+  with `f2 = 0` for known swirl. An integrating factor for `2 f1` and a
+  trapezoidal integral of the remaining forcing remove the lagged `f3/Wm`
+  singularity. Coefficients still iterate to the unrelaxed velocity tolerance.
+  This is algebraically the same continuous equation but a different discrete
+  operator from v8; separate reference values and campaigns are required.
+  Hub speed is bracketed in both directions when the starting profile is
+  inadmissible, then Brent's method matches mass (7-5). No positive velocity
+  floor is used. Exhausted profile iteration is a numerical failure; failure
+  to bracket on the current iterate is not proof of a machine choke boundary.
 - **Thermodynamics.** `H' = I + (r omega)^2 / 2` (7-37), `h = H' - W^2/2`
   (7-38), statics from `(h, s)`. The first gas model is a calorically perfect
   gas; the interface takes `(h, s)` so a variable-property model can follow.
 - **Outer loop.** After every QN is solved, the stream surfaces are moved to
-  their mass fractions (7-54 to 7-56) with Novak's damping (7-57, `B* = 8`,
+  their mass fractions (7-54 to 7-56) with Novak's damping (7-57, v11 `B* = 4`,
   halved toward 1 by (7-59) if the position error grows). Converged when the
   stream-surface positions and the QN solutions stop changing.
 - **Curvature models** (section 7.6): `full` (streamline curvature, outer loop),
@@ -73,8 +81,9 @@ Implemented: perfect gas; straight quasi-normals; the three curvature models;
 duct and blade-row linking with inlet- and exit-based losses; stream-surface
 repositioning with Novak damping; prescribed-performance rows. Verified by
 `tests/test_solver_verification.py`: uniform flow and a free vortex exactly,
-a forced vortex against its closed form at second order (1.9e-4 at 11
-surfaces), and in a lossless stage Euler work to 1e-8 J/kg, `H` and `s`
+a forced vortex against its closed form (v9 is limited by the inlet-profile
+interpolation, below 2e-7 relative error), a quadratic-swirl case at second
+order, and in a lossless stage Euler work to 1e-8 J/kg, `H` and `s`
 unchanged on every stream surface and the mass-averaged T0 across the stator
 unchanged to 3e-10 K. In a curved annulus, the spherical source flow between
 two cones with a common apex (exact, compressible, inlet Mach up to 0.71) is
@@ -149,9 +158,13 @@ within the first outer iteration while the converged solution, reached from a
 neighbouring point, has a hub loss of 0.13.
 
 `Throughflow.solve` therefore solves from the cold start first and, only if
-that fails or does not converge, again with the row losses scaled by each
-factor of `LOSS_HOMOTOPY` (0, 0.25, 0.5, 0.75, 1), every step starting from
-the stream surfaces of the step before. The last step is the full model, so
+that fails or does not converge, again with the row losses scaled from 0 to 1
+in steps of `HOMOTOPY_STEP` (0, 0.25, 0.5, 0.75, 1 when every step
+converges), every step starting from the stream surfaces of the last converged
+one. A step that fails is halved and retried, down to `HOMOTOPY_MIN_STEP`
+(1/64), and the step grows back after each success; with no failed step the
+sequence is the fixed one used before this was added, so no point that
+converged then changes. The last step is the full model, so
 its solution is the model's solution at that point; a point that converges
 cold never reaches the fallback, and when the fallback fails the cold-start
 outcome (error or unconverged solution) is returned unchanged. On the
@@ -195,3 +208,31 @@ Each step is a test before the next is built.
    where turbo-design is right (meanline).
 9. Validation with measurements (NASA Rotor 37, Stage 35, 74A) once the
    correlations are in.
+
+## v6 convergence and physical verification
+
+The original v5 homotopy observations above describe that historical working copy.
+In v6 the fallback algorithm is preserved, with complete attempt diagnostics.
+All inner row, quasi-normal and endwall loops now reject exhausted iterations;
+the outer test includes all coupled fields, blockage and optional mixing.
+Final-state mass, Euler/energy and entropy checks are independent of the stopping
+test. Local blade Reynolds corrections also change the physical results.
+
+See [the current scope specification](throughflow_domain.md) for exact tolerances,
+geometry restrictions, limiter semantics and remaining qualification work. The
+[reliability plan](throughflow_reliability_plan.md) tracks acceptance separately
+from implementation. Numerical verification does not enable the score.
+
+## v7 coupled acceleration
+
+V7 adds bounded, weighted Type-II Anderson acceleration of stream-surface
+positions and blockage together. Novak's local damping remains the base step;
+its B* is held fixed during accelerated iteration to avoid mixing histories of
+continually changing maps. Non-admissible extrapolation uses the base step and
+restarts history. A failed accelerated solve retries the original Novak scheme,
+including its adaptive B* reduction, before the existing loss homotopy proceeds.
+The actual undamped residual and all independent balance checks remain required.
+
+The old close-grid slowdown noted above is resolved on the synthetic refinement
+suite; see [the v7 report](phase1_refinement.md) for the data and limits of that
+claim. The empirical closures have not been recalibrated by this change.

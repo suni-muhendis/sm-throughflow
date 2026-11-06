@@ -61,7 +61,7 @@ def test_extra_fields_are_rejected():
     design["rows"][0]["loss_model"] = "anything"  # the referee is not the design's to choose
     with pytest.raises(ValidationError):
         ThroughflowDesignV2.model_validate(design)
-    task["physics"] = {"physics_profile": "axial_compressor_aungier_v1", "K1": 0.001}
+    task["physics"] = {"physics_profile": "axial_compressor_aungier_v2", "K1": 0.001}
     with pytest.raises(ValidationError):
         ThroughflowTaskV2.model_validate(task)
 
@@ -212,7 +212,87 @@ GOLDEN_V5 = {
 }
 
 
+# New characterization after the v6 geometry/Reynolds and convergence changes.
+# GOLDEN_V5 above is retained unchanged as historical evidence.
+GOLDEN_V6 = {
+    "pressure_ratio_total": 1.1567192537471698,
+    "efficiency_polytropic": 0.9298351613408458,
+    "power_W": 1059588.323923194,
+    "exit_blockage": 0.018153459326727406,
+    "min_stall_margin": 0.11674036207385319,
+    "max_loss_coefficient": 0.0327548779106237,
+    "part_speed.pressure_ratio_total": 1.1532624785455987,
+    "part_speed.efficiency_polytropic": 0.9252480414920448,
+}
+
+
+GOLDEN_V7 = {
+    "pressure_ratio_total": 1.156719254239527,
+    "efficiency_polytropic": 0.9298351614871739,
+    "power_W": 1059588.3269203913,
+    "exit_blockage": 0.01815345932104917,
+    "min_stall_margin": 0.11674036877462424,
+    "max_loss_coefficient": 0.03275487756004808,
+    "part_speed.pressure_ratio_total": 1.1532624779259137,
+    "part_speed.efficiency_polytropic": 0.9252480417732972,
+}
+
+
+# Cold-start equations are unchanged by the v8 map/restart policy.
+GOLDEN_V8 = dict(GOLDEN_V7)
+
+
+# v9 integrates radial momentum in squared velocity and retains interior wall controls.
+GOLDEN_V9 = {
+    'pressure_ratio_total': 1.1567172120705462,
+    'efficiency_polytropic': 0.9298425104689564,
+    'power_W': 1059566.6250551753,
+    'exit_blockage': 0.018149846346298792,
+    'min_stall_margin': 0.11622013560170008,
+    'max_loss_coefficient': 0.0327604141412902,
+    'part_speed.pressure_ratio_total': 1.153259205979998,
+    'part_speed.efficiency_polytropic': 0.9252438813583737,
+}
+
+
+# v10 wall-layer integration and safeguarded coupled iteration.
+GOLDEN_V10 = {
+    'pressure_ratio_total': 1.1568402682985828,
+    'efficiency_polytropic': 0.9298352971481215,
+    'power_W': 1060366.7142778968,
+    'exit_blockage': 0.017865670901901387,
+    'min_stall_margin': 0.11559705333074666,
+    'max_loss_coefficient': 0.0328127840410134,
+    'part_speed.pressure_ratio_total': 1.1533464698272964,
+    'part_speed.efficiency_polytropic': 0.925227993819821,
+}
+
+
+# v11 direct curvature and stencil-compatible damping.
+GOLDEN_V11 = {'pressure_ratio_total': 1.1565119507650088, 'efficiency_polytropic': 0.9292737811472033, 'power_W': 1058908.2043074714, 'exit_blockage': 0.017865582071399655, 'min_stall_margin': 0.12137456542578762, 'max_loss_coefficient': 0.033023458906974945, 'part_speed.pressure_ratio_total': 1.153026318765347, 'part_speed.efficiency_polytropic': 0.9252726157312785}
+
+
+GOLDEN_V12 = {'pressure_ratio_total': 1.1565032390316168, 'efficiency_polytropic': 0.9292733294616159,
+              'power_W': 1058852.6390022554, 'exit_blockage': 0.017909803983055195,
+              'min_stall_margin': 0.12140190310349164, 'max_loss_coefficient': 0.03301978633508015,
+              'part_speed.pressure_ratio_total': 1.1530208764959304,
+              'part_speed.efficiency_polytropic': 0.9252745196598068}
+
+# v13 leaves this subsonic NACA65 reference unchanged.
+GOLDEN_V13 = dict(GOLDEN_V12)
+
+# v14's shock-cell integration leaves this entirely subsonic reference unchanged.
+GOLDEN_V14 = dict(GOLDEN_V13)
+
+# v15 only changes MCA deviation; this NACA65 reference is unchanged.
+GOLDEN_V15 = dict(GOLDEN_V14)
+
+# v16 only changes MCA construction; this NACA65 reference is unchanged.
+GOLDEN_V16 = dict(GOLDEN_V15)
+
+
 def test_simulator_goldens(one_stage):
     _, _, result = one_stage
-    for key, value in GOLDEN_V5.items():
+    assert result.simulator_version == "slc_aungier_experimental_v16"
+    for key, value in GOLDEN_V16.items():
         assert result.metrics[key] == pytest.approx(value, rel=1e-7), key

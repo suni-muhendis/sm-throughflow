@@ -7,13 +7,14 @@ of section 9.2. docs/compressor_row_model.md describes the assembly and the
 choices the book leaves open.
 """
 from dataclasses import dataclass
-from typing import Optional, Sequence
+from typing import Callable, Optional, Sequence, Union
 
 import numpy as np
 
 from ..correlations import aungier as A
 from ..correlations import nasa_lewis as L
 from .gas import PerfectGas
+from .errors import PhysicalStateError, SolverError
 from .quasi_normal import StationFlow
 from .rows import BladeRow, ExitGeometry, RowPerformance
 
@@ -126,11 +127,12 @@ class AungierCompressorRow:
         throat_over_pitch: Optional[Sequence[float]] = None,
         expansion_angle: Optional[Sequence[float]] = None,
         section_shape: Optional[dict] = None,
-        viscosity: Optional[float] = None,
+        viscosity: Optional[Union[float, Callable]] = None,
         K1: float = 0.0073,
         max_loss: float = 0.5,
         smoothing: bool = True,
         shock_mean: str = "arithmetic",
+        shock_surface_angles: Optional[dict] = None,
     ):
         if profile not in PROFILES:
             raise ValueError("profile must be one of {}".format(PROFILES))
@@ -159,6 +161,20 @@ class AungierCompressorRow:
         self.seal = seal
         self.throat_over_pitch = throat_over_pitch
         self.expansion_angle = expansion_angle
+        if shock_surface_angles is not None:
+            leading = np.asarray(shock_surface_angles["leading"], dtype=float)
+            foot = np.asarray(shock_surface_angles["foot"], dtype=float)
+            if leading.ndim != 1 or len(leading) < 2 or foot.shape != leading.shape or not np.all(np.isfinite([leading, foot])):
+                raise ValueError("shock surface angles need matching finite span arrays")
+        self.shock_surface_angles = shock_surface_angles
+        self.shock_surfaces = None
+        if shock_surface_angles is not None and "surfaces" in shock_surface_angles:
+            surfaces = np.asarray(shock_surface_angles["surfaces"], dtype=float)
+            if (surfaces.ndim != 3 or surfaces.shape[0] != len(leading) or surfaces.shape[1] < 3
+                    or surfaces.shape[2] != 2 or not np.all(np.isfinite(surfaces))
+                    or np.any(np.sum(np.diff(surfaces, axis=1)**2, axis=2) <= 0)):
+                raise ValueError("shock surfaces need matching finite span curves with distinct points")
+            self.shock_surfaces = surfaces.copy()
         self.section_shape = section_shape
         self.viscosity = viscosity
         self.K1 = float(K1)
@@ -260,14 +276,42 @@ class AungierCompressorRow:
         i_c = np.fmax(i_c, beta1_choke - k1 + 1.0)  # (6-54); NaN where the passage cannot choke
         i_m = A.minimum_loss_incidence(i_c, i_s, R_c, R_s)
 
-        # Shock loss (section 6.7), with the expansion angle of the constructed sections when given.
-        if self.expansion_angle is None:
+        # NACA RM E57A30 appendix B: nu_s = nu_1 + beta_1 - surface_angle_at_foot.
+        # The geometric surface turning used through v12 implicitly imposed
+        # tangent incidence. Preserve that low-level approximation only when
+        # no constructed foot is available (NACA65/C4 analytic approximation).
+        if self.shock_surface_angles is not None:
+            cp = np.cos(np.arctan2(exit_geometry.r - inlet.r, exit_geometry.z - inlet.z))
+            def projected(key):
+                values = self.shock_surface_angles[key]
+                angle = np.interp(inlet.t, np.linspace(0., 1., len(values)), values)
+                return np.degrees(np.arctan(cp * np.tan(np.radians(angle))))
+            if self.shock_surfaces is None:
+                leading, foot = projected("leading"), projected("foot")
+            else:
+                from ..correlations.blade_geometry import projected_surface_shock_angles
+                coordinate = np.clip(inlet.t, 0., 1.)*(len(self.shock_surfaces)-1)
+                lower = np.minimum(coordinate.astype(int), len(self.shock_surfaces)-2)
+                weight = (coordinate-lower)[:, None, None]
+                surfaces = (1.-weight)*self.shock_surfaces[lower]+weight*self.shock_surfaces[lower+1]
+                leading, foot = projected_surface_shock_angles(surfaces, cp)
+            expansion = beta1 - foot
+            suction_incidence = beta1 - leading
+        elif self.expansion_angle is None:
             expansion = A.suction_surface_expansion_angle(k1, theta, t_c, sigma)  # (6-65) to (6-69)
+            suction_incidence = np.full_like(beta1, np.nan)
         else:
             expansion = np.interp(inlet.t, np.linspace(0.0, 1.0, len(self.expansion_angle)), np.asarray(self.expansion_angle, dtype=float))
-        omega_shock = A.shock_loss(mach1, expansion, gas.gamma, self.shock_mean)
+            suction_incidence = np.full_like(beta1, np.nan)
+        from .shock_integration import integrated_shock_loss
+        pointwise_shock = A.shock_loss(mach1, expansion, gas.gamma, self.shock_mean)
+        omega_shock = integrated_shock_loss(mach1, expansion, pt1-inlet.P, inlet.tube_mass_flows, gas.gamma, self.shock_mean)
         return dict(g=g, wm1=wm1, beta1=beta1, w1=w1, mach1=mach1, pt1=pt1, w_sonic=w_sonic, i_star=i_star, delta_star=delta_star,
-                    R_s=R_s, i_c=i_c, i_s=i_s, i_m=i_m, omega_shock=omega_shock)
+                    throat_capacity_margin=o_s * rho_w_sonic / (inlet.rho * wm1) - 1.0,
+                    R_s=R_s, i_c=i_c, i_s=i_s, i_m=i_m, omega_shock=omega_shock,
+                    pointwise_shock=pointwise_shock,
+                    shock_flow_turning=expansion, suction_surface_incidence=suction_incidence,
+                    shock_compression_clipped=(mach1 > 1.) & (expansion < 0.))
 
     def __call__(self, inlet: StationFlow, exit: Optional[StationFlow], exit_geometry: ExitGeometry) -> RowPerformance:
         gas, omega, sign = self.gas, self.omega, self.sign
@@ -292,6 +336,17 @@ class AungierCompressorRow:
         else:
             wm2, rho2, p2, h2_static = exit.Wm, exit.rho, exit.P, exit.h
 
+        # NASA TN D-7345's equivalent-camber rule depends on the EXIT state;
+        # it must not be stored in the inlet-only cache. Use it consistently
+        # in both the reference loss triangle and the outgoing flow triangle.
+        equivalent_carter = self.camberline == "multiple_circular_arc" and not self.inlet_guide_vane
+        if equivalent_carter:
+            try:
+                delta_star = L.annular_carter_deviation(k1, k2, stagger, g["a_c"], sigma,
+                                                       wm1, wm2, r1, r2, sign*omega)
+            except ValueError as exc:
+                raise SolverError(str(exc), kind="outside_model_scope", component="mca_deviation") from exc
+
         # Design loss at the design incidence and deviation, with the actual meridional velocities (6-39), (6-46).
         beta1_star, beta2_star = k1 + i_star, k2 + delta_star
         b1s, b2s = np.radians(beta1_star), np.radians(beta2_star)
@@ -300,7 +355,14 @@ class AungierCompressorRow:
         ratio_star = A.max_velocity_ratio_annular(beta1_star, sigma, r1, c_theta1_star, r2, c_theta2_star, wm1)
         w1_star, w2_star = wm1 / np.cos(b1s), wm2 / np.cos(b2s)
         D_eq_star = A.equivalent_diffusion_factor(ratio_star, w1_star, w2_star)
-        k_re = 0.0 if self.viscosity is None else A.reynolds_loss_factor(inlet.rho * w1 * g["chord"] / self.viscosity)
+        reynolds = np.full_like(w1, np.nan)
+        k_re = np.zeros_like(w1)
+        if self.viscosity is not None:
+            mu = np.asarray(self.viscosity(inlet.T) if callable(self.viscosity) else self.viscosity, dtype=float)
+            if not np.all(np.isfinite(mu)) or np.any(mu <= 0.0):
+                raise PhysicalStateError("blade-row viscosity must be finite and positive", component="row_model")
+            reynolds = inlet.rho * w1 * g["chord"] / mu
+            k_re = A.reynolds_loss_factor(reynolds)
         K2 = A.endwall_loss_constant(g["pitch"] / g["height"], beta2_star, k_re, self.K1)  # (6-99), (6-100)
         omega_star = A.design_loss_from_equivalent_diffusion(D_eq_star, beta2_star, w1_star / w2_star, sigma, self.K1, K2)
         critical_mach = mach1 * w_sonic / (ratio_star * w1_star)  # (6-59), W_max from (6-39) at i*, delta*
@@ -309,7 +371,13 @@ class AungierCompressorRow:
         # Off-design loss and deviation (6-76 to 6-82).
         omega_profile = A.off_design_loss(incidence, i_m, i_c, i_s, omega_m, omega_shock)
         slope = A.deviation_slope(np.abs(beta1_star), sigma)
-        delta = A.off_design_deviation(delta_star, slope, incidence, i_star, wm2 / wm1, self.inlet_guide_vane)
+        if equivalent_carter:
+            # Hybrid off-design extension: retain Aungier's incidence slope.
+            # Radius/velocity effects are already in the implicit reference;
+            # adding 10*(1-wm2/wm1) would count them a second time.
+            delta = delta_star + slope*(incidence-i_star)
+        else:
+            delta = A.off_design_deviation(delta_star, slope, incidence, i_star, wm2 / wm1, self.inlet_guide_vane)
         beta2 = k2 + delta
         b2 = np.radians(beta2)
 
@@ -349,15 +417,27 @@ class AungierCompressorRow:
             dp_seal = dp_row * A.leakage_loss_distribution(mass_fraction, gap_at_hub=seal.wall == "hub")
 
         # Limit (9-7) and spanwise smoothing (9-8 to 9-11).
-        loss = np.minimum(omega_profile + (dp_clearance + dp_seal) / head1, self.max_loss)
+        unlimited_loss = omega_profile + (dp_clearance + dp_seal) / head1
+        loss = np.minimum(unlimited_loss, self.max_loss)
         if self.smoothing:
             loss = smooth_loss(loss * head1) / head1
 
+        if not np.all(np.isfinite(loss)) or np.any(loss < 0.0):
+            raise PhysicalStateError("row loss is negative or non-finite after smoothing", component="row_model")
+
         diagnostics = dict(
+            throat_capacity_margin=part["throat_capacity_margin"],
+            reynolds_number=reynolds, reynolds_loss_factor=k_re,
+            loss_limit_active=(unlimited_loss > self.max_loss), unsmoothed_loss=np.minimum(unlimited_loss, self.max_loss),
             incidence=incidence, design_incidence=i_star, negative_stall_incidence=i_c, positive_stall_incidence=i_s,
             minimum_loss_incidence=i_m, deviation=delta, design_deviation=delta_star, relative_inlet_mach=mach1,
+            equivalent_carter_active=equivalent_carter,
+            annular_design_deviation_correction=delta_star-part["delta_star"],
             critical_mach=critical_mach, equivalent_diffusion=D_eq, design_equivalent_diffusion=D_eq_star,
             design_loss=omega_star, minimum_loss=omega_m, shock_loss=omega_shock, profile_loss=omega_profile,
+            pointwise_shock_loss=part["pointwise_shock"],
+            shock_flow_turning=part["shock_flow_turning"], suction_surface_incidence=part["suction_surface_incidence"],
+            shock_compression_clipped=part["shock_compression_clipped"],
             clearance_loss=dp_clearance / head1, seal_loss=dp_seal / head1, loss=loss, wake_blockage=wake,
             solidity=sigma, stagger=stagger, camber=theta, pitch=g["pitch"], seal_leakage_mass_flow=seal_leak,
         )

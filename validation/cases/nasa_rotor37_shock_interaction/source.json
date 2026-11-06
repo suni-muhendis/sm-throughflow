@@ -1,0 +1,28 @@
+[
+  {
+    "citation": "Suder, K. L. (1996). Experimental Investigation of the Flow Field in a Transonic, Axial Flow Compressor With Respect to the Development of Blockage and Loss. NASA TM-107310.",
+    "ntrs_id": "19970001675",
+    "url": "https://ntrs.nasa.gov/api/citations/19970001675/downloads/19970001675.pdf",
+    "pdf_sha256": "b7f99706b03af5957d594f75609c7d5bd1ff0a25ee0f022843db7c04e76f9334"
+  },
+  {
+    "file": "TM107310_table7.csv",
+    "report": "NASA TM-107310",
+    "ntrs_id": "19970001675",
+    "pdf_page": 215,
+    "printed_page": "195",
+    "title": "Table 7 Estimation of Losses",
+    "render_scale_pixels": 1800,
+    "notes": "Read visually from the rendered page, then reread every cell. Ditto marks retained. Subscripts represented with Unicode or underscores. Units row empty because the table prints no separate units row. Profile loss is a residual estimate, not a direct independent measurement; see pp. 194-196."
+  },
+  {
+    "file": "TM107310_table6.csv",
+    "report": "NASA TM-107310",
+    "ntrs_id": "19970001675",
+    "pdf_page": 203,
+    "printed_page": "183",
+    "title": "Table 6 Summary of Integrated Blockage Results Downstream of the Rotor",
+    "render_scale_pixels": 1800,
+    "notes": "Two visual reads, cell by cell. Line-wrap hyphenation in column headings joined. Region ranges and all numeric strings are verbatim. Units are printed within column headings. Radial average in identified regions, not whole-annulus blockage; definition in eq. 26."
+  }
+]

@@ -1,0 +1,67 @@
+{
+  "protocol_version": "phase3_empirical_audit_v1",
+  "date": "2026-11-04",
+  "simulator_version": "slc_aungier_experimental_v8",
+  "production_source_sha256": "5f1180923dba7379622d77bf035dc03fe9925ad9f6c6da857fe043e0ec425f8b",
+  "physics_changes_or_calibration": false,
+  "acceptance_threshold_origin": "Project screening requirements frozen before this campaign; not industry standards or fitted to new results.",
+  "development": {
+    "row_measured_states": ["nasa_stage35", "nasa_stage36", "nasa_stage37", "nasa_stage38", "nasa_stage52", "nasa_stage53", "nasa_stage55"],
+    "coupled_projected_inputs": ["nasa_stage35", "nasa_stage36", "nasa_stage37", "nasa_stage38", "nasa_stage52", "nasa_stage53", "nasa_stage55"],
+    "coupled_selection": "Measured peak-efficiency reading on every transcribed speed line; additionally minimum/maximum measured flow on Stage 35's speed lines.",
+    "clearance_family": ["nasa_stage8e_c061", "nasa_stage8e_c102", "nasa_stage8e_c140", "nasa_stage8e_c178"],
+    "clearance_selection": "Common measured-flow interval midpoint at 70 and 100 percent speed; linearly interpolate observations only inside overlap, no extrapolation.",
+    "independent_family_groups": {
+      "core_35_38": ["nasa_stage35", "nasa_stage36", "nasa_stage37", "nasa_stage38"],
+      "fan_52_55": ["nasa_stage52", "nasa_stage53", "nasa_stage55"],
+      "stage_8e": ["nasa_stage8e_c061", "nasa_stage8e_c102", "nasa_stage8e_c140", "nasa_stage8e_c178"]
+    },
+    "previously_exposed": true
+  },
+  "holdout_families": ["naca_5stage", "naca_8stage", "naca_10stage", "naca_langley_3stage", "ge_e3_hpc", "nasa_74a", "pw_2stage_fan", "pw_exit_stage_3s", "nasa_lsac", "utrc_isolated_rotor"],
+  "holdout_policy": "Do not relabel previously inspected Lewis data as independent holdout. Unavailable executable cases or measured maps are coverage failures, not passing validations.",
+  "geometry_projection": {
+    "rule": "Insert original interpolated hub/shroud radii at each blade edge, remove only contour stations strictly inside blade rows, retain all duct vertices.",
+    "source_transcriptions_unchanged": true,
+    "record_max_wall_displacement_over_span_and_annulus_area_change": true,
+    "release_evidence": false,
+    "reason": "Research approximation of geometries rejected by the single-gap model; never silently substituted for an exact machine or used to open the score."
+  },
+  "numerics": {"stream_surfaces": 11, "tolerance": 1e-7, "max_iterations": 200, "duct_subdivisions": 1, "endwall_max_iterations": 200},
+  "coupled_checks": {"same_balances_and_gas_scope_as_environment": true, "direct_research_path_bypasses_drc": true, "record_original_and_projected_drc": true},
+  "uncertainty": {
+    "anchor": "nasa_stage35, measured peak efficiency at design speed",
+    "clearance_factors": [0.5, 1.5],
+    "row_gap_factors": [0.5, 1.5],
+    "inlet_blockage_offsets": [-0.01, 0.01],
+    "inlet_profile": "Measured-state row tests and uniform-vs-measured inlet sensitivity; no unsupported claim about arbitrary public-contract inlet profiles.",
+    "row_boundary_extrapolation": ["constant", "linear"],
+    "measurement": "Report stated sensor bounds individually; missing covariance and translated rotor-exit states prohibit interpreting sensitivity bands as confidence intervals.",
+    "refinement": {"stream_surfaces": [21], "duct_subdivisions": [4]}
+  },
+  "design_sensitivity": {"anchor": "nasa_stage35 design-speed peak", "rotor_stagger_degrees": [-0.5, 0.5], "rotor_chord_factors": [0.98, 1.02], "interpretation": "Repeatable local response, not experimental validation of a derivative without matched altered hardware."},
+  "frozen_groups": {
+    "speed_percent": ["below_90", "90_to_below_100", "100", "above_100"],
+    "relative_inlet_mach_edges": [0, 0.8, 1.1, 1.4, 100],
+    "reynolds_edges": [0, 250000, 1000000, 1e12],
+    "diffusion_edges": [0, 0.4, 0.6, 100],
+    "span_core_percent_from_tip": [15, 85],
+    "separate": ["row_type", "blade_family", "machine_family", "damper_presence", "speed", "Mach", "Reynolds", "loading", "core_vs_endwall"]
+  },
+  "screening_thresholds": {
+    "pressure_rise_relative": {"absolute_bias": 0.05, "sample_spread": 0.02, "absolute_p90": 0.10},
+    "work_rise_relative": {"absolute_bias": 0.05, "sample_spread": 0.02, "absolute_p90": 0.10},
+    "efficiency_percentage_points": {"absolute_bias": 3.0, "sample_spread": 1.5, "absolute_p90": 5.0},
+    "core_deviation_degrees": {"absolute_bias": 1.5, "sample_spread": 1.5, "absolute_p90": 3.0},
+    "core_loss_coefficient": {"absolute_bias": 0.02, "sample_spread": 0.02, "absolute_p90": 0.04},
+    "core_p0_t0_shape_rms": 0.05,
+    "core_exit_angle_rms_degrees": 1.5,
+    "minimum_solution_coverage": 0.95,
+    "minimum_independent_holdout_families": 2,
+    "minimum_readings_per_reported_candidate_cell": 5,
+    "minimum_machines_per_reported_candidate_cell": 2,
+    "family_delta_pressure_rise_absolute": 0.02,
+    "family_delta_efficiency_points": 1.5
+  },
+  "decision": "No validated operating envelope unless admission, numerical resolution, absolute error, spread, profiles, response, uncertainty and independent-holdout gates all pass. Component-only or transformed-input agreement is labelled diagnostic. Keep score disabled."
+}

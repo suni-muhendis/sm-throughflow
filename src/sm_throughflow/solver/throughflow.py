@@ -5,16 +5,20 @@ from typing import List, Optional, Sequence, Union
 import numpy as np
 
 from .gas import PerfectGas
+from .errors import SolverError, PhysicalStateError
 from .geometry import Annulus, QuasiNormals, SurfaceGeometry, surface_geometry, uniform_flow_fractions
 from .quasi_normal import StationFlow, solve_quasi_normal
 from .endwall import EndwallBoundaryLayers, EndwallResult
 from .mixing import SpanwiseMixing, mixing_increments
 from .rows import BladeRow, ExitGeometry, RowPerformance
+from .reposition import CoupledRepositioning, elliptic_position_step
 
 Profile = Union[float, Sequence[float]]
 
-#: Loss scales of the start-up homotopy (Throughflow.solve); the last must be 1.
-LOSS_HOMOTOPY = (0.0, 0.25, 0.5, 0.75, 1.0)
+#: Loss-scale step of the start-up homotopy (Throughflow.solve): 0, 0.25, 0.5, 0.75, 1 when every
+#: step converges; a step that fails is halved, down to HOMOTOPY_MIN_STEP.
+HOMOTOPY_STEP = 0.25
+HOMOTOPY_MIN_STEP = 1.0 / 64.0
 
 
 def _on_span(values, t):
@@ -49,6 +53,13 @@ class Convergence:
     converged: bool = False
     position_change: List[float] = field(default_factory=list)
     velocity_change: List[float] = field(default_factory=list)
+    row_iterations: dict = field(default_factory=dict)
+    attempts: List[dict] = field(default_factory=list)
+    field_change: List[float] = field(default_factory=list)
+    blockage_change: List[float] = field(default_factory=list)
+    mixing_change: List[float] = field(default_factory=list)
+    repositioning: dict = field(default_factory=dict)
+    effort: dict = field(default_factory=dict)
 
 
 @dataclass(frozen=True)
@@ -87,6 +98,8 @@ class Throughflow:
         endwall_relaxation: float = 0.5,
         max_blockage: float = 0.5,
         mixing: Optional[SpanwiseMixing] = None,
+        repositioning: str = "anderson",
+        acceleration_depth: int = 40,
     ):
         self.annulus = annulus
         self.qn = quasi_normals
@@ -101,8 +114,15 @@ class Throughflow:
         self.endwall_relaxation = float(endwall_relaxation)
         self.max_blockage = float(max_blockage)
         self.mixing = mixing
+        if repositioning not in ("anderson", "novak"):
+            raise ValueError("repositioning must be anderson or novak")
+        if not 2 <= acceleration_depth <= 40:
+            raise ValueError("acceleration_depth must lie in [2, 40]")
+        self.repositioning = repositioning
+        self.acceleration_depth = acceleration_depth
         self._kb = self.blockage.copy()  # the blockage factor in use during a solution
         self._loss_scale = 1.0  # below 1 only during the start-up homotopy
+        self._effort = dict(outer_iterations=0, station_solves=0, row_model_calls=0, endwall_solves=0)
         self.row_at = {}
         for row in self.rows:
             if not 0 <= row.inlet < self.qn.count - 1:
@@ -115,7 +135,7 @@ class Throughflow:
 
     # ------------------------------------------------------------------ stations
     def _solve_station(self, geo: SurfaceGeometry, q: int, omega: float, I, s, previous: Optional[StationFlow], swirl=None, beta=None, wake=None) -> StationFlow:
-        return solve_quasi_normal(
+        return self._station_with_context(q,
             self.gas,
             y=geo.y[q],
             t=geo.y[q] / geo.y[q, -1],
@@ -135,6 +155,16 @@ class Throughflow:
             z=geo.z[q],
             wm_guess=None if previous is None else previous.Wm,
         )
+
+    def _station_with_context(self, q, *args, **kwargs):
+        self._effort["station_solves"] += 1
+        try:
+            return solve_quasi_normal(*args, **kwargs)
+        except SolverError as exc:
+            exc.diagnostics.setdefault("station", q)
+            raise
+        except (RuntimeError, ValueError, FloatingPointError) as exc:
+            raise SolverError(str(exc), component="quasi_normal", station=q) from exc
 
     def _inlet_station(self, geo, previous):
         t = geo.y[0] / geo.y[0, -1]
@@ -191,11 +221,23 @@ class Throughflow:
         exit_geometry = ExitGeometry(t=geo.y[q] / geo.y[q, -1], y=geo.y[q], r=geo.r[q], z=geo.z[q])
         station = previous
         applied = None
-        for _ in range(max_passes):
-            perf: RowPerformance = row.model(upstream, station, exit_geometry)
+        change = float("inf")
+        for iteration in range(1, max_passes + 1):
+            self._effort["row_model_calls"] += 1
+            try:
+                perf: RowPerformance = row.model(upstream, station, exit_geometry)
+            except SolverError as exc:
+                exc.diagnostics.update(row=row.name, station=q)
+                raise
             angle = np.asarray(perf.exit_angle, dtype=float)
             loss = self._loss_scale * np.asarray(perf.loss, dtype=float)
             blocked = None if perf.wake_blockage is None else np.asarray(perf.wake_blockage, dtype=float)
+            if not np.all(np.isfinite(angle)) or np.any(np.abs(angle) >= 0.5 * np.pi):
+                raise PhysicalStateError("row exit angle is outside the forward-flow range", component="row", row=row.name, station=q)
+            if not np.all(np.isfinite(loss)) or np.any(loss < 0.0):
+                raise PhysicalStateError("row loss must be finite and nonnegative", component="row", row=row.name, station=q)
+            if blocked is not None and (not np.all(np.isfinite(blocked)) or np.any((blocked < 0.0) | (blocked >= 1.0))):
+                raise PhysicalStateError("row wake blockage must lie in [0, 1)", component="row", row=row.name, station=q)
             if applied is not None:
                 angle = applied[0] + relaxation * (angle - applied[0])
                 loss = applied[1] + relaxation * (loss - applied[1])
@@ -212,10 +254,17 @@ class Throughflow:
             s_out = gas.entropy(H_rel_out, P_rel_out) + ds_mix
             wake = None if blocked is None else 1.0 - blocked  # (7-6)
             new = self._solve_station(geo, q, omega, I, s_out, station, beta=angle, wake=wake)
-            if station is not None and np.max(np.abs(new.Wm - station.Wm)) <= tol * np.max(new.Wm):
-                return new, perf
+            if station is not None:
+                change = max(float(np.max(np.abs(getattr(new, key) - getattr(station, key))) /
+                                   max(float(np.max(np.abs(getattr(new, key)))), 1.0))
+                             for key in ("Wm", "C_theta", "H", "P"))
+                change = max(change, float(np.max(np.abs(new.s - station.s))) / gas.cp)
+                if change <= tol:
+                    self._row_convergence[row.name] = dict(iterations=iteration, residual=change, tolerance=tol)
+                    return new, perf
             station = new
-        raise RuntimeError("row {} did not converge with its exit flow".format(row.name))
+        raise SolverError("row {} did not converge with its exit flow".format(row.name), component="row",
+                          row=row.name, station=q, iterations=max_passes, residual=change)
 
     # --------------------------------------------------------------- repositioning
     def _mass_fraction_positions(self, geo, stations, psi):
@@ -257,7 +306,7 @@ class Throughflow:
         return 1.0 / (1.0 + (1.0 - mach_m ** 2) * ys ** 2 / (b_star * spacing ** 2))
 
     # ------------------------------------------------------------------- solve
-    def solve(self, tol: float = 1e-9, max_iterations: int = 500, b_star: float = 8.0) -> ThroughflowSolution:
+    def solve(self, tol: float = 1e-9, max_iterations: int = 500, b_star: float = 4.0, start=None) -> ThroughflowSolution:
         """Solve from uniform-flow stream surfaces; if that fails, through a loss homotopy.
 
         A cold start can fail where a solution exists: on the first outer
@@ -265,90 +314,239 @@ class Throughflow:
         row whose loss rises with its exit diffusion then sees a low exit
         velocity, its loss grows, the velocity falls further and the
         quasi-normal has no solution. The fallback solves again with the row
-        losses scaled by each factor of LOSS_HOMOTOPY in turn, starting every
-        step from the stream surfaces of the step before; the last step is the
-        full model, so its solution is the model's solution at this point. A
-        point that converges from the cold start never reaches the fallback,
-        and when the fallback fails too the cold-start outcome is returned.
+        losses scaled from 0 up to 1 in steps of HOMOTOPY_STEP, starting every
+        step from the stream surfaces of the last converged one; a step that
+        fails is halved and retried, down to HOMOTOPY_MIN_STEP, and a converged
+        step lets the next one grow back. The last step is the full model, so
+        its solution is the model's solution at this point. A point that
+        converges from the cold start never reaches the fallback, and when the
+        fallback fails too the cold-start outcome is returned.
         """
+        self._effort = dict(outer_iterations=0, station_solves=0, row_model_calls=0, endwall_solves=0)
+        from .limits import enforce_inlet_capacity
+        enforce_inlet_capacity(self)
+        if start is not None:
+            start = np.asarray(start, dtype=float)
+            if (start.shape != (self.qn.count, self.n) or not np.all(np.isfinite(start))
+                    or np.any(np.diff(start, axis=1) <= 0.0)
+                    or np.any(start[:, 0] != 0.0) or np.any(start[:, -1] != 1.0)):
+                raise SolverError("inadmissible restart stream-surface positions", kind="invalid_restart", component="initialization")
+        attempts = []
+
+        def attempt(scale, start=None, initialization="cold"):
+            methods = ("anderson", "novak") if self.repositioning == "anderson" and self.curvature == "full" else ("novak",)
+            last_result = last_error = None
+            for method in methods:
+                before = dict(self._effort)
+                try:
+                    result = self._solve(tol, max_iterations, b_star, start, method)
+                except (RuntimeError, ValueError, FloatingPointError) as exc:
+                    attempts.append(dict(loss_scale=scale, method=method, initialization=initialization, converged=False,
+                                         effort={k: self._effort[k] - before[k] for k in before},
+                                         failure=dict(getattr(exc, "diagnostics", {"message": str(exc), "kind": "numerical_failure"}))))
+                    last_error = exc
+                    continue
+                attempts.append(dict(loss_scale=scale, method=method, initialization=initialization,
+                                     converged=result.convergence.converged, iterations=result.convergence.iterations,
+                                     repositioning=result.convergence.repositioning,
+                                     position_residual=result.convergence.position_change[-1] if np.isfinite(result.convergence.position_change[-1]) else None,
+                                     field_residual=result.convergence.velocity_change[-1] if np.isfinite(result.convergence.velocity_change[-1]) else None,
+                                     effort={k: self._effort[k] - before[k] for k in before}))
+                result.convergence.attempts = list(attempts)
+                result.convergence.effort = dict(self._effort)
+                last_result = result
+                if result.convergence.converged:
+                    return result
+            if last_result is not None:
+                last_result.convergence.attempts = list(attempts)
+                last_result.convergence.effort = dict(self._effort)
+                return last_result
+            if isinstance(last_error, SolverError):
+                last_error.diagnostics["attempts"] = list(attempts)
+                last_error.diagnostics["effort"] = dict(self._effort)
+            raise last_error
+
+        if start is not None:
+            try:
+                warm = attempt(1.0, start, "restart")
+                if warm.convergence.converged:
+                    return warm
+            except (RuntimeError, ValueError, FloatingPointError):
+                pass
         try:
-            cold = self._solve(tol, max_iterations, b_star)
+            cold = attempt(1.0)
         except (RuntimeError, ValueError, FloatingPointError) as exc:  # ChokedError is a RuntimeError
             cold, error = None, exc
         if cold is not None and cold.convergence.converged:
             return cold
-        t_start = None
+        t_start, done, step = None, None, HOMOTOPY_STEP
         try:
-            for scale in LOSS_HOMOTOPY:
+            while done is None or done < 1.0:
+                scale = 0.0 if done is None else min(1.0, done + step)
                 self._loss_scale = scale
-                sol = self._solve(tol, max_iterations, b_star, t_start)
-                if not sol.convergence.converged:
+                try:
+                    sol = attempt(scale, t_start, "homotopy")
+                    converged = sol.convergence.converged
+                except (RuntimeError, ValueError, FloatingPointError):
+                    converged = False
+                if converged:
+                    done = scale
+                    t_start = sol.geometry.y / sol.geometry.y[:, -1:]
+                    step = min(HOMOTOPY_STEP, 2.0 * step)
+                elif done is None or step <= HOMOTOPY_MIN_STEP:
                     break
-                t_start = sol.geometry.y / sol.geometry.y[:, -1:]
+                else:
+                    step *= 0.5
             else:
                 return sol
-        except (RuntimeError, ValueError, FloatingPointError):
-            pass
         finally:
             self._loss_scale = 1.0
         if cold is None:
+            if isinstance(error, SolverError):
+                error.diagnostics["attempts"] = list(attempts)
+                error.diagnostics["effort"] = dict(self._effort)
             raise error
+        cold.convergence.attempts = list(attempts)
+        cold.convergence.effort = dict(self._effort)
         return cold
 
-    def _solve(self, tol, max_iterations, b_star, t_start=None) -> ThroughflowSolution:
-        psi = np.linspace(0.0, 1.0, self.n)
-        t = uniform_flow_fractions(self.qn, psi) if t_start is None else np.array(t_start, dtype=float)
-        stations: List[Optional[StationFlow]] = [None] * self.qn.count
-        performance = {}
+    def _coupled_iteration(self, t, previous, performance, row_tol):
+        """Evaluate one complete coupled map; the caller owns rollback."""
+        geo = surface_geometry(self.qn, t, self.curvature, self.annulus)
+        stations, performance = list(previous), dict(performance)
+        kb_start = self._kb.copy()
+        if self.mixing is not None and previous[0] is not None:
+            eps_old = self.mixing.epsilon
+            eps_new = self.mixing.update(self.gas, previous)
+        for q in range(self.qn.count):
+            if q == 0:
+                stations[q] = self._inlet_station(geo, previous[q])
+                continue
+            mix = self._mixing(geo, q, stations[q-1], previous[q])
+            if (q-1) in self.row_at:
+                row = self.row_at[q-1]
+                stations[q], performance[row.name] = self._row_station(
+                    geo, q, row, stations[q-1], previous[q], tol=row_tol, mix=mix)
+            else:
+                stations[q] = self._duct_station(geo, q, stations[q-1], previous[q], mix=mix)
+        target = self._mass_fraction_positions(geo, stations, np.linspace(0., 1., self.n))
+        move = float(np.max(np.abs(target-t)))
+        field = np.inf if previous[0] is None else max(
+            max(float(np.max(np.abs(getattr(a, key)-getattr(b, key)))) /
+                max(float(np.max(np.abs(getattr(a, key)))), 1.) for key in ('Wm', 'C_theta', 'H', 'P'))
+            for a, b in zip(stations, previous))
+        if previous[0] is not None:
+            field = max(field, max(float(np.max(np.abs(a.s-b.s)))/self.gas.cp for a, b in zip(stations, previous)))
+        blockage_change = mixing_change = 0.
+        endwall_result = None
+        if self.endwall is not None:
+            self._effort['endwall_solves'] += 1
+            endwall_result = self.endwall.solve(self, geo, stations, performance)
+            kb_target = 1.-np.clip(endwall_result.blockage, 0., self.max_blockage)
+            blockage_change = float(np.max(np.abs(kb_target-self._kb)))
+            self._kb += self.endwall_relaxation*(kb_target-self._kb)
+        if self.mixing is not None and previous[0] is not None:
+            mixing_change = abs(eps_new-eps_old)/max(abs(eps_new), 1e-30)
+        return (geo, stations, performance, endwall_result, kb_start, target, move,
+                field, blockage_change, mixing_change)
+
+    def _solve(self, tol, max_iterations, b_star, t_start=None, method="novak") -> ThroughflowSolution:
+        t = uniform_flow_fractions(self.qn, np.linspace(0., 1., self.n)) if t_start is None else np.array(t_start, dtype=float)
+        stations = [None]*self.qn.count
+        performance, self._row_convergence = {}, {}
         conv = Convergence()
-        last_move = np.inf
-        row_tol = 1e-6
+        accelerator = CoupledRepositioning(self.acceleration_depth) if method == 'anderson' else None
+        last_move, row_tol = np.inf, 1e-6
         self._kb = self.blockage.copy()
         endwall_result = None
         if self.endwall is not None:
             self.endwall.reset()
         if self.mixing is not None:
-            self.mixing.epsilon = 0.0
-        for iteration in range(1, max_iterations + 1):
-            geo = surface_geometry(self.qn, t, self.curvature)
-            previous = list(stations)
-            if self.mixing is not None and previous[0] is not None:
-                eps_old = self.mixing.epsilon
-                eps_new = self.mixing.update(self.gas, previous)
-            for q in range(self.qn.count):
-                if q == 0:
-                    stations[q] = self._inlet_station(geo, previous[q])
-                    continue
-                mix = self._mixing(geo, q, stations[q - 1], previous[q])
-                if (q - 1) in self.row_at:
-                    row = self.row_at[q - 1]
-                    stations[q], performance[row.name] = self._row_station(geo, q, row, stations[q - 1], previous[q], tol=row_tol, mix=mix)
-                else:
-                    stations[q] = self._duct_station(geo, q, stations[q - 1], previous[q], mix=mix)
-            t_target = self._mass_fraction_positions(geo, stations, psi)
-            move = float(np.max(np.abs(t_target - t)))
-            if move > last_move:
-                b_star = 0.5 * (b_star + 1.0)  # (7-59)
+            self.mixing.epsilon = 0.
+        checkpoint, accelerated_trial = None, False
+        retries, backtracked, residual_history = 0, [], []
+        def repositioning_diagnostics():
+            return dict(method=method, depth=self.acceleration_depth if accelerator else 0,
+                preconditioner='elliptic_half_step' if accelerator else 'novak_diagonal',
+                accepted_steps=0 if accelerator is None else accelerator.accepted,
+                rejected_steps=0 if accelerator is None else accelerator.rejected,
+                backtracked_evaluations=len(backtracked), rejected_evaluations=list(backtracked))
+        for iteration in range(1, max_iterations+1):
+            self._effort['outer_iterations'] += 1
+            try:
+                evaluated = self._coupled_iteration(t, stations, performance, row_tol)
+                residual = max(evaluated[6], evaluated[8], evaluated[9])
+                if accelerated_trial and residual_history and residual > 2*max(residual_history[-5:]):
+                    raise SolverError('accelerated coupled residual grew beyond the safeguard',
+                                      component='repositioning', residual=residual)
+            except (RuntimeError, ValueError, FloatingPointError) as exc:
+                if accelerator is None or checkpoint is None or retries >= 8:
+                    if not isinstance(exc, SolverError):
+                        exc = SolverError(str(exc), component='outer')
+                    exc.diagnostics.update(repositioning=repositioning_diagnostics(), outer_evaluation=iteration)
+                    raise exc
+                # Retry a smaller ordinary step from the last complete state.
+                # Rejected evaluations still consume the outer iteration budget.
+                base_t, base_kb, safe_t, safe_kb, stations, performance, wall_state, mixing, row_state = checkpoint
+                alpha = .5**retries
+                t = base_t+alpha*(safe_t-base_t)
+                self._kb = base_kb+alpha*(safe_kb-base_kb)
+                if self.endwall is not None:
+                    self.endwall._delta_nu = dict(wall_state)
+                if self.mixing is not None:
+                    self.mixing.epsilon = mixing
+                self._row_convergence = dict(row_state)
+                for row in self.rows:
+                    if hasattr(row.model, '_cached'):
+                        row.model._cached = None
+                accelerator.history.clear()
+                accelerator.rejected += 1
+                retries += 1
+                accelerated_trial = False
+                backtracked.append(dict(iteration=iteration, fraction=alpha,
+                    failure=dict(getattr(exc, 'diagnostics', {'kind': 'numerical_failure', 'message': str(exc)}))))
+                continue
+            geo, stations, performance, endwall_result, kb_start, target, move, field, blockage_change, mixing_change = evaluated
+            retries = 0
+            residual_history.append(residual)
+            if accelerator is None and move > last_move:
+                b_star = .5*(b_star+1.)
             last_move = move
-            dv = np.inf if previous[0] is None else max(float(np.max(np.abs(a.Wm - b.Wm) / np.max(a.Wm))) for a, b in zip(stations, previous))
-            if self.endwall is not None:
-                # End-wall boundary layers on the current flow (Aungier chapter 8); K_B = 1 - B (8-77),
-                # limited and under-relaxed as Aungier advises for the sequential coupling.
-                endwall_result = self.endwall.solve(self, geo, stations, performance)
-                target = 1.0 - np.clip(endwall_result.blockage, 0.0, self.max_blockage)
-                dv = max(dv, float(np.max(np.abs(target - self._kb))))
-                self._kb = self._kb + self.endwall_relaxation * (target - self._kb)
-            if self.mixing is not None and previous[0] is not None:
-                dv = max(dv, abs(eps_new - eps_old) / max(eps_new, 1e-30))
+            dv = max(field, blockage_change, mixing_change)
+            conv.field_change.append(field)
+            conv.blockage_change.append(blockage_change)
+            conv.mixing_change.append(mixing_change)
+            conv.row_iterations = dict(self._row_convergence)
             conv.iterations = iteration
             conv.position_change.append(move)
             conv.velocity_change.append(dv)
             if move <= tol and dv <= tol:
                 conv.converged = True
                 break
-            # Each row's exit flow need only be a little sharper than the outer change.
-            row_tol = float(np.clip(0.01 * min(move, dv), 1e-12, 1e-6))
-            t = t + self._damping(geo, stations, b_star) * (t_target - t)
+            row_tol = float(np.clip(.01*min(move, dv), 1e-12, 1e-6))
+            try:
+                damping = self._damping(geo, stations, b_star)
+                correction = (damping*(target-t) if accelerator is None else
+                              .5*elliptic_position_step(geo, stations, target-t))
+                safe_t = t+correction
+                checkpoint = (t.copy(), kb_start.copy(), safe_t.copy(), self._kb.copy(), list(stations),
+                    dict(performance), {} if self.endwall is None else dict(self.endwall._delta_nu),
+                    0. if self.mixing is None else self.mixing.epsilon, dict(self._row_convergence))
+                if accelerator is None:
+                    t = safe_t
+                else:
+                    accepted = accelerator.accepted
+                    t, self._kb = accelerator.step(t, target, damping, kb_start, self._kb,
+                        self.endwall_relaxation, min(float(np.min(self.blockage)), 1.-self.max_blockage),
+                        position_step=correction)
+                    accelerated_trial = accelerator.accepted > accepted
+            except (RuntimeError, ValueError, FloatingPointError) as exc:
+                if not isinstance(exc, SolverError):
+                    exc = SolverError(str(exc), component='repositioning')
+                exc.diagnostics.update(repositioning=repositioning_diagnostics(), outer_evaluation=iteration)
+                raise exc
+        conv.iterations = iteration
+        conv.repositioning = repositioning_diagnostics()
         return ThroughflowSolution(geometry=geo, stations=stations, rows=self.rows, performance=performance, convergence=conv,
-                                   blockage=self._kb.copy(), endwall=endwall_result,
-                                   mixing_coefficient=0.0 if self.mixing is None else self.mixing.epsilon)
+            blockage=self._kb.copy(), endwall=endwall_result,
+            mixing_coefficient=0. if self.mixing is None else self.mixing.epsilon)

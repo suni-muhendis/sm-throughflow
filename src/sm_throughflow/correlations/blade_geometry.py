@@ -76,10 +76,9 @@ def camberline(kind, camber, a_c=0.5, points=401, transition=0.5, turning_ratio=
 # ------------------------------------------------------------------ multiple circular arc
 def _arc_end(angle, rate, length):
     """End-point offset of a path whose angle falls at the constant rate d(angle)/ds = -rate (radians)."""
-    if abs(rate * length) < 1e-9:
-        return length * np.cos(angle), length * np.sin(angle)
-    end = angle - rate * length
-    return (np.sin(angle) - np.sin(end)) / rate, (np.cos(end) - np.cos(angle)) / rate
+    half_turn = .5*rate*length
+    distance = length*np.sinc(half_turn/np.pi)
+    return distance*np.cos(angle-half_turn), distance*np.sin(angle-half_turn)
 
 
 def _mca_solve(theta, transition, turning_ratio):
@@ -136,8 +135,48 @@ def mca_meanline(camber, transition=0.5, turning_ratio=1.0, points=401):
 
 def mca_shape(camber, transition=0.5, turning_ratio=1.0):
     """Leading-edge angle chi1 (deg) and chordwise position a/c of the maximum camber of the meanline."""
-    x, y, _, chi1 = mca_meanline(camber, transition, turning_ratio, 2001)
-    return chi1, float(x[int(np.argmax(y))])
+    theta = np.radians(float(camber))
+    if abs(theta) < 1e-12:
+        return 0., .5  # every point has the same height on a straight line
+    chi1, s_f, _, rate = _mca_solve(theta, float(transition), float(turning_ratio))
+    kappa_t = chi1-turning_ratio*rate*s_f
+    # The maximum is the horizontal tangent, not the nearest output sample.
+    if kappa_t >= 0.:
+        x_f, _ = _arc_end(chi1, turning_ratio*rate, s_f)
+        apex = x_f+np.sin(kappa_t)/rate
+    else:
+        apex = np.sin(chi1)/(turning_ratio*rate)
+    return float(np.degrees(chi1)), float(apex)
+
+
+def mca_meanline_at(x, camber, transition=0.5, turning_ratio=1.0):
+    """Exact meanline positions and unit tangents at specified chord coordinates.
+
+    Invert Crouse's constant-turn circular segments analytically: sin(kappa)
+    = sin(kappa_start) - C*(x-x_start). This uses the same two-arc construction
+    as ``mca_meanline`` but does not snap geometry constraints to a sampling
+    grid. The half-angle displacement avoids cancellation at small camber.
+    """
+    x = np.asarray(x, dtype=float)
+    if not np.all(np.isfinite(x)) or np.any((x < 0.) | (x > 1.)):
+        raise ValueError('MCA chord coordinates must lie in [0, 1]')
+    theta = np.radians(float(camber))
+    if abs(theta) < 1e-12:
+        return np.stack((x, np.zeros_like(x)), axis=-1), np.stack((np.ones_like(x), np.zeros_like(x)), axis=-1)
+    chi1, s_f, _, rate = _mca_solve(theta, float(transition), float(turning_ratio))
+    front_rate = turning_ratio*rate
+    kappa_t = chi1-front_rate*s_f
+    x_f, y_f = _arc_end(chi1, front_rate, s_f)
+    front = x <= transition
+    start_x, start_y = np.where(front, 0., x_f), np.where(front, 0., y_f)
+    start_angle = np.where(front, chi1, kappa_t)
+    curvature = np.where(front, front_rate, rate)
+    sine = np.sin(start_angle)-curvature*(x-start_x)
+    if np.any(np.abs(sine) > 1.+1e-12):
+        raise ValueError('MCA meanline is not a chordwise graph')
+    angle = np.arcsin(np.clip(sine, -1., 1.))
+    y = start_y+(x-start_x)*np.tan(.5*(start_angle+angle))
+    return np.stack((x, y), axis=-1), np.stack((np.cos(angle), np.sin(angle)), axis=-1)
 
 
 def _left(direction):
@@ -218,16 +257,11 @@ def _multiple_circular_arc(camber, t_c, edge_radius, transition, turning_ratio, 
     if edge_radius is None or edge_radius <= 0.0:
         raise ValueError("a multiple-circular-arc section needs its edge radius")
     r0 = float(edge_radius)
-    x, y, _, _ = mca_meanline(camber, transition, turning_ratio, 4001)
-    tx, ty = np.gradient(x), np.gradient(y)
-    norm = np.hypot(tx, ty)
-    tangent = np.column_stack([tx / norm, ty / norm])
-    centre = np.column_stack([x, y])
+    centre, tangent = mca_meanline_at([0., max_thickness_at, transition, 1.], camber, transition, turning_ratio)
     le_c = centre[0] + r0 * tangent[0]
     te_c = centre[-1] - r0 * tangent[-1]
-    k_m = int(np.argmin(np.abs(x - max_thickness_at)))
-    k_t = int(np.argmin(np.abs(x - transition)))
-    front_first = k_m <= k_t
+    k_m, k_t = 1, 2
+    front_first = max_thickness_at <= transition
     surfaces = []
     for side in (1.0, -1.0):  # suction (upper), pressure (lower)
         d_m = tangent[k_m]
@@ -404,12 +438,74 @@ def suction_surface_expansion_geometric(profile, camberline_kind, camber, stagge
     leading-edge circle to the foot of the normal dropped onto it from the
     adjacent blade's leading edge, the passage shock of the model. For a
     double circular arc this is the book's construction; for a parabolic-arc
-    or NACA meanline it follows the actual surface, which is what the NACA
-    and NASA designers' "suction-surface camber ahead of the shock" measures.
+    or NACA meanline it follows the actual surface. The individual NASA
+    reports' PHISS uses their assumed shock position, which need not coincide
+    with this geometric foot; it is not an independent shock measurement.
+    """
+    leading, foot = suction_surface_shock_angles(profile, camberline_kind, camber, stagger, t_c, solidity,
+                                                a_c, edge_radius, **shape)
+    return float(max(leading - foot, 0.0))
+
+
+def suction_surface_shock_angles(profile, camberline_kind, camber, stagger, t_c, solidity, a_c=0.5,
+                                 edge_radius=None, **shape):
+    """Suction-surface tangent angles at LE and passage-shock foot, degrees from axial.
+
+    Retains Aungier section 6.7's geometric foot (nearest point to adjacent
+    LE), continuously on the represented segments. NACA RM E57A30 appendix B uses the ACTUAL incoming flow angle minus
+    the foot tangent in the Prandtl-Meyer calculation; the surface turning
+    equals that flow turning only for suction-surface-tangent incidence.
+    These are cylindrical section angles. Production supplies the complete
+    surface too, so the foot is located again in the row-cone metric.
     """
     upper, _, _ = section(profile, camberline_kind, camber, t_c, a_c, edge_radius, **shape)
     suction = _stagger(upper, stagger)
-    leading_edge_next = np.array([0.0, 1.0 / float(solidity)])  # the section's leading edge is the origin
-    foot = int(np.argmin(np.hypot(*(suction - leading_edge_next).T)))
-    angle = np.unwrap(np.arctan2(np.gradient(suction[:, 1]), np.gradient(suction[:, 0])))
-    return float(max(np.degrees(angle[0] - angle[foot]), 0.0))
+    leading, foot = projected_surface_shock_angles((suction*solidity)[None, :, :], np.array([1.]))
+    return float(leading[0]), float(foot[0])
+
+
+def projected_surface_shock_angles(surfaces, meridional_cosine):
+    """LE/foot tangents after projecting the WHOLE surface onto the row cone.
+
+    Surfaces have shape (span, points, 2), in cylindrical pitch units. Axial
+    distances stretch by 1/cos(phi); pitch stays circumferential. The foot
+    is the closest point on a C1 Hermite interpolant, not the closest sampled
+    vertex. Shared tangents avoid polygon-vertex plateaus as the foot moves
+    between segments. This retains Aungier's normal-to-surface approximation, not a
+    back-pressure-dependent shock-location model or exact developed cone.
+    """
+    surfaces = np.asarray(surfaces, dtype=float)
+    cp = np.asarray(meridional_cosine, dtype=float)
+    if (surfaces.ndim != 3 or surfaces.shape[2] != 2 or surfaces.shape[1] < 3
+            or cp.shape != (surfaces.shape[0],) or not np.all(np.isfinite(surfaces))
+            or not np.all(np.isfinite(cp)) or np.any(cp <= 0) or np.any(cp > 1)):
+        raise ValueError("invalid projected shock surface geometry")
+    p = surfaces.copy()
+    p[:, :, 0] /= cp[:, None]
+    segment = np.diff(p, axis=1)
+    square = np.sum(segment**2, axis=2)
+    if np.any(square <= 0):
+        raise ValueError("shock surface contains a zero-length segment")
+    h = np.sqrt(square)[:, :, None]
+    secant = segment/h
+    tangent = np.empty_like(p)
+    tangent[:, 1:-1] = (h[:, 1:]*secant[:, :-1]+h[:, :-1]*secant[:, 1:])/(h[:, :-1]+h[:, 1:])
+    tangent[:, 0] = ((2*h[:, 0]+h[:, 1])*secant[:, 0]-h[:, 0]*secant[:, 1])/(h[:, 0]+h[:, 1])
+    tangent[:, -1] = ((2*h[:, -1]+h[:, -2])*secant[:, -1]-h[:, -1]*secant[:, -2])/(h[:, -1]+h[:, -2])
+    c1, end = h*tangent[:, :-1], h*tangent[:, 1:]
+    c2, c3 = 3*segment-2*c1-end, -2*segment+c1+end
+    u = np.clip(np.sum((np.array([0., 1.])-p[:, :-1])*segment, axis=2)/square, 0., 1.)[:, :, None]
+    for _ in range(5):
+        distance = p[:, :-1]+u*(c1+u*(c2+u*c3))-np.array([0., 1.])
+        d1, d2 = c1+u*(2*c2+3*u*c3), 2*c2+6*u*c3
+        denominator = np.sum(d1*d1+distance*d2, axis=2, keepdims=True)
+        step = np.divide(np.sum(distance*d1, axis=2, keepdims=True), denominator,
+                         out=np.zeros_like(u), where=np.abs(denominator)>1e-30)
+        u = np.clip(u-step, 0., 1.)
+    distance = p[:, :-1]+u*(c1+u*(c2+u*c3))-np.array([0., 1.])
+    index = np.argmin(np.sum(distance**2, axis=2), axis=1)
+    derivative = c1+u*(2*c2+3*u*c3)
+    j = np.arange(len(p))
+    foot = np.arctan2(derivative[j, index, 1], derivative[j, index, 0])
+    leading = np.arctan2(tangent[:, 0, 1], tangent[:, 0, 0])
+    return np.degrees(leading), np.degrees(foot)

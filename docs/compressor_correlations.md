@@ -244,26 +244,36 @@ pressure-rise error at the 58 points both converge from +12.2 to +9.3 percent
 from +0.2 to -2.0 percent, leaving five of its six measured points beyond the
 model's choke.
 
-**Expansion angle from the constructed section.** (6-65) to (6-69) take
-the suction surface as a circular arc that turns through the whole camber.
-That holds for a double circular arc and fails for the blades transonic rows
-actually use: multiple-circular-arc and other aft-loaded sections keep the
-surface ahead of the shock nearly straight, which is the point of their
-design. On NASA Stage 35 the book's relation gives 10 to 17 deg where the
-report prints a suction-surface camber ahead of the shock (PHISS) of 1.5 to
-11 deg, and the shock loss came out about 1.5 times the designers'. For
-double- and multiple-circular-arc profiles the simulator therefore reads phi
-off the constructed cascade (`suction_surface_expansion_geometric`): the turning of
-the suction surface from where it leaves the leading-edge circle to the foot
-of the normal from the adjacent blade's leading edge, the same construction
-on the actual surface. For a circular-arc meanline it reproduces (6-69) to
-0.3 deg with a sharp edge (tested); on Stage 35's sections, with the
-parabolic arc fitted to the printed setting angles, it is within 0.5 deg of
-PHISS at the hub and 4 to 6 deg above it at the tip, where one a/c per row
-cannot represent the nearly straight front of the MCA section. It is computed
-once per row at the eleven design sections, like the throat. NACA 65 and
-C.4 rows keep the book's relation: their rounded noses have no defined
-start of the suction-surface turning.
+**Constructed passage-shock geometry and actual incidence (v13).**
+The circular-arc approximation (6-65) to (6-69) does not represent MCA front
+loading. DCA and MCA rows construct the suction surface and locate the foot
+by the nearest point to the adjacent leading edge (Aungier's normal-foot
+approximation). The cylindrical surface tangent at that foot is projected
+onto the row's meridional cone before comparison with the relative flow angle.
+The expansion supplied to Prandtl-Meyer is now `beta1 - beta_surface_foot`,
+following [NACA RM E57A30 Appendix B, printed pp. 23-25](https://ntrs.nasa.gov/api/citations/19930089514/downloads/19930089514.pdf?attachment=true).
+Through v12 it was the surface turning `beta_surface_le - beta_surface_foot`,
+which imposed tangent incidence even when the solved flow was not tangent.
+At tangent incidence the two expressions coincide. The arithmetic shock Mach
+mean, profile loss and coefficients are unchanged. NACA65/C4 retain the
+analytic tangent-entry approximation; v13 does not claim to qualify it.
+
+The underlying shock remains a geometric approximation, not a shock-location
+solution. The foot is precomputed on eleven cylindrical design sections and
+sampled at inlet span; conical layout, streamline migration within the row,
+bow shocks and shock/boundary-layer interaction are still incomplete. Negative
+flow turning is clipped to zero by the expansion-only shock model, with an
+explicit `shock_compression_clipped` diagnostic on supersonic surfaces.
+
+The NASA individual-stage reports define PHISS as suction-surface camber
+**ahead of an assumed shock location** (e.g.
+[TP-1338 Appendix C, printed p. 18](https://ntrs.nasa.gov/api/citations/19790001889/downloads/19790001889.pdf)
+and [TP-2001 Appendix C, printed p. 9](https://ntrs.nasa.gov/api/citations/19820014395/downloads/19820014395.pdf)).
+It is neither an independent shock measurement nor generally the front-segment
+camber to the transition in TP-1337 equation B3. A mismatch with constructed
+surface turning can reflect different assumed shock locations as well as
+geometry representation; it does not, by itself, identify a geometry bug.
+See [the v13 investigation](phase3_family_v13.md) for retained counterfactuals.
 
 Not modelled, as in Aungier: the bow-shock loss ahead of the leading edge
 (small at the near-zero incidence of transonic rows, NACA RM E57A30) and
@@ -385,3 +395,25 @@ for the A4K6 camberline is reproduced.
   own through-flow analysis and end-wall boundary-layer model (chapters 7, 8);
   he warns that the parts "cannot really be separated from the whole". Our
   results are his models inside our solver, and need their own validation.
+
+### v14 spatial treatment of the passage-shock source
+
+The pointwise NACA supersonic formula is retained. The row model now
+integrates its pressure defect over dual inlet-mass cells, splitting at
+Mach 1, before downstream loss limiting/smoothing. It exposes both the
+pointwise and integrated coefficients. Constructed surfaces are projected
+before locating the continuous Hermite shock foot. These are versioned
+spatial/geometric corrections, not a fitted aspect-ratio loss model. See
+[the v14 investigation](phase3_family_v14.md) for derivation, numerical tests,
+matched results and the still-failing family-efficiency gate.
+
+### v15 annular equivalent-camber deviation
+
+For MCA rows, `annular_carter_deviation` inverts TN D-7345's BLADE relations
+(printed pp. 144 and 147). It preserves exit absolute angular momentum at the
+inlet radius and meridional speed and solves the implicit reference deviation.
+The equal-velocity/cylindrical limit is the old Carter cascade correlation.
+Aungier's separate velocity term is omitted for this branch; its incidence
+slope remains an explicitly hybrid off-design assumption. Both reference loss
+and actual exit angle use the annular result. See the [v15 derivation and
+limitations](phase3_family_v15.md); the family-efficiency gate remains open.

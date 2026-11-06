@@ -1,0 +1,26 @@
+[
+  {
+    "citation": "Zierke and Deutsch, NASA CR-185118, Volume I (1989)",
+    "ntrs_id": "19900000722",
+    "url": "https://ntrs.nasa.gov/citations/19900000722",
+    "pdf_sha256": "bc95ff80dba41632efdce9734df1a9532352c02d91b53f80f5f55f5cbbe89b83",
+    "pdf_page": 48,
+    "printed_page": "34",
+    "title": "Table 2. Flow conditions",
+    "dpi": 200,
+    "notes": "The -8.5 degree column supplies the comparison scalars. Superscripts distinguish measured loss from computed far-wake values."
+  },
+  {
+    "file": "CR185118_vol2_table80.csv",
+    "report": "NASA CR-185118, Volume II",
+    "ntrs_id": "19900000723",
+    "url": "https://ntrs.nasa.gov/citations/19900000723",
+    "pdf_sha256": "a2bdb2be97a4a94d40dfc77d3da19c510eb5b5b7c7442166a6146f99f6d811fc",
+    "pdf_page": 127,
+    "pdf_page_end": 128,
+    "printed_page": "119-120",
+    "title": "Table 80. Wake Measurements at 152.6% Chord for an incidence angle of -8.5 deg.",
+    "dpi": 200,
+    "notes": "All 81 rows and all columns are retained. Group headings are repeated over their value/deviation columns. Dashes denote the printed missing entries. Numeric columns were reread from the rotated page images."
+  }
+]

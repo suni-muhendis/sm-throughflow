@@ -105,28 +105,72 @@ class SurfaceGeometry:
 def _slope_and_curvature(z: np.ndarray, r: np.ndarray):
     """Slope phi and curvature kappa_m = -dphi/dm along each stream surface (columns).
 
-    Three-point differences in the interior and two-point at the ends, as
-    Aungier recommends for stability (7-67, 7-70).
+    V11 differentiates a local parametric quadratic directly. Composing two
+    centered first differences would miss the alternating-position mode and
+    leave half the true endpoint curvature even as the mesh is refined.
+    Three-point one-sided fits close the ends. The parameter is polygonal arc
+    length; the speed denominator makes the curvature parameter-independent.
+    Smoothly refined paths have second-order accuracy; arbitrary abrupt mesh
+    grading or a physical polyline corner need not have that order.
     """
-    dz = np.diff(z, axis=0)
-    dr = np.diff(r, axis=0)
-    m = np.vstack([np.zeros((1, z.shape[1])), np.cumsum(np.hypot(dz, dr), axis=0)])
+    h = np.hypot(np.diff(z, axis=0), np.diff(r, axis=0))
+    if not np.all(np.isfinite(h)) or np.any(h <= 0.):
+        raise ValueError("stream-surface segments must have positive finite length")
+    m = np.vstack([np.zeros((1, z.shape[1])), np.cumsum(h, axis=0)])
     if z.shape[0] < 2:
         zeros = np.zeros_like(z)
         return m, zeros, zeros
-    dz_dm = np.empty_like(z)
-    dr_dm = np.empty_like(r)
-    phi = np.empty_like(z)
-    kappa = np.empty_like(z)
+    if z.shape[0] == 2:
+        phi = np.broadcast_to(np.arctan2(r[-1]-r[0], z[-1]-z[0]), z.shape).copy()
+        return m, phi, np.zeros_like(z)
+    phi, kappa = np.empty_like(z), np.empty_like(z)
     for j in range(z.shape[1]):
-        dz_dm[:, j] = np.gradient(z[:, j], m[:, j], edge_order=1)
-        dr_dm[:, j] = np.gradient(r[:, j], m[:, j], edge_order=1)
-        phi[:, j] = np.arctan2(dr_dm[:, j], dz_dm[:, j])
-        kappa[:, j] = -np.gradient(phi[:, j], m[:, j], edge_order=1)
+        dz, dr = (np.gradient(v[:, j], m[:, j], edge_order=2) for v in (z, r))
+        ddz, ddr = (2*np.diff(np.diff(v[:, j])/h[:, j])/(h[:-1,j]+h[1:,j]) for v in (z,r))
+        ddz, ddr = (np.r_[v[0], v, v[-1]] for v in (ddz, ddr))
+        phi[:, j] = np.arctan2(dr, dz)
+        kappa[:, j] = -(dz*ddr-dr*ddz)/(dz*dz+dr*dr)**1.5
     return m, phi, kappa
 
 
-def surface_geometry(qn: QuasiNormals, t: np.ndarray, model: str) -> SurfaceGeometry:
+def _contour_geometry(z, r, annulus):
+    """Differentiate wall-constrained geometric paths at the flow stations.
+
+    Interior blade-row controls have no solved flow state. The local annulus
+    fraction is interpolated between solved stations and each original wall
+    vertex is retained. Work/loss are still applied once between blade edges.
+    This is an explicit geometric interpolation, not an internal blade-force
+    or throat-flow model. Collinear redundant wall controls are removed so that
+    their insertion cannot change the discretization.
+    """
+    controls = []
+    for wall_z, wall_r in ((annulus.hub_z, annulus.hub_r), (annulus.shroud_z, annulus.shroud_r)):
+        kept = []
+        for x, radius in zip(wall_z, wall_r):
+            kept.append((x, radius))
+            while len(kept) >= 3:
+                a, b, c = kept[-3:]
+                interpolated = a[1] + (c[1]-a[1]) * (b[0]-a[0]) / (c[0]-a[0])
+                if abs(b[1]-interpolated) > 1e-12 * max(abs(a[1]), abs(c[1])):
+                    break
+                kept.pop(-2)
+        controls.extend(x for x, _ in kept)
+    m, phi, kappa = (np.empty_like(z) for _ in range(3))
+    for j in range(z.shape[1]):
+        knots = np.unique(np.r_[z[:, j], [x for x in controls if z[0, j] < x < z[-1, j]]])
+        hub, tip = annulus.hub_radius(z[:, j]), annulus.shroud_radius(z[:, j])
+        fraction = (r[:, j] - hub) / (tip - hub)
+        local = np.interp(knots, z[:, j], fraction)
+        path = annulus.hub_radius(knots) + local * (annulus.shroud_radius(knots) - annulus.hub_radius(knots))
+        indices = np.searchsorted(knots, z[:, j])
+        path[indices] = r[:, j]  # preserve the solved QN coordinates exactly
+        values = _slope_and_curvature(knots[:, None], path[:, None])
+        for dest, value in zip((m, phi, kappa), values):
+            dest[:, j] = value[indices, 0]
+    return m, phi, kappa
+
+
+def surface_geometry(qn: QuasiNormals, t: np.ndarray, model: str, annulus: Annulus = None) -> SurfaceGeometry:
     """Geometry of the stream surfaces at fractions ``t`` under a curvature model.
 
     ``full`` differentiates every stream surface; ``linear`` takes slope and
@@ -138,7 +182,10 @@ def surface_geometry(qn: QuasiNormals, t: np.ndarray, model: str) -> SurfaceGeom
         raise ValueError("unknown curvature model {}; expected one of {}".format(model, CURVATURE_MODELS))
     z, r = qn.points(t)
     y = t * qn.length[:, None]
-    m, phi, kappa = _slope_and_curvature(z, r)
+    if annulus is None:
+        m, phi, kappa = _slope_and_curvature(z, r)
+    else:
+        m, phi, kappa = _contour_geometry(z, r, annulus)
     lam = qn.lam[:, None]
     if model == "linear":
         phi = phi[:, :1] + t * (phi[:, -1:] - phi[:, :1])

@@ -346,7 +346,7 @@ def shock_loss(mach, expansion_angle, gamma=1.4, mean="arithmetic"):
         raise ValueError("mean must be 'arithmetic' or 'geometric', not {!r}".format(mean))
     static_ratio = (1.0 + 0.5 * (gamma - 1.0) * m1 ** 2) ** (-gamma / (gamma - 1.0))
     omega = (1.0 - normal_shock_total_pressure_ratio(m_in, gamma)) / (1.0 - static_ratio)  # NACA (B2)
-    return np.where(supersonic, omega, 0.0)
+    return np.where(supersonic, np.maximum(omega, 0.0), 0.0)  # remove roundoff below zero at sonic zero-turn limit
 
 
 def off_design_loss(incidence, i_m, i_c, i_s, omega_m, omega_shock=0.0):

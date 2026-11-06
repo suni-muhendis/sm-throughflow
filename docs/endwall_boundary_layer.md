@@ -86,11 +86,27 @@ Every closure relation was re-derived from the stated profiles before coding;
   `shroud_speed` override it per gap.
 - **Viscosity**: Sutherland's law for air (mu = 1.716e-5 Pa s at 273.15 K,
   S = 110.4 K).
-- **Discretization**: each gap between quasi-normals is one step; the
-  equations are integrated with the trapezoidal rule, iterated to convergence
-  on theta11, H1 and nu (section 8.8, steps 2 to 6). The blade forces in a
-  row's gap are the gap averages from the edge flow, and nu acts only in
-  blade-row gaps.
+- **Discretization (v12)**: duct and blade-row wall marches both use
+  task-owned `endwall_subdivisions` (default 8,
+  range 1-32). Core-flow stations remain at blade edges. Auxiliary edge radius,
+  meridional velocity, pressure, temperature and slope interpolate between
+  endpoints; density follows the ideal-gas EOS and angular momentum r*Ctheta
+  is interpolated. The endpoint arc length includes the original wall controls,
+  but the auxiliary fields are interpolated, not independently solved internal
+  flow states. This additional interpolation assumption needs resolution and
+  physical validation. Blade forces and collateral correction use each wall
+  subinterval's averages; row work/loss are not applied again.
+  V10/v11 used only one interval in ducts. The captured Stage 35 reading 3979
+  duct failure and an independent positive exponential ODE verify why the
+  duct march also needs resolution; see [v12 evidence](phase3_iteration_v12.md).
+- **Inner convergence (v10)**: the trapezoidal map is checked in all three
+  conserved-state components and the force correction, plus theta11 and H1.
+  Slow or growing Picard iteration invokes bounded residual minimization.
+  Every map call, including finite-difference Jacobian probes, consumes the
+  per-subinterval budget. Success requires the measured residual <=1e-8;
+  a SciPy optimizer success flag cannot override this requirement. Re-evaluating
+  x^3/(1+x^3) through its reciprocal form at large positive x prevents numerical
+  overflow without changing the saturation law.
 - **No tangential edge velocity.** Where V_theta,e = 0 in the wall's frame
   theta12 is undefined; the tangential profile keeps its previous m and the
   frame-free C_theta,e theta12 is carried on unchanged.
@@ -98,6 +114,10 @@ Every closure relation was re-derived from the stated profiles before coding;
   iteration of the throughflow solution and K_B is under-relaxed by 0.5,
   with B limited to 0.5 (Aungier: "some limits and numerical damping are
   normally required"); convergence also requires K_B to settle.
+  V10 rolls back rejected coupled trials, including all collateral corrections,
+  before trying a smaller ordinary step. Rejected work remains in the outer
+    iteration count. V11 also retains rejection traces in campaign attempt
+    summaries and thrown failures, and identifies failed wall subintervals.
 - **Deep negative m.** Downstream of a stator that removes nearly all swirl,
   V_theta,e is small, theta12 = C_theta,e theta12 / V_theta,e is large and the
   extended profile goes to strongly negative m (H2 near 0.1). The book gives

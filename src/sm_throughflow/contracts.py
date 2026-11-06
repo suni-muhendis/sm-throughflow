@@ -13,7 +13,7 @@ from typing import Dict, List, Literal, Optional
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
-SIMULATOR_VERSION = "slc_aungier_experimental_v5"
+SIMULATOR_VERSION = "slc_aungier_experimental_v16"
 
 #: Span fractions of the eleven design sections, hub (0) to shroud (1).
 SPAN_FRACTIONS = tuple(index / 10 for index in range(11))
@@ -159,6 +159,12 @@ class ThroughflowDesignV2(StrictModel):
             needs_stage = i > first_rotor or r.row_type == "rotor"
             if needs_stage and r.stage_id is None:
                 raise ValueError("row {} needs a stage_id (only inlet guide vanes may omit it)".format(r.row_id))
+        current_stage = None
+        for row in self.rows:
+            if row.row_type == "rotor":
+                current_stage = row.stage_id
+            elif row.stage_id != current_stage:
+                raise ValueError("stator {} must belong to its preceding rotor, or have no stage_id for an IGV".format(row.row_id))
         rotors = [r.stage_id for r in self.rows if r.row_type == "rotor"]
         if len(rotors) != len(set(rotors)):
             raise ValueError("each stage has exactly one rotor")
@@ -204,17 +210,22 @@ class NumericsV2(StrictModel):
     curvature: Literal["full", "linear", "none"] = "full"
     tolerance: float = Field(default=1e-7, gt=0, le=1e-4)
     max_iterations: int = Field(default=400, ge=10, le=3000)
+    duct_subdivisions: int = Field(default=1, ge=1, le=16)
+    endwall_max_iterations: int = Field(default=200, ge=10, le=1000)
+    endwall_subdivisions: int = Field(default=8, ge=1, le=32)
+    repositioning: Literal["anderson", "novak"] = "anderson"
+    acceleration_depth: int = Field(default=40, ge=2, le=40)
 
 
 class PhysicsV2(StrictModel):
-    physics_profile: Literal["axial_compressor_aungier_v1"] = "axial_compressor_aungier_v1"
+    physics_profile: Literal["axial_compressor_aungier_v2"] = "axial_compressor_aungier_v2"
     inlet_blockage: float = Field(default=0.02, ge=0.0, le=0.2)
 
 
 class ThroughflowTaskV2(StrictModel):
     environment: Literal["turbomachinery_throughflow"] = "turbomachinery_throughflow"
     task_schema_version: Literal["throughflow_task_v2"] = "throughflow_task_v2"
-    simulator_version: Literal["slc_aungier_experimental_v5"] = SIMULATOR_VERSION
+    simulator_version: Literal["slc_aungier_experimental_v16"] = SIMULATOR_VERSION
     inlet: InletV2
     operating_points: List[OperatingPointV2] = Field(min_length=1, max_length=12)
     gas: GasV2 = Field(default_factory=GasV2)
@@ -224,6 +235,8 @@ class ThroughflowTaskV2(StrictModel):
 
     @model_validator(mode="after")
     def unique_points(self):
+        if self.gas.cp_j_kg_k != 1004.5 or self.gas.gas_constant_j_kg_k != 287.05:
+            raise ValueError("axial_compressor_aungier_v2 uses calorically perfect dry air and Sutherland air viscosity")
         names = [p.name for p in self.operating_points]
         if len(names) != len(set(names)):
             raise ValueError("operating point names must be unique")
@@ -236,9 +249,11 @@ class ThroughflowTaskV2(StrictModel):
 
 #: Frozen physics of each profile (docs/compressor_row_model.md); a task picks one by name.
 AUNGIER_PROFILES: Dict[str, dict] = {
-    "axial_compressor_aungier_v1": dict(
+    "axial_compressor_aungier_v2": dict(
         K1=0.0073, max_loss=0.5, smoothing=True, shock_mean="arithmetic", endwall=True,
         maturity="candidate", reward_enabled=False,
+        viscosity_model="sutherland_air", mixing_model=None,
+        temperature_bounds_k=(200.0, 400.0),
         purpose="Aungier (2003) cascade, leakage and end-wall models on the SLC solver; pending validation.",
     ),
 }

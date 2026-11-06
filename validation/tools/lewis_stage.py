@@ -320,7 +320,7 @@ def task(points, total_pressure_pa=101325.0, total_temperature_k=288.15, inlet_b
     return {
         "inlet": {"total_pressure_pa": total_pressure_pa, "total_temperature_k": total_temperature_k, "flow_angle_deg": 0.0},
         "operating_points": [{"name": n, "mass_flow_kg_s": float(m), "shaft_speed_rpm": float(rpm)} for n, m, rpm in points],
-        "physics": {"physics_profile": "axial_compressor_aungier_v1", "inlet_blockage": inlet_blockage},
+        "physics": {"physics_profile": "axial_compressor_aungier_v2", "inlet_blockage": inlet_blockage},
     }
 
 

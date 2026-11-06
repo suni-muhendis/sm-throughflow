@@ -1,5 +1,18 @@
 # Compressor validation status
 
+The current simulator is `slc_aungier_experimental_v16`. Its matched
+regression campaign retains 75 of 108 converged jobs, including the
+Stage 53 design-speed point and the Stage 35 90% speed point. The
+cohort includes repeats, grid changes and research geometries. Both
+Stage 35–38 aspect-ratio comparisons still give the wrong efficiency
+direction. See the [v16 comparison](phase3_geometry_v16.md).
+
+The [NASA back-pressure passage study](phase3_backpressure_passage_v16.md)
+documents the separate research model's failure to match pressure recovery,
+loss and blockage together. The [Phase 3 empirical audit](phase3_validation.md)
+retains the v8 findings and the acceptance protocol. No empirical operating
+envelope is qualified. The score returns zero for every design.
+
 > **Historical sections.** The comparison and findings below were made with
 > the NASA turbo-design simulators (`nasa_turbo_design_experimental_v3`/`v4`),
 > which have since been removed from the package; the scripts they cite are in
@@ -12,7 +25,7 @@ through the public `make_env("turbomachinery_throughflow")` API with 11 radial
 solution points (10 streamtubes). It is not yet an experimentally validated
 compressor design model and every design scores zero.
 
-Run the reproducible comparison from the repository root:
+In the historical v4 checkout, the comparison used this command:
 
 ```bash
 python scripts/run_throughflow_compressor_benchmark.py

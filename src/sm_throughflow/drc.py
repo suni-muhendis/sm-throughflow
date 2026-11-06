@@ -11,7 +11,7 @@ from typing import Optional, Tuple
 import numpy as np
 
 from .contracts import SPAN_FRACTIONS, ThroughflowDesignV2
-from .correlations.aungier import camberline_angles
+from .geometry import GEOMETRY_SPANS, blade_sections, station_grid, validate_constructed_section, validate_span_trends
 
 MAX_METAL_ANGLE_DEG = 80.0
 THICKNESS_RANGE = (0.02, 0.12)  # t_b/c of the cascade data behind (6-10), (6-25)
@@ -26,11 +26,18 @@ def _radius(stations, x, name):
 
 
 def run_drc(design: ThroughflowDesignV2) -> Tuple[bool, Optional[str]]:
-    stations = design.passage.stations
+    try:
+        stations, _, _ = station_grid(design)
+    except ValueError as exc:
+        return False, "DRC Error: {}".format(exc)
     x_in, x_out = stations[0].axial_m, stations[-1].axial_m
     span = np.asarray(SPAN_FRACTIONS, dtype=float)
     for row in design.rows:
         rid = row.row_id
+        try:
+            validate_span_trends(row)
+        except ValueError as exc:
+            return False, "DRC Error: row {}: {}".format(rid, exc)
         if not (x_in < row.leading_edge_axial_m and row.trailing_edge_axial_m < x_out):
             return False, "DRC Error: row {} must lie strictly inside the passage".format(rid)
         k_in = np.asarray(row.metal_angle_in_deg, dtype=float)
@@ -51,12 +58,19 @@ def run_drc(design: ThroughflowDesignV2) -> Tuple[bool, Optional[str]]:
         solidity = chord / pitch
         if np.any(solidity < SOLIDITY_RANGE[0]) or np.any(solidity > SOLIDITY_RANGE[1]):
             return False, "DRC Error: row {} solidity {:.3g} to {:.3g} leaves [{:g}, {:g}]".format(rid, solidity.min(), solidity.max(), *SOLIDITY_RANGE)
-        sign = 1.0 if np.mean(k_in - k_out) > 0 else -1.0
-        chi1, _ = camberline_angles(camber, row.max_camber_location)
-        stagger = sign * k_in - chi1
-        axial = chord * np.abs(np.cos(np.radians(stagger))) / (row.trailing_edge_axial_m - row.leading_edge_axial_m)
+        try:
+            sections = blade_sections(row, stations, GEOMETRY_SPANS)
+        except (ValueError, RuntimeError, FloatingPointError) as exc:
+            return False, "DRC Error: row {} section construction failed: {}".format(rid, exc)
+        stagger = np.array([section["stagger"] for section in sections])
+        axial = np.array([section["chord"] for section in sections]) * np.abs(np.cos(np.radians(stagger))) / (row.trailing_edge_axial_m - row.leading_edge_axial_m)
         if np.any(axial < AXIAL_CHORD_RATIO[0]) or np.any(axial > AXIAL_CHORD_RATIO[1]):
             return False, "DRC Error: row {} axial chord (chord x cos stagger) is {:.2f} to {:.2f} times the leading-to-trailing-edge distance; it must lie in [{:g}, {:g}]".format(rid, axial.min(), axial.max(), *AXIAL_CHORD_RATIO)
+        try:
+            for index, parameters in enumerate(sections):
+                validate_constructed_section(row, parameters)
+        except (ValueError, RuntimeError, FloatingPointError) as exc:
+            return False, "DRC Error: invalid constructed geometry in row {}, span {:.3f}: {}".format(rid, GEOMETRY_SPANS[index], exc)
         gap = row.tip_clearance_m if row.tip_clearance_m is not None else row.hub_clearance_m
         if gap is not None and gap >= MAX_CLEARANCE_TO_SPAN * height:
             return False, "DRC Error: row {} clearance is at least {:g}% of the blade height".format(rid, 100 * MAX_CLEARANCE_TO_SPAN)

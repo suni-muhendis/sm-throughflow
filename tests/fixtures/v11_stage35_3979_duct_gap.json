@@ -1,0 +1,129 @@
+{
+  "failure": {
+    "component": "endwall",
+    "details": {
+      "inner_error": null,
+      "method": "bounded_residual",
+      "physical_limit_established": false,
+      "tolerance": 1e-08,
+      "wall": "hub"
+    },
+    "iterations": 151,
+    "kind": "numerical_failure",
+    "message": "endwall gap residual solve did not converge",
+    "residual": 0.022176851105425666,
+    "station": 5
+  },
+  "inputs": {
+    "blade": null,
+    "delta_nu": 0.0,
+    "dm": 0.003113646134357592,
+    "dvm_dm": -29588.466527320146,
+    "e1": {
+      "P": 104613.17304816747,
+      "T": 296.90003579856767,
+      "c_theta": 185.37816674748126,
+      "m": 0.06820651375478735,
+      "phi": 0.16825327993272537,
+      "r": 0.18714,
+      "rho": 1.2274917271714638,
+      "vm": 245.6059197339623
+    },
+    "e2": {
+      "P": 129089.95883689924,
+      "T": 315.28422981295057,
+      "c_theta": 184.92706487127234,
+      "m": 0.07132015988914495,
+      "phi": 0.14712948357069436,
+      "r": 0.1875965,
+      "rho": 1.4263715330486098,
+      "vm": 153.47790530960293
+    },
+    "f_me": -11382.027831087937,
+    "f_theta": 0.0,
+    "initial": [
+      0.15733981684983497,
+      2.0366198652094916,
+      -0.7337010502689114
+    ],
+    "omega_w": 0.0,
+    "predictor": {
+      "H1": 1.117824657494237,
+      "H2": 0.8628960799037095,
+      "c_theta12": -0.09523380833341384,
+      "delta": 0.006492147144181814,
+      "delta1": 0.0003611890205162051,
+      "delta2": -0.0005643378542217396,
+      "delta_minus_delta1": 0.00613095812366561,
+      "m": -0.09127253800214112,
+      "n": 0.05891232874711849,
+      "nu": 0.0,
+      "theta11": 0.0003231177788883828,
+      "theta12": -0.0005149803702324809,
+      "theta22": -0.0006540044245938793,
+      "wall_speed": 0.0
+    },
+    "s1": {
+      "H1": 1.117824657494237,
+      "H2": 0.7958877692368037,
+      "c_theta12": -0.06949098800945787,
+      "delta": 0.0029530759443765313,
+      "delta1": 0.0001642936588113561,
+      "delta2": -0.0004118928005510835,
+      "delta_minus_delta1": 0.0027887822855651753,
+      "m": -0.14645320632617415,
+      "n": 0.05891232874711849,
+      "nu": 0.0,
+      "theta11": 0.00014697623434040515,
+      "theta12": -0.000374860692759559,
+      "theta22": -0.0005175262348183309,
+      "wall_speed": 0.0
+    },
+    "station": 5,
+    "wall": "hub"
+  },
+  "job_id": "projected__nasa_stage35_90_3979",
+  "source": {
+    "dependencies": {
+      "numpy": "2.5.3",
+      "pydantic": "2.13.4",
+      "scipy": "1.18.1",
+      "sm-core": "0.8.0",
+      "sm-throughflow": "0.1.0"
+    },
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+    "source_files": {
+      "__init__.py": "c9635ce23180cf9a59aec87fc27fa3ad120fc6df84743985ea1bab6b469d38c8",
+      "contracts.py": "e6ae8a732477fd9e49fca912b17accd2322b88b7ad821d6bfe1e91696cc1c76d",
+      "correlations/__init__.py": "a1b23655141bd8a0a3d972280d3816d317369afa0990c81497a1bd49afd2b5e5",
+      "correlations/aungier.py": "f71d33707de05862d7bd1614e86110d6d5737d0016fc3c32573f673db79483f2",
+      "correlations/blade_geometry.py": "c7516a734f8b741c1613f0bae7399d964174fc380ed67908f6c282e9e868b456",
+      "correlations/cascade.py": "5a32e521cb7035c55ecd3125a111d8a5dfa38ce62b5773d7952d85ed688cbccc",
+      "correlations/nasa_lewis.py": "6b705f93287ad40981052a0823b951ce8ef8688e8151aee54f163a1c811c66e9",
+      "correlations/spanwise_mixing.py": "0b8f9b3f14a5e3ba7b9e7b813e95d0465f20fdbf87dfaa822d6e3ea6474911d7",
+      "drc.py": "798e32671aeaaa673176a1b46a121127369421d1de583454294c14d9a17af538",
+      "env.py": "66e895e88334a03181d30113a29cb0bf1034581da837d41fe4f36a09aa62f8e3",
+      "geometry.py": "1438c7956e848e627f48a3d12eec212cf9f1f50e8ce7bf393ae4290d14357bec",
+      "offdesign.py": "da38f2f067464b7a907d51f5dbc268cdde39888d379dfa43bec2ce14d27755fd",
+      "outcomes.py": "efbce093af496bba228ef1e414ae0c3de24d3b09fbddc15ae8dc94b5b2e89ada",
+      "provenance.py": "6c0d86cf49bcf2f2b83351f3180849514ca4cf508529eaf9bef84abed9f58f2f",
+      "score.py": "2475b33b3970057e673e4f6f8f8323b68c656c2ba0eb6f75ca39e83053e7ce50",
+      "simulator.py": "dc432b84ed6aa4eea6d41be855b5b0e741dbd9531a841b84e60810f3d134a034",
+      "solver/__init__.py": "db6f38af64566b649200ebd7564351ae955e512d514a2743011050957a1561dc",
+      "solver/aungier_row.py": "24ce4f517bb9a1ec52c48df1b58264a270c1b0fa615f78400e47099d5f2e2e5d",
+      "solver/endwall.py": "273eeaf5ff4ac2a7ffddd91c6aaab3577d845c01faf8063e4263ace080f965e1",
+      "solver/errors.py": "70c69d0110ad19e73678c5940c0c00848e129313d4e8606ee43b8dc6d9af4b69",
+      "solver/gas.py": "da2d955ba28dfa8f395370b2f249dce9cb5fa23a22ec16af317c2a6b7151471c",
+      "solver/geometry.py": "81cecd12e0113a2c0f728b13faa7dad9427d2505ca998d54570cc7b89b8566c1",
+      "solver/limits.py": "4de0ac6393bde674230f73dffd260679c72b4f8505475cd47fae65a6acb26c77",
+      "solver/mixing.py": "2aa71168f959ed324465c1094c84ec4d926ab12326b4c187f751e135f116ea15",
+      "solver/quasi_normal.py": "df3871de41475a96976ecf04a1a99496860c108d09bf9eb6df72e210f3264dcb",
+      "solver/reposition.py": "a5ffe798f0a554cb1c26f35fbd19c4c7ba1789cbd4a48daeb2ff24395727ab9d",
+      "solver/rows.py": "5d23783eedd761c8e3f28af99aa55a9e9c5acddac511a3bec13971f468d2ca6c",
+      "solver/throughflow.py": "26a719e7f8d9004afdd3401cc41df2849a442588c4c84d03a7aa72a54c8b3909",
+      "solver/verification.py": "091cd6fe48f1c5716e2df5e902ca391e5bd2f11f2d14b5f87f2158457a1450c0"
+    },
+    "source_sha256": "81cba25a32cdff525c48bb8ca110d7f7a50b85b11aad6df4e2d5111b04ec5dd2"
+  }
+}

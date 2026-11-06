@@ -14,12 +14,15 @@ efficiency, near stall). Three levels are compared (docs/validation_plan.md):
 3. Blade-element quantities of every row: incidence, deviation, loss
    coefficient, D-factor.
 
-Per-case results go to ``validation/results/<case>.json``, and the
-consistency statistics over all results to ``validation/reports/consistency.md``.
+Every invocation creates a new ``validation/campaigns/<identity>/`` with a
+source archive and manifest; results and the report belong to that campaign only.
+Historical ``validation/results`` and ``validation/reports`` are never overwritten.
 """
+import argparse
 import json
 import math
 import sys
+from time import perf_counter
 from pathlib import Path
 
 import numpy as np
@@ -28,12 +31,28 @@ HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE / "tools"))
 
 import lewis_stage as L  # noqa: E402
+if __package__:
+    from .campaign import create_campaign, write_json_new
+else:
+    from campaign import create_campaign, write_json_new
 from sm_throughflow.contracts import AUNGIER_PROFILES, ThroughflowDesignV2, ThroughflowTaskV2  # noqa: E402
 from sm_throughflow.simulator import SlcAungierSimulator  # noqa: E402
-from sm_throughflow.solver import ChokedError  # noqa: E402
+from sm_throughflow.outcomes import PointOutcome, failure_evidence  # noqa: E402
+from sm_throughflow.offdesign import find_upper_boundary, trace_map  # noqa: E402
+from sm_throughflow.solver.limits import solution_limits, inlet_capacity  # noqa: E402
 
-RESULTS = HERE / "results"
-REPORT = HERE / "reports" / "consistency.md"
+RESULTS = None
+REPORT = None
+
+
+def configure_campaign(path):
+    global RESULTS, REPORT
+    root = Path(path).resolve()
+    if not (root / "manifest.json").exists():
+        raise ValueError("a campaign manifest is required before writing results")
+    RESULTS = root / "results"
+    REPORT = root / "consistency.md"
+
 CORE = (15.0, 85.0)  # percent span from the tip; the rest of the measured span is the end-wall zone
 #: The highest measured flow is a choke point only where the characteristic is nearly vertical there:
 #: the relative change of PR - 1 between the two highest-flow points over their relative flow difference, in
@@ -315,19 +334,23 @@ class Solution:
 
     STAGE_ETA_TR = "rotor_tr"  # set per case by run_case
 
-    def __init__(self, design, mass_flow, rpm, blockage):
+    def __init__(self, design, mass_flow, rpm, blockage, restart=None):
         task = ThroughflowTaskV2.model_validate(L.task([("p", mass_flow, rpm)], inlet_blockage=blockage))
         model = ThroughflowDesignV2.model_validate(design)
-        flow, rows = SlcAungierSimulator.build(model, task, task.operating_points[0])
-        sol = flow.solve(tol=task.numerics.tolerance, max_iterations=task.numerics.max_iterations, b_star=16.0)
-        if not sol.convergence.converged:
-            raise RuntimeError("did not converge")
+        flow, rows, sol, balances, self.restart = SlcAungierSimulator.solve_state(model, task, task.operating_points[0], restart)
+        self.diagnostics = dict(verification=balances, limits=dict(solution_limits(sol), inlet_capacity=inlet_capacity(flow)),
+                                convergence=dict(attempts=sol.convergence.attempts, effort=sol.convergence.effort),
+                                admission="direct_solver_research_bypasses_drc")
         self.mass_flow, self.rpm = mass_flow, rpm
         self.omega = rpm * 2.0 * math.pi / 60.0
         self.gas, self.sol, self.design = flow.gas, sol, model
         self.k = (self.gas.gamma - 1.0) / self.gas.gamma
         s = sol.stations
-        self.inlet, self.rotor_in, self.rotor_out, self.stator_in, self.stator_out, self.exit = s[0], s[1], s[2], s[3], s[4], s[-1]
+        indices = {row.name: row.inlet for row in sol.rows}
+        rotor = indices["R1"]
+        stator = indices["S1"]
+        self.inlet, self.rotor_in, self.rotor_out = s[0], s[rotor], s[rotor + 1]
+        self.stator_in, self.stator_out, self.exit = s[stator], s[stator + 1], s[-1]
         tr = self._ratio(self.rotor_out, "T0")
         self.overall = dict(
             rotor_pr=self._energy_ratio(self.rotor_out), rotor_tr=tr,
@@ -369,57 +392,51 @@ class Solution:
                                     angle=np.degrees(np.asarray(st.alpha)), vm=np.asarray(st.Wm), r=np.asarray(st.r))
 
 
-def solve(design, mass_flow, rpm, blockage):
+def solve(design, mass_flow, rpm, blockage, restart=None):
+    begun = perf_counter()
     try:
-        return Solution(design, mass_flow, rpm, blockage)
-    except (ChokedError, RuntimeError, ValueError, FloatingPointError):
-        return None
+        solution = Solution(design, mass_flow, rpm, blockage, restart)
+        limits = solution.diagnostics["limits"]
+        classification = "converged_with_model_limit" if (limits["stall_criterion_crossed"] or limits["throat_capacity_exceeded"]) else "converged"
+        return PointOutcome(mass_flow, True, classification, dict(solution.overall, min_stall_margin=solution.min_stall_margin),
+                            solution.diagnostics, solution.restart, solution, perf_counter() - begun)
+    except Exception as exc:
+        evidence = failure_evidence(exc)
+        return PointOutcome(mass_flow, False, evidence["classification"], diagnostics=evidence, elapsed_seconds=perf_counter() - begun)
 
 
 def choke_flow(design, rpm, blockage, start, tol=1e-3, look_ahead=3):
-    """Largest mass flow the model passes at a speed, from a converged ``start``: steps of 2 percent, where
-    a failed step ends the scan only if the next ``look_ahead`` steps fail too (a single point that does
-    not converge is not choke), then bisection between the last converged and the next failed step."""
-    lo = start
-    while True:
-        up = next((lo * 1.02 ** k for k in range(1, look_ahead + 2) if solve(design, lo * 1.02 ** k, rpm, blockage) is not None), None)
-        if up is None:
-            break
-        lo = up
-    hi = lo * 1.02
-    while (hi - lo) / lo > tol:
-        mid = 0.5 * (lo + hi)
-        lo, hi = (mid, hi) if solve(design, mid, rpm, blockage) is not None else (lo, mid)
-    return lo
+    """Classified bounded search; a numerical boundary is never a choke anchor."""
+    return find_upper_boundary(lambda m, seed: solve(design, m, rpm, blockage, seed), start,
+                               tolerance=tol, look_ahead=look_ahead)
 
 
-def speed_line(design, rpm, blockage, m_choke, lowest=0.75, count=16):
-    """The model's characteristic from just below choke down to ``lowest`` of the choke flow."""
-    out = []
-    for m in np.linspace(m_choke * 0.999, m_choke * lowest, count):
-        s = solve(design, float(m), rpm, blockage)
-        if s is None:
-            out.append(dict(mass_flow=float(m), converged=False))
-            continue
-        out.append(dict(mass_flow=float(m), converged=True, min_stall_margin=s.min_stall_margin, **s.overall))
-    return out
+def speed_line(design, rpm, blockage, upper_flow, lowest=0.75, count=16):
+    """Audit a requested interval; upper_flow need not be a physical choke flow."""
+    audit = trace_map(lambda m, seed: solve(design, m, rpm, blockage, seed),
+                      np.linspace(upper_flow * .999, upper_flow * lowest, count))
+    line = [dict(p, converged=p["converged"] and not p["path_differences"], **p["metrics"]) for p in audit["points"]]
+    return line, audit
 
 
 def model_anchors(line):
+    line = sorted(line, key=lambda p: -p["mass_flow"])
     ok = [p for p in line if p["converged"]]
+    if not ok:
+        return None, None
     peak = max(ok, key=lambda p: p["stage_eta"])
-    i = ok.index(peak)
-    if 0 < i < len(ok) - 1:  # parabola through the three points around the maximum
-        m = np.array([ok[j]["mass_flow"] for j in (i - 1, i, i + 1)])
-        e = np.array([ok[j]["stage_eta"] for j in (i - 1, i, i + 1)])
+    i = line.index(peak)
+    if 0 < i < len(line) - 1 and line[i-1]["converged"] and line[i+1]["converged"]:
+        m = np.array([line[j]["mass_flow"] for j in (i - 1, i, i + 1)])
+        e = np.array([line[j]["stage_eta"] for j in (i - 1, i, i + 1)])
         a, b, c = np.polyfit(m, e, 2)
-        if a < 0:
+        if a < 0 and min(m) <= -b / (2 * a) <= max(m):
             m_peak = -b / (2 * a)
             peak = dict(peak, mass_flow=float(m_peak), stage_eta=float(np.polyval([a, b, c], m_peak)),
-                        stage_pr=float(np.interp(m_peak, m[::-1], [ok[j]["stage_pr"] for j in (i + 1, i, i - 1)])))
+                        stage_pr=float(np.interp(m_peak, m[::-1], [line[j]["stage_pr"] for j in (i + 1, i, i - 1)])))
     stall = None
-    for a_, b_ in zip(ok, ok[1:]):
-        if a_["min_stall_margin"] >= 0.0 > b_["min_stall_margin"]:
+    for a_, b_ in zip(line, line[1:]):
+        if a_["converged"] and b_["converged"] and a_["min_stall_margin"] >= 0.0 > b_["min_stall_margin"]:
             f = a_["min_stall_margin"] / (a_["min_stall_margin"] - b_["min_stall_margin"])
             stall = {k: a_[k] + f * (b_[k] - a_[k]) for k in ("mass_flow", "stage_pr", "stage_eta")}
             break
@@ -498,13 +515,17 @@ def compare_profiles(sol, rotor_rows, stator_rows):
 
 
 def run_case(case_id):
+    if RESULTS is None:
+        raise ValueError("configure a new campaign first; historical results are read-only")
     case = CASES[case_id]()
     Solution.STAGE_ETA_TR = case.STAGE_ETA_TR
     if not case.speeds:
         print("  no measured speed lines transcribed; skipped")
         return None
-    result = dict(case=case_id, simulator=SlcAungierSimulator.VERSION, physics=AUNGIER_PROFILES["axial_compressor_aungier_v1"],
-                  assumptions=list(case.ASSUMPTIONS) + case.notes, speeds={})
+    result = dict(case=case_id, simulator=SlcAungierSimulator.VERSION, physics=AUNGIER_PROFILES["axial_compressor_aungier_v2"],
+                  assumptions=list(case.ASSUMPTIONS) + case.notes, design=case.design,
+                  reference_task=ThroughflowTaskV2.model_validate(L.task([("reference", 1.0, case.design_speed_rpm)], inlet_blockage=0.02)).model_dump(mode="json"),
+                  speeds={})
     for speed in case.speeds:
         blockage = case.inlet_blockage(speed)
         points = case.measured_points(speed)
@@ -517,22 +538,31 @@ def run_case(case_id):
         choked = slope >= CHOKE_SLOPE
         meas_peak = max(points, key=lambda p: p["stage_eta"])
         meas_stall = min(points, key=lambda p: p["mass_flow"])
-        start = next((p["mass_flow"] for p in sorted(points, key=lambda p: p["mass_flow"]) if solve(case.design, p["mass_flow"], rpm, blockage)), None)
+        measured_outcomes = {p["reading"]: solve(case.design, p["mass_flow"], p["rpm"], blockage) for p in points}
+        search_probes = []
+        start = next((p["mass_flow"] for p in sorted(points, key=lambda p: p["mass_flow"]) if measured_outcomes[p["reading"]].converged), None)
         m = min(p["mass_flow"] for p in points)
-        while start is None and m > 0.5 * meas_choke["mass_flow"]:  # the model chokes below every measured flow
+        while start is None and m > 0.5 * meas_choke["mass_flow"]:
             m *= 0.97
-            start = m if solve(case.design, m, rpm, blockage) else None
+            trial = solve(case.design, m, rpm, blockage)
+            search_probes.append(trial.record())
+            start = m if trial.converged else None
         if start is None:
-            result["speeds"][str(speed)] = dict(rpm=rpm, inlet_blockage=blockage, failed="no converged point down to half the measured flow")
+            result["speeds"][str(speed)] = dict(rpm=rpm, inlet_blockage=blockage,
+                failed="no converged point down to half the measured flow; physical boundary unresolved", search_probes=search_probes,
+                readings=[dict(reading=p["reading"], measured=p, at_measured_flow=measured_outcomes[p["reading"]].record()) for p in points])
             continue
-        m_choke = choke_flow(case.design, rpm, blockage, start)
-        line = speed_line(case.design, rpm, blockage, m_choke)
+        boundary = choke_flow(case.design, rpm, blockage, start)
+        m_choke = boundary["model_choke_flow"]
+        line, map_audit = speed_line(case.design, rpm, blockage, boundary["lower_flow"] or start)
         peak, stall = model_anchors(line)
         anchors = dict(
             choke=dict(measured=meas_choke["mass_flow"], model=m_choke, measured_is_choke=choked, measured_slope=slope,
-                       error=m_choke / meas_choke["mass_flow"] - 1.0 if choked else None),
-            peak=dict(measured={k: meas_peak[k] for k in ("mass_flow", "stage_pr", "stage_eta")}, model={k: peak[k] for k in ("mass_flow", "stage_pr", "stage_eta")},
-                      error=dict(mass_flow=peak["mass_flow"] / meas_peak["mass_flow"] - 1.0,
+                       boundary_classification=boundary["classification"],
+                       error=m_choke / meas_choke["mass_flow"] - 1.0 if choked and m_choke is not None else None),
+            peak=dict(measured={k: meas_peak[k] for k in ("mass_flow", "stage_pr", "stage_eta")},
+                      model=None if peak is None else {k: peak[k] for k in ("mass_flow", "stage_pr", "stage_eta")},
+                      error=None if peak is None else dict(mass_flow=peak["mass_flow"] / meas_peak["mass_flow"] - 1.0,
                                  stage_pr_rise=(peak["stage_pr"] - 1.0) / (meas_peak["stage_pr"] - 1.0) - 1.0,
                                  stage_eta_points=100.0 * (peak["stage_eta"] - meas_peak["stage_eta"]))),
             stall=dict(measured={k: meas_stall[k] for k in ("mass_flow", "stage_pr", "stage_eta")}, model=stall,
@@ -544,20 +574,29 @@ def run_case(case_id):
         readings = []
         for p in points:
             entry = dict(reading=p["reading"], measured=p)
-            matched = [("at_matched_flow", p["mass_flow"] * m_choke / meas_choke["mass_flow"])] if choked else []
+            matched = [("at_matched_flow", p["mass_flow"] * m_choke / meas_choke["mass_flow"])] if choked and m_choke is not None else []
             for label, m in [("at_measured_flow", p["mass_flow"])] + matched:
-                sol = solve(case.design, m, p["rpm"], blockage)
-                if sol is None:
-                    entry[label] = dict(mass_flow=m, converged=False)
+                outcome = measured_outcomes[p["reading"]] if label == "at_measured_flow" else solve(case.design, m, p["rpm"], blockage)
+                if not outcome.converged:
+                    entry[label] = outcome.record()
                     continue
-                block = dict(mass_flow=m, converged=True, overall=sol.overall, errors=errors(sol.overall, p), min_stall_margin=sol.min_stall_margin)
+                sol = outcome.solution
+                block = dict(outcome.record(), overall=sol.overall, errors=errors(sol.overall, p), min_stall_margin=sol.min_stall_margin)
                 if p["reading"] in case.rotor_elements:
                     block["level2"], block["level3"] = compare_profiles(sol, case.rotor_elements[p["reading"]], case.stator_elements[p["reading"]])
                 entry[label] = block
             readings.append(entry)
-        result["speeds"][str(speed)] = dict(rpm=rpm, inlet_blockage=blockage, anchors=anchors, speed_line=line, readings=readings)
+        result["speeds"][str(speed)] = dict(rpm=rpm, inlet_blockage=blockage, anchors=anchors, speed_line=line,
+                                          readings=readings, boundary=boundary, map_audit=map_audit, search_probes=search_probes)
     RESULTS.mkdir(exist_ok=True)
-    (RESULTS / (case_id + ".json")).write_text(json.dumps(result, indent=1, default=float) + "\n")
+    # Measured choke slopes can be infinite for equal printed flows; encode as null.
+    def finite(value):
+        if isinstance(value, dict):
+            return {k: finite(v) for k, v in value.items()}
+        if isinstance(value, (list, tuple)):
+            return [finite(v) for v in value]
+        return None if isinstance(value, float) and not math.isfinite(value) else value
+    write_json_new(RESULTS / (case_id + ".json"), finite(result))
     return result
 
 
@@ -599,11 +638,13 @@ def report(results):
                 anchor_rows.append("| {} | {} | {:.3f} | {} | | | | |".format(r["case"], speed, s["inlet_blockage"], s["failed"]))
                 continue
             a = s["anchors"]
-            choke = ("{:+.2%}".format(a["choke"]["error"]) if a["choke"].get("measured_is_choke", True)
-                     else "not choked ({:+.2%} vs max. flow)".format(a["choke"]["model"] / a["choke"]["measured"] - 1.0))
-            anchor_rows.append("| {} | {} | {:.3f} | {} | {:+.2%} | {:+.2%} | {:+.1f} | {} |".format(
-                r["case"], speed, s["inlet_blockage"], choke, a["peak"]["error"]["mass_flow"], a["peak"]["error"]["stage_pr_rise"],
-                a["peak"]["error"]["stage_eta_points"],
+            choke = ("{:+.2%}".format(a["choke"]["error"]) if a["choke"]["error"] is not None
+                     else a["choke"].get("boundary_classification", "unqualified choke comparison"))
+            peak_error = a["peak"]["error"]
+            peak_cells = " | ".join(("{:+.2%}".format(peak_error["mass_flow"]), "{:+.2%}".format(peak_error["stage_pr_rise"]),
+                                     "{:+.1f}".format(peak_error["stage_eta_points"]))) if peak_error is not None else "n/a | n/a | n/a"
+            anchor_rows.append("| {} | {} | {:.3f} | {} | {} | {} |".format(
+                r["case"], speed, s["inlet_blockage"], choke, peak_cells,
                 "none found" if a["stall"]["model"] is None else "{:+.1%}".format(a["stall"]["error"]["mass_flow"])))
             for p in s["readings"]:
                 for label in ("at_measured_flow", "at_matched_flow"):
@@ -631,7 +672,7 @@ def report(results):
               "|---|---|---|---|---|---|---|---|"] + anchor_rows + [""]
     unreached = ["{} {}% {}".format(r["case"], sp, p["reading"]) for r in results for sp, s in r["speeds"].items() if "readings" in s
                  for p in s["readings"] if not p["at_measured_flow"]["converged"]]
-    lines += ["Measured points the model cannot reach (it chokes or fails below their flow): " + (", ".join(unreached) or "none"), ""]
+    lines += ["Unresolved measured points (see per-point classifications; failure is not a choke proof): " + (", ".join(unreached) or "none"), ""]
     lines += ["## Overall errors at every measured point", "", "Bias / spread (n). Rises are relative errors of PR - 1 and TR - 1; efficiencies in points.", "",
               "| Error | At measured flow | At matched flow (m/m_choke) |", "|---|---|---|"]
     for key in sorted({k for _, k in overall}):
@@ -656,10 +697,13 @@ def report(results):
     for r in results:
         lines += ["- **{}**: {}".format(r["case"], "; ".join(r["assumptions"]))]
     REPORT.parent.mkdir(exist_ok=True)
-    REPORT.write_text("\n".join(lines) + "\n")
+    with REPORT.open("x", encoding="utf-8") as stream:
+        stream.write("\n".join(lines) + "\n")
 
 
-def _run_logged(case_id):
+def _run_logged(job):
+    case_id, campaign_path = job
+    configure_campaign(campaign_path)
     import traceback
     try:
         run_case(case_id)
@@ -671,10 +715,21 @@ def _run_logged(case_id):
 def main(argv):
     from concurrent.futures import ProcessPoolExecutor
 
-    ids = argv or list(CASES)
+    parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    parser.add_argument("cases", nargs="*", help="case IDs; default: all registered cases")
+    parser.add_argument("--output", help="new directory below validation/campaigns")
+    args = parser.parse_args(argv)
+    ids = args.cases or list(CASES)
+    if any(name not in CASES for name in ids):
+        parser.error("unknown case; choose from " + ", ".join(CASES))
+    path = create_campaign(args.output, purpose="experimental_validation", selection=ids)
+    configure_campaign(path)
+    outcomes = {}
     with ProcessPoolExecutor(max_workers=min(len(ids), 4)) as pool:
-        for case_id, error in pool.map(_run_logged, ids):
+        for case_id, error in pool.map(_run_logged, [(name, str(path)) for name in ids]):
+            outcomes[case_id] = {"status": "completed" if error is None else "failed", "error": error}
             print(case_id, "done" if error is None else "FAILED" + chr(10) + error, flush=True)
+    write_json_new(path / "case_outcomes.json", outcomes)
     results = [json.loads(p.read_text()) for p in sorted(RESULTS.glob("*.json"))]
     report(results)
     print("wrote", REPORT)

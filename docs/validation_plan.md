@@ -1,7 +1,18 @@
 # Validation plan: consistency against measurement
 
-Status: draft for discussion (2026-10-15). Nothing here has been run beyond
-the first Stage 35 comparison described in the last section.
+Latest results: [v15 equivalent-camber investigation](phase3_family_v15.md).
+The annular deviation/reference-loss inconsistency is corrected; the
+family-efficiency gate remains open. Historical PHISS comparisons below
+must be read with the source-definition and assumed-shock-location
+qualifications in the v13 and v14 reports.
+
+
+Historical proposal: 2026-10-15. Its spread-only criterion is superseded by
+the frozen absolute-error, spread, coverage, profile, response and independent
+holdout screens in [the Phase 3 protocol](../validation/phase3_protocol.json).
+See [the executed v8 audit](phase3_validation.md) for current evidence. The
+sections below preserve the earlier reasoning; they do not qualify v8 or permit
+an arbitrary mean offset in industrial design feedback.
 
 ## Goal
 

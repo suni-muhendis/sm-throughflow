@@ -5,6 +5,9 @@ from typing import Any, Dict, List, Tuple
 import numpy as np
 from sm_core import BaseSimulator
 
+from .geometry import blade_sections, station_grid
+from .provenance import evaluation_identity
+from .outcomes import failure_evidence
 from .contracts import AUNGIER_PROFILES, SIMULATOR_VERSION, SPAN_FRACTIONS, ThroughflowDesignV2, ThroughflowTaskV2
 
 
@@ -15,9 +18,8 @@ def _finite_list(values) -> List[Any]:
 class SlcAungierSimulator(BaseSimulator):
     """Solves every operating point of a task with ``sm_throughflow.solver``.
 
-    Quasi-normals sit at the passage inlet, at every row's leading and
-    trailing edge and at the passage outlet; each row occupies the gap between
-    its two edges and every other gap is a duct.
+    Quasi-normals include every nonredundant passage vertex and row edge.
+    Each row occupies one gap; other gaps are independently refinable ducts.
     """
 
     VERSION = SIMULATOR_VERSION
@@ -31,23 +33,34 @@ class SlcAungierSimulator(BaseSimulator):
             task = ThroughflowTaskV2.model_validate(inputs["task"])
             task.validate_design_ownership(design)
         except Exception as exc:
-            return False, {}, {}, "invalid simulation inputs: {}".format(exc)
+            return False, {}, {"failure": {"kind": "invalid_input", "classification": "invalid_input",
+                                          "physical_limit_established": False, "message": str(exc)}}, "invalid simulation inputs: {}".format(exc)
+        provenance = evaluation_identity(design, task, AUNGIER_PROFILES[task.physics.physics_profile], self.mixing_model)
         metrics: Dict[str, float] = {}
         points = []
+        failures = []
         for index, point in enumerate(task.operating_points):
             try:
                 point_metrics, point_raw = self._solve_point(design, task, point)
             except Exception as exc:
-                return False, metrics, {"operating_points": points}, "operating point {!r} failed: {}: {}".format(point.name, type(exc).__name__, exc)
+                failure = dict(failure_evidence(exc), operating_point=point.name)
+                failures.append(failure)
+                points.append(dict(name=point.name, converged=False, failure=failure))
+                continue
             prefix = "" if index == 0 else point.name + "."
             metrics.update({prefix + key: value for key, value in point_metrics.items()})
+            point_raw["metrics"] = point_metrics
             points.append(point_raw)
         raw = {
             "simulator_version": self.VERSION,
+            "provenance": provenance,
             "physics_profile": dict(profile_id=task.physics.physics_profile, **AUNGIER_PROFILES[task.physics.physics_profile]),
             "operating_points": points,
             "span_fractions": list(SPAN_FRACTIONS),
         }
+        if failures:
+            raw.update(failure=failures[0], failures=failures)
+            return False, metrics, raw, "; ".join("operating point {!r} failed: {}".format(f["operating_point"], f["message"]) for f in failures)
         return True, metrics, raw, ""
 
     # ------------------------------------------------------------ build
@@ -55,29 +68,7 @@ class SlcAungierSimulator(BaseSimulator):
     def _sections(row, stations):
         """Camber, stagger, solidity, chi1/camber and a/c of the row's eleven design sections, and the shape
         keywords of ``blade_geometry.section``; each section sits at its span fraction on the mid-chord plane."""
-        from .correlations.aungier import camberline_angles
-        from .correlations.blade_geometry import mca_shape
-
-        x = 0.5 * (row.leading_edge_axial_m + row.trailing_edge_axial_m)
-        z = [s.axial_m for s in stations]
-        hub = float(np.interp(x, z, [s.hub_radius_m for s in stations]))
-        shroud = float(np.interp(x, z, [s.shroud_radius_m for s in stations]))
-        k_in, k_out = np.asarray(row.metal_angle_in_deg), np.asarray(row.metal_angle_out_deg)
-        sign = 1.0 if np.mean(k_in - k_out) > 0.0 else -1.0  # the cascade frame of the correlations
-        out = []
-        for k, span in enumerate(SPAN_FRACTIONS):
-            camber = sign * (k_in[k] - k_out[k])
-            if row.camberline == "multiple_circular_arc":
-                shape = dict(transition=row.transition_point[k], turning_ratio=row.turning_rate_ratio[k],
-                             max_thickness_at=row.max_thickness_location[k])
-                chi1, a_c = mca_shape(camber, shape["transition"], shape["turning_ratio"])
-            else:
-                shape, a_c = {}, row.max_camber_location
-                chi1 = float(camberline_angles(camber, a_c)[0])
-            solidity = row.chord_m[k] * row.blade_count / (2.0 * math.pi * (hub + span * (shroud - hub)))
-            out.append(dict(camber=camber, stagger=sign * k_in[k] - chi1, solidity=solidity, chi1_over_camber=chi1 / camber,
-                            a_c=a_c, t_c=row.thickness_to_chord[k], shape=shape))
-        return out
+        return blade_sections(row, stations)
 
     @staticmethod
     def section_shape(row, stations):
@@ -119,20 +110,39 @@ class SlcAungierSimulator(BaseSimulator):
                 for s in SlcAungierSimulator._sections(row, stations)]
 
     @staticmethod
+    def shock_surface_angles(row, stations):
+        """Cylindrical surfaces and legacy tangents for the passage-shock approximation.
+
+        Common arc-length samples permit span interpolation of the surface;
+        the row model finds the foot after projection on the current cone.
+        """
+        if row.profile not in ("dca", "mca"):
+            return None
+        from .correlations.blade_geometry import suction_surface_shock_angles, section, _stagger, _arc_length
+
+        angles = [suction_surface_shock_angles(row.profile, row.camberline, s["camber"], s["stagger"],
+                    s["t_c"], s["solidity"], row.max_camber_location, row.edge_radius_to_chord, **s["shape"])
+                  for s in SlcAungierSimulator._sections(row, stations)]
+        surfaces = []
+        for s in SlcAungierSimulator._sections(row, stations):
+            upper, _, _ = section(row.profile, row.camberline, s['camber'], s['t_c'],
+                row.max_camber_location, row.edge_radius_to_chord, **s['shape'])
+            p = _stagger(upper, s['stagger'])*s['solidity']
+            arc = _arc_length(p[:, 0], p[:, 1])
+            surfaces.append(np.column_stack([np.interp(np.linspace(0., 1., 401), arc, p[:, k]) for k in (0, 1)]).tolist())
+        return dict(leading=[a[0] for a in angles], foot=[a[1] for a in angles], surfaces=surfaces)
+
+    @staticmethod
     def build(design: ThroughflowDesignV2, task: ThroughflowTaskV2, point):
         """The solver problem of one operating point: (Throughflow, row models by row_id)."""
         from .solver import Annulus, InletCondition, PerfectGas, QuasiNormals, Throughflow
         from .solver.aungier_row import AungierCompressorRow, BladeSections, ShroudSeal, TipClearance
-        from .solver.endwall import EndwallBoundaryLayers
+        from .solver.endwall import EndwallBoundaryLayers, sutherland_air
 
         profile = AUNGIER_PROFILES[task.physics.physics_profile]
         gas = PerfectGas(cp=task.gas.cp_j_kg_k, R=task.gas.gas_constant_j_kg_k)
-        stations = design.passage.stations
+        stations, z, row_indices = station_grid(design, task.numerics.duct_subdivisions)
         annulus = Annulus.from_points([(s.axial_m, s.hub_radius_m) for s in stations], [(s.axial_m, s.shroud_radius_m) for s in stations])
-        z = [stations[0].axial_m]
-        for row in design.rows:
-            z += [row.leading_edge_axial_m, row.trailing_edge_axial_m]
-        z.append(stations[-1].axial_m)
         qn = QuasiNormals.on(annulus, z)
         omega = point.shaft_speed_rpm * 2.0 * math.pi / 60.0
         guide_vanes = set(design.inlet_guide_vanes())
@@ -156,20 +166,24 @@ class SlcAungierSimulator(BaseSimulator):
                 inlet_guide_vane=row.row_id in guide_vanes, clearance=clearance, seal=seal,
                 throat_over_pitch=SlcAungierSimulator.throat_over_pitch(row, stations),
                 expansion_angle=SlcAungierSimulator.expansion_angles(row, stations),
+                shock_surface_angles=SlcAungierSimulator.shock_surface_angles(row, stations),
                 section_shape=SlcAungierSimulator.section_shape(row, stations),
-                K1=profile["K1"], max_loss=profile["max_loss"], smoothing=profile["smoothing"], shock_mean=profile["shock_mean"],
+                viscosity=sutherland_air, K1=profile["K1"], max_loss=profile["max_loss"], smoothing=profile["smoothing"], shock_mean=profile["shock_mean"],
             )
             models[row.row_id] = model
-            rows.append(model.blade_row(row.row_id, 1 + 2 * k))
-        endwall = EndwallBoundaryLayers(inlet_blockage=task.physics.inlet_blockage) if profile["endwall"] else None
+            rows.append(model.blade_row(row.row_id, row_indices[row.row_id]))
+        endwall = EndwallBoundaryLayers(inlet_blockage=task.physics.inlet_blockage,
+                                        max_passes=task.numerics.endwall_max_iterations,
+                                        subdivisions=task.numerics.endwall_subdivisions) if profile["endwall"] else None
         inlet = InletCondition(P0=task.inlet.total_pressure_pa, T0=task.inlet.total_temperature_k, alpha_deg=task.inlet.flow_angle_deg)
-        mixing = SlcAungierSimulator.spanwise_mixing(design, annulus, omega) if SlcAungierSimulator.mixing_model == "gallimore" else None
+        mixing = SlcAungierSimulator.spanwise_mixing(design, annulus, omega, row_indices) if SlcAungierSimulator.mixing_model == "gallimore" else None
         flow = Throughflow(annulus, qn, inlet, point.mass_flow_kg_s, rows=rows, gas=gas, stream_surfaces=task.numerics.stream_surfaces,
-                           curvature=task.numerics.curvature, endwall=endwall, mixing=mixing)
+                           curvature=task.numerics.curvature, endwall=endwall, mixing=mixing,
+                           repositioning=task.numerics.repositioning, acceleration_depth=task.numerics.acceleration_depth)
         return flow, models
 
     @staticmethod
-    def spanwise_mixing(design, annulus, omega):
+    def spanwise_mixing(design, annulus, omega, row_indices=None):
         """Gallimore's uniform mixing over the bladed region (sm_throughflow.solver.mixing).
 
         The paper defines its inputs for a repeating stage; here L_s is the
@@ -179,6 +193,7 @@ class SlcAungierSimulator(BaseSimulator):
         from .solver.mixing import SpanwiseMixing
 
         rows = design.rows
+        row_indices = station_grid(design)[2] if row_indices is None else row_indices
         mid = len(SPAN_FRACTIONS) // 2
         rotors = [row for row in rows if row.row_type == "rotor"]
         stages = max(1, len(rotors))
@@ -189,20 +204,153 @@ class SlcAungierSimulator(BaseSimulator):
             x = 0.5 * (row.leading_edge_axial_m + row.trailing_edge_axial_m)
             speeds.append(omega * 0.5 * (float(annulus.hub_radius(x)) + float(annulus.shroud_radius(x))))
         return SpanwiseMixing(stage_length=length, thickness=thickness, blade_speed=float(np.mean(speeds)) if speeds else 1.0,
-                              start=1, stage_in=1, stage_out=2 * len(rows), stages=stages)
+                              start=row_indices[rows[0].row_id], stage_in=row_indices[rows[0].row_id],
+                              stage_out=row_indices[rows[-1].row_id] + 1, stages=stages)
 
     # ------------------------------------------------------------ solve
-    def _solve_point(self, design, task, point):
-        from .solver import averaged_total_state, polytropic_efficiency
+    @classmethod
+    def _solve_with_grid_continuation(cls, design, task, point, flow, start):
+        """Retry failed fine-grid initialization using checked coarser solutions.
 
-        flow, models = self.build(design, task, point)
-        # B* = 16, the top of the 8 to 16 range Aungier gives for Novak's damping (section 12.4);
-        # (7-59) still lowers it whenever the stream-surface movement grows.
-        sol = flow.solve(tol=task.numerics.tolerance, max_iterations=task.numerics.max_iterations, b_star=16.0)
+        Each level keeps the task's full physics, tolerance and per-attempt
+        budget. Only stream positions are interpolated; all fields, blockage
+        and wall corrections are solved again. Every attempted grid and its
+        work remain in the final success or failure telemetry.
+        """
+        from .solver.errors import SolverError
+        from .solver.verification import verify_solution
+
+        attempts, effort = [], dict.fromkeys(flow._effort, 0)
+
+        def run(candidate, positions, subdivisions, role):
+            solution = None
+            try:
+                solution = candidate.solve(tol=task.numerics.tolerance,
+                    max_iterations=task.numerics.max_iterations, b_star=4., start=positions)
+                if not solution.convergence.converged:
+                    raise SolverError('throughflow grid attempt did not converge', component='outer',
+                        iterations=solution.convergence.iterations,
+                        residual=max(solution.convergence.position_change[-1], solution.convergence.velocity_change[-1]),
+                        attempts=solution.convergence.attempts, effort=solution.convergence.effort,
+                        details=dict(repositioning=solution.convergence.repositioning))
+                verify_solution(candidate, solution, task.numerics.tolerance)
+                lo, hi = AUNGIER_PROFILES[task.physics.physics_profile]['temperature_bounds_k']
+                if (min(float(np.min(st.T)) for st in solution.stations) < lo or
+                        max(float(np.max(st.T0)) for st in solution.stations) > hi):
+                    raise SolverError('grid seed temperature outside model scope', kind='outside_model_scope',
+                        component='gas', attempts=solution.convergence.attempts, effort=solution.convergence.effort)
+            except (RuntimeError, ValueError, FloatingPointError) as exc:
+                if not isinstance(exc, SolverError):
+                    exc = SolverError(str(exc), component='outer')
+                records = exc.diagnostics.get('attempts', [] if solution is None else solution.convergence.attempts)
+                attempts.extend(dict(a, duct_subdivisions=subdivisions, grid_role=role) for a in records)
+                if not records:
+                    attempts.append(dict(converged=False, duct_subdivisions=subdivisions, grid_role=role,
+                                         failure=dict(exc.diagnostics), effort=dict(candidate._effort)))
+                for key, value in candidate._effort.items():
+                    effort[key] += value
+                raise exc
+            attempts.extend(dict(a, duct_subdivisions=subdivisions, grid_role=role)
+                            for a in solution.convergence.attempts)
+            for key, value in candidate._effort.items():
+                effort[key] += value
+            return solution
+
+        requested = task.numerics.duct_subdivisions
+        try:
+            solution = run(flow, start, requested, 'requested_initial')
+        except SolverError as initial_error:
+            if requested <= 1 or task.numerics.curvature != 'full' or initial_error.diagnostics['kind'] not in (
+                    'numerical_failure', 'quasi_normal_capacity'):
+                initial_error.diagnostics.update(attempts=attempts, effort=effort)
+                raise
+            levels, level = [], 1
+            while level < requested:
+                levels.append(level)
+                level *= 2
+            seed = None
+            try:
+                for level in levels + [requested]:
+                    candidate = flow
+                    if level != requested:
+                        level_task = task.model_copy(deep=True)
+                        level_task.numerics.duct_subdivisions = level
+                        candidate, _ = cls.build(design, level_task, point)
+                    positions = None if seed is None else np.column_stack([
+                        np.interp(candidate.qn.z_hub, seed.geometry.z[:, k],
+                                  seed.geometry.y[:, k]/seed.geometry.y[:, -1])
+                        for k in range(candidate.n)])
+                    solution = run(candidate, positions, level,
+                                   'requested_retry' if level == requested else 'coarse_seed')
+                    seed = solution
+            except (RuntimeError, ValueError, FloatingPointError) as exc:
+                if not isinstance(exc, SolverError):
+                    exc = SolverError(str(exc), component='initialization')
+                initial_error.diagnostics.update(attempts=list(attempts), effort=dict(effort),
+                    grid_continuation_failure={k:v for k,v in exc.diagnostics.items() if k not in ('attempts','effort')})
+                raise initial_error
+        solution.convergence.attempts = attempts
+        solution.convergence.effort = effort
+        return solution
+
+    @classmethod
+    def solve_state(cls, design, task, point, restart=None):
+        """Checked full-model solve shared by environment and map/research adapters."""
+        from .solver.errors import SolverError
+        from .solver.verification import verify_solution
+        from .provenance import digest
+
+        lo, hi = AUNGIER_PROFILES[task.physics.physics_profile]["temperature_bounds_k"]
+        if not lo <= task.inlet.total_temperature_k <= hi:
+            raise SolverError("inlet temperature outside the experimental constant-cp air envelope [{}, {}] K".format(lo, hi),
+                              kind="outside_model_scope", component="gas",
+                              details={"inlet_total_temperature_k": task.inlet.total_temperature_k})
+        try:
+            flow, models = cls.build(design, task, point)
+        except ValueError as exc:
+            raise SolverError(str(exc), kind="outside_model_scope", component="geometry") from exc
+        key = digest(dict(design=design.model_dump(mode="json"),
+                          task=task.model_dump(mode="json", exclude={"operating_points"}),
+                          rpm=point.shaft_speed_rpm, mixing_model=cls.mixing_model))
+        if restart is not None and restart.get("key") != key:
+            raise SolverError("restart belongs to a different geometry, speed or configuration",
+                              kind="invalid_restart", component="initialization")
+        # Direct three-point curvature resolves modes hidden by the old stencil.
+        # B*=4 contracts the high-frequency near-planar mode (B < pi**2/2);
+        # it is a versioned numerical choice, not a fitted physical coefficient.
+        sol = cls._solve_with_grid_continuation(design, task, point, flow,
+                                               None if restart is None else restart['positions'])
         if not sol.convergence.converged:
-            raise RuntimeError("the throughflow solution did not converge in {} iterations (last changes {:.3e}, {:.3e})".format(
-                sol.convergence.iterations, sol.convergence.position_change[-1], sol.convergence.velocity_change[-1]))
+            raise SolverError("the throughflow solution did not converge in {} iterations (last changes {:.3e}, {:.3e})".format(
+                sol.convergence.iterations, sol.convergence.position_change[-1], sol.convergence.velocity_change[-1]), component="outer",
+                              iterations=sol.convergence.iterations,
+                              residual=max(sol.convergence.position_change[-1], sol.convergence.velocity_change[-1]),
+                              details={"attempts": sol.convergence.attempts,
+                                       "repositioning": sol.convergence.repositioning},
+                              attempts=sol.convergence.attempts, effort=sol.convergence.effort)
+        try:
+            balances = verify_solution(flow, sol, task.numerics.tolerance)
+        except SolverError as exc:
+            exc.diagnostics.update(attempts=sol.convergence.attempts, effort=sol.convergence.effort)
+            raise
+        temperature_min = min(float(np.min(st.T)) for st in sol.stations)
+        temperature_max = max(float(np.max(st.T0)) for st in sol.stations)
+        lo, hi = AUNGIER_PROFILES[task.physics.physics_profile]["temperature_bounds_k"]
+        if temperature_min < lo or temperature_max > hi:
+            raise SolverError("temperature outside the experimental constant-cp air envelope [{}, {}] K".format(lo, hi),
+                              kind="outside_model_scope", component="gas", details={"static_min_k": temperature_min, "total_max_k": temperature_max},
+                              attempts=sol.convergence.attempts, effort=sol.convergence.effort)
+        restart = dict(key=key, mass_flow=point.mass_flow_kg_s,
+                       positions=(sol.geometry.y / sol.geometry.y[:, -1:]).tolist())
+        return flow, models, sol, balances, restart
+
+    def _solve_point(self, design, task, point, restart=None, return_restart=False):
+        from .solver import averaged_total_state, polytropic_efficiency
+        from .solver.limits import inlet_capacity, solution_limits
+        flow, models, sol, balances, restart = self.solve_state(design, task, point, restart)
         gas = flow.gas
+        temperature_min = min(float(np.min(st.T)) for st in sol.stations)
+        temperature_max = max(float(np.max(st.T0)) for st in sol.stations)
         first, last = sol.stations[0], sol.stations[-1]
         T1, P1 = averaged_total_state(gas, first)
         T2, P2 = averaged_total_state(gas, last)
@@ -222,10 +370,10 @@ class SlcAungierSimulator(BaseSimulator):
             entry["section_throat_over_pitch"] = _finite_list(models[row.row_id].throat_over_pitch)
             row_data.append(entry)
         stage_data = []
-        index = {row.row_id: k for k, row in enumerate(design.rows)}
+        index = {row.name: row.inlet for row in sol.rows}
         for stage_id in dict.fromkeys(r.stage_id for r in design.rows if r.stage_id is not None):
             members = [index[r.row_id] for r in design.rows if r.stage_id == stage_id]
-            a, b = sol.stations[1 + 2 * min(members)], sol.stations[2 + 2 * max(members)]
+            a, b = sol.stations[min(members)], sol.stations[max(members) + 1]
             Ta, Pa = averaged_total_state(gas, a)
             Tb, Pb = averaged_total_state(gas, b)
             stage_data.append({"stage_id": stage_id, "pressure_ratio_total": Pb / Pa, "temperature_ratio_total": Tb / Ta,
@@ -252,9 +400,13 @@ class SlcAungierSimulator(BaseSimulator):
             raise ValueError("non-finite summary metrics: {}".format(sorted(key for key, v in metrics.items() if not math.isfinite(v))))
         raw = {
             "name": point.name,
+            "converged": True,
+            "limits": dict(solution_limits(sol), inlet_capacity=inlet_capacity(flow)),
             "rows": row_data,
             "stages": stage_data,
             "blockage": _finite_list(1.0 - sol.blockage),
+            "station_axial_m": _finite_list(flow.qn.z_hub),
+            "row_station_indices": {r.name: {"inlet": r.inlet, "exit": r.inlet + 1} for r in sol.rows},
             "exit_span": {
                 "span_fraction": _finite_list(last.t),
                 "total_pressure_pa": _finite_list(last.P0),
@@ -262,7 +414,28 @@ class SlcAungierSimulator(BaseSimulator):
                 "flow_angle_deg": _finite_list(np.degrees(last.alpha)),
                 "meridional_velocity_m_s": _finite_list(last.Wm),
             },
-            "convergence": {"iterations": sol.convergence.iterations, "position_change": sol.convergence.position_change[-1],
+            "verification": balances,
+            "validity": {"empirical_validation": "pending", "score_eligible": False,
+                         "reynolds_min": min(float(np.min(sol.performance[r.row_id].diagnostics["reynolds_number"])) for r in design.rows),
+                         "reynolds_max": max(float(np.max(sol.performance[r.row_id].diagnostics["reynolds_number"])) for r in design.rows),
+                         "relative_inlet_mach_max": extremes["mach"],
+                         "mach_reynolds_validated_range": None,
+                         "temperature_static_min_k": temperature_min, "temperature_total_max_k": temperature_max,
+                         "loss_limit_rows": [r.row_id for r in design.rows if np.any(sol.performance[r.row_id].diagnostics["loss_limit_active"])],
+                         "blockage_limit_stations": ([] if sol.endwall is None else
+                             np.flatnonzero((sol.endwall.blockage < 0.0) | (sol.endwall.blockage > flow.max_blockage)).tolist()),
+                         "meridional_mach_limit_stations": [q for q, st in enumerate(sol.stations)
+                             if st.solver_diagnostics.get("meridional_mach_limit_active")]},
+            "convergence": {"rows": sol.convergence.row_iterations, "attempts": sol.convergence.attempts,
+                            "effort": sol.convergence.effort,
+                            "repositioning": sol.convergence.repositioning,
+                            "tolerance": task.numerics.tolerance,
+                            "field_change": sol.convergence.field_change[-1],
+                            "blockage_change": sol.convergence.blockage_change[-1],
+                            "mixing_change": sol.convergence.mixing_change[-1],
+                            "quasi_normals": [st.solver_diagnostics for st in sol.stations],
+                            "endwalls": [] if sol.endwall is None else sol.endwall.convergence,
+                            "iterations": sol.convergence.iterations, "position_change": sol.convergence.position_change[-1],
                             "velocity_change": sol.convergence.velocity_change[-1]},
         }
-        return metrics, raw
+        return (metrics, raw, restart) if return_restart else (metrics, raw)

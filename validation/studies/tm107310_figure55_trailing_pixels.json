@@ -1,0 +1,18 @@
+{
+  "source": "https://ntrs.nasa.gov/api/citations/19970001675/downloads/19970001675.pdf",
+  "source_sha256": "b7f99706b03af5957d594f75609c7d5bd1ff0a25ee0f022843db7c04e76f9334",
+  "figure": "55",
+  "pdf_page_one_based": 205,
+  "printed_page": 185,
+  "render_dpi": 140,
+  "image_orientation": "Poppler page rotation as rendered, blockage horizontal and chord vertical",
+  "speed_percent": 100,
+  "span_percent_from_hub": 70,
+  "quantity": "suction-surface velocity-displacement blockage",
+  "pick_tolerance_pixels": 4,
+  "curves": {
+    "low": {"blockage_0_10_percent_pixels": [303, 636], "chord_0_100_percent_pixels": [390, 857], "last_marker": [512, 848]},
+    "high": {"blockage_0_10_percent_pixels": [658, 990], "chord_0_100_percent_pixels": [383, 850], "last_marker": [764, 841]},
+    "max": {"blockage_0_10_percent_pixels": [1007, 1340], "chord_0_100_percent_pixels": [380, 846], "last_marker": [1120, 838]}
+  }
+}

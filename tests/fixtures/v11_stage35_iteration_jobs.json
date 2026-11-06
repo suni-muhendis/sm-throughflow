@@ -1,0 +1,1018 @@
+{
+  "source": "validation\\campaigns\\20261104T220638956907Z_slc_aungier_experimental_v11\\jobs.json",
+  "sha256": "2a5aa42a77b2fd449b3ad1b50f92caf2e0519f9be4046441a7a3755f52bfa4e9",
+  "jobs": [
+    {
+      "baseline_id": "projected__nasa_stage35_90_3979",
+      "case": "nasa_stage35",
+      "design": {
+        "flow_path": "axial",
+        "machine_type": "compressor",
+        "passage": {
+          "stations": [
+            {
+              "axial_m": 0.0,
+              "hub_radius_m": 0.17539,
+              "shroud_radius_m": 0.25643
+            },
+            {
+              "axial_m": 0.02568,
+              "hub_radius_m": 0.1778,
+              "shroud_radius_m": 0.254
+            },
+            {
+              "axial_m": 0.02848,
+              "hub_radius_m": 0.1785173670886076,
+              "shroud_radius_m": 0.2533221518987342
+            },
+            {
+              "axial_m": 0.06269,
+              "hub_radius_m": 0.1862634105263158,
+              "shroud_radius_m": 0.2442957678362573
+            },
+            {
+              "axial_m": 0.06705,
+              "hub_radius_m": 0.18714,
+              "shroud_radius_m": 0.2434485
+            },
+            {
+              "axial_m": 0.07013,
+              "hub_radius_m": 0.1875965,
+              "shroud_radius_m": 0.24285
+            },
+            {
+              "axial_m": 0.07279,
+              "hub_radius_m": 0.18799068115942028,
+              "shroud_radius_m": 0.24250946859903383
+            },
+            {
+              "axial_m": 0.11091,
+              "hub_radius_m": 0.1924046601842871,
+              "shroud_radius_m": 0.24017731813773036
+            },
+            {
+              "axial_m": 0.11196,
+              "hub_radius_m": 0.1925149,
+              "shroud_radius_m": 0.24011
+            },
+            {
+              "axial_m": 0.11458,
+              "hub_radius_m": 0.19279,
+              "shroud_radius_m": 0.23993
+            },
+            {
+              "axial_m": 0.13208,
+              "hub_radius_m": 0.1938,
+              "shroud_radius_m": 0.23851
+            }
+          ]
+        },
+        "rows": [
+          {
+            "blade_count": 36,
+            "camberline": "multiple_circular_arc",
+            "chord_m": [
+              0.054826,
+              0.055202,
+              0.055445,
+              0.055611,
+              0.055658,
+              0.055686,
+              0.055562,
+              0.055413,
+              0.055092,
+              0.054676,
+              0.05398
+            ],
+            "edge_radius_to_chord": 0.003389,
+            "leading_edge_axial_m": 0.02848,
+            "max_thickness_location": [
+              0.518562,
+              0.527146,
+              0.536373,
+              0.545398,
+              0.559862,
+              0.575171,
+              0.587061,
+              0.598386,
+              0.616207,
+              0.643122,
+              0.689105
+            ],
+            "metal_angle_in_deg": [
+              -52.387811,
+              -52.414246,
+              -52.813424,
+              -53.553539,
+              -54.631372,
+              -55.833237,
+              -57.054341,
+              -58.283073,
+              -59.513493,
+              -60.985557,
+              -63.43857
+            ],
+            "metal_angle_out_deg": [
+              -26.266646,
+              -31.344158,
+              -35.457519,
+              -39.212448,
+              -41.744227,
+              -44.275584,
+              -46.518691,
+              -48.761717,
+              -50.77227,
+              -52.567085,
+              -54.257551
+            ],
+            "profile": "mca",
+            "row_id": "R1",
+            "row_type": "rotor",
+            "stage_id": "1",
+            "thickness_to_chord": [
+              0.083537,
+              0.077267,
+              0.071301,
+              0.065649,
+              0.060525,
+              0.055483,
+              0.05071,
+              0.045981,
+              0.041273,
+              0.036625,
+              0.032419
+            ],
+            "tip_clearance_m": 0.0004,
+            "trailing_edge_axial_m": 0.06269,
+            "transition_point": [
+              0.417935,
+              0.443405,
+              0.461925,
+              0.465707,
+              0.483363,
+              0.503175,
+              0.527012,
+              0.551514,
+              0.592883,
+              0.638191,
+              0.676612
+            ],
+            "turning_rate_ratio": [
+              0.376,
+              0.406565,
+              0.431823,
+              0.457541,
+              0.339846,
+              0.199868,
+              0.124019,
+              0.058777,
+              0.018262,
+              -0.011133,
+              -0.022
+            ]
+          },
+          {
+            "blade_count": 46,
+            "camberline": "multiple_circular_arc",
+            "chord_m": [
+              0.038116,
+              0.038582,
+              0.039042,
+              0.039511,
+              0.039963,
+              0.040415,
+              0.040867,
+              0.041319,
+              0.041767,
+              0.042207,
+              0.042648
+            ],
+            "edge_radius_to_chord": 0.002984,
+            "hub_clearance_m": 0.0,
+            "leading_edge_axial_m": 0.07279,
+            "max_thickness_location": [
+              0.514688,
+              0.513564,
+              0.512583,
+              0.511445,
+              0.510499,
+              0.509572,
+              0.507933,
+              0.506221,
+              0.504065,
+              0.502033,
+              0.499528
+            ],
+            "metal_angle_in_deg": [
+              38.81305,
+              38.020741,
+              37.267348,
+              36.540593,
+              36.136359,
+              35.766715,
+              35.444804,
+              35.129425,
+              34.938287,
+              34.717771,
+              34.571575
+            ],
+            "metal_angle_out_deg": [
+              3.645012,
+              3.591083,
+              3.5229,
+              3.450798,
+              3.289937,
+              3.121378,
+              2.963007,
+              2.805356,
+              2.663282,
+              2.57241,
+              2.524855
+            ],
+            "profile": "mca",
+            "row_id": "S1",
+            "row_type": "stator",
+            "stage_id": "1",
+            "thickness_to_chord": [
+              0.039354,
+              0.04281,
+              0.046441,
+              0.050232,
+              0.053874,
+              0.057502,
+              0.061269,
+              0.065051,
+              0.068751,
+              0.072467,
+              0.075971
+            ],
+            "trailing_edge_axial_m": 0.11091,
+            "transition_point": [
+              0.354179,
+              0.351157,
+              0.348865,
+              0.346044,
+              0.345207,
+              0.344562,
+              0.343432,
+              0.342254,
+              0.341334,
+              0.340128,
+              0.338963
+            ],
+            "turning_rate_ratio": [
+              0.786,
+              0.833413,
+              0.872525,
+              0.901445,
+              0.919461,
+              0.93642,
+              0.948116,
+              0.959271,
+              0.969576,
+              0.981892,
+              1.005
+            ]
+          }
+        ],
+        "schema_version": "throughflow_design_v2"
+      },
+      "effective_admission": {
+        "passed": true,
+        "reason": null
+      },
+      "efficiency_temperature_basis": "rotor_tr",
+      "group": "coupled",
+      "id": "projected__nasa_stage35_90_3979",
+      "measurement": {
+        "mass_flow": 19.5,
+        "reading": "3979",
+        "rotor_eta": 0.888,
+        "rotor_pr": 1.591,
+        "rotor_tr": 1.16,
+        "rpm": 15451.3,
+        "stage_eta": 0.865,
+        "stage_pr": 1.574,
+        "stage_tr": 1.16
+      },
+      "projection": {
+        "max_relative_annulus_area_change": 0.007094147695354547,
+        "max_wall_displacement_m": 0.0004686830806549802,
+        "max_wall_displacement_over_local_span": 0.007026732843403001,
+        "original_stations": 14,
+        "projected_stations": 11,
+        "release_evidence": false,
+        "rule": "edge_to_edge_wall_projection_inside_rows_only"
+      },
+      "release_evidence": false,
+      "representation": "projected",
+      "selection": "measured_peak",
+      "selection_id": "nasa_stage35_90_3979",
+      "speed": 90,
+      "task": {
+        "inlet": {
+          "flow_angle_deg": 0.0,
+          "total_pressure_pa": 101325.0,
+          "total_temperature_k": 288.15
+        },
+        "numerics": {
+          "duct_subdivisions": 1,
+          "endwall_max_iterations": 200,
+          "endwall_subdivisions": 8,
+          "max_iterations": 200,
+          "stream_surfaces": 11,
+          "tolerance": 1e-07
+        },
+        "operating_points": [
+          {
+            "mass_flow_kg_s": 19.5,
+            "name": "measurement",
+            "shaft_speed_rpm": 15451.3
+          }
+        ],
+        "physics": {
+          "inlet_blockage": 0.01789563391482435,
+          "physics_profile": "axial_compressor_aungier_v2"
+        },
+        "simulator_version": "slc_aungier_experimental_v11"
+      }
+    },
+    {
+      "baseline_id": "projected__nasa_stage35_100_3978",
+      "case": "nasa_stage35",
+      "design": {
+        "flow_path": "axial",
+        "machine_type": "compressor",
+        "passage": {
+          "stations": [
+            {
+              "axial_m": 0.0,
+              "hub_radius_m": 0.17539,
+              "shroud_radius_m": 0.25643
+            },
+            {
+              "axial_m": 0.02568,
+              "hub_radius_m": 0.1778,
+              "shroud_radius_m": 0.254
+            },
+            {
+              "axial_m": 0.02848,
+              "hub_radius_m": 0.1785173670886076,
+              "shroud_radius_m": 0.2533221518987342
+            },
+            {
+              "axial_m": 0.06269,
+              "hub_radius_m": 0.1862634105263158,
+              "shroud_radius_m": 0.2442957678362573
+            },
+            {
+              "axial_m": 0.06705,
+              "hub_radius_m": 0.18714,
+              "shroud_radius_m": 0.2434485
+            },
+            {
+              "axial_m": 0.07013,
+              "hub_radius_m": 0.1875965,
+              "shroud_radius_m": 0.24285
+            },
+            {
+              "axial_m": 0.07279,
+              "hub_radius_m": 0.18799068115942028,
+              "shroud_radius_m": 0.24250946859903383
+            },
+            {
+              "axial_m": 0.11091,
+              "hub_radius_m": 0.1924046601842871,
+              "shroud_radius_m": 0.24017731813773036
+            },
+            {
+              "axial_m": 0.11196,
+              "hub_radius_m": 0.1925149,
+              "shroud_radius_m": 0.24011
+            },
+            {
+              "axial_m": 0.11458,
+              "hub_radius_m": 0.19279,
+              "shroud_radius_m": 0.23993
+            },
+            {
+              "axial_m": 0.13208,
+              "hub_radius_m": 0.1938,
+              "shroud_radius_m": 0.23851
+            }
+          ]
+        },
+        "rows": [
+          {
+            "blade_count": 36,
+            "camberline": "multiple_circular_arc",
+            "chord_m": [
+              0.054826,
+              0.055202,
+              0.055445,
+              0.055611,
+              0.055658,
+              0.055686,
+              0.055562,
+              0.055413,
+              0.055092,
+              0.054676,
+              0.05398
+            ],
+            "edge_radius_to_chord": 0.003389,
+            "leading_edge_axial_m": 0.02848,
+            "max_thickness_location": [
+              0.518562,
+              0.527146,
+              0.536373,
+              0.545398,
+              0.559862,
+              0.575171,
+              0.587061,
+              0.598386,
+              0.616207,
+              0.643122,
+              0.689105
+            ],
+            "metal_angle_in_deg": [
+              -52.387811,
+              -52.414246,
+              -52.813424,
+              -53.553539,
+              -54.631372,
+              -55.833237,
+              -57.054341,
+              -58.283073,
+              -59.513493,
+              -60.985557,
+              -63.43857
+            ],
+            "metal_angle_out_deg": [
+              -26.266646,
+              -31.344158,
+              -35.457519,
+              -39.212448,
+              -41.744227,
+              -44.275584,
+              -46.518691,
+              -48.761717,
+              -50.77227,
+              -52.567085,
+              -54.257551
+            ],
+            "profile": "mca",
+            "row_id": "R1",
+            "row_type": "rotor",
+            "stage_id": "1",
+            "thickness_to_chord": [
+              0.083537,
+              0.077267,
+              0.071301,
+              0.065649,
+              0.060525,
+              0.055483,
+              0.05071,
+              0.045981,
+              0.041273,
+              0.036625,
+              0.032419
+            ],
+            "tip_clearance_m": 0.0004,
+            "trailing_edge_axial_m": 0.06269,
+            "transition_point": [
+              0.417935,
+              0.443405,
+              0.461925,
+              0.465707,
+              0.483363,
+              0.503175,
+              0.527012,
+              0.551514,
+              0.592883,
+              0.638191,
+              0.676612
+            ],
+            "turning_rate_ratio": [
+              0.376,
+              0.406565,
+              0.431823,
+              0.457541,
+              0.339846,
+              0.199868,
+              0.124019,
+              0.058777,
+              0.018262,
+              -0.011133,
+              -0.022
+            ]
+          },
+          {
+            "blade_count": 46,
+            "camberline": "multiple_circular_arc",
+            "chord_m": [
+              0.038116,
+              0.038582,
+              0.039042,
+              0.039511,
+              0.039963,
+              0.040415,
+              0.040867,
+              0.041319,
+              0.041767,
+              0.042207,
+              0.042648
+            ],
+            "edge_radius_to_chord": 0.002984,
+            "hub_clearance_m": 0.0,
+            "leading_edge_axial_m": 0.07279,
+            "max_thickness_location": [
+              0.514688,
+              0.513564,
+              0.512583,
+              0.511445,
+              0.510499,
+              0.509572,
+              0.507933,
+              0.506221,
+              0.504065,
+              0.502033,
+              0.499528
+            ],
+            "metal_angle_in_deg": [
+              38.81305,
+              38.020741,
+              37.267348,
+              36.540593,
+              36.136359,
+              35.766715,
+              35.444804,
+              35.129425,
+              34.938287,
+              34.717771,
+              34.571575
+            ],
+            "metal_angle_out_deg": [
+              3.645012,
+              3.591083,
+              3.5229,
+              3.450798,
+              3.289937,
+              3.121378,
+              2.963007,
+              2.805356,
+              2.663282,
+              2.57241,
+              2.524855
+            ],
+            "profile": "mca",
+            "row_id": "S1",
+            "row_type": "stator",
+            "stage_id": "1",
+            "thickness_to_chord": [
+              0.039354,
+              0.04281,
+              0.046441,
+              0.050232,
+              0.053874,
+              0.057502,
+              0.061269,
+              0.065051,
+              0.068751,
+              0.072467,
+              0.075971
+            ],
+            "trailing_edge_axial_m": 0.11091,
+            "transition_point": [
+              0.354179,
+              0.351157,
+              0.348865,
+              0.346044,
+              0.345207,
+              0.344562,
+              0.343432,
+              0.342254,
+              0.341334,
+              0.340128,
+              0.338963
+            ],
+            "turning_rate_ratio": [
+              0.786,
+              0.833413,
+              0.872525,
+              0.901445,
+              0.919461,
+              0.93642,
+              0.948116,
+              0.959271,
+              0.969576,
+              0.981892,
+              1.005
+            ]
+          }
+        ],
+        "schema_version": "throughflow_design_v2"
+      },
+      "effective_admission": {
+        "passed": true,
+        "reason": null
+      },
+      "efficiency_temperature_basis": "rotor_tr",
+      "group": "coupled",
+      "id": "projected__nasa_stage35_100_3978",
+      "measurement": {
+        "mass_flow": 20.82,
+        "reading": "3978",
+        "rotor_eta": 0.872,
+        "rotor_pr": 1.875,
+        "rotor_tr": 1.226,
+        "rpm": 17119.1,
+        "stage_eta": 0.845,
+        "stage_pr": 1.842,
+        "stage_tr": 1.225
+      },
+      "projection": {
+        "max_relative_annulus_area_change": 0.007094147695354547,
+        "max_wall_displacement_m": 0.0004686830806549802,
+        "max_wall_displacement_over_local_span": 0.007026732843403001,
+        "original_stations": 14,
+        "projected_stations": 11,
+        "release_evidence": false,
+        "rule": "edge_to_edge_wall_projection_inside_rows_only"
+      },
+      "release_evidence": false,
+      "representation": "projected",
+      "selection": "measured_peak",
+      "selection_id": "nasa_stage35_100_3978",
+      "speed": 100,
+      "task": {
+        "inlet": {
+          "flow_angle_deg": 0.0,
+          "total_pressure_pa": 101325.0,
+          "total_temperature_k": 288.15
+        },
+        "numerics": {
+          "duct_subdivisions": 1,
+          "endwall_max_iterations": 200,
+          "endwall_subdivisions": 8,
+          "max_iterations": 200,
+          "stream_surfaces": 11,
+          "tolerance": 1e-07
+        },
+        "operating_points": [
+          {
+            "mass_flow_kg_s": 20.82,
+            "name": "measurement",
+            "shaft_speed_rpm": 17119.1
+          }
+        ],
+        "physics": {
+          "inlet_blockage": 0.0177052946590194,
+          "physics_profile": "axial_compressor_aungier_v2"
+        },
+        "simulator_version": "slc_aungier_experimental_v11"
+      }
+    },
+    {
+      "baseline_id": "original__nasa_stage35_100_3978",
+      "case": "nasa_stage35",
+      "design": {
+        "flow_path": "axial",
+        "machine_type": "compressor",
+        "passage": {
+          "stations": [
+            {
+              "axial_m": 0.0,
+              "hub_radius_m": 0.17539,
+              "shroud_radius_m": 0.25643
+            },
+            {
+              "axial_m": 0.02568,
+              "hub_radius_m": 0.1778,
+              "shroud_radius_m": 0.254
+            },
+            {
+              "axial_m": 0.032,
+              "hub_radius_m": 0.1794192,
+              "shroud_radius_m": 0.25247
+            },
+            {
+              "axial_m": 0.04422,
+              "hub_radius_m": 0.18255,
+              "shroud_radius_m": 0.24925
+            },
+            {
+              "axial_m": 0.04542,
+              "hub_radius_m": 0.1827913,
+              "shroud_radius_m": 0.24882
+            },
+            {
+              "axial_m": 0.0585,
+              "hub_radius_m": 0.185421,
+              "shroud_radius_m": 0.24511
+            },
+            {
+              "axial_m": 0.06705,
+              "hub_radius_m": 0.18714,
+              "shroud_radius_m": 0.2434485
+            },
+            {
+              "axial_m": 0.07013,
+              "hub_radius_m": 0.1875965,
+              "shroud_radius_m": 0.24285
+            },
+            {
+              "axial_m": 0.07427,
+              "hub_radius_m": 0.18821,
+              "shroud_radius_m": 0.24232
+            },
+            {
+              "axial_m": 0.09106,
+              "hub_radius_m": 0.1903149,
+              "shroud_radius_m": 0.24145
+            },
+            {
+              "axial_m": 0.09134,
+              "hub_radius_m": 0.19035,
+              "shroud_radius_m": 0.241432
+            },
+            {
+              "axial_m": 0.11196,
+              "hub_radius_m": 0.1925149,
+              "shroud_radius_m": 0.24011
+            },
+            {
+              "axial_m": 0.11458,
+              "hub_radius_m": 0.19279,
+              "shroud_radius_m": 0.23993
+            },
+            {
+              "axial_m": 0.13208,
+              "hub_radius_m": 0.1938,
+              "shroud_radius_m": 0.23851
+            }
+          ]
+        },
+        "rows": [
+          {
+            "blade_count": 36,
+            "camberline": "multiple_circular_arc",
+            "chord_m": [
+              0.054826,
+              0.055202,
+              0.055445,
+              0.055611,
+              0.055658,
+              0.055686,
+              0.055562,
+              0.055413,
+              0.055092,
+              0.054676,
+              0.05398
+            ],
+            "edge_radius_to_chord": 0.003389,
+            "leading_edge_axial_m": 0.02848,
+            "max_thickness_location": [
+              0.518562,
+              0.527146,
+              0.536373,
+              0.545398,
+              0.559862,
+              0.575171,
+              0.587061,
+              0.598386,
+              0.616207,
+              0.643122,
+              0.689105
+            ],
+            "metal_angle_in_deg": [
+              -52.387811,
+              -52.414246,
+              -52.813424,
+              -53.553539,
+              -54.631372,
+              -55.833237,
+              -57.054341,
+              -58.283073,
+              -59.513493,
+              -60.985557,
+              -63.43857
+            ],
+            "metal_angle_out_deg": [
+              -26.266646,
+              -31.344158,
+              -35.457519,
+              -39.212448,
+              -41.744227,
+              -44.275584,
+              -46.518691,
+              -48.761717,
+              -50.77227,
+              -52.567085,
+              -54.257551
+            ],
+            "profile": "mca",
+            "row_id": "R1",
+            "row_type": "rotor",
+            "stage_id": "1",
+            "thickness_to_chord": [
+              0.083537,
+              0.077267,
+              0.071301,
+              0.065649,
+              0.060525,
+              0.055483,
+              0.05071,
+              0.045981,
+              0.041273,
+              0.036625,
+              0.032419
+            ],
+            "tip_clearance_m": 0.0004,
+            "trailing_edge_axial_m": 0.06269,
+            "transition_point": [
+              0.417935,
+              0.443405,
+              0.461925,
+              0.465707,
+              0.483363,
+              0.503175,
+              0.527012,
+              0.551514,
+              0.592883,
+              0.638191,
+              0.676612
+            ],
+            "turning_rate_ratio": [
+              0.376,
+              0.406565,
+              0.431823,
+              0.457541,
+              0.339846,
+              0.199868,
+              0.124019,
+              0.058777,
+              0.018262,
+              -0.011133,
+              -0.022
+            ]
+          },
+          {
+            "blade_count": 46,
+            "camberline": "multiple_circular_arc",
+            "chord_m": [
+              0.038116,
+              0.038582,
+              0.039042,
+              0.039511,
+              0.039963,
+              0.040415,
+              0.040867,
+              0.041319,
+              0.041767,
+              0.042207,
+              0.042648
+            ],
+            "edge_radius_to_chord": 0.002984,
+            "hub_clearance_m": 0.0,
+            "leading_edge_axial_m": 0.07279,
+            "max_thickness_location": [
+              0.514688,
+              0.513564,
+              0.512583,
+              0.511445,
+              0.510499,
+              0.509572,
+              0.507933,
+              0.506221,
+              0.504065,
+              0.502033,
+              0.499528
+            ],
+            "metal_angle_in_deg": [
+              38.81305,
+              38.020741,
+              37.267348,
+              36.540593,
+              36.136359,
+              35.766715,
+              35.444804,
+              35.129425,
+              34.938287,
+              34.717771,
+              34.571575
+            ],
+            "metal_angle_out_deg": [
+              3.645012,
+              3.591083,
+              3.5229,
+              3.450798,
+              3.289937,
+              3.121378,
+              2.963007,
+              2.805356,
+              2.663282,
+              2.57241,
+              2.524855
+            ],
+            "profile": "mca",
+            "row_id": "S1",
+            "row_type": "stator",
+            "stage_id": "1",
+            "thickness_to_chord": [
+              0.039354,
+              0.04281,
+              0.046441,
+              0.050232,
+              0.053874,
+              0.057502,
+              0.061269,
+              0.065051,
+              0.068751,
+              0.072467,
+              0.075971
+            ],
+            "trailing_edge_axial_m": 0.11091,
+            "transition_point": [
+              0.354179,
+              0.351157,
+              0.348865,
+              0.346044,
+              0.345207,
+              0.344562,
+              0.343432,
+              0.342254,
+              0.341334,
+              0.340128,
+              0.338963
+            ],
+            "turning_rate_ratio": [
+              0.786,
+              0.833413,
+              0.872525,
+              0.901445,
+              0.919461,
+              0.93642,
+              0.948116,
+              0.959271,
+              0.969576,
+              0.981892,
+              1.005
+            ]
+          }
+        ],
+        "schema_version": "throughflow_design_v2"
+      },
+      "effective_admission": {
+        "passed": true,
+        "reason": null
+      },
+      "efficiency_temperature_basis": "rotor_tr",
+      "geometry_interpretation": "original_polyline_controls_with_interpolated_in_row_stream_surfaces",
+      "group": "coupled",
+      "id": "original__nasa_stage35_100_3978",
+      "measurement": {
+        "mass_flow": 20.82,
+        "reading": "3978",
+        "rotor_eta": 0.872,
+        "rotor_pr": 1.875,
+        "rotor_tr": 1.226,
+        "rpm": 17119.1,
+        "stage_eta": 0.845,
+        "stage_pr": 1.842,
+        "stage_tr": 1.225
+      },
+      "release_evidence": false,
+      "representation": "original",
+      "selection": "measured_peak",
+      "selection_id": "nasa_stage35_100_3978",
+      "speed": 100,
+      "task": {
+        "inlet": {
+          "flow_angle_deg": 0.0,
+          "total_pressure_pa": 101325.0,
+          "total_temperature_k": 288.15
+        },
+        "numerics": {
+          "duct_subdivisions": 1,
+          "endwall_max_iterations": 200,
+          "endwall_subdivisions": 8,
+          "max_iterations": 200,
+          "stream_surfaces": 11,
+          "tolerance": 1e-07
+        },
+        "operating_points": [
+          {
+            "mass_flow_kg_s": 20.82,
+            "name": "measurement",
+            "shaft_speed_rpm": 17119.1
+          }
+        ],
+        "physics": {
+          "inlet_blockage": 0.0177052946590194,
+          "physics_profile": "axial_compressor_aungier_v2"
+        },
+        "simulator_version": "slc_aungier_experimental_v11"
+      }
+    }
+  ]
+}

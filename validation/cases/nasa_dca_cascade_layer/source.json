@@ -1,0 +1,28 @@
+[
+  {
+    "citation": "Zierke and Deutsch, The Measurement of Boundary Layers on a Compressor Blade in Cascade, Volume I, NASA CR-185118 (1989)",
+    "ntrs_id": "19900000722",
+    "url": "https://ntrs.nasa.gov/citations/19900000722",
+    "pdf_sha256": "bc95ff80dba41632efdce9734df1a9532352c02d91b53f80f5f55f5cbbe89b83"
+  },
+  {
+    "file": "CR185118_vol1_table13.csv",
+    "report": "NASA CR-185118 Volume I",
+    "ntrs_id": "19900000722",
+    "pdf_page": 219,
+    "printed_page": "205",
+    "title": "Static-pressure coefficients for i = −8.5 degrees",
+    "dpi": 200,
+    "notes": "Both surfaces and all printed digits retained. Visually reread the numeric cells."
+  },
+  {
+    "file": "CR185118_vol1_table15.csv",
+    "report": "NASA CR-185118 Volume I",
+    "ntrs_id": "19900000722",
+    "pdf_page": 221,
+    "printed_page": "207",
+    "title": "Shear layer parameters for i = −8.5 degrees",
+    "dpi": 200,
+    "notes": "All rows and grouped columns retained. Visually reread the numeric cells on the rotated page."
+  }
+]

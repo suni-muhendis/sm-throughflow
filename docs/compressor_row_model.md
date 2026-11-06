@@ -124,3 +124,31 @@ and the inlet flow is computed once per inlet station.
   his end-wall boundary-layer analysis (chapter 8), which sets the end-wall
   blockage K_B: run the row model with `Throughflow(endwall=...)`, see
   [endwall_boundary_layer.md](endwall_boundary_layer.md).
+
+## V13 shock-incidence assembly
+
+DCA/MCA production rows pass constructed LE and shock-foot tangent angles in
+addition to historical surface turning. The row projects those cylindrical
+angles onto its inlet-to-exit meridional cone and computes the Prandtl-Meyer
+turn from the actual relative inlet flow to the foot tangent. Diagnostics
+`shock_flow_turning`, `suction_surface_incidence` and
+`shock_compression_clipped` make the approximation visible. The last field
+identifies supersonic negative turns clipped by the expansion-only closure;
+it is a model warning, not a physical choke or stall declaration. Low-level
+rows without these optional tangents retain their old tangent-entry behavior.
+The source derivation, limitations and unfavorable experimental comparison
+are in [the v13 family report](phase3_family_v13.md).
+
+## MCA equivalent-camber branch (v15)
+
+The NASA Lewis reference deviation is recomputed from the actual inlet/exit
+radii and meridional velocities by transporting exit absolute angular momentum
+to the inlet radius. It is outside the inlet-only cache. Both reference loss
+and exit triangles use this same reference. The off-design incidence slope is
+retained; the separate 10(1-Wm2/Wm1) term is omitted for MCA to avoid counting
+the velocity response twice. Inlet guide vanes retain the Howell branch.
+Diagnostics expose `equivalent_carter_active` and
+`annular_design_deviation_correction`. Invalid correlation-domain inputs are
+classified as outside model scope. This is a source-consistency correction;
+its [matched experimental comparison](phase3_family_v15.md) does not qualify
+the Stage 35–38 efficiency ordering.

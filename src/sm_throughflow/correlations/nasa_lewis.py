@@ -28,9 +28,53 @@ def carter_deviation_coefficient(stagger, a_c):
 def carter_deviation(camber, stagger, a_c, solidity):
     """delta = m theta / sqrt(sigma) (TN D-7345 eq. 20), degrees.
 
-    The design code applies it to an "equivalent camber", the camber of a
-    two-dimensional element with the same circulation at equal axial velocity
-    and radius; the model here takes the blade camber and treats the change
-    of axial velocity separately, as Aungier's off-design deviation does.
+    This is the equal-meridional-velocity, constant-radius cascade limit.
+    Use annular_carter_deviation for a row with changing radius or velocity.
     """
     return carter_deviation_coefficient(stagger, a_c) * np.asarray(camber, dtype=float) / np.sqrt(np.asarray(solidity, dtype=float))
+
+
+def annular_carter_deviation(kappa1, kappa2, stagger, a_c, solidity,
+                            wm1, wm2, r1, r2, signed_omega=0.0):
+    """Invert the equivalent-camber rule of TN D-7345 for a known blade.
+
+    BLADE, printed pp. 144 and 147 (lines 71-73 and 224-230), transports
+    exit absolute angular momentum to the inlet radius and meridional speed.
+    In the positive-camber cascade frame, q = m/sqrt(sigma), b = kappa2+delta:
+
+      tan(b_eq) = (r2/r1)(wm2/wm1)tan(b)
+                  + signed_omega*(r2**2-r1**2)/(r1*wm1)
+      delta = q*(kappa1-b_eq)/(1-q).
+
+    The source's design-mode DKAPPA is the equivalent camber, not the actual
+    metal-angle difference. Its inverse is the unique root of
+    (1-q)*(b-kappa2)+q*(b_eq-kappa1)=0 for 0<=q<1, positive velocities/radii,
+    and metal angles strictly between -90 and 90 degrees. No fitted radius
+    or velocity coefficient is introduced. signed_omega is omega times the
+    solver-to-cascade sign. Off-design incidence is not included here.
+    """
+    values = np.broadcast_arrays(*[np.asarray(v, dtype=float) for v in
+        (kappa1, kappa2, stagger, a_c, solidity, wm1, wm2, r1, r2, signed_omega)])
+    k1, k2, gamma, ac, sigma, v1, v2, radius1, radius2, rotation = values
+    if (not all(np.all(np.isfinite(v)) for v in values)
+            or np.any(np.abs(k1) >= 90.) or np.any(np.abs(k2) >= 90.) or np.any(np.abs(gamma) >= 90.)
+            or np.any((ac <= 0.) | (ac > 1.))
+            or any(np.any(v <= 0.) for v in (sigma, v1, v2, radius1, radius2))):
+        raise ValueError('annular Carter requires finite angles within (-90,90), positive velocities/radii/solidity and 0<a/c<=1')
+    q = carter_deviation_coefficient(gamma, ac) / np.sqrt(sigma)
+    if np.any((q < 0.) | (q >= 1.)):
+        raise ValueError('annular Carter requires 0 <= m/sqrt(sigma) < 1')
+    a = (radius2/radius1)*(v2/v1)
+    b = rotation*(radius2-radius1)*(radius2+radius1)/(radius1*v1)
+    if not np.all(np.isfinite(a)) or not np.all(np.isfinite(b)):
+        raise ValueError('annular Carter velocity transformation is non-finite')
+    lo, hi = np.full_like(q, -90.), np.full_like(q, 90.)
+    # The derivative is (1-q)+q*a*sec(beta)^2/(1+(a*tan(beta)+b)^2)>0.
+    # Fixed bisection is deterministic, and does not depend on a prior iterate.
+    for _ in range(54):
+        beta = .5*(lo+hi)
+        equivalent = np.degrees(np.arctan(a*np.tan(np.radians(beta))+b))
+        residual = (1.-q)*(beta-k2)+q*(equivalent-k1)
+        lo = np.where(residual < 0., beta, lo)
+        hi = np.where(residual >= 0., beta, hi)
+    return .5*(lo+hi)-k2

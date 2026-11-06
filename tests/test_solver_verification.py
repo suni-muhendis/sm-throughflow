@@ -59,11 +59,26 @@ def _forced_vortex_error(surfaces):
     return float(np.max(np.abs(station.Wm - exact) / exact))
 
 
-def test_forced_vortex_matches_the_closed_form_and_converges_at_second_order():
+def test_forced_vortex_matches_closed_form_to_inlet_interpolation_accuracy():
     errors = [_forced_vortex_error(n) for n in (11, 21, 41)]
+    # v9 integrates the linear forcing in Wm**2 exactly. The remaining ~1e-7
+    # error comes from the 401-point inlet interpolation, not radial resolution.
+    assert max(errors) < 2e-7
+
+
+def test_quadratic_swirl_profile_converges_at_second_order():
+    from sm_throughflow.solver.quasi_normal import solve_quasi_normal
+    errors = []
+    for n in (21, 41, 81):
+        t = np.linspace(0., 1., n)
+        r = HUB + t*(TIP-HUB)
+        K = 600.
+        station = solve_quasi_normal(GAS, r-HUB, t, r, t*0, t*0, t*0, 0., 0.,
+                                     np.full(n, GAS.enthalpy(288.15)), t*0, 20., swirl=K*r**3)
+        exact = np.sqrt(station.Wm[0]**2 - 1.5*K**2*(r**4-HUB**4))
+        errors.append(float(np.max(np.abs(station.Wm-exact)/exact)))
     assert errors[0] < 2e-4
-    assert errors[0] / errors[1] > 3.5
-    assert errors[1] / errors[2] > 3.5
+    assert errors[0]/errors[1] > 3.5 and errors[1]/errors[2] > 3.5
 
 
 def _stage(curvature="full", stator_loss=0.0, basis="inlet"):
@@ -173,10 +188,18 @@ def test_source_flow_between_cones_matches_the_exact_solution_at_second_order():
 
 
 def test_source_flow_stream_surfaces_lie_on_the_rays():
-    _, solution = _source_flow_error("full", 7, 11)
-    geometry = solution.geometry
-    ray = np.arctan2(geometry.r, geometry.z - APEX)
-    assert np.degrees(np.max(np.abs(geometry.phi - ray))) < 1e-4
+    # V11's consistent endpoint curvature changes the finite-grid ray error.
+    # Keep the angular accuracy target and verify convergence to it, rather
+    # than preserving the old endpoint stencil's accidental coarse-grid error.
+    errors = []
+    for surfaces in (11, 21, 41):
+        _, solution = _source_flow_error("full", 7, surfaces)
+        geometry = solution.geometry
+        ray = np.arctan2(geometry.r, geometry.z - APEX)
+        errors.append(float(np.degrees(np.max(np.abs(geometry.phi-ray)))))
+    assert errors[1] < 1e-4
+    assert errors[0]/errors[1] > 3.5
+    assert errors[1]/errors[2] > 3.5
 
 
 def test_simplified_curvature_models_trade_accuracy_in_a_conical_annulus():

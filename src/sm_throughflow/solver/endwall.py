@@ -11,6 +11,9 @@ from dataclasses import dataclass, field
 from typing import Callable, Dict, List, Optional, Sequence, Union
 
 import numpy as np
+from scipy.optimize import least_squares
+
+from .errors import SolverError, PhysicalStateError
 
 SEPARATION_SHAPE_FACTOR = 2.4  # limit on H, H1 and H2 (section 8.3, 8.4)
 MIN_MOMENTUM_REYNOLDS = 250.0  # (8-73)
@@ -86,14 +89,22 @@ def ludwieg_tillmann(H, reynolds_theta):
 
 def blade_force_defect(theta11_mean, staggered_spacing, clearance=0.0):
     """Base blade force defect thickness nu0 = (0.12 g + delta_c/2) x^3 / (1 + x^3), x = 8 theta11/g (8-44)."""
-    x3 = (8.0 * theta11_mean / staggered_spacing) ** 3
-    return (0.12 * staggered_spacing + 0.5 * clearance) * x3 / (1.0 + x3)
+    return (0.12 * staggered_spacing + 0.5 * clearance) * _defect_fraction(theta11_mean, staggered_spacing)
 
 
 def defect_correction_factor(theta11_mean, staggered_spacing):
     """F = (1/2) x^3 / (1 + x^3), x = 8 theta11/g (8-55)."""
-    x3 = (8.0 * theta11_mean / staggered_spacing) ** 3
-    return 0.5 * x3 / (1.0 + x3)
+    return 0.5 * _defect_fraction(theta11_mean, staggered_spacing)
+
+
+def _defect_fraction(theta, spacing):
+    """Evaluate x^3/(1+x^3) without overflow; same positive-domain formula."""
+    if theta < 0 or spacing <= 0 or not np.all(np.isfinite([theta, spacing])):
+        raise ValueError('force-defect thickness and spacing must be finite and nonnegative/positive')
+    if theta > spacing/8:
+        return 1.0 / (1.0 + (spacing/theta/8.0)**3)
+    x3 = (8.0*theta/spacing)**3
+    return x3/(1.0+x3)
 
 
 # ------------------------------------------------------------------ the march
@@ -134,6 +145,7 @@ class EndwallResult:
     blockage: np.ndarray  # B per quasi-normal (8-76)
     hub: List[WallState] = field(default_factory=list)
     shroud: List[WallState] = field(default_factory=list)
+    convergence: List[dict] = field(default_factory=list)
 
 
 class EndwallBoundaryLayers:
@@ -159,6 +171,7 @@ class EndwallBoundaryLayers:
         viscosity: Callable = sutherland_air,
         max_passes: int = 50,
         tol: float = 1e-8,
+        subdivisions: int = 1,
     ):
         self.inlet_blockage = float(inlet_blockage)
         self.inlet_H1 = float(inlet_H1)
@@ -168,6 +181,9 @@ class EndwallBoundaryLayers:
         self.viscosity = viscosity
         self.max_passes = int(max_passes)
         self.tol = float(tol)
+        if not 1 <= subdivisions <= 32:
+            raise ValueError('endwall subdivisions must be between 1 and 32')
+        self.subdivisions = int(subdivisions)
         self._delta_nu: Dict[tuple, float] = {}  # collateral-flow correction per (row, wall), (8-57)
 
     def reset(self):
@@ -253,6 +269,145 @@ class EndwallBoundaryLayers:
         return np.array([e.r * e.rho * e.vm * s.delta_minus_delta1, e.r * e.rho * e.vm ** 2 * s.theta11,
                          e.r ** 2 * e.rho * e.vm * s.c_theta12])
 
+    def _solve_gap(self, e1, e2, s1, initial, predictor, omega_w, blade,
+                   delta_nu, dvm_dm, f_me, f_theta, dm, wall=None, station=None):
+        """Solve the existing projected trapezoid/collateral fixed point.
+
+        The task budget counts every map evaluation, including numerical
+        Jacobian evaluations. Least-squares termination is never acceptance:
+        all conserved components, theta11, H1 and force defect must settle.
+        No state or correction is committed until the residual is verified.
+        """
+        initial = np.asarray(initial, dtype=float)
+        scale = np.maximum(np.abs(initial), np.abs(self._conserved(e2, predictor)))
+        ve = np.hypot(e2.vm, e2.c_theta-omega_w*e2.r)
+        scale[2] = max(scale[2], e2.r**2*e2.rho*e2.vm*ve*predictor.theta11)
+        scale = np.maximum(scale, 1e-30)
+        g = blade['g'] if blade is not None else max(s1.delta, predictor.delta, 1e-12)
+        scale = np.r_[scale, g]
+        x0 = np.r_[self._conserved(e2, predictor), delta_nu]/scale
+        evaluations, best, best_error = 0, None, float('inf')
+
+        class BudgetExhausted(Exception):
+            pass
+
+        def mapped(x):
+            nonlocal evaluations, best, best_error
+            if evaluations >= self.max_passes:
+                raise BudgetExhausted()
+            evaluations += 1
+            state = self._state(e2, *(x[:3]*scale[:3]), omega_w, predictor.m)
+            correction = x[3]*g
+            nu = 0.0 if blade is None else blade_force_defect(.5*(s1.theta11+state.theta11), g, blade['gap'])+correction
+            with np.errstate(over='raise', invalid='raise', divide='raise'):
+                new = initial + .5*dm*(self._sources(e1, s1, dvm_dm, f_me, f_theta, nu)
+                                       + self._sources(e2, state, dvm_dm, f_me, f_theta, nu))
+                updated = self._state(e2, *new, omega_w, predictor.m)
+                next_correction = correction
+                if blade is not None:
+                    rbar, vmbar = .5*(e1.r+e2.r), .5*(e1.vm+e2.vm)
+                    wt2 = e2.c_theta-blade['omega']*e2.r
+                    wtbar = .5*(e1.c_theta+e2.c_theta)-blade['omega']*rbar
+                    vt2 = e2.c_theta-omega_w*e2.r
+                    xi = (rbar/e2.r+wtbar*wt2/(vmbar*e2.vm))*rbar*f_theta*dm/(e2.r*e2.rho*e2.vm)
+                    if abs(xi) > 0:
+                        F = defect_correction_factor(.5*(s1.theta11+updated.theta11), g)
+                        next_correction = (correction-(vt2*updated.theta12-wt2*updated.theta11)/xi)*F
+                target = np.r_[self._conserved(e2, updated), next_correction]/scale
+            error = max(float(np.max(np.abs(target-x))), abs(updated.theta11-state.theta11)/updated.theta11,
+                        abs(updated.H1-state.H1))
+            if blade is not None:
+                next_nu = blade_force_defect(.5*(s1.theta11+updated.theta11), g, blade['gap'])+next_correction
+                error = max(error, abs(next_nu-nu)/g)
+            if np.isfinite(error) and error < best_error:
+                best, best_error = (state, correction, nu, x.copy()), error
+            return target-x
+
+        method, picard_error = 'picard', None
+        try:
+            x = x0.copy()
+            previous_norm = float('inf')
+            for step in range(self.max_passes):
+                residual = mapped(x)
+                if best_error <= self.tol:
+                    break
+                norm = float(np.max(np.abs(residual)))
+                if step >= 5 and norm > .95*previous_norm:
+                    break
+                previous_norm = norm
+                x += residual
+                if not np.all(np.isfinite(x)) or np.max(np.abs(x)) > 1e4:
+                    break
+            if best_error > self.tol and evaluations < self.max_passes:
+                method = 'bounded_residual'
+                # Restart from the best admissible state, never a diverged iterate.
+                guess = best[3] if best is not None else x0
+                guess = guess.copy()
+                guess[:2] = np.maximum(guess[:2], 1e-15)
+                result = least_squares(mapped, guess, bounds=([0., 0., -np.inf, -np.inf], np.inf),
+                                       ftol=None, xtol=1e-12, gtol=1e-12, max_nfev=self.max_passes,
+                                       x_scale='jac')
+                if evaluations < self.max_passes:
+                    mapped(result.x)
+        except (BudgetExhausted, FloatingPointError, ValueError, OverflowError) as exc:
+            picard_error = str(exc) or type(exc).__name__
+        if best is None or best_error > self.tol:
+            raise SolverError('endwall gap residual solve did not converge', component='endwall',
+                              station=station, iterations=evaluations, residual=best_error,
+                              details=dict(wall=wall, tolerance=self.tol, method=method,
+                                           inner_error=picard_error, physical_limit_established=False))
+        state, correction, nu, _ = best
+        return state, correction, nu, dict(wall=wall, station=station, iterations=evaluations,
+                                         residual=float(best_error), tolerance=self.tol, method=method)
+
+    def _integrate_gap(self, e1, e2, s1, initial, omega_w, blade, key, wall, station):
+        """Subdivide the wall-layer march, without extra core-flow states.
+
+        Linear edge interpolation is a stated numerical closure; density uses
+        the same ideal-gas EOS as the two endpoints. r*Ctheta is interpolated
+        to preserve the duct angular-momentum transport. Row work/loss are
+        never re-applied. Corrections belong to each integration subinterval.
+        """
+        count = self.subdivisions
+        states, diagnostics, corrections = s1, [], {}
+        gas_r = e1.P/(e1.rho*e1.T)
+
+        def edge(f):
+            if f == 0:
+                return e1
+            if f == 1:
+                return e2
+            values = {name: getattr(e1, name)+f*(getattr(e2, name)-getattr(e1, name))
+                      for name in ('r', 'vm', 'P', 'T', 'phi', 'm')}
+            values['rho'] = values['P']/(gas_r*values['T'])
+            values['c_theta'] = (e1.r*e1.c_theta+f*(e2.r*e2.c_theta-e1.r*e1.c_theta))/values['r']
+            return _Edge(**values)
+
+        for index in range(count):
+            a, b = edge(index/count), edge((index+1)/count)
+            conserved = np.asarray(initial) if index == 0 else self._conserved(a, states)
+            theta = conserved[1]/(b.r*b.rho*b.vm**2)
+            X = b.r*b.rho*b.vm*2*states.H1*theta/(states.H1-1)
+            predictor = self._state(b, X, conserved[1], conserved[2], omega_w, states.m)
+            dm = b.m-a.m
+            dvm = (b.vm-a.vm)/dm
+            rho, vm, radius = .5*(a.rho+b.rho), .5*(a.vm+b.vm), .5*(a.r+b.r)
+            ft = rho*vm/radius*(b.r*b.c_theta-a.r*a.c_theta)/dm
+            fm = (rho*vm*dvm+(b.P-a.P)/dm
+                  - np.sin(.5*(a.phi+b.phi))/radius*rho*(.5*(a.c_theta+b.c_theta))**2)
+            correction_key = (key, count, index)
+            try:
+                states, correction, nu, info = self._solve_gap(a, b, states, conserved, predictor,
+                    omega_w, blade, self._delta_nu.get(correction_key, 0.), dvm, fm, ft, dm, wall, station)
+            except SolverError as exc:
+                exc.diagnostics.setdefault('details', {}).update(substep=index+1, substeps=count)
+                raise
+            corrections[correction_key] = correction
+            info.update(substep=index+1, substeps=count)
+            diagnostics.append(info)
+        self._delta_nu.update(corrections)
+        return states, nu, diagnostics
+
     # ------------------------------------------------------------ seal leakage
     @staticmethod
     def _leak_in(e: _Edge, X, M, T_inv, s: WallState, leak, compressor_speed):
@@ -314,13 +469,6 @@ class EndwallBoundaryLayers:
                 X1, M1, T1 = self._leak_in(e1, X1, M1, T1, s1, leak, compressor_speed)
                 s1 = self._state(e1, X1, M1, T1, omega_w, s1.m)
 
-            dm = e2.m - e1.m
-            dvm_dm = (e2.vm - e1.vm) / dm
-            rho_bar, vm_bar, r_bar = 0.5 * (e1.rho + e2.rho), 0.5 * (e1.vm + e2.vm), 0.5 * (e1.r + e2.r)
-            f_theta = rho_bar * vm_bar / r_bar * (e2.r * e2.c_theta - e1.r * e1.c_theta) / dm  # (8-9)
-            c_bar = 0.5 * (e1.c_theta + e2.c_theta)
-            f_me = (rho_bar * vm_bar * dvm_dm + (e2.P - e1.P) / dm - np.sin(0.5 * (e1.phi + e2.phi)) / r_bar * rho_bar * c_bar ** 2)  # (8-8)
-
             blade = None
             if row is not None and row.name in performance and performance[row.name].diagnostics is not None:
                 d = performance[row.name].diagnostics
@@ -331,41 +479,10 @@ class EndwallBoundaryLayers:
                     blade = (g, gap, row)
             key = (row.name if row is not None else q, wall)
 
-            # Predictor (8-74, 8-75): r rho V_me^2 theta11 and r^2 rho V_me V_theta,e theta12 carried over, H1 kept.
-            theta11_guess = M1 / (e2.r * e2.rho * e2.vm ** 2)
-            X_guess = e2.r * e2.rho * e2.vm * 2.0 * s1.H1 * theta11_guess / (s1.H1 - 1.0)
-            s2 = self._state(e2, X_guess, M1, T1, omega_w, s1.m)
-            nu = 0.0
-            for _ in range(self.max_passes):
-                if blade is not None:
-                    g, gap, _row = blade
-                    theta_bar = 0.5 * (s1.theta11 + s2.theta11)
-                    nu0 = blade_force_defect(theta_bar, g, gap)  # (8-44)
-                    nu = nu0 + self._delta_nu.get(key, 0.0)  # (8-56)
-                src1 = self._sources(e1, s1, dvm_dm, f_me, f_theta, nu)
-                src2 = self._sources(e2, s2, dvm_dm, f_me, f_theta, nu)
-                new = np.array([X1, M1, T1]) + dm * 0.5 * (src1 + src2)
-                s_new = self._state(e2, *new, omega_w, s2.m)
-                if blade is not None:
-                    # Collateral-flow correction of the force defect (8-45 to 8-57), from the discharge data.
-                    g, gap, row_ = blade
-                    w_theta2 = e2.c_theta - row_.omega * e2.r
-                    w_theta_bar = 0.5 * (e1.c_theta + e2.c_theta) - row_.omega * r_bar
-                    v_theta2 = e2.c_theta - omega_w * e2.r
-                    xi = (r_bar / e2.r + w_theta_bar * w_theta2 / (vm_bar * e2.vm)) * r_bar * f_theta * dm / (e2.r * e2.rho * e2.vm)  # (8-53)
-                    theta_bar = 0.5 * (s1.theta11 + s_new.theta11)
-                    F = defect_correction_factor(theta_bar, g)  # (8-55)
-                    if abs(xi) > 0.0:
-                        residual = v_theta2 * s_new.theta12 - w_theta2 * s_new.theta11
-                        self._delta_nu[key] = (self._delta_nu.get(key, 0.0) - residual / xi) * F  # (8-57)
-                # Step 6 of section 8.8: converged on theta11, H1 and nu.
-                change = max(abs(s_new.theta11 - s2.theta11) / s_new.theta11, abs(s_new.H1 - s2.H1))
-                if blade is not None:
-                    nu_next = blade_force_defect(0.5 * (s1.theta11 + s_new.theta11), blade[0], blade[1]) + self._delta_nu.get(key, 0.0)
-                    change = max(change, abs(nu_next - nu) / blade[0])
-                s2 = s_new
-                if change <= self.tol:
-                    break
+            descriptor = None if blade is None else dict(g=blade[0], gap=blade[1], omega=blade[2].omega)
+            s2, nu, diagnostics = self._integrate_gap(e1, e2, s1, [X1, M1, T1], omega_w,
+                                                     descriptor, key, wall, q+1)
+            self._convergence.extend(diagnostics)
             s2.nu = nu
             if leak:
                 X2, M2, T2 = self._leak_out(e2, *self._conserved(e2, s2), s2, leak, compressor_speed)
@@ -376,6 +493,7 @@ class EndwallBoundaryLayers:
 
     # ------------------------------------------------------------ both walls
     def solve(self, flow, geo, stations, performance) -> EndwallResult:
+        self._convergence = []
         mass_flow = stations[0].mass_flow
         hub_edges, hub = self._march(flow, geo, stations, performance, "hub")
         shroud_edges, shroud = self._march(flow, geo, stations, performance, "shroud")
@@ -383,4 +501,4 @@ class EndwallBoundaryLayers:
             sum(2.0 * np.pi * e.r * e.rho * e.vm * s.delta1 for e, s in ((he, hs), (se, ss))) / mass_flow  # (8-76)
             for he, hs, se, ss in zip(hub_edges, hub, shroud_edges, shroud)
         ])
-        return EndwallResult(blockage=blockage, hub=hub, shroud=shroud)
+        return EndwallResult(blockage=blockage, hub=hub, shroud=shroud, convergence=list(self._convergence))
